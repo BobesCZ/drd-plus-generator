@@ -10,18 +10,19 @@ const translations = {
   "career": "Povolání",
   "level": "Úroveň",
   "sex": "Pohlaví",
-  "note": "Poznámka"
+  "note": "Poznámka",
 };
 
-const mapStateToProps = state => {
- 	return { info: state.character.info };
+const mapStateToProps = (state) => {
+  // console.log(JSON.stringify(state.getIn(['character', 'info']), null, 2))
+ 	return { info: state.getIn(['character', 'info'])};
 };
 
 const ConnectedList = ({info }) => (
   <ul className="list-group list-group-flush">
-    {Object.keys(info).map( key => (
+    {info.keySeq().map( key => (
       <li key={key} className="list-group-item">
-       {translations[key]}: {info[key]}
+       {translations[key]}: {info.get(key)}
       </li>
     ))}
   </ul>

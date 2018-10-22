@@ -8,6 +8,7 @@ const store = createStore(rootReducer);
 store.subscribe(() => {
 	console.log( "--------- Store state: ---------");
 	console.log( store.getState() );
+ 	console.log(JSON.stringify(store.getState(), null, 2))
 });
 
 export default store;
