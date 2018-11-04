@@ -1,11 +1,12 @@
 import { fromJS } from 'immutable';
+import translations from "../translations";
 
 const initialState = fromJS(
   {
     // Main character object
     "character": {
       "info": {
-        "name": "Default",
+        "name": "",
         "race": "",
         "career": "",
         "level": "",

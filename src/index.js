@@ -3,8 +3,11 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import Layout from "./components/Layout";
-// import redux from "./redux";
 import store from "./store/index";
+
+import startActions from "./startActions";
+
+startActions();
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -2,27 +2,11 @@ import React from "react";
 
 import InteractionSection from "./InteractionSection";
 import CharacterSheet from "./CharacterSheet";
-import List from "./List";
-
 
 class Layout extends React.Component {
 	constructor(props) {
 	    super();
-
-	    this.state = {
-	    	// Main character object
-	      	character: {
-	      		info: {
-	      			
-	      			"name": "", 		// Jméno
-	      			"race": "", 		// Rasa
-	      			"career": "", 		// Povolání
-	      			"level": "", 		// Úroveň
-	      			"Pohlaví": "", 	
-	      			"Poznámka": ""
-	      		}
-	      	}
-	    };
+	    this.state = {};
 
 		this.handleChangeInfo = this.handleChangeInfo.bind(this);
 	}
@@ -42,9 +26,7 @@ class Layout extends React.Component {
 
 	    			<div className="col-sm-6">
 		        		{/* Printing part (character sheet) */}
-	    	    		<CharacterSheet characterObject={this.state.character} />
-	    	    		<hr />
-	    	    		<List /> 
+	    	    		<CharacterSheet />
 	    			</div>
     			</div>
     		</div>

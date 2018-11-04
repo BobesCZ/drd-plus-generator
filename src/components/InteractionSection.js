@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import store from "../store/index";
-
-const changeInfo = item => ({ type: "CHANGE_INFO", payload: item });
+import changeInfo from "../actions/changeInfo";
 
 const mapDispatchToProps = dispatch => {
   return {
