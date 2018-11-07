@@ -1,7 +1,9 @@
 import React from "react";
 
-import InteractionSection from "./InteractionSection";
+import ScreenCharacter from "./ScreenCharacter";
 import CharacterSheet from "./CharacterSheet";
+import Navigation from "./Navigation";
+import ScreenSection from "./ScreenSection";
 
 class Layout extends React.Component {
 	constructor(props) {
@@ -17,11 +19,14 @@ class Layout extends React.Component {
         	<div className="container">
         		
         		<h1>DrD Plus Generátor postav </h1>
-        		
+
+	        	{/* Navigation part (forms etc) */}
+	    		<Navigation />
+	        		
         		<div className="row">
         			<div className="col-sm-6">
 		        		{/* Interaction part (forms etc) */}
-		        		<InteractionSection characterObject={this.state.character} changeCallback={this.handleChangeInfo} />
+		        		<ScreenSection />
 		    		</div>
 
 	    			<div className="col-sm-6">

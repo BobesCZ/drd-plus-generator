@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class ConnectedInteractionSection extends React.Component {
+class ConnectedScreenCharacter extends React.Component {
   constructor(props) {
     super();
     this.state = {};
@@ -114,6 +114,6 @@ class ConnectedInteractionSection extends React.Component {
   }
 }
 
-const InteractionSection = connect(null, mapDispatchToProps)(ConnectedInteractionSection);
+const ScreenCharacter = connect(null, mapDispatchToProps)(ConnectedScreenCharacter);
 
-export default InteractionSection;
+export default ScreenCharacter;

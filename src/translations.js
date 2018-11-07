@@ -31,6 +31,13 @@
 	"cleric": "Kněz",
 	"male": "Muž",
 	"female": "Žena",
+	"screenCharacter": "1. Volba postavy",
+	"screenBackground": "2. Zázemí",
+	"screenAbilities": "3. Vlastnosti",
+	"screenSkills": "4. Dovednosti",
+	"screenWeapons": "5. Zbraně",
+	"screenArmors": "6. Zbroje",
+	"screenExport": "7. Export a tisk",
 };
 
 export default translations;
