@@ -8,7 +8,7 @@ const initialState = fromJS(
       "info": {
         "name": "",
         "race": "",
-        "career": "",
+        "class": "",
         "level": "",
         "sex": "",
         "note": ""

@@ -13,7 +13,8 @@ const ConnectedSheets = ({info }) => (
   <ul className="list-group list-group-flush">
     {info.keySeq().map( key => (
       <li key={key} className="list-group-item">
-       {translations[key]}: {info.get(key)}
+      	{/* Trying to print words from translations (in state there can be translationable key, or user's text) */}
+       {translations[key]}: {translations[info.get(key)] ? translations[info.get(key)] : info.get(key)}
       </li>
     ))}
   </ul>
