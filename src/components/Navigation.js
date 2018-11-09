@@ -9,6 +9,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = (state) => {
+  return { screens: state.get('screens')};
+};
+
 class ConnectedNavigation extends React.Component {
   constructor(props) {
     super();
@@ -25,27 +29,37 @@ class ConnectedNavigation extends React.Component {
     let isDisabled = parentLi.classList.contains('disabled');
 
     if (!isDisabled) {
-        let screen = target.getAttribute('data-screen');
-        console.log(screen);
-        this.props.changeScreen({ active: screen});
+      let screen = target.getAttribute('data-screen');
+      console.log(screen);
+      this.props.changeScreen({ active: screen});
     }
   }
 
-  render() {
+  render(props) {
+    let screensArray = [
+      "screenCharacter",
+      "screenBackground",
+      "screenAbilities",
+      "screenSkills",
+      "screenWeapons",
+      "screenArmors",
+      "screenExport",
+    ];
+
     return (
       <ul className="nav nav-tabs">
-        <li role="presentation" className="active"><a href="#" data-screen="1" onClick={this.handleClick}>{translations.screenCharacter}</a></li>
-        <li role="presentation" className=""><a href="#" data-screen="2" onClick={this.handleClick}>{translations.screenBackground}</a></li>
-        <li role="presentation" className="disabled"><a href="#" data-screen="3" onClick={this.handleClick}>{translations.screenAbilities}</a></li>
-        <li role="presentation" className="disabled"><a href="#" data-screen="4" onClick={this.handleClick}>{translations.screenSkills}</a></li>
-        <li role="presentation" className="disabled"><a href="#" data-screen="5" onClick={this.handleClick}>{translations.screenWeapons}</a></li>
-        <li role="presentation" className="disabled"><a href="#" data-screen="6" onClick={this.handleClick}>{translations.screenArmors}</a></li>
-        <li role="presentation" className="disabled"><a href="#" data-screen="7" onClick={this.handleClick}>{translations.screenExport}</a></li>
+        {screensArray.map(key => (
+          <li key={key} role="presentation" className={this.props.screens.get(key) < 0 ? 'disabled' : this.props.screens.get('active') == key ? 'active' : ''}>
+            <a href="#" data-screen={key} onClick={this.handleClick}>
+              {translations[key]}
+            </a>
+          </li>
+        ))}
       </ul>
     );
   }
 }
 
-const Navigation = connect(null, mapDispatchToProps)(ConnectedNavigation);
+const Navigation = connect(mapStateToProps, mapDispatchToProps)(ConnectedNavigation);
 
 export default Navigation;

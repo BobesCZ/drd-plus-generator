@@ -2,11 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
+import resolveScreen from "../actions/resolveScreen";
 import translations from "../translations";
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeInfoP: item => dispatch(changeInfo(item))
+    changeInfo: item => dispatch(changeInfo(item)),
+    resolveScreen: item => dispatch(resolveScreen(item)),
   };
 };
 
@@ -24,7 +26,8 @@ class ConnectedScreenCharacter extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     console.log({ key: name, value: value});
-    this.props.changeInfoP({ key: name, value: value});
+    this.props.changeInfo({ key: name, value: value});
+    this.props.resolveScreen({ active: "screenCharacter"});
   }
 
   render() {

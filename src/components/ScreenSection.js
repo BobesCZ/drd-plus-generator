@@ -15,14 +15,19 @@ class ConnectedScreenSection extends React.Component {
     let activeScreen = this.props.active;
     // console.log(activeScreen);
 
-    if (activeScreen == 1) {
+    if (activeScreen == "screenCharacter") {
       return (
         <ScreenCharacter />
       )
     }
-    else {
+    else if (activeScreen == "screenBackground")  {
       return (
         <ScreenBackground />
+      )
+    }
+    else {
+      return (
+        <p> neznámá sekce :-| </p>
       )
     }
   }
