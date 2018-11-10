@@ -71,6 +71,25 @@ const rootReducer = (state = initialState, action) => {
             return state.setIn(["screens", "screenCharacter"], 0).setIn(["screens", "screenBackground"], -1);
           }
         }
+
+        return state;
+
+      case "AUTOFILL_SCREEN":
+        var screen = action.payload.screen;
+
+        if (screen == "screenCharacter") {
+          // Autofill screen no. 1
+          var nameField = state.getIn(["character", "info", "name"]);
+
+          if (!isTextInputFilled(nameField)) {
+            // console.log("Field: Name not filled, fill it!");
+            // Set initial name to Random peasant
+            let nameValue = translations["default-name"] + Math.floor(Math.random() * 100);
+            return state.setIn(["character", "info", "name"], nameValue);
+          }          
+        }
+        
+        return state;
               
 	    default:
       	return state;

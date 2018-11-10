@@ -5,7 +5,13 @@ import changeInfo from "./actions/changeInfo";
 export default function startActions() {
 
 	// Set initial name to Random peasant
-	// store.dispatch( changeInfo({ key: "name", value: translations["default-name"] + Math.floor(Math.random() * 100)}) )
+	
+	// Set initial values at screenCharacter
+	store.dispatch( changeInfo({ key: "race", value: "human"}) )
+	store.dispatch( changeInfo({ key: "class", value: "warrior"}) )
+	store.dispatch( changeInfo({ key: "level", value: "1"}) )
+	store.dispatch( changeInfo({ key: "sex", value: "male"}) )
+	
 
 	// jQuery init plugins
 	$(function () {

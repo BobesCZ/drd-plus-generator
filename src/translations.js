@@ -38,6 +38,9 @@
 	"screenWeapons": "5. Zbraně",
 	"screenArmors": "6. Zbroje",
 	"screenExport": "7. Export a tisk",
+	"previousStep": "Zpět",
+	"nextStep": "Pokračovat",
+	"autoFillHeader": "Zrychlená volba",
 };
 
 export default translations;
