@@ -12,6 +12,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = (state) => {
+  return { info: state.getIn(['character', 'info'])};
+};
+
 class ConnectedScreenCharacter extends React.Component {
   constructor(props) {
     super();
@@ -30,19 +34,19 @@ class ConnectedScreenCharacter extends React.Component {
     this.props.resolveScreen({ active: "screenCharacter"});
   }
 
-  render() {
+  render(props) {
       
     return (
       <form>
 
         <div className="form-group">
           <label htmlFor="">{translations.charname}</label>
-          <input type="text" className="form-control" name="name" onInput={this.handleChangeFormInput} placeholder={translations.charnamePlaceholder} />
+          <input type="text" className="form-control" name="name" value={this.props.info.get("name")} onInput={this.handleChangeFormInput} placeholder={translations.charnamePlaceholder} />
         </div>
 
         <div className="form-group">
           <label htmlFor="">{translations.race}</label>
-          <select className="form-control" name="race" value={this.state.value} onChange={this.handleChangeFormInput}>
+          <select className="form-control" name="race" value={this.props.info.get("race")} onChange={this.handleChangeFormInput}>
             <option value="human">{translations.human}</option>
             <option value="mountaineer">{translations.mountaineer}</option>
             <option value="elf">{translations.elf}</option>
@@ -61,7 +65,7 @@ class ConnectedScreenCharacter extends React.Component {
 
         <div className="form-group">
           <label htmlFor="">{translations.class}</label>
-          <select className="form-control" name="class" value={this.state.value} onChange={this.handleChangeFormInput}>
+          <select className="form-control" name="class" value={this.props.info.get("class")} onChange={this.handleChangeFormInput}>
             <option value="warrior">{translations.warrior}</option> 
             <option value="sorcerer">{translations.sorcerer}</option> 
             <option value="rogue">{translations.rogue}</option> 
@@ -73,7 +77,7 @@ class ConnectedScreenCharacter extends React.Component {
 
         <div className="form-group">
           <label htmlFor="">{translations.level}</label>
-          <select className="form-control" name="level" value={this.state.value} onChange={this.handleChangeFormInput}>
+          <select className="form-control" name="level" value={this.props.info.get("level")} onChange={this.handleChangeFormInput}>
             <option value="1">1.</option>
             <option value="2">2.</option>
             <option value="3">3.</option>
@@ -100,7 +104,7 @@ class ConnectedScreenCharacter extends React.Component {
 
         <div className="form-group">
           <label htmlFor="">{translations.sex} <span className="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="popover" data-trigger="hover" data-content={translations.sexPopover}></span></label>
-          <select className="form-control" name="sex" value={this.state.value} onChange={this.handleChangeFormInput}>
+          <select className="form-control" name="sex" value={this.props.info.get("sex")} onChange={this.handleChangeFormInput}>
             <option value="male">{translations.male}</option>
             <option value="female">{translations.female}</option>
           </select>
@@ -108,7 +112,7 @@ class ConnectedScreenCharacter extends React.Component {
 
         <div className="form-group">
           <label htmlFor="">{translations.note}</label>
-          <textarea className="form-control" name="note" value={this.state.value} onChange={this.handleChangeFormInput} placeholder={translations.notePlaceholder} rows="3"/>
+          <textarea className="form-control" name="note" value={this.props.info.get("note")} onChange={this.handleChangeFormInput} placeholder={translations.notePlaceholder} rows="3"/>
         </div>
 
       </form>
@@ -117,6 +121,6 @@ class ConnectedScreenCharacter extends React.Component {
   }
 }
 
-const ScreenCharacter = connect(null, mapDispatchToProps)(ConnectedScreenCharacter);
+const ScreenCharacter = connect(mapStateToProps, mapDispatchToProps)(ConnectedScreenCharacter);
 
 export default ScreenCharacter;
