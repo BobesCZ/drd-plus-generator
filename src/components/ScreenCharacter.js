@@ -29,7 +29,7 @@ class ConnectedScreenCharacter extends React.Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log({ key: name, value: value});
+    // console.log({ key: name, value: value});
     this.props.changeInfo({ key: name, value: value});
     this.props.resolveScreen({ active: "screenCharacter"});
   }

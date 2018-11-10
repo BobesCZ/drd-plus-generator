@@ -15,8 +15,8 @@ const initialState = fromJS(
         "note": ""
       }
     },
+    "activeScreen": "screenCharacter",
     "screens": {
-      "active": "screenCharacter",
       // States: 
       // -1 => disabled 
       // 0 => not completed
@@ -42,7 +42,7 @@ const rootReducer = (state = initialState, action) => {
       case "CHANGE_SCREEN":
         var active = action.payload.active;
         // console.log(action.payload)
-        return state.setIn(["screens", "active"], active);
+        return state.set("activeScreen", active);
               
       case "RESOLVE_SCREEN":
         var active = action.payload.active;

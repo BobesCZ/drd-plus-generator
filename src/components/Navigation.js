@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import translations from "../translations";
 import changeScreen from "../actions/changeScreen";
+import screensArray from "../helpers/screensArray";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -10,7 +11,10 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = (state) => {
-  return { screens: state.get('screens')};
+  return { 
+    screens: state.get('screens'),
+    activeScreen: state.get('activeScreen'),
+  };
 };
 
 class ConnectedNavigation extends React.Component {
@@ -30,26 +34,16 @@ class ConnectedNavigation extends React.Component {
 
     if (!isDisabled) {
       let screen = target.getAttribute('data-screen');
-      console.log(screen);
       this.props.changeScreen({ active: screen});
     }
   }
 
   render(props) {
-    let screensArray = [
-      "screenCharacter",
-      "screenBackground",
-      "screenAbilities",
-      "screenSkills",
-      "screenWeapons",
-      "screenArmors",
-      "screenExport",
-    ];
-
+    
     return (
       <ul className="nav nav-tabs">
         {screensArray.map(key => (
-          <li key={key} role="presentation" className={this.props.screens.get(key) < 0 ? 'disabled' : this.props.screens.get('active') == key ? 'active' : ''}>
+          <li key={key} role="presentation" className={this.props.screens.get(key) < 0 ? 'disabled' : this.props.activeScreen == key ? 'active' : ''}>
             <a href="#" data-screen={key} onClick={this.handleClick}>
               {translations[key]}
             </a>

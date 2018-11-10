@@ -7,7 +7,7 @@ import ScreenCharacter from "./ScreenCharacter";
 import ScreenBackground from "./ScreenBackground";
 
 const mapStateToProps = (state) => {
-  return { active: state.getIn(['screens', 'active'])};
+  return { active: state.get('activeScreen')};
 };
 
 class ConnectedScreenSection extends React.Component {

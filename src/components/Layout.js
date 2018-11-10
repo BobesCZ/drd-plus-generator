@@ -3,14 +3,13 @@ import React from "react";
 import ScreenCharacter from "./ScreenCharacter";
 import CharacterSheet from "./CharacterSheet";
 import Navigation from "./Navigation";
+import StepNavigation from "./StepNavigation";
 import ScreenSection from "./ScreenSection";
 
 class Layout extends React.Component {
 	constructor(props) {
 	    super();
 	    this.state = {};
-
-		this.handleChangeInfo = this.handleChangeInfo.bind(this);
 	}
 
     render() {
@@ -27,6 +26,7 @@ class Layout extends React.Component {
         			<div className="col-sm-6">
 		        		{/* Interaction part (forms etc) */}
 		        		<ScreenSection />
+		        		<StepNavigation />
 		    		</div>
 
 	    			<div className="col-sm-6">
@@ -38,22 +38,6 @@ class Layout extends React.Component {
 
     	);
     }
-
-	handleChangeInfo(event) {
-		// https://reactjs.org/docs/forms.html
-		const target = event.target;
-	    const value = target.type === 'checkbox' ? target.checked : target.value;
-	    const name = target.name;
-
-		let statusCopy = Object.assign({}, this.state);
-		statusCopy.character.info[name] = value
-
-	    this.setState({
-      		statusCopy
-	    });
-
-		console.log(this.state);
-  	}
 }
 
 export default Layout;
