@@ -4,6 +4,7 @@ import changeInfo from "./actions/changeInfo";
 import autofillScreen from "./actions/autofillScreen";
 import resolveScreen from "./actions/resolveScreen";
 import changeScreen from "./actions/changeScreen";
+import calculateSheet from "./actions/calculateSheet";
 
 export default function startActions() {
 
@@ -13,10 +14,9 @@ export default function startActions() {
 	store.dispatch( changeInfo({ key: "level", value: "1"}) )
 	store.dispatch( changeInfo({ key: "sex", value: "male"}) )
 	
-	// TEST - skip 1. screen
+	// TEST abilities
 	store.dispatch( autofillScreen({ screen: "screenCharacter"}) )
-	store.dispatch( resolveScreen({ active: "screenCharacter"}) )
-	store.dispatch( changeScreen({ active: "screenBackground"}) )
+	store.dispatch( calculateSheet({}) )
 
 	// jQuery init plugins
 	$(function () {

@@ -31,7 +31,7 @@ const ConnectedSheets = ({info, abilities }) => (
 
       <div className="row"> 
         <div className="col-xs-4">
-          <table className="table">
+          <table className="table ability-table">
             <tbody> 
               <tr> 
                 <td>{translations.strength}</td>

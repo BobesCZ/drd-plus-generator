@@ -97,6 +97,274 @@ const tables = {
       "7": {"FYZ":4, "PSY":7, "KOM":7},
       "8": {"FYZ":5, "PSY":9, "KOM":8}
     }  
+  },
+  "abilities":
+  {
+    "race":
+    {
+      "human": {
+        "strength":0, 
+        "dexterity":0, 
+        "manualdexterity":0, 
+        "will":0, 
+        "intelligence":0, 
+        "charisma":0
+      },
+      "mountaineer": {
+        "strength":1, 
+        "dexterity":0, 
+        "manualdexterity":0, 
+        "will":1, 
+        "intelligence":-1, 
+        "charisma":-1
+      },
+      "elf": {
+        "strength":-1, 
+        "dexterity":1, 
+        "manualdexterity":1, 
+        "will":-2, 
+        "intelligence":1, 
+        "charisma":1
+      },
+      "greenElf": {
+        "strength":-1, 
+        "dexterity":1, 
+        "manualdexterity":0, 
+        "will":-1, 
+        "intelligence":1, 
+        "charisma":1
+      },
+      "darkElf": {
+        "strength":0, 
+        "dexterity":0, 
+        "manualdexterity":0, 
+        "will":0, 
+        "intelligence":1, 
+        "charisma":0
+      },
+      "dwarf": {
+        "strength":1, 
+        "dexterity":-1, 
+        "manualdexterity":0, 
+        "will":2, 
+        "intelligence":-1, 
+        "charisma":-2
+      },
+      "mountainDwarf": {
+        "strength":2, 
+        "dexterity":-1, 
+        "manualdexterity":0, 
+        "will":2, 
+        "intelligence":-2, 
+        "charisma":-2
+      },
+      "hobbit": {
+        "strength":-3, 
+        "dexterity":1, 
+        "manualdexterity":1, 
+        "will":0, 
+        "intelligence":-1, 
+        "charisma":2
+      },
+      "kroll": {
+        "strength":3, 
+        "dexterity":-2, 
+        "manualdexterity":-1, 
+        "will":1, 
+        "intelligence":-3, 
+        "charisma":-1
+      },
+      "wildKroll": {
+        "strength":3, 
+        "dexterity":-1, 
+        "manualdexterity":-2, 
+        "will":2, 
+        "intelligence":-3, 
+        "charisma":-2
+      },
+      "orc": {
+        "strength":0, 
+        "dexterity":2, 
+        "manualdexterity":0, 
+        "will":-1, 
+        "intelligence":0, 
+        "charisma":-2
+      },
+      "hobgoblin": {
+        "strength":1, 
+        "dexterity":1, 
+        "manualdexterity":-1, 
+        "will":0, 
+        "intelligence":0, 
+        "charisma":-2
+      },
+      "goblin": {
+        "strength":-1, 
+        "dexterity":2, 
+        "manualdexterity":1, 
+        "will":-2, 
+        "intelligence":0, 
+        "charisma":-1
+      }
+    },
+    "sex":
+     {
+      "human": {
+        "strength":-1, 
+        "dexterity":0, 
+        "manualdexterity":0, 
+        "will":0, 
+        "intelligence":0, 
+        "charisma":1
+      },
+      "mountaineer": {
+        "strength":-1, 
+        "dexterity":0, 
+        "manualdexterity":0, 
+        "will":0, 
+        "intelligence":0, 
+        "charisma":1
+      },
+      "elf": {
+        "strength":-1, 
+        "dexterity":0, 
+        "manualdexterity":1, 
+        "will":0, 
+        "intelligence":-1, 
+        "charisma":1
+      },
+      "greenElf": {
+        "strength":-1, 
+        "dexterity":0, 
+        "manualdexterity":1, 
+        "will":0, 
+        "intelligence":-1, 
+        "charisma":1
+      },
+      "darkElf": {
+        "strength":-1, 
+        "dexterity":0, 
+        "manualdexterity":1, 
+        "will":0, 
+        "intelligence":-1, 
+        "charisma":1
+      },
+      "dwarf": {
+        "strength":0, 
+        "dexterity":0, 
+        "manualdexterity":-1, 
+        "will":0, 
+        "intelligence":1, 
+        "charisma":0
+      },
+      "mountainDwarf": {
+        "strength":0, 
+        "dexterity":0, 
+        "manualdexterity":-1, 
+        "will":0, 
+        "intelligence":1, 
+        "charisma":0
+      },
+      "hobbit": {
+        "strength":-1, 
+        "dexterity":1, 
+        "manualdexterity":-1, 
+        "will":0, 
+        "intelligence":0, 
+        "charisma":1
+      },
+      "kroll": {
+        "strength":-1, 
+        "dexterity":1, 
+        "manualdexterity":0, 
+        "will":-1, 
+        "intelligence":0, 
+        "charisma":1
+      },
+      "wildKroll": {
+        "strength":-1, 
+        "dexterity":1, 
+        "manualdexterity":0, 
+        "will":-1, 
+        "intelligence":0, 
+        "charisma":1
+      },
+      "orc": {
+        "strength":-1, 
+        "dexterity":0, 
+        "manualdexterity":0, 
+        "will":1, 
+        "intelligence":0, 
+        "charisma":0
+      },
+      "hobgoblin": {
+        "strength":-1, 
+        "dexterity":0, 
+        "manualdexterity":0, 
+        "will":1, 
+        "intelligence":0, 
+        "charisma":0
+      },
+      "goblin": {
+        "strength":-1, 
+        "dexterity":0, 
+        "manualdexterity":0, 
+        "will":1, 
+        "intelligence":0, 
+        "charisma":0
+      }
+    },
+    "class":
+    {
+      "warrior": {
+        "strength":1,
+        "dexterity":1,
+        "manualdexterity":0,
+        "will":0,
+        "intelligence":0,
+        "charisma":0
+      },
+      "rogue": {
+        "strength":0,
+        "dexterity":1,
+        "manualdexterity":1,
+        "will":0,
+        "intelligence":0,
+        "charisma":0
+      },
+      "ranger": {
+        "strength":1,
+        "dexterity":0,
+        "manualdexterity":1,
+        "will":0,
+        "intelligence":0,
+        "charisma":0
+      },
+      "sorcerer": {
+        "strength":0,
+        "dexterity":0,
+        "manualdexterity":0,
+        "will":1,
+        "intelligence":1,
+        "charisma":0
+      },
+      "theurge": {
+        "strength":0,
+        "dexterity":0,
+        "manualdexterity":0,
+        "will":0,
+        "intelligence":1,
+        "charisma":1
+      },
+      "cleric": {
+        "strength":0,
+        "dexterity":0,
+        "manualdexterity":0,
+        "will":1,
+        "intelligence":0,
+        "charisma":1
+      }
+    }
   }
 }
 

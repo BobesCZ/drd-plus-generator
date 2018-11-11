@@ -117,11 +117,49 @@ const rootReducer = (state = initialState, action) => {
         console.log(value.length)
         if (key.length && value.length) {
 
-          // Set background name and total points (from tables)
+          // Set background points
           return state.setIn(["character", "background", "distributed", key], parseInt(value));
         }
         else {
-          // Reset background name and total points
+          return state;
+        }
+
+      case "CALCULATE_SHEET":
+        var charRace = state.getIn(["character", "info", "race"]);
+        var charSex = state.getIn(["character", "info", "sex"]);
+        var charClass = state.getIn(["character", "info", "class"]);
+        var results = [];
+
+        if (charRace.length && charSex.length && charClass.length) {
+          state.getIn(["character", "abilities"]).keySeq().forEach(key => {
+            // @SOURCE: Tabulka ras
+            var raceValue = tables.abilities.race[charRace][key];
+
+            // @SOURCE: Tabulka oprav pro pohlaví
+            var sexValue = 0;
+            if (charSex == "female") {
+              sexValue = tables.abilities.sex[charRace][key];
+            }
+
+            // @SOURCE: Tabulka hlavních vlastností podle povolání
+            var classValue = tables.abilities.class[charClass][key];
+
+            // Sum all values
+            if (typeof(raceValue) === "number") {
+              results[key] = parseInt(raceValue) + parseInt(sexValue) + parseInt(classValue);
+            }
+          });
+
+          // Set all main abilities
+          return state.setIn(["character", "abilities", "strength"], parseInt(results["strength"]))
+                      .setIn(["character", "abilities", "dexterity"], parseInt(results["dexterity"]))
+                      .setIn(["character", "abilities", "manualdexterity"], parseInt(results["manualdexterity"]))
+                      .setIn(["character", "abilities", "will"], parseInt(results["will"]))
+                      .setIn(["character", "abilities", "intelligence"], parseInt(results["intelligence"]))
+                      .setIn(["character", "abilities", "charisma"], parseInt(results["charisma"]));
+        }
+        else {
+          // Reset
           return state;
         }
         
