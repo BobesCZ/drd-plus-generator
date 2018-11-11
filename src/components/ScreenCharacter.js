@@ -103,7 +103,10 @@ class ConnectedScreenCharacter extends React.Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="">{translations.sex} <span className="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="popover" data-trigger="hover" data-content={translations.sexPopover}></span></label>
+          <label htmlFor="">
+            {translations.sex} &nbsp;
+            <span className="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="popover" data-trigger="hover" data-content={translations.sexPopover}></span>
+          </label>
           <select className="form-control" name="sex" value={this.props.info.get("sex")} onChange={this.handleChangeFormInput}>
             <option value="male">{translations.male}</option>
             <option value="female">{translations.female}</option>

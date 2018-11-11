@@ -7,7 +7,7 @@ const store = createStore(rootReducer);
 // Změna store
 store.subscribe(() => {
 	console.log( "--------- Store state: ---------");
-	console.log( store.getState() );
+	// console.log( store.getState() );
  	console.log(JSON.stringify(store.getState(), null, 2))
 });
 

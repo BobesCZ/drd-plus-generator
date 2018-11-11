@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable';
 import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
+import tables from "../data/tables";
 
 const initialState = fromJS(
   {
@@ -13,6 +14,15 @@ const initialState = fromJS(
         "level": "",
         "sex": "",
         "note": ""
+      },
+      "background": {
+        "name": "",
+        "total": 0,
+        "distributed": {
+          "origin": "",
+          "property": "",
+          "skills": ""
+        },
       }
     },
     "activeScreen": "screenCharacter",
@@ -35,7 +45,7 @@ const initialState = fromJS(
 const rootReducer = (state = initialState, action) => {
  	switch (action.type) {
 	    case "CHANGE_INFO":
-        let key = action.payload.key;
+        var key = action.payload.key;
         // console.log(action.payload)
         return state.setIn(["character", "info", key], action.payload.value);
       
@@ -90,6 +100,41 @@ const rootReducer = (state = initialState, action) => {
         }
         
         return state;
+
+      case "SET_BACKGROUND":
+        var name = action.payload.name;
+
+        if (name.length) {
+          let totalPoints = tables.background[name]["totalPoints"];
+
+          // Set background name and total points (from tables)
+          return state.setIn(["character", "background", "total"], totalPoints)
+                      .setIn(["character", "background", "name"], name);
+        }
+        else {
+          // Reset background name and total points
+          return state.setIn(["character", "background", "total"], "")
+                      .setIn(["character", "background", "name"], "")
+                      .setIn(["character", "background", "distributed", "origin"], "")
+                      .setIn(["character", "background", "distributed", "property"], "")
+                      .setIn(["character", "background", "distributed", "skills"], "");
+        }
+        
+      case "DISTRIBUTE_BACKGROUND":
+        var key = action.payload.key;
+        var value = action.payload.value;
+        console.log(key.length)
+        console.log(value.length)
+        if (key.length && value.length) {
+
+          // Set background name and total points (from tables)
+          return state.setIn(["character", "background", "distributed", key], parseInt(value));
+        }
+        else {
+          // Reset background name and total points
+          return state;
+        }
+        
               
 	    default:
       	return state;
