@@ -4,6 +4,7 @@ import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
 import setBackground from "../actions/setBackground";
 import distributeBackground from "../actions/distributeBackground";
+import resolveScreen from "../actions/resolveScreen";
 import sumCollectionValues from "../helpers/sumCollectionValues";
 import translations from "../translations";
 import tables from "../data/tables";
@@ -12,6 +13,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setBackground: item => dispatch(setBackground(item)),
     distributeBackground: item => dispatch(distributeBackground(item)),
+    resolveScreen: item => dispatch(resolveScreen(item)),
   };
 };
 
@@ -45,7 +47,7 @@ class ConnectedScreenBackground extends React.Component {
     const name = target.name;
     // console.log({ key: name, value: value});
     this.props.distributeBackground({ key: name, value: value});
-    // this.props.resolveScreen({ active: "screenCharacter"});
+    this.props.resolveScreen({ active: "screenBackground"});
   }
 
   render(props) {
@@ -53,7 +55,31 @@ class ConnectedScreenBackground extends React.Component {
     let backgroundFilled = name.length ? true : false;
     let totalPoints = this.props.background.get('total');
     let distributed = this.props.background.get('distributed');
-    let leftPoints = parseInt( totalPoints - sumCollectionValues(distributed) );
+    let availablePoints = parseInt( totalPoints - sumCollectionValues(distributed) );
+
+    let maxAvailableOrigin = 0;
+    if (distributed.get('origin')) {
+      maxAvailableOrigin = parseInt( distributed.get('origin') + availablePoints );
+    }
+    else {
+      maxAvailableOrigin = availablePoints
+    }
+ 
+    let maxAvailableProperty = 0;
+    if (distributed.get('origin')) {
+      maxAvailableProperty = parseInt( distributed.get('property') + availablePoints );
+    }
+    else {
+      maxAvailableProperty = availablePoints
+    }
+
+    let maxAvailableSkills = 0;
+    if (distributed.get('origin')) {
+      maxAvailableSkills = parseInt( distributed.get('skills') + availablePoints );
+    }
+    else {
+      maxAvailableSkills = availablePoints
+    }
 
     let originArray = [];
     let propertyArray = [];
@@ -86,7 +112,7 @@ class ConnectedScreenBackground extends React.Component {
           <div>
             <p>
               {translations.distributeLeft}:&nbsp;
-              {leftPoints}&nbsp;
+              {availablePoints}&nbsp;
               {translations.from}&nbsp;
               {totalPoints}&nbsp;
               {translations.points}&nbsp;
@@ -108,6 +134,7 @@ class ConnectedScreenBackground extends React.Component {
                         value={originArray.indexOf(item)} 
                         onChange={this.handleChangeFormCheckbox} 
                         checked={this.props.background.getIn(['distributed', "origin"]) === originArray.indexOf(item) ? true : false}
+                        disabled={originArray.indexOf(item) > maxAvailableOrigin ? true : false}
                       /> 
                       {originArray.indexOf(item)}&nbsp;
                       ({translations[item]})
@@ -130,6 +157,7 @@ class ConnectedScreenBackground extends React.Component {
                         value={propertyArray.indexOf(item)} 
                         onChange={this.handleChangeFormCheckbox} 
                         checked={this.props.background.getIn(['distributed', "property"]) === propertyArray.indexOf(item) ? true : false}
+                        disabled={propertyArray.indexOf(item) > maxAvailableProperty ? true : false}
                       /> 
                       {propertyArray.indexOf(item)}&nbsp;
                       ({translations[item]})
@@ -152,6 +180,7 @@ class ConnectedScreenBackground extends React.Component {
                         value={propertyArray.indexOf(item)} 
                         onChange={this.handleChangeFormCheckbox} 
                         checked={this.props.background.getIn(['distributed', "skills"]) === propertyArray.indexOf(item) ? true : false}
+                        disabled={propertyArray.indexOf(item) > maxAvailableSkills ? true : false}
                       /> 
                       {propertyArray.indexOf(item)}&nbsp;
                       (

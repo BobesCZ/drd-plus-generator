@@ -2,6 +2,7 @@ import { fromJS } from 'immutable';
 import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
+import sumCollectionValues from "../helpers/sumCollectionValues";
 
 const initialState = fromJS(
   {
@@ -81,6 +82,30 @@ const rootReducer = (state = initialState, action) => {
             return state.setIn(["screens", "screenCharacter"], 0).setIn(["screens", "screenBackground"], -1);
           }
         }
+        else if (active == "screenBackground") {
+          // Checks screen no. 2
+          var originField = state.getIn(["character", "background", "distributed", "origin"]);
+          var propertyField = state.getIn(["character", "background", "distributed", "property"]);
+          var skillsField = state.getIn(["character", "background", "distributed", "skills"]);
+          // User have to distribute all available points
+          var totalPoints = state.getIn(["character", "background", "total"]);
+          var distributedPoints = sumCollectionValues( state.getIn(["character", "background", "distributed"]) );
+
+          if (
+            isTextInputFilled(originField) &&
+            isTextInputFilled(propertyField) &&
+            isTextInputFilled(skillsField) &&
+            parseInt(totalPoints - distributedPoints) === 0
+            )
+          {
+            // console.log("Screen screenBackground is valid!");
+            return state.setIn(["screens", "screenBackground"], 1).setIn(["screens", "screenAbilities"], 0);
+          }
+          else {
+            // console.log("Screen screenBackground is not valid :-(");
+            return state.setIn(["screens", "screenBackground"], 0).setIn(["screens", "screenAbilities"], -1);
+          }
+        }
 
         return state;
 
@@ -109,7 +134,10 @@ const rootReducer = (state = initialState, action) => {
 
           // Set background name and total points (from tables)
           return state.setIn(["character", "background", "total"], totalPoints)
-                      .setIn(["character", "background", "name"], name);
+                      .setIn(["character", "background", "name"], name)
+                      .setIn(["character", "background", "distributed", "origin"], "")
+                      .setIn(["character", "background", "distributed", "property"], "")
+                      .setIn(["character", "background", "distributed", "skills"], "");
         }
         else {
           // Reset background name and total points
