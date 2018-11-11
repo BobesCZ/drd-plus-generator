@@ -16,7 +16,7 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.less$/,
         use: [
           {
             loader: "style-loader"
@@ -26,10 +26,13 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: "[name]_[local]_[hash:base64]",
+              localIdentName: "[local]",
               sourceMap: true,
               minimize: true
             }
+          },
+            {
+            loader: 'less-loader' // compiles Less to CSS
           }
         ]
       }

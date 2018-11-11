@@ -5,6 +5,7 @@
 	"race": "Rasa",
 	"class": "Povolání",
 	"level": "Úroveň",
+	"levelLow": "úroveň",
 	"sex": "Pohlaví",
 	"sexPopover": "Pokud zvolíš Žena, započítají se opravy pro ženy podle rasy z tabulky v PPH",
 	"note": "Poznámka",
@@ -71,6 +72,12 @@
 	"property7": "3000 zl",
 	"property8": "10000 zl",
 	"skills": "Dovednosti",
+	"strength": "Síla",
+	"dexterity": "Obratnost",
+	"manualdexterity": "Zručnost",
+	"will": "Vůle",
+	"intelligence": "Inteligence",
+	"charisma": "Charisma",
 };
 
 export default translations;

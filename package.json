@@ -26,6 +26,8 @@
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "immutable": "^3.8.2",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   }

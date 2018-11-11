@@ -3,45 +3,7 @@ import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
 import sumCollectionValues from "../helpers/sumCollectionValues";
-
-const initialState = fromJS(
-  {
-    // Main character object
-    "character": {
-      "info": {
-        "name": "",
-        "race": "",
-        "class": "",
-        "level": "",
-        "sex": "",
-        "note": ""
-      },
-      "background": {
-        "name": "",
-        "total": 0,
-        "distributed": {
-          "origin": "",
-          "property": "",
-          "skills": ""
-        },
-      }
-    },
-    "activeScreen": "screenCharacter",
-    "screens": {
-      // States: 
-      // -1 => disabled 
-      // 0 => not completed
-      // 1 => completed
-      "screenCharacter": 0,
-      "screenBackground": -1,
-      "screenAbilities": -1,
-      "screenSkills": -1,
-      "screenWeapons": -1,
-      "screenArmors": -1,
-      "screenExport":-1
-    }
-  }
-);
+import initialState from "./initialState";
 
 const rootReducer = (state = initialState, action) => {
  	switch (action.type) {
