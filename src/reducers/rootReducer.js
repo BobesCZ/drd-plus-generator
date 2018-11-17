@@ -87,7 +87,13 @@ const rootReducer = (state = initialState, action) => {
         }
         else if (screen == "screenBackground") {
           // Autofill screen no. 2
-        
+          // Set background to choice no. 1
+          let totalPoints = tables.background["goodAbility"]["totalPoints"];
+          return state.setIn(["character", "background", "name"], "goodAbility")
+                      .setIn(["character", "background", "total"], totalPoints)
+                      .setIn(["character", "background", "distributed", "origin"], parseInt(0))
+                      .setIn(["character", "background", "distributed", "property"], parseInt(0))
+                      .setIn(["character", "background", "distributed", "skills"], parseInt(5));
         }
 
         return state;

@@ -66,7 +66,7 @@ class ConnectedScreenBackground extends React.Component {
     }
  
     let maxAvailableProperty = 0;
-    if (distributed.get('origin')) {
+    if (distributed.get('property')) {
       maxAvailableProperty = parseInt( distributed.get('property') + availablePoints );
     }
     else {
@@ -74,7 +74,7 @@ class ConnectedScreenBackground extends React.Component {
     }
 
     let maxAvailableSkills = 0;
-    if (distributed.get('origin')) {
+    if (distributed.get('skills')) {
       maxAvailableSkills = parseInt( distributed.get('skills') + availablePoints );
     }
     else {
@@ -112,27 +112,27 @@ class ConnectedScreenBackground extends React.Component {
               <tbody>
                 <tr>
                   <th>{translations.backgroundPanelTableTh1}</th>
-                  <th>{translations.backgroundPanelTableTh2}</th>
-                  <th>{translations.backgroundPanelTableTh3}</th>
-                  <th>{translations.backgroundPanelTableTh4}</th>
+                  <th className="text-center">{translations.backgroundPanelTableTh2}</th>
+                  <th className="text-center">{translations.backgroundPanelTableTh3}</th>
+                  <th className="text-center">{translations.backgroundPanelTableTh4}</th>
                 </tr>
                 <tr>
                   <td>{translations.goodAbility}</td>
-                  <td>3</td>
-                  <td>6</td>
-                  <td>5</td>
+                  <td className="text-center">3</td>
+                  <td className="text-center">6</td>
+                  <td className="text-center">5</td>
                 </tr>
                 <tr>
                   <td>{translations.combinationBackground}</td>
-                  <td>2</td>
-                  <td>4</td>
-                  <td>10</td>
+                  <td className="text-center">2</td>
+                  <td className="text-center">4</td>
+                  <td className="text-center">10</td>
                 </tr>
                 <tr>
                   <td>{translations.goodBackground}</td>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>15</td>
+                  <td className="text-center">1</td>
+                  <td className="text-center">2</td>
+                  <td className="text-center">15</td>
                 </tr>
               </tbody>
             </table>
