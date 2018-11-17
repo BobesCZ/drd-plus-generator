@@ -17,6 +17,8 @@ export default function startActions() {
 	// TEST abilities
 	store.dispatch( autofillScreen({ screen: "screenCharacter"}) )
 	store.dispatch( calculateSheet({}) )
+	store.dispatch( resolveScreen({ active: "screenCharacter"}) )
+	store.dispatch( changeScreen({active: "screenBackground"}) )
 
 	// jQuery init plugins
 	$(function () {

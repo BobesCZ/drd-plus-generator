@@ -94,6 +94,52 @@ class ConnectedScreenBackground extends React.Component {
 
     return (
       <form>
+       
+        <div className="panel panel-info">
+          <div className="panel-heading">
+            {translations.backgroundPanelHeader}
+          </div>
+          <div className="panel-body">
+            {translations.backgroundPanelBody}
+            
+            <ul>
+              <li>{translations.backgroundPanelLi1}</li>
+              <li>{translations.backgroundPanelLi2}</li>
+              <li>{translations.backgroundPanelLi3}</li>
+            </ul>
+            
+            <table className="table">
+              <tbody>
+                <tr>
+                  <th>{translations.backgroundPanelTableTh1}</th>
+                  <th>{translations.backgroundPanelTableTh2}</th>
+                  <th>{translations.backgroundPanelTableTh3}</th>
+                  <th>{translations.backgroundPanelTableTh4}</th>
+                </tr>
+                <tr>
+                  <td>{translations.goodAbility}</td>
+                  <td>3</td>
+                  <td>6</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>{translations.combinationBackground}</td>
+                  <td>2</td>
+                  <td>4</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td>{translations.goodBackground}</td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>15</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
         <div className="form-group">
           <label htmlFor="">
             {translations.backgroundHeader}&nbsp;
@@ -197,6 +243,16 @@ class ConnectedScreenBackground extends React.Component {
           </div>
 
         }
+
+        <div className="panel panel-success">
+          <div className="panel-heading">
+            {translations.autoFillHeader}
+          </div>
+          <div className="panel-body">
+            {translations.autoFillBackground}
+          </div>
+        </div>
+
       </form>
     )
 

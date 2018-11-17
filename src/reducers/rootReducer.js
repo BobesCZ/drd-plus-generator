@@ -85,7 +85,11 @@ const rootReducer = (state = initialState, action) => {
             return state.setIn(["character", "info", "name"], nameValue);
           }          
         }
+        else if (screen == "screenBackground") {
+          // Autofill screen no. 2
         
+        }
+
         return state;
 
       case "SET_BACKGROUND":
