@@ -62,9 +62,11 @@ class ConnectedScreenBackground extends React.Component {
     let distributedOrigin = distributedArray.get('origin');
     let distributedProperty = distributedArray.get('property');
     let distributedSkills = distributedArray.get('skills');
-    let rangeLimit = this.props.background.get('rangeLimit');;
-
     let availablePoints = parseInt( totalPoints - sumCollectionValues(distributedArray) );
+
+    let rangeLimit = this.props.background.get('rangeLimit');
+    // If there are no distributed points, act like rangeLimit is OK
+    rangeLimit = (availablePoints == totalPoints) ? true : rangeLimit;
 
     let maxAvailableOrigin = 0;
     if (distributedOrigin) {
