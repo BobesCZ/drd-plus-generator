@@ -52,11 +52,13 @@ const rootReducer = (state = initialState, action) => {
           // User have to distribute all available points
           var totalPoints = state.getIn(["character", "background", "total"]);
           var distributedPoints = sumCollectionValues( state.getIn(["character", "background", "distributed"]) );
+          var rangeLimit =  state.getIn(["character", "background", "rangeLimit"]);
 
           if (
             isTextInputFilled(originField) &&
             isTextInputFilled(propertyField) &&
             isTextInputFilled(skillsField) &&
+            rangeLimit &&
             parseInt(totalPoints - distributedPoints) === 0
             )
           {
@@ -89,11 +91,25 @@ const rootReducer = (state = initialState, action) => {
           // Autofill screen no. 2
           // Set background to choice no. 1
           let totalPoints = tables.background["goodAbility"]["totalPoints"];
+
+          let distributeArray = {};
+          if (state.getIn(["errata", "backgroundPointsHasNoRangeLimit"])) {
+            // Apply errata => all points to skills
+            distributeArray["origin"] = 0;
+            distributeArray["property"] = 0;
+            distributeArray["skills"] = 5;
+          }
+          else {
+            distributeArray["origin"] = 1;
+            distributeArray["property"] = 0;
+            distributeArray["skills"] = 4;
+          }
+
           return state.setIn(["character", "background", "name"], "goodAbility")
                       .setIn(["character", "background", "total"], totalPoints)
-                      .setIn(["character", "background", "distributed", "origin"], parseInt(0))
-                      .setIn(["character", "background", "distributed", "property"], parseInt(0))
-                      .setIn(["character", "background", "distributed", "skills"], parseInt(5));
+                      .setIn(["character", "background", "distributed", "origin"], parseInt(distributeArray["origin"]))
+                      .setIn(["character", "background", "distributed", "property"], parseInt(distributeArray["property"]))
+                      .setIn(["character", "background", "distributed", "skills"], parseInt(distributeArray["skills"]));
         }
 
         return state;
@@ -123,16 +139,51 @@ const rootReducer = (state = initialState, action) => {
       case "DISTRIBUTE_BACKGROUND":
         var key = action.payload.key;
         var value = action.payload.value;
-        console.log(key.length)
-        console.log(value.length)
-        if (key.length && value.length) {
+        // console.log(key.length)
+        // console.log(value.length)
 
+        if (key.length && value.length) {
           // Set background points
           return state.setIn(["character", "background", "distributed", key], parseInt(value));
         }
         else {
           return state;
         }
+
+      case "RESOLVE_BACKGROUND":
+        let rangeLimit = false;
+
+        if (state.getIn(["errata", "backgroundPointsHasNoRangeLimit"])) {
+          // Apply errata => rangeLimit always true (no limitation)
+          rangeLimit = true;
+        }
+        else {
+
+          // Set value for background to current value from argument OR value from state OR 0
+          let distributedOrigin = 0; 
+          if (state.getIn(["character", "background", "distributed", "origin"]) > 0) {
+            distributedOrigin = state.getIn(["character", "background", "distributed", "origin"])
+          }
+
+          let distributedProperty = 0; 
+          if (state.getIn(["character", "background", "distributed", "property"]) > 0) {
+            distributedProperty = state.getIn(["character", "background", "distributed", "property"])
+          }
+
+          let distributedSkills = 0; 
+          if (state.getIn(["character", "background", "distributed", "skills"]) > 0) {
+            distributedSkills = state.getIn(["character", "background", "distributed", "skills"])
+          }
+          // console.log(distributedOrigin, distributedProperty, distributedSkills)
+
+          if ( (distributedProperty - distributedOrigin) <= 3 && (distributedSkills - distributedOrigin) <= 3 ) {
+            rangeLimit = true;
+          }
+        }
+        // console.log("rangeLimit: " + rangeLimit)
+
+        // Set background points
+        return state.setIn(["character", "background", "rangeLimit"], rangeLimit);
 
       case "CALCULATE_SHEET":
         var charRace = state.getIn(["character", "info", "race"]);
@@ -173,6 +224,12 @@ const rootReducer = (state = initialState, action) => {
           return state;
         }
         
+      case "SET_ERRATA":
+        var key = action.payload.key;
+        var value = action.payload.value;
+
+        return state.setIn(["errata", key], value)
+
               
 	    default:
       	return state;

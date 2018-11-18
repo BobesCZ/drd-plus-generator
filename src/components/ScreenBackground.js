@@ -4,7 +4,9 @@ import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
 import setBackground from "../actions/setBackground";
 import distributeBackground from "../actions/distributeBackground";
+import resolveBackground from "../actions/resolveBackground";
 import resolveScreen from "../actions/resolveScreen";
+import PanelErrata from "./PanelErrata";
 import sumCollectionValues from "../helpers/sumCollectionValues";
 import translations from "../translations";
 import tables from "../data/tables";
@@ -13,6 +15,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setBackground: item => dispatch(setBackground(item)),
     distributeBackground: item => dispatch(distributeBackground(item)),
+    resolveBackground: item => dispatch(resolveBackground(item)),
     resolveScreen: item => dispatch(resolveScreen(item)),
   };
 };
@@ -47,6 +50,7 @@ class ConnectedScreenBackground extends React.Component {
     const name = target.name;
     // console.log({ key: name, value: value});
     this.props.distributeBackground({ key: name, value: value});
+    this.props.resolveBackground({});
     this.props.resolveScreen({ active: "screenBackground"});
   }
 
@@ -54,28 +58,33 @@ class ConnectedScreenBackground extends React.Component {
     let name = this.props.background.get('name');
     let backgroundFilled = name.length ? true : false;
     let totalPoints = this.props.background.get('total');
-    let distributed = this.props.background.get('distributed');
-    let availablePoints = parseInt( totalPoints - sumCollectionValues(distributed) );
+    let distributedArray = this.props.background.get('distributed');
+    let distributedOrigin = distributedArray.get('origin');
+    let distributedProperty = distributedArray.get('property');
+    let distributedSkills = distributedArray.get('skills');
+    let rangeLimit = this.props.background.get('rangeLimit');;
+
+    let availablePoints = parseInt( totalPoints - sumCollectionValues(distributedArray) );
 
     let maxAvailableOrigin = 0;
-    if (distributed.get('origin')) {
-      maxAvailableOrigin = parseInt( distributed.get('origin') + availablePoints );
+    if (distributedOrigin) {
+      maxAvailableOrigin = parseInt( distributedOrigin + availablePoints );
     }
     else {
       maxAvailableOrigin = availablePoints
     }
  
     let maxAvailableProperty = 0;
-    if (distributed.get('property')) {
-      maxAvailableProperty = parseInt( distributed.get('property') + availablePoints );
+    if (distributedProperty) {
+      maxAvailableProperty = parseInt( distributedProperty + availablePoints );
     }
     else {
       maxAvailableProperty = availablePoints
     }
 
     let maxAvailableSkills = 0;
-    if (distributed.get('skills')) {
-      maxAvailableSkills = parseInt( distributed.get('skills') + availablePoints );
+    if (distributedSkills) {
+      maxAvailableSkills = parseInt( distributedSkills + availablePoints );
     }
     else {
       maxAvailableSkills = availablePoints
@@ -99,7 +108,7 @@ class ConnectedScreenBackground extends React.Component {
           <div className="panel-heading">
             {translations.backgroundPanelHeader}
           </div>
-          <div className="panel-body">
+          <div className="panel-body bg-info">
             {translations.backgroundPanelBody}
             
             <ul>
@@ -179,7 +188,7 @@ class ConnectedScreenBackground extends React.Component {
                         name="origin" 
                         value={originArray.indexOf(item)} 
                         onChange={this.handleChangeFormCheckbox} 
-                        checked={this.props.background.getIn(['distributed', "origin"]) === originArray.indexOf(item) ? true : false}
+                        checked={distributedOrigin === originArray.indexOf(item) ? true : false}
                         disabled={originArray.indexOf(item) > maxAvailableOrigin ? true : false}
                       /> 
                       {originArray.indexOf(item)}&nbsp;
@@ -202,7 +211,7 @@ class ConnectedScreenBackground extends React.Component {
                         name="property" 
                         value={propertyArray.indexOf(item)} 
                         onChange={this.handleChangeFormCheckbox} 
-                        checked={this.props.background.getIn(['distributed', "property"]) === propertyArray.indexOf(item) ? true : false}
+                        checked={distributedProperty === propertyArray.indexOf(item) ? true : false}
                         disabled={propertyArray.indexOf(item) > maxAvailableProperty ? true : false}
                       /> 
                       {propertyArray.indexOf(item)}&nbsp;
@@ -225,7 +234,7 @@ class ConnectedScreenBackground extends React.Component {
                         name="skills" 
                         value={propertyArray.indexOf(item)} 
                         onChange={this.handleChangeFormCheckbox} 
-                        checked={this.props.background.getIn(['distributed', "skills"]) === propertyArray.indexOf(item) ? true : false}
+                        checked={distributedSkills === propertyArray.indexOf(item) ? true : false}
                         disabled={propertyArray.indexOf(item) > maxAvailableSkills ? true : false}
                       /> 
                       {propertyArray.indexOf(item)}&nbsp;
@@ -240,15 +249,27 @@ class ConnectedScreenBackground extends React.Component {
               </div>
             </div>
 
+            <div className={rangeLimit ? 'alert alert-info' : 'alert alert-danger'} role="alert">
+              {rangeLimit &&
+                <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              }
+              {!rangeLimit &&
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              }
+              {translations.backgroundPanelRangeLimit}
+            </div>
+
           </div>
 
         }
+
+        <PanelErrata name="backgroundPointsHasNoRangeLimit"/>    
 
         <div className="panel panel-success">
           <div className="panel-heading">
             {translations.autoFillHeader}
           </div>
-          <div className="panel-body">
+          <div className="panel-body bg-success">
             {translations.autoFillBackground}
           </div>
         </div>

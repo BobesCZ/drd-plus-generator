@@ -15,6 +15,7 @@ const initialState = fromJS(
       "background": {
         "name": "",
         "total": 0,
+        "rangeLimit": false,
         "distributed": {
           "origin": "",
           "property": "",
@@ -43,6 +44,11 @@ const initialState = fromJS(
       "screenWeapons": -1,
       "screenArmors": -1,
       "screenExport":-1
+    },
+    "errata": {
+      // false => according to official rules
+      // true => apply errata
+      "backgroundPointsHasNoRangeLimit": false
     }
   }
 );

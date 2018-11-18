@@ -4,6 +4,7 @@ import translations from "../translations";
 import changeScreen from "../actions/changeScreen";
 import autofillScreen from "../actions/autofillScreen";
 import resolveScreen from "../actions/resolveScreen";
+import resolveBackground from "../actions/resolveBackground";
 import screensArray from "../helpers/screensArray";
 import getPreviousArrayItem from "../helpers/getPreviousArrayItem";
 import getNextArrayItem from "../helpers/getNextArrayItem";
@@ -13,6 +14,7 @@ const mapDispatchToProps = dispatch => {
     changeScreen: item => dispatch(changeScreen(item)),
     autofillScreen: item => dispatch(autofillScreen(item)),
     resolveScreen: item => dispatch(resolveScreen(item)),
+    resolveBackground: item => dispatch(resolveBackground(item)),
   };
 };
 
@@ -38,6 +40,8 @@ class ConnectedStepNavigation extends React.Component {
     let screenAutofill = target.getAttribute('data-screen-autofill');
     if (screenAutofill) {
       this.props.autofillScreen({ screen: screenAutofill});
+      // @TODO: move to chain functions
+      this.props.resolveBackground({});
       this.props.resolveScreen({ active: screenAutofill});
     }
 

@@ -48,6 +48,7 @@
 	"backgroundPanelLi1": "Než si zvolíš šlechtický původ, ujisti se, že jej můžeš ve hře využít. ",
 	"backgroundPanelLi2": "Než si zvolíš bohatou postavu, ujisti se, že váš příběh nebude začínat ve vězení.",
 	"backgroundPanelLi3": "Než si zvolíš být sirotkem s jedním zlaťákem v kapse, uvědom si, že než začne dobrodružství, budeš muset pracovat na poli nebo krást.",
+	"backgroundPanelRangeLimit": "Body v Majetku a v Dovednostech mohou být maximálně o 3 vyšší než Původ.",
 	"backgroundPanelTableTh1": "Zázemí",
 	"backgroundPanelTableTh2": "Hl. vlastnosti",
 	"backgroundPanelTableTh3": "Vedl. vlastnosti",
@@ -88,6 +89,10 @@
 	"will": "Vůle",
 	"intelligence": "Inteligence",
 	"charisma": "Charisma",
+	"PanelErrataHeader": "Je libo errata?",
+	"PanelErrataText": "Pravidlo, že při tvorbě postavy smí hráč dát do dovedností nebo majetku nejvýše o 3 body víc než do původu neplatí, pokud je hráč schopný obhájit rozdělení bodů původem postavy.",
+	"PanelErrataTrue": "Použít errata",
+	"PanelErrataFalse": "Nie, radšej knihu (pravidel)",
 };
 
 export default translations;

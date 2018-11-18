@@ -2,7 +2,55 @@
     margin-bottom: 2rem;
 }
 
+.layout-content {
+    margin-bottom: 6rem;
+}
+
 h1, h2, h3 {
-	margin-top: .5rem;
-	margin-bottom: .5rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.switch-light {
+    &__inner {
+        border: .1rem solid #ccc;
+        cursor: pointer;
+    }
+    
+    &__true, &__false  {
+        font-weight: 400;
+        transition: color .3s ease;
+    }
+
+    &__true {
+       color: #777;
+    }
+
+    &__false {
+        color: #fff;
+    }
+
+    input:checked~span {
+        .switch-light__true {
+            color: #fff;
+        }
+
+        .switch-light__false {
+            color: #777;
+        }
+    }
+
+    .btn-warning {
+        background: darken(#f0ad4e, 10);
+    }
+}
+
+.panel-heading {
+    font-size: 16px;
+}
+
+.alert {
+    .glyphicon {
+        margin-right: .5rem;
+    }
 }

@@ -22,7 +22,7 @@ class Layout extends React.Component {
 	        	{/* Navigation part (forms etc) */}
 	    		<Navigation />
 	        		
-        		<div className="row">
+        		<div className="row layout-content">
         			<div className="col-sm-6">
 		        		{/* Interaction part (forms etc) */}
 		        		<ScreenSection />
