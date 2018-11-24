@@ -30,6 +30,15 @@ const initialState = fromJS(
         "intelligence": "",
         "charisma": ""
       },
+      "derivedAbilities": {
+        "resistance": "",
+        "fortitude": "",
+        "speed": "",
+        "senses": "",
+        "beauty": "",
+        "danger": "",
+        "dignity": ""
+      },
     },
     "activeScreen": "screenCharacter",
     "screens": {

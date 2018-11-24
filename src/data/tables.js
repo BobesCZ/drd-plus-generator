@@ -365,6 +365,100 @@ const tables = {
         "charisma":1
       }
     }
+  },
+  "derivedAbilities":
+   {
+    "human": {
+      "senses":0,
+      "resistance":0,
+      "speed":0,
+      "BOJ":0,
+      "POZN":""
+    },
+    "mountaineer": {
+      "senses":0,
+      "resistance":0,
+      "speed":0,
+      "BOJ":0,
+      "POZN":""
+    },
+    "elf": {
+      "senses":0,
+      "resistance":-1,
+      "speed":0,
+      "BOJ":0,
+      "POZN":""
+    },
+    "greenElf": {
+      "senses":0,
+      "resistance":-1,
+      "speed":0,
+      "BOJ":0,
+      "POZN":""
+    },
+    "darkElf": {
+      "senses":0,
+      "resistance":-1,
+      "speed":0,
+      "BOJ":0,
+      "POZN":"Infravidění"
+    },
+    "dwarf": {
+      "senses":-1,
+      "resistance":1,
+      "speed":0,
+      "BOJ":0,
+      "POZN":"Infravidění"
+    },
+    "mountainDwarf": {
+      "senses":-1,
+      "resistance":1,
+      "speed":0,
+      "BOJ":0,
+      "POZN":"Infravidění"
+    },
+    "hobbit": {
+      "senses":0,
+      "resistance":0,
+      "speed":-1,
+      "BOJ":-1,
+      "POZN":""
+    },
+    "kroll": {
+      "senses":0,
+      "resistance":0,
+      "speed":1,
+      "BOJ":1,
+      "POZN":"Regenerace"
+    },
+    "wildKroll": {
+      "senses":0,
+      "resistance":0,
+      "speed":1,
+      "BOJ":1,
+      "POZN":"Regenerace"
+    },
+    "orc": {
+      "senses":1,
+      "resistance":0,
+      "speed":0,
+      "BOJ":0,
+      "POZN":"Infravidění"
+    },
+    "hobgoblin": {
+      "senses":1,
+      "resistance":0,
+      "speed":0,
+      "BOJ":0,
+      "POZN":"Infravidění"
+    },
+    "goblin": {
+      "senses":1,
+      "resistance":0,
+      "speed":0,
+      "BOJ":0,
+      "POZN":"Infravidění"
+    }
   }
 }
 

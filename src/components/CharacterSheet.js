@@ -9,10 +9,11 @@ const mapStateToProps = (state) => {
   return { 
     info: state.getIn(['character', 'info']),
     abilities: state.getIn(['character', 'abilities']),
+    derivedAbilities: state.getIn(['character', 'derivedAbilities']),
   };
 };
 
-const ConnectedSheets = ({info, abilities }) => (
+const ConnectedSheets = ({info, abilities, derivedAbilities }) => (
   <div className="character-sheet panel panel-default">
     <div className="panel-body">
       <h2>
@@ -30,6 +31,7 @@ const ConnectedSheets = ({info, abilities }) => (
       </p>
 
       <div className="row"> 
+
         <div className="col-xs-4">
           <table className="table ability-table">
             <tbody> 
@@ -60,6 +62,43 @@ const ConnectedSheets = ({info, abilities }) => (
             </tbody> 
           </table>
         </div>
+
+        <div className="col-xs-4">
+          <table className="table ability-table">
+            <tbody> 
+              <tr> 
+                <td>{translations.resistance}</td>
+                <td>{derivedAbilities.get('resistance')}</td>
+              </tr>                  
+              <tr> 
+                <td>{translations.fortitude}</td>
+                <td>{derivedAbilities.get('fortitude')}</td>
+              </tr> 
+              <tr> 
+                <td>{translations.speed}</td>
+                <td>{derivedAbilities.get('speed')}</td>
+              </tr> 
+              <tr> 
+                <td>{translations.senses}</td>
+                <td>{derivedAbilities.get('senses')}</td>
+              </tr> 
+              <tr> 
+                <td>{translations.beauty}</td>
+                <td>{derivedAbilities.get('beauty')}</td>
+              </tr> 
+              <tr> 
+                <td>{translations.danger}</td>
+                <td>{derivedAbilities.get('danger')}</td>
+              </tr> 
+              <tr> 
+                <td>{translations.dignity}</td>
+                <td>{derivedAbilities.get('dignity')}</td>
+              </tr> 
+      
+            </tbody> 
+          </table>
+        </div>
+
       </div>
       
     </div>

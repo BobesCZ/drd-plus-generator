@@ -3,6 +3,7 @@ import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
 import sumCollectionValues from "../helpers/sumCollectionValues";
+import getDerivedAbilities from "../helpers/getDerivedAbilities";
 import initialState from "./initialState";
 
 const rootReducer = (state = initialState, action) => {
@@ -189,7 +190,7 @@ const rootReducer = (state = initialState, action) => {
         var charRace = state.getIn(["character", "info", "race"]);
         var charSex = state.getIn(["character", "info", "sex"]);
         var charClass = state.getIn(["character", "info", "class"]);
-        var results = [];
+        var finalAbilities = [];
 
         if (charRace.length && charSex.length && charClass.length) {
           state.getIn(["character", "abilities"]).keySeq().forEach(key => {
@@ -207,17 +208,26 @@ const rootReducer = (state = initialState, action) => {
 
             // Sum all values
             if (typeof(raceValue) === "number") {
-              results[key] = parseInt(raceValue) + parseInt(sexValue) + parseInt(classValue);
+              finalAbilities[key] = parseInt(raceValue) + parseInt(sexValue) + parseInt(classValue);
             }
           });
 
+          var finalDerivedAbilities = getDerivedAbilities(charRace, finalAbilities["strength"], finalAbilities["dexterity"], finalAbilities["manualdexterity"], finalAbilities["will"], finalAbilities["intelligence"], finalAbilities["charisma"])
+
           // Set all main abilities
-          return state.setIn(["character", "abilities", "strength"], parseInt(results["strength"]))
-                      .setIn(["character", "abilities", "dexterity"], parseInt(results["dexterity"]))
-                      .setIn(["character", "abilities", "manualdexterity"], parseInt(results["manualdexterity"]))
-                      .setIn(["character", "abilities", "will"], parseInt(results["will"]))
-                      .setIn(["character", "abilities", "intelligence"], parseInt(results["intelligence"]))
-                      .setIn(["character", "abilities", "charisma"], parseInt(results["charisma"]));
+          return state.setIn(["character", "abilities", "strength"], parseInt(finalAbilities["strength"]))
+                      .setIn(["character", "abilities", "dexterity"], parseInt(finalAbilities["dexterity"]))
+                      .setIn(["character", "abilities", "manualdexterity"], parseInt(finalAbilities["manualdexterity"]))
+                      .setIn(["character", "abilities", "will"], parseInt(finalAbilities["will"]))
+                      .setIn(["character", "abilities", "intelligence"], parseInt(finalAbilities["intelligence"]))
+                      .setIn(["character", "abilities", "charisma"], parseInt(finalAbilities["charisma"]))
+                      .setIn(["character", "derivedAbilities", "resistance"], parseInt(finalDerivedAbilities["resistance"]))
+                      .setIn(["character", "derivedAbilities", "fortitude"], parseInt(finalDerivedAbilities["fortitude"]))
+                      .setIn(["character", "derivedAbilities", "speed"], parseInt(finalDerivedAbilities["speed"]))
+                      .setIn(["character", "derivedAbilities", "senses"], parseInt(finalDerivedAbilities["senses"]))
+                      .setIn(["character", "derivedAbilities", "beauty"], parseInt(finalDerivedAbilities["beauty"]))
+                      .setIn(["character", "derivedAbilities", "danger"], parseInt(finalDerivedAbilities["danger"]))
+                      .setIn(["character", "derivedAbilities", "dignity"], parseInt(finalDerivedAbilities["dignity"]));
         }
         else {
           // Reset

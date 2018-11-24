@@ -93,6 +93,13 @@
 	"PanelErrataText": "Pravidlo, že při tvorbě postavy smí hráč dát do dovedností nebo majetku nejvýše o 3 body víc než do původu neplatí, pokud je hráč schopný obhájit rozdělení bodů původem postavy.",
 	"PanelErrataTrue": "Použít errata",
 	"PanelErrataFalse": "Nie, radšej knihu (pravidel)",
+	"resistance": "Odolnost",
+	"fortitude": "Výdrž",
+	"speed": "Rychlost",
+	"senses": "Smysly",
+	"beauty": "Krása",
+	"danger": "Nebezpečnost",
+	"dignity": "Důstojnost",
 };
 
 export default translations;
