@@ -3,8 +3,9 @@ import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
 import sumCollectionValues from "../helpers/sumCollectionValues";
-import getDerivedAbilities from "../calculations/getDerivedAbilities";
 import getAbilities from "../calculations/getAbilities";
+import getDerivedAbilities from "../calculations/getDerivedAbilities";
+import getCombatParameters from "../calculations/getCombatParameters";
 import initialState from "./initialState";
 
 const rootReducer = (state = initialState, action) => {
@@ -224,6 +225,25 @@ const rootReducer = (state = initialState, action) => {
                     .setIn(["character", "derivedAbilities", "danger"], parseInt(finalDerivedAbilities["danger"]))
                     .setIn(["character", "derivedAbilities", "dignity"], parseInt(finalDerivedAbilities["dignity"]))
                     .setIn(["character", "info", "note"], note)
+
+
+      case "CALCULATE_COMBAT_PARAMETERS":
+        var charRace = state.getIn(["character", "info", "race"]);
+        var charClass = state.getIn(["character", "info", "class"]);
+        var dexterity = state.getIn(["character", "abilities", "dexterity"]);
+        var manualdexterity = state.getIn(["character", "abilities", "manualdexterity"]);
+        var intelligence = state.getIn(["character", "abilities", "intelligence"]);
+        var charisma = state.getIn(["character", "abilities", "charisma"]);
+        var resistance = state.getIn(["character", "derivedAbilities", "resistance"]);
+
+        var finalCombatParameters = getCombatParameters(charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance)
+
+        return state.setIn(["character", "combatParameters", "combatSpeed"], parseInt(finalCombatParameters["combatSpeed"]))
+                    .setIn(["character", "combatParameters", "attack"], parseInt(finalCombatParameters["attack"]))
+                    .setIn(["character", "combatParameters", "shoot"], parseInt(finalCombatParameters["shoot"]))
+                    .setIn(["character", "combatParameters", "defense"], parseInt(finalCombatParameters["defense"]))
+                    .setIn(["character", "combatParameters", "health"], parseInt(finalCombatParameters["health"]))
+
 
       case "SET_ERRATA":
         var key = action.payload.key;

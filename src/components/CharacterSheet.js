@@ -10,10 +10,11 @@ const mapStateToProps = (state) => {
     info: state.getIn(['character', 'info']),
     abilities: state.getIn(['character', 'abilities']),
     derivedAbilities: state.getIn(['character', 'derivedAbilities']),
+    combatParameters: state.getIn(['character', 'combatParameters']),
   };
 };
 
-const ConnectedSheets = ({info, abilities, derivedAbilities }) => (
+const ConnectedSheets = ({info, abilities, derivedAbilities, combatParameters}) => (
   <div className="character-sheet panel panel-default">
     <div className="panel-body">
       <h2>
@@ -93,7 +94,37 @@ const ConnectedSheets = ({info, abilities, derivedAbilities }) => (
                 <td>{translations.dignity}</td>
                 <td>{derivedAbilities.get('dignity')}</td>
               </tr>
+            </tbody>
+          </table>
+        </div>
 
+        <div className="col-xs-4">
+          <table className="table ability-table">
+            <tbody>
+              <tr>
+                <td>{translations.combatSpeed}</td>
+                <td>{combatParameters.get('combatSpeed')}</td>
+              </tr>
+              <tr>
+                <td>{translations.attack}</td>
+                <td>{combatParameters.get('attack')}</td>
+              </tr>
+              <tr>
+                <td>{translations.shoot}</td>
+                <td>{combatParameters.get('shoot')}</td>
+              </tr>
+              <tr>
+                <td>{translations.defense}</td>
+                <td>{combatParameters.get('defense')}</td>
+              </tr>
+            </tbody>
+          </table>
+            <table className="table ability-table">
+            <tbody>
+              <tr>
+                <td>{translations.health}</td>
+                <td>{combatParameters.get('health')}</td>
+              </tr>
             </tbody>
           </table>
         </div>

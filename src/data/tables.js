@@ -372,91 +372,91 @@ const tables = {
       "senses":0,
       "resistance":0,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":""
     },
     "mountaineer": {
       "senses":0,
       "resistance":0,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":""
     },
     "elf": {
       "senses":0,
       "resistance":-1,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":""
     },
     "greenElf": {
       "senses":0,
       "resistance":-1,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":""
     },
     "darkElf": {
       "senses":0,
       "resistance":-1,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":"Infravidění"
     },
     "dwarf": {
       "senses":-1,
       "resistance":1,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":"Infravidění"
     },
     "mountainDwarf": {
       "senses":-1,
       "resistance":1,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":"Infravidění"
     },
     "hobbit": {
       "senses":0,
       "resistance":0,
       "speed":-1,
-      "combat":-1,
+      "combatSpeed":-1,
       "note":""
     },
     "kroll": {
       "senses":0,
       "resistance":0,
       "speed":1,
-      "combat":1,
+      "combatSpeed":1,
       "note":"Regenerace"
     },
     "wildKroll": {
       "senses":0,
       "resistance":0,
       "speed":1,
-      "combat":1,
+      "combatSpeed":1,
       "note":"Regenerace"
     },
     "orc": {
       "senses":1,
       "resistance":0,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":"Infravidění"
     },
     "hobgoblin": {
       "senses":1,
       "resistance":0,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":"Infravidění"
     },
     "goblin": {
       "senses":1,
       "resistance":0,
       "speed":0,
-      "combat":0,
+      "combatSpeed":0,
       "note":"Infravidění"
     }
   }

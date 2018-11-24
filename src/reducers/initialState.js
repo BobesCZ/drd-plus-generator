@@ -39,6 +39,13 @@ const initialState = fromJS(
         "danger": "",
         "dignity": ""
       },
+      "combatParameters": {
+        "combatSpeed": "",
+        "attack": "",
+        "shoot": "",
+        "defense": "",
+        "health": ""
+      }
     },
     "activeScreen": "screenCharacter",
     "screens": {

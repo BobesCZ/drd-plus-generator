@@ -100,6 +100,11 @@
 	"beauty": "Krása",
 	"danger": "Nebezpečnost",
 	"dignity": "Důstojnost",
+	"combatSpeed": "Boj",
+	"attack": "Útok",
+	"shoot": "Střelba",
+	"defense": "Obrana",
+	"health": "Mez zranění",
 };
 
 export default translations;

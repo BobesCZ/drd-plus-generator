@@ -21,9 +21,9 @@ const getDerivedAbilities = (charRace, strength, dexterity, manualdexterity, wil
     results["senses"] = manualdexterity + parseInt(tables.derivedAbilities[charRace]["senses"]);
 
     // @SOURCE: Tabulka aspektů vzhledu
-    results["beauty"] =  Math.round((dexterity + manualdexterity) / 2) + charisma;
-    results["danger"] =  Math.round((strength + will) / 2) + charisma;
-    results["dignity"] =  Math.round((intelligence + will) / 2) + charisma;
+    results["beauty"] = Math.round((dexterity + manualdexterity) / 2) + charisma;
+    results["danger"] = Math.round((strength + will) / 2) + charisma;
+    results["dignity"] = Math.round((intelligence + will) / 2) + charisma;
 
     return results;
   }

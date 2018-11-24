@@ -1,6 +1,7 @@
 import store from "../store/index";
 import calculateAbilities from "../actions/calculateAbilities";
 import calculateDerivedAbilities from "../actions/calculateDerivedAbilities";
+import calculateCombatParameters from "../actions/calculateCombatParameters";
 
 const actionPackages = (packageType, args = {}) => {
   // console.log("Start: actionPackages " + packageType, args)
@@ -10,6 +11,7 @@ const actionPackages = (packageType, args = {}) => {
     case "calculateSheet":
       store.dispatch( calculateAbilities({}) )
       store.dispatch( calculateDerivedAbilities({}) )
+      store.dispatch( calculateCombatParameters({}) )
 
   }
 
