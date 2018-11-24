@@ -6,7 +6,7 @@ const getNextArrayItem = (array, value) => {
   	if (index === array.length) {
   		// Last item => no next
     	return false;
-  	} 
+  	}
   	else {
   		// Item => next item
   		return array[index + 1];

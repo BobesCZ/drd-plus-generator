@@ -16,12 +16,12 @@ class Layout extends React.Component {
         return (
 
         	<div className="container">
-        		
+
         		<h1>DrD Plus Generátor postav </h1>
 
 	        	{/* Navigation part (forms etc) */}
 	    		<Navigation />
-	        		
+
         		<div className="row layout-content">
         			<div className="col-sm-6">
 		        		{/* Interaction part (forms etc) */}

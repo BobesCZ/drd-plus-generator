@@ -6,7 +6,7 @@ import translations from "../translations";
 
 const mapStateToProps = (state) => {
   // console.log(JSON.stringify(state.getIn(['character', 'info']), null, 2))
-  return { 
+  return {
     info: state.getIn(['character', 'info']),
     abilities: state.getIn(['character', 'abilities']),
     derivedAbilities: state.getIn(['character', 'derivedAbilities']),
@@ -26,81 +26,80 @@ const ConnectedSheets = ({info, abilities, derivedAbilities }) => (
         ({info.get('level')}.&nbsp;{translations.levelLow})
       </h3>
       <p>
-        {/* TODO: Poznámka rasy (infravidění apod) */}
         {info.get('note')}
       </p>
 
-      <div className="row"> 
+      <div className="row">
 
         <div className="col-xs-4">
           <table className="table ability-table">
-            <tbody> 
-              <tr> 
+            <tbody>
+              <tr>
                 <td>{translations.strength}</td>
                 <td>{abilities.get('strength')}</td>
-              </tr>                  
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.dexterity}</td>
                 <td>{abilities.get('dexterity')}</td>
-              </tr> 
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.manualdexterity}</td>
                 <td>{abilities.get('manualdexterity')}</td>
-              </tr> 
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.will}</td>
                 <td>{abilities.get('will')}</td>
-              </tr> 
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.intelligence}</td>
                 <td>{abilities.get('intelligence')}</td>
               </tr>
-              <tr> 
+              <tr>
                 <td>{translations.charisma}</td>
                 <td>{abilities.get('charisma')}</td>
-              </tr> 
-            </tbody> 
+              </tr>
+            </tbody>
           </table>
         </div>
 
         <div className="col-xs-4">
           <table className="table ability-table">
-            <tbody> 
-              <tr> 
+            <tbody>
+              <tr>
                 <td>{translations.resistance}</td>
                 <td>{derivedAbilities.get('resistance')}</td>
-              </tr>                  
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.fortitude}</td>
                 <td>{derivedAbilities.get('fortitude')}</td>
-              </tr> 
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.speed}</td>
                 <td>{derivedAbilities.get('speed')}</td>
-              </tr> 
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.senses}</td>
                 <td>{derivedAbilities.get('senses')}</td>
-              </tr> 
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.beauty}</td>
                 <td>{derivedAbilities.get('beauty')}</td>
-              </tr> 
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.danger}</td>
                 <td>{derivedAbilities.get('danger')}</td>
-              </tr> 
-              <tr> 
+              </tr>
+              <tr>
                 <td>{translations.dignity}</td>
                 <td>{derivedAbilities.get('dignity')}</td>
-              </tr> 
-      
-            </tbody> 
+              </tr>
+
+            </tbody>
           </table>
         </div>
 
       </div>
-      
+
     </div>
   </div>
 );

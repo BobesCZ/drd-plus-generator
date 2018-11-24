@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     screens: state.get('screens'),
     activeScreen: state.get('activeScreen'),
   };
@@ -76,9 +76,9 @@ class ConnectedStepNavigation extends React.Component {
             <button type="button" className="btn btn-primary pull-left" data-screen={previous} onClick={this.handleClick} disabled={previousDisabled}>
               <span className="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
               &nbsp; {translations.previousStep}
-            </button> 
+            </button>
           }
-      
+
           {/* Render button only if screen is not filled (button hides itself after click) */}
           {nextDisabled &&
             <button type="button" className="btn btn-success" data-screen-autofill={this.props.activeScreen} onClick={this.handleClick}>

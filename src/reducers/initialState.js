@@ -42,8 +42,8 @@ const initialState = fromJS(
     },
     "activeScreen": "screenCharacter",
     "screens": {
-      // States: 
-      // -1 => disabled 
+      // States:
+      // -1 => disabled
       // 0 => not completed
       // 1 => completed
       "screenCharacter": 0,

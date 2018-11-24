@@ -75,7 +75,7 @@ class ConnectedScreenBackground extends React.Component {
     else {
       maxAvailableOrigin = availablePoints
     }
- 
+
     let maxAvailableProperty = 0;
     if (distributedProperty) {
       maxAvailableProperty = parseInt( distributedProperty + availablePoints );
@@ -99,26 +99,26 @@ class ConnectedScreenBackground extends React.Component {
       originArray.push("origin" + i);
       propertyArray.push("property" + i);
     }
-        
+
     let charClass = this.props.info.get("class");
     let abilityDistributionTable = tables.abilityDistribution[charClass];
 
     return (
       <form>
-       
+
         <div className="panel panel-info">
           <div className="panel-heading">
             {translations.backgroundPanelHeader}
           </div>
           <div className="panel-body bg-info">
             {translations.backgroundPanelBody}
-            
+
             <ul>
               <li>{translations.backgroundPanelLi1}</li>
               <li>{translations.backgroundPanelLi2}</li>
               <li>{translations.backgroundPanelLi3}</li>
             </ul>
-            
+
             <table className="table">
               <tbody>
                 <tr>
@@ -164,8 +164,8 @@ class ConnectedScreenBackground extends React.Component {
           </select>
         </div>
 
-        {/* Show after name select is filled */} 
-        {backgroundFilled && 
+        {/* Show after name select is filled */}
+        {backgroundFilled &&
           <div>
             <p>
               {translations.distributeLeft}:&nbsp;
@@ -176,8 +176,8 @@ class ConnectedScreenBackground extends React.Component {
               <span className="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="popover" data-trigger="hover" data-content={translations.distributeBackgroundPopover}></span>
             </p>
 
-            <div className="row"> 
-              <div className="col-md-4">             
+            <div className="row">
+              <div className="col-md-4">
                 <label>
                   {translations.origin}
                 </label>
@@ -185,14 +185,14 @@ class ConnectedScreenBackground extends React.Component {
                 {originArray.map(item => (
                   <div key={item} className="radio">
                     <label>
-                      <input 
-                        type="radio" 
-                        name="origin" 
-                        value={originArray.indexOf(item)} 
-                        onChange={this.handleChangeFormCheckbox} 
+                      <input
+                        type="radio"
+                        name="origin"
+                        value={originArray.indexOf(item)}
+                        onChange={this.handleChangeFormCheckbox}
                         checked={distributedOrigin === originArray.indexOf(item) ? true : false}
                         disabled={originArray.indexOf(item) > maxAvailableOrigin ? true : false}
-                      /> 
+                      />
                       {originArray.indexOf(item)}&nbsp;
                       ({translations[item]})
                     </label>
@@ -200,7 +200,7 @@ class ConnectedScreenBackground extends React.Component {
                 ))}
               </div>
 
-              <div className="col-md-4">             
+              <div className="col-md-4">
                 <label>
                   {translations.property}
                 </label>
@@ -208,14 +208,14 @@ class ConnectedScreenBackground extends React.Component {
                 {propertyArray.map(item => (
                   <div key={item} className="radio">
                     <label>
-                      <input 
-                        type="radio" 
-                        name="property" 
-                        value={propertyArray.indexOf(item)} 
-                        onChange={this.handleChangeFormCheckbox} 
+                      <input
+                        type="radio"
+                        name="property"
+                        value={propertyArray.indexOf(item)}
+                        onChange={this.handleChangeFormCheckbox}
                         checked={distributedProperty === propertyArray.indexOf(item) ? true : false}
                         disabled={propertyArray.indexOf(item) > maxAvailableProperty ? true : false}
-                      /> 
+                      />
                       {propertyArray.indexOf(item)}&nbsp;
                       ({translations[item]})
                     </label>
@@ -223,7 +223,7 @@ class ConnectedScreenBackground extends React.Component {
                 ))}
               </div>
 
-              <div className="col-md-4">             
+              <div className="col-md-4">
                 <label>
                   {translations.skills}
                 </label>
@@ -231,14 +231,14 @@ class ConnectedScreenBackground extends React.Component {
                 {propertyArray.map(item => (
                   <div key={item} className="radio">
                     <label>
-                      <input 
-                        type="radio" 
-                        name="skills" 
-                        value={propertyArray.indexOf(item)} 
-                        onChange={this.handleChangeFormCheckbox} 
+                      <input
+                        type="radio"
+                        name="skills"
+                        value={propertyArray.indexOf(item)}
+                        onChange={this.handleChangeFormCheckbox}
                         checked={distributedSkills === propertyArray.indexOf(item) ? true : false}
                         disabled={propertyArray.indexOf(item) > maxAvailableSkills ? true : false}
-                      /> 
+                      />
                       {propertyArray.indexOf(item)}&nbsp;
                       (
                         {abilityDistributionTable[propertyArray.indexOf(item)]["FYZ"]},
@@ -265,7 +265,7 @@ class ConnectedScreenBackground extends React.Component {
 
         }
 
-        <PanelErrata name="backgroundPointsHasNoRangeLimit"/>    
+        <PanelErrata name="backgroundPointsHasNoRangeLimit"/>
 
         <div className="panel panel-success">
           <div className="panel-heading">

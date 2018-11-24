@@ -34,7 +34,7 @@ class ConnectedPanelErrata extends React.Component {
     // console.log({ key: name, value: value});
     this.props.setErrata({ key: name, value: value});
 
-    // Do custom actions when change errata 
+    // Do custom actions when change errata
     if (name === "backgroundPointsHasNoRangeLimit") {
       this.props.resolveBackground({});
       this.props.resolveScreen({ active: "screenBackground"});
@@ -43,7 +43,7 @@ class ConnectedPanelErrata extends React.Component {
 
   render(props) {
     var checked = this.props.errata.get(this.props.name);
-    
+
     return (
       <div className="panel panel-warning">
         <div className="panel-heading">
@@ -57,7 +57,7 @@ class ConnectedPanelErrata extends React.Component {
 
           <label className="switch-light" onClick={this.handleChangeFormInput}>
             <input type="checkbox" name={this.props.name} checked={checked}/>
-            
+
             <span className="switch-light__inner">
               <span className="switch-light__false">
                 {translations.PanelErrataFalse}

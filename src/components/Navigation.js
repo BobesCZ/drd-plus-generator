@@ -11,7 +11,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = (state) => {
-  return { 
+  return {
     screens: state.get('screens'),
     activeScreen: state.get('activeScreen'),
   };
@@ -39,7 +39,7 @@ class ConnectedNavigation extends React.Component {
   }
 
   render(props) {
-    
+
     return (
       <ul className="nav nav-tabs">
         {screensArray.map(key => (
