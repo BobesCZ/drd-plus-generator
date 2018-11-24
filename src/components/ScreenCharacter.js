@@ -3,14 +3,13 @@ import { connect } from "react-redux";
 import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
 import resolveScreen from "../actions/resolveScreen";
-import calculateSheet from "../actions/calculateSheet";
 import translations from "../translations";
+import actionPackages from "../actionPackages/actionPackages";
 
 const mapDispatchToProps = dispatch => {
   return {
     changeInfo: item => dispatch(changeInfo(item)),
-    resolveScreen: item => dispatch(resolveScreen(item)),
-    calculateSheet: item => dispatch(calculateSheet(item)),
+    resolveScreen: item => dispatch(resolveScreen(item))
   };
 };
 
@@ -34,11 +33,11 @@ class ConnectedScreenCharacter extends React.Component {
     // console.log({ key: name, value: value});
     this.props.changeInfo({ key: name, value: value});
     this.props.resolveScreen({ active: "screenCharacter"});
-    this.props.calculateSheet({});
+    actionPackages("calculateSheet");
   }
 
   render(props) {
-      
+
     return (
       <form>
 
@@ -69,12 +68,12 @@ class ConnectedScreenCharacter extends React.Component {
         <div className="form-group">
           <label htmlFor="">{translations.class}</label>
           <select className="form-control" name="class" value={this.props.info.get("class")} onChange={this.handleChangeFormInput}>
-            <option value="warrior">{translations.warrior}</option> 
-            <option value="sorcerer">{translations.sorcerer}</option> 
-            <option value="rogue">{translations.rogue}</option> 
-            <option value="ranger">{translations.ranger}</option> 
-            <option value="theurge">{translations.theurge}</option> 
-            <option value="cleric">{translations.cleric}</option> 
+            <option value="warrior">{translations.warrior}</option>
+            <option value="sorcerer">{translations.sorcerer}</option>
+            <option value="rogue">{translations.rogue}</option>
+            <option value="ranger">{translations.ranger}</option>
+            <option value="theurge">{translations.theurge}</option>
+            <option value="cleric">{translations.cleric}</option>
           </select>
         </div>
 

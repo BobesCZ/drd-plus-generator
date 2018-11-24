@@ -19,7 +19,7 @@ const getDerivedAbilities = (charRace, strength, dexterity, manualdexterity, wil
     results["fortitude"] = Math.round((strength + will) / 2);
     results["speed"] = Math.round((strength + dexterity) / 2) + parseInt(tables.derivedAbilities[charRace]["speed"]);
     results["senses"] = manualdexterity + parseInt(tables.derivedAbilities[charRace]["senses"]);
-    
+
     // @SOURCE: Tabulka aspektů vzhledu
     results["beauty"] =  Math.round((dexterity + manualdexterity) / 2) + charisma;
     results["danger"] =  Math.round((strength + will) / 2) + charisma;

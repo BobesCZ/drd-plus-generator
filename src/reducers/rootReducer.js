@@ -3,7 +3,8 @@ import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
 import sumCollectionValues from "../helpers/sumCollectionValues";
-import getDerivedAbilities from "../helpers/getDerivedAbilities";
+import getDerivedAbilities from "../calculations/getDerivedAbilities";
+import getAbilities from "../calculations/getAbilities";
 import initialState from "./initialState";
 
 const rootReducer = (state = initialState, action) => {
@@ -12,12 +13,12 @@ const rootReducer = (state = initialState, action) => {
         var key = action.payload.key;
         // console.log(action.payload)
         return state.setIn(["character", "info", key], action.payload.value);
-      
+
       case "CHANGE_SCREEN":
         var active = action.payload.active;
         // console.log(action.payload)
         return state.set("activeScreen", active);
-              
+
       case "RESOLVE_SCREEN":
         var active = action.payload.active;
 
@@ -86,7 +87,7 @@ const rootReducer = (state = initialState, action) => {
             // Set initial name to Random peasant
             let nameValue = translations["default-name"] + Math.floor(Math.random() * 100);
             return state.setIn(["character", "info", "name"], nameValue);
-          }          
+          }
         }
         else if (screen == "screenBackground") {
           // Autofill screen no. 2
@@ -136,7 +137,7 @@ const rootReducer = (state = initialState, action) => {
                       .setIn(["character", "background", "distributed", "property"], "")
                       .setIn(["character", "background", "distributed", "skills"], "");
         }
-        
+
       case "DISTRIBUTE_BACKGROUND":
         var key = action.payload.key;
         var value = action.payload.value;
@@ -161,17 +162,17 @@ const rootReducer = (state = initialState, action) => {
         else {
 
           // Set value for background to current value from argument OR value from state OR 0
-          let distributedOrigin = 0; 
+          let distributedOrigin = 0;
           if (state.getIn(["character", "background", "distributed", "origin"]) > 0) {
             distributedOrigin = state.getIn(["character", "background", "distributed", "origin"])
           }
 
-          let distributedProperty = 0; 
+          let distributedProperty = 0;
           if (state.getIn(["character", "background", "distributed", "property"]) > 0) {
             distributedProperty = state.getIn(["character", "background", "distributed", "property"])
           }
 
-          let distributedSkills = 0; 
+          let distributedSkills = 0;
           if (state.getIn(["character", "background", "distributed", "skills"]) > 0) {
             distributedSkills = state.getIn(["character", "background", "distributed", "skills"])
           }
@@ -186,61 +187,48 @@ const rootReducer = (state = initialState, action) => {
         // Set background points
         return state.setIn(["character", "background", "rangeLimit"], rangeLimit);
 
-      case "CALCULATE_SHEET":
+      case "CALCULATE_ABILITIES":
         var charRace = state.getIn(["character", "info", "race"]);
         var charSex = state.getIn(["character", "info", "sex"]);
         var charClass = state.getIn(["character", "info", "class"]);
-        var finalAbilities = [];
 
-        if (charRace.length && charSex.length && charClass.length) {
-          state.getIn(["character", "abilities"]).keySeq().forEach(key => {
-            // @SOURCE: Tabulka ras
-            var raceValue = tables.abilities.race[charRace][key];
+        var finalAbilities =  getAbilities(charRace, charSex, charClass);
 
-            // @SOURCE: Tabulka oprav pro pohlaví
-            var sexValue = 0;
-            if (charSex == "female") {
-              sexValue = tables.abilities.sex[charRace][key];
-            }
+        // Set all main abilities
+        return state.setIn(["character", "abilities", "strength"], parseInt(finalAbilities["strength"]))
+                    .setIn(["character", "abilities", "dexterity"], parseInt(finalAbilities["dexterity"]))
+                    .setIn(["character", "abilities", "manualdexterity"], parseInt(finalAbilities["manualdexterity"]))
+                    .setIn(["character", "abilities", "will"], parseInt(finalAbilities["will"]))
+                    .setIn(["character", "abilities", "intelligence"], parseInt(finalAbilities["intelligence"]))
+                    .setIn(["character", "abilities", "charisma"], parseInt(finalAbilities["charisma"]))
 
-            // @SOURCE: Tabulka hlavních vlastností podle povolání
-            var classValue = tables.abilities.class[charClass][key];
+      case "CALCULATE_DERIVED_ABILITIES":
+        var charRace = state.getIn(["character", "info", "race"]);
+        var strength = state.getIn(["character", "abilities", "strength"]);
+        var dexterity = state.getIn(["character", "abilities", "dexterity"]);
+        var manualdexterity = state.getIn(["character", "abilities", "manualdexterity"]);
+        var will = state.getIn(["character", "abilities", "will"]);
+        var intelligence = state.getIn(["character", "abilities", "intelligence"]);
+        var charisma = state.getIn(["character", "abilities", "charisma"]);
 
-            // Sum all values
-            if (typeof(raceValue) === "number") {
-              finalAbilities[key] = parseInt(raceValue) + parseInt(sexValue) + parseInt(classValue);
-            }
-          });
+        var finalDerivedAbilities = getDerivedAbilities(charRace, strength, dexterity, manualdexterity, will, intelligence, charisma);
 
-          var finalDerivedAbilities = getDerivedAbilities(charRace, finalAbilities["strength"], finalAbilities["dexterity"], finalAbilities["manualdexterity"], finalAbilities["will"], finalAbilities["intelligence"], finalAbilities["charisma"])
+        // Set all main abilities
+        return state.setIn(["character", "derivedAbilities", "resistance"], parseInt(finalDerivedAbilities["resistance"]))
+                    .setIn(["character", "derivedAbilities", "fortitude"], parseInt(finalDerivedAbilities["fortitude"]))
+                    .setIn(["character", "derivedAbilities", "speed"], parseInt(finalDerivedAbilities["speed"]))
+                    .setIn(["character", "derivedAbilities", "senses"], parseInt(finalDerivedAbilities["senses"]))
+                    .setIn(["character", "derivedAbilities", "beauty"], parseInt(finalDerivedAbilities["beauty"]))
+                    .setIn(["character", "derivedAbilities", "danger"], parseInt(finalDerivedAbilities["danger"]))
+                    .setIn(["character", "derivedAbilities", "dignity"], parseInt(finalDerivedAbilities["dignity"]));
 
-          // Set all main abilities
-          return state.setIn(["character", "abilities", "strength"], parseInt(finalAbilities["strength"]))
-                      .setIn(["character", "abilities", "dexterity"], parseInt(finalAbilities["dexterity"]))
-                      .setIn(["character", "abilities", "manualdexterity"], parseInt(finalAbilities["manualdexterity"]))
-                      .setIn(["character", "abilities", "will"], parseInt(finalAbilities["will"]))
-                      .setIn(["character", "abilities", "intelligence"], parseInt(finalAbilities["intelligence"]))
-                      .setIn(["character", "abilities", "charisma"], parseInt(finalAbilities["charisma"]))
-                      .setIn(["character", "derivedAbilities", "resistance"], parseInt(finalDerivedAbilities["resistance"]))
-                      .setIn(["character", "derivedAbilities", "fortitude"], parseInt(finalDerivedAbilities["fortitude"]))
-                      .setIn(["character", "derivedAbilities", "speed"], parseInt(finalDerivedAbilities["speed"]))
-                      .setIn(["character", "derivedAbilities", "senses"], parseInt(finalDerivedAbilities["senses"]))
-                      .setIn(["character", "derivedAbilities", "beauty"], parseInt(finalDerivedAbilities["beauty"]))
-                      .setIn(["character", "derivedAbilities", "danger"], parseInt(finalDerivedAbilities["danger"]))
-                      .setIn(["character", "derivedAbilities", "dignity"], parseInt(finalDerivedAbilities["dignity"]));
-        }
-        else {
-          // Reset
-          return state;
-        }
-        
       case "SET_ERRATA":
         var key = action.payload.key;
         var value = action.payload.value;
 
         return state.setIn(["errata", key], value)
 
-              
+
 	    default:
       	return state;
   	}
