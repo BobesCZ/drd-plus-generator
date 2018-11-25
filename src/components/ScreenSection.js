@@ -5,6 +5,7 @@ import { Provider, connect } from "react-redux";
 import translations from "../translations";
 import ScreenCharacter from "./ScreenCharacter";
 import ScreenBackground from "./ScreenBackground";
+import ScreenAbilities from "./ScreenAbilities";
 
 const mapStateToProps = (state) => {
   return { active: state.get('activeScreen')};
@@ -23,6 +24,11 @@ class ConnectedScreenSection extends React.Component {
     else if (activeScreen == "screenBackground")  {
       return (
         <ScreenBackground />
+      )
+    }
+    else if (activeScreen == "screenAbilities")  {
+      return (
+        <ScreenAbilities />
       )
     }
     else {

@@ -89,6 +89,12 @@
 	"will": "Vůle",
 	"intelligence": "Inteligence",
 	"charisma": "Charisma",
+	"strengthAbbr": "SIL",
+	"dexterityAbbr": "OBR",
+	"manualdexterityAbbr": "ZRČ",
+	"willAbbr": "VOL",
+	"intelligenceAbbr": "INT",
+	"charismaAbbr": "CHR",
 	"PanelErrataHeader": "Je libo errata?",
 	"PanelErrataText": "Pravidlo, že při tvorbě postavy smí hráč dát do dovedností nebo majetku nejvýše o 3 body víc než do původu neplatí, pokud je hráč schopný obhájit rozdělení bodů původem postavy.",
 	"PanelErrataTrue": "Použít errata",
@@ -105,6 +111,9 @@
 	"shoot": "Střelba",
 	"defense": "Obrana",
 	"health": "Mez zranění",
+	"levelAbilitiesRace": "Základ (rasa)",
+	"levelAbilitiesClass": "Hl. vlastnosti povolání",
+	"levelAbilitiesBackground": "Zázemí",
 };
 
 export default translations;

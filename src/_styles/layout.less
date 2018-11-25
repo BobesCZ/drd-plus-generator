@@ -16,7 +16,7 @@ h1, h2, h3 {
         border: .1rem solid #ccc;
         cursor: pointer;
     }
-    
+
     &__true, &__false  {
         font-weight: 400;
         transition: color .3s ease;
@@ -52,5 +52,13 @@ h1, h2, h3 {
 .alert {
     .glyphicon {
         margin-right: .5rem;
+    }
+}
+
+.level-table {
+    td, th {
+        &:not(:first-child) {
+            text-align: center;
+        }
     }
 }
