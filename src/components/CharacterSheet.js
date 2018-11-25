@@ -3,6 +3,7 @@
 import React from "react";
 import { Provider, connect } from "react-redux";
 import translations from "../translations";
+import tables from "../data/tables";
 
 const mapStateToProps = (state) => {
   // console.log(JSON.stringify(state.getIn(['character', 'info']), null, 2))
@@ -23,6 +24,9 @@ class ConnectedSheets extends React.Component {
   render(props) {
     let healthArray = [];
     let charHealth = this.props.combatParameters.get('health');
+    let charRace = this.props.info.get('race');
+    let charNote = tables.derivedAbilities[charRace]["note"].length ? tables.derivedAbilities[charRace]["note"] : false;
+
 
     for (var i=1; i <= 50; i++) {
       let active = i <= charHealth ? true : false;
@@ -57,6 +61,11 @@ class ConnectedSheets extends React.Component {
             &nbsp;-&nbsp;
             {translations[this.props.info.get('class')]}&nbsp;
             ({this.props.info.get('level')}.&nbsp;{translations.levelLow})
+            {charNote &&
+              <small>
+                &nbsp;+{charNote}
+              </small>
+            }
           </h3>
           <p>
             {this.props.info.get('note')}

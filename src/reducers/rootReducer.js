@@ -214,8 +214,6 @@ const rootReducer = (state = initialState, action) => {
 
         var finalDerivedAbilities = getDerivedAbilities(charRace, strength, dexterity, manualdexterity, will, intelligence, charisma);
 
-        var note = tables.derivedAbilities[charRace]["note"];
-
         // Set all main abilities
         return state.setIn(["character", "derivedAbilities", "resistance"], parseInt(finalDerivedAbilities["resistance"]))
                     .setIn(["character", "derivedAbilities", "fortitude"], parseInt(finalDerivedAbilities["fortitude"]))
@@ -224,8 +222,6 @@ const rootReducer = (state = initialState, action) => {
                     .setIn(["character", "derivedAbilities", "beauty"], parseInt(finalDerivedAbilities["beauty"]))
                     .setIn(["character", "derivedAbilities", "danger"], parseInt(finalDerivedAbilities["danger"]))
                     .setIn(["character", "derivedAbilities", "dignity"], parseInt(finalDerivedAbilities["dignity"]))
-                    .setIn(["character", "info", "note"], note)
-
 
       case "CALCULATE_COMBAT_PARAMETERS":
         var charRace = state.getIn(["character", "info", "race"]);
