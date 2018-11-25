@@ -3,9 +3,9 @@ import translations from "./translations";
 import changeInfo from "./actions/changeInfo";
 import autofillScreen from "./actions/autofillScreen";
 import resolveScreen from "./actions/resolveScreen";
-import resolveBackground from "./actions/resolveBackground";
+import resolveBackgroundAndChangeScreen from "./actionPackages/resolveBackgroundAndChangeScreen";
 import changeScreen from "./actions/changeScreen";
-import actionPackages from "./actionPackages/actionPackages";
+import calculateSheet from "./actionPackages/calculateSheet";
 
 export default function startActions() {
 
@@ -17,13 +17,12 @@ export default function startActions() {
 
 	// TEST abilities
 	store.dispatch( autofillScreen({ screen: "screenCharacter"}) )
-	actionPackages("calculateSheet")
+	calculateSheet()
 	store.dispatch( resolveScreen({ active: "screenCharacter"}) )
 	store.dispatch( changeScreen({active: "screenBackground"}) )
 
 	store.dispatch( autofillScreen({screen: "screenBackground"}) )
-	store.dispatch( resolveBackground({}) )
-	store.dispatch( resolveScreen({ active: "screenBackground"}) )
+	resolveBackgroundAndChangeScreen()
 	store.dispatch( changeScreen({active: "screenAbilities"}) )
 
 	// jQuery init plugins

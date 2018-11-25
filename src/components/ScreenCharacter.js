@@ -4,7 +4,7 @@ import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
 import resolveScreen from "../actions/resolveScreen";
 import translations from "../translations";
-import actionPackages from "../actionPackages/actionPackages";
+import calculateSheet from "../actionPackages/calculateSheet";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -33,7 +33,7 @@ class ConnectedScreenCharacter extends React.Component {
     // console.log({ key: name, value: value});
     this.props.changeInfo({ key: name, value: value});
     this.props.resolveScreen({ active: "screenCharacter"});
-    actionPackages("calculateSheet");
+    calculateSheet();
   }
 
   render(props) {

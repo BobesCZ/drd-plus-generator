@@ -1,15 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import setErrata from "../actions/setErrata";
-import resolveBackground from "../actions/resolveBackground";
-import resolveScreen from "../actions/resolveScreen";
+import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
 import translations from "../translations";
 
 const mapDispatchToProps = dispatch => {
   return {
     setErrata: item => dispatch(setErrata(item)),
-    resolveBackground: item => dispatch(resolveBackground(item)),
-    resolveScreen: item => dispatch(resolveScreen(item)),
   };
 };
 
@@ -36,8 +33,7 @@ class ConnectedPanelErrata extends React.Component {
 
     // Do custom actions when change errata
     if (name === "backgroundPointsHasNoRangeLimit") {
-      this.props.resolveBackground({});
-      this.props.resolveScreen({ active: "screenBackground"});
+      resolveBackgroundAndChangeScreen();
     }
   }
 

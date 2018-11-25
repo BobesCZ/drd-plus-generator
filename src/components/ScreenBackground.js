@@ -4,8 +4,7 @@ import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
 import setBackground from "../actions/setBackground";
 import distributeBackground from "../actions/distributeBackground";
-import resolveBackground from "../actions/resolveBackground";
-import resolveScreen from "../actions/resolveScreen";
+import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
 import PanelErrata from "./PanelErrata";
 import sumCollectionValues from "../helpers/sumCollectionValues";
 import translations from "../translations";
@@ -15,8 +14,6 @@ const mapDispatchToProps = dispatch => {
   return {
     setBackground: item => dispatch(setBackground(item)),
     distributeBackground: item => dispatch(distributeBackground(item)),
-    resolveBackground: item => dispatch(resolveBackground(item)),
-    resolveScreen: item => dispatch(resolveScreen(item)),
   };
 };
 
@@ -50,8 +47,7 @@ class ConnectedScreenBackground extends React.Component {
     const name = target.name;
     // console.log({ key: name, value: value});
     this.props.distributeBackground({ key: name, value: value});
-    this.props.resolveBackground({});
-    this.props.resolveScreen({ active: "screenBackground"});
+    resolveBackgroundAndChangeScreen();
   }
 
   render(props) {
