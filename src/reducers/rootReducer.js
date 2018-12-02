@@ -3,6 +3,7 @@ import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
 import sumCollectionValues from "../helpers/sumCollectionValues";
+import createLevelsState from "../helpers/createLevelsState";
 import getAbilities from "../calculations/getAbilities";
 import getDerivedAbilities from "../calculations/getDerivedAbilities";
 import getCombatParameters from "../calculations/getCombatParameters";
@@ -246,6 +247,40 @@ const rootReducer = (state = initialState, action) => {
         var value = action.payload.value;
 
         return state.setIn(["errata", key], value)
+
+      case "RESOLVE_LEVELS":
+
+        let level = parseInt( state.getIn(["character", "info", "level"]) )
+        let charBackground = state.getIn(["character", "background", "name"])
+        let levelsState
+
+        // TEMP
+        // We need background (that user choose at screen 2) at screen 1
+        // For now, let assume that user chose something
+        if (!isTextInputFilled(charBackground)) {
+          charBackground ="goodAbility";
+        }
+
+        levelsState = createLevelsState(level, charBackground)
+
+        if (levelsState) {
+          return state.setIn(["character", "levels"], levelsState)
+        }
+        else {
+          return state;
+        }
+
+
+      case "CHANGE_ABILITY_VALUE":
+        var ability = action.payload.ability;
+        var level = action.payload.level;
+        var changeValue = action.payload.changeValue;
+        // console.log(ability, level, changeValue)
+
+        var currentValue = state.getIn(["character", "levels", parseInt(level), "abilities", ability, "value"])
+        var newValue = currentValue + parseInt(changeValue)
+
+        return state.setIn(["character", "levels", parseInt(level), "abilities", ability, "value"], newValue)
 
 
 	    default:

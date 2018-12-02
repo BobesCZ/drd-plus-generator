@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
 import resolveScreen from "../actions/resolveScreen";
+import resolveLevels from "../actions/resolveLevels";
 import translations from "../translations";
 import calculateSheet from "../actionPackages/calculateSheet";
 
 const mapDispatchToProps = dispatch => {
   return {
     changeInfo: item => dispatch(changeInfo(item)),
-    resolveScreen: item => dispatch(resolveScreen(item))
+    resolveScreen: item => dispatch(resolveScreen(item)),
+    resolveLevels: item => dispatch(resolveLevels(item)),
   };
 };
 
@@ -34,6 +36,10 @@ class ConnectedScreenCharacter extends React.Component {
     this.props.changeInfo({ key: name, value: value});
     this.props.resolveScreen({ active: "screenCharacter"});
     calculateSheet();
+
+    if (name === "level"){
+      this.props.resolveLevels({});
+    }
   }
 
   render(props) {

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import isAbilityMain from "../helpers/isAbilityMain";
+import changeAbility from "../actionPackages/changeAbility";
 import translations from "../translations";
 import tables from "../data/tables";
 
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
     info: state.getIn(['character', 'info']),
     background: state.getIn(['character', 'background']),
     abilities: state.getIn(['character', 'abilities']),
+    levels: state.getIn(['character', 'levels']),
   };
 };
 
@@ -29,34 +31,20 @@ class ConnectedLevelAbilitiesRow extends React.Component {
   handleButtonClick(event) {
     const target = event.target;
     const value = target.value;
-    const name = target.name;
-    console.log({ key: name, value: value});
-    // this.props.setBackground({ "name": value});
+    const ability = target.name;
+    const level = target.getAttribute("data-level");
+    changeAbility(ability, level, value);
   }
 
   render(props) {
     let level = this.props.level;
-    let charBackground = this.props.background.get("name");
     let charClass = this.props.info.get("class");
     let charAbilities = this.props.abilities;
+    let levels = this.props.levels.get(level);
 
-    let title = "";
-    let mainAbilityPoints = 0;
-    let secondaryAbilityPoints = 0;
-    let maximumAbilityPoint = 0;
-
-    if (level === 1) {
-      title = translations.levelAbilitiesBackground;
-      mainAbilityPoints = tables.background[charBackground]["mainAbilityPoints"];
-      secondaryAbilityPoints = tables.background[charBackground]["secondaryAbilityPoints"];
-      maximumAbilityPoint = tables.background[charBackground]["maximumAbilityPoint"];
-    }
-    else {
-      title = `${level}. ${translations.level}`;
-      mainAbilityPoints = 1;
-      secondaryAbilityPoints = 1;
-      maximumAbilityPoint = 1;
-    }
+    let mainAbilityPoints = levels.get("mainAbilityPoints");
+    let secondaryAbilityPoints = levels.get("secondaryAbilityPoints");
+    let maximumAbilityPoint = levels.get("maximumAbilityPoint");
 
     let charAbilitiesArray = [];
 
@@ -65,7 +53,13 @@ class ConnectedLevelAbilitiesRow extends React.Component {
       charAbilitiesArray[item] = isMain;
     })
 
-    let base = {}
+    let title = "";
+    if (level === 1) {
+      title = translations.levelAbilitiesBackground;
+    }
+    else {
+      title = `${level}. ${translations.level}`;
+    }
 
     return (
       <tr key={level}>
@@ -79,9 +73,9 @@ class ConnectedLevelAbilitiesRow extends React.Component {
               name={item}
               onClick={this.handleButtonClick}
               data-level={level}
-              value="0"
+              value="+1"
               >
-              0
+              {levels.getIn(["abilities", item, "value"])}
             </button>
           </td>
         ))}

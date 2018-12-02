@@ -4,6 +4,7 @@ import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
 import setBackground from "../actions/setBackground";
 import distributeBackground from "../actions/distributeBackground";
+import resolveLevels from "../actions/resolveLevels";
 import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
 import PanelErrata from "./PanelErrata";
 import sumCollectionValues from "../helpers/sumCollectionValues";
@@ -14,6 +15,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setBackground: item => dispatch(setBackground(item)),
     distributeBackground: item => dispatch(distributeBackground(item)),
+    resolveLevels: item => dispatch(resolveLevels(item)),
   };
 };
 
@@ -39,6 +41,7 @@ class ConnectedScreenBackground extends React.Component {
     const name = target.name;
     // console.log({ key: name, value: value});
     this.props.setBackground({ "name": value});
+    this.props.resolveLevels({});
   }
 
   handleChangeFormCheckbox(event) {

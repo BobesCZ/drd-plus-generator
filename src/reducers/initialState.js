@@ -45,6 +45,39 @@ const initialState = fromJS(
         "shoot": "",
         "defense": "",
         "health": ""
+      },
+      "levels": {
+        "1": {
+          "abilities": {
+            "strength": {
+              "value": 0,
+              "disabled": false
+            },
+            "dexterity": {
+              "value": 0,
+              "disabled": false
+            },
+            "manualdexterity": {
+              "value": 0,
+              "disabled": false
+            },
+            "will": {
+              "value": 0,
+              "disabled": false
+            },
+            "intelligence": {
+              "value": 0,
+              "disabled": false
+            },
+            "charisma": {
+              "value": 0,
+              "disabled": false
+            }
+          },
+          "mainAbilityPoints": 0,
+          "secondaryAbilityPoints": 0,
+          "maximumAbilityPoint": 0
+        }
       }
     },
     "activeScreen": "screenCharacter",
