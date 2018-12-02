@@ -42,6 +42,7 @@ class ConnectedScreenBackground extends React.Component {
     // console.log({ key: name, value: value});
     this.props.setBackground({ "name": value});
     this.props.resolveLevels({});
+    resolveBackgroundAndChangeScreen();
   }
 
   handleChangeFormCheckbox(event) {
