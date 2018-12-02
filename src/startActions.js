@@ -12,7 +12,7 @@ export default function startActions() {
 	// Set initial values at screenCharacter
 	store.dispatch( changeInfo({ key: "race", value: "elf"}) )
 	store.dispatch( changeInfo({ key: "class", value: "warrior"}) )
-	store.dispatch( changeInfo({ key: "level", value: "1"}) )
+	store.dispatch( changeInfo({ key: "level", value: "3"}) )
 	store.dispatch( changeInfo({ key: "sex", value: "male"}) )
 
 	// TEST abilities

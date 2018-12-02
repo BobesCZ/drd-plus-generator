@@ -125,21 +125,21 @@ class ConnectedScreenBackground extends React.Component {
                 </tr>
                 <tr>
                   <td>{translations.goodAbility}</td>
-                  <td className="text-center">3</td>
-                  <td className="text-center">6</td>
-                  <td className="text-center">5</td>
+                  <td className="text-center">{tables.background.goodAbility.mainAbilityPoints}</td>
+                  <td className="text-center">{tables.background.goodAbility.secondaryAbilityPoints}</td>
+                  <td className="text-center">{tables.background.goodAbility.totalPoints}</td>
                 </tr>
                 <tr>
                   <td>{translations.combinationBackground}</td>
-                  <td className="text-center">2</td>
-                  <td className="text-center">4</td>
-                  <td className="text-center">10</td>
+                  <td className="text-center">{tables.background.combinationBackground.mainAbilityPoints}</td>
+                  <td className="text-center">{tables.background.combinationBackground.secondaryAbilityPoints}</td>
+                  <td className="text-center">{tables.background.combinationBackground.totalPoints}</td>
                 </tr>
                 <tr>
                   <td>{translations.goodBackground}</td>
-                  <td className="text-center">1</td>
-                  <td className="text-center">2</td>
-                  <td className="text-center">15</td>
+                  <td className="text-center">{tables.background.goodBackground.mainAbilityPoints}</td>
+                  <td className="text-center">{tables.background.goodBackground.secondaryAbilityPoints}</td>
+                  <td className="text-center">{tables.background.goodBackground.totalPoints}</td>
                 </tr>
               </tbody>
             </table>

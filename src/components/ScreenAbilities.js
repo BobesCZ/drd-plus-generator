@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import LevelAbilitiesRow from "./LevelAbilitiesRow";
 import getAbilitiesByRace from "../calculations/getAbilitiesByRace";
 import getAbilitiesByClass from "../calculations/getAbilitiesByClass";
 import translations from "../translations";
@@ -37,9 +38,16 @@ class ConnectedScreenAbilities extends React.Component {
     let charRace = this.props.info.get("race");
     let charSex = this.props.info.get("sex");
     let charClass = this.props.info.get("class");
+    let charLevel = this.props.info.get("level");
 
     let base = getAbilitiesByRace(charRace, charSex);
     let baseClass = getAbilitiesByClass(charClass);
+
+    let maxLevelArray = [];
+
+    for (var i=1; i <= charLevel; i++) {
+      maxLevelArray.push(i);
+    }
 
     return (
       <form>
@@ -80,6 +88,10 @@ class ConnectedScreenAbilities extends React.Component {
                 <td>{baseClass.charisma}</td>
                 <td>x</td>
               </tr>
+
+              {maxLevelArray.map(item => (
+                <LevelAbilitiesRow level={item} key={item}/>
+              ))}
 
             </tbody>
           </table>
