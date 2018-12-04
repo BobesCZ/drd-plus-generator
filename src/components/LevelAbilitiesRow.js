@@ -74,6 +74,7 @@ class ConnectedLevelAbilitiesRow extends React.Component {
               onClick={this.handleButtonClick}
               data-level={level}
               value="+1"
+              disabled={levels.getIn(["abilities", item, "disabled"]) ? true : false}
               >
               {levels.getIn(["abilities", item, "value"])}
             </button>
