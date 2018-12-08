@@ -8,6 +8,7 @@ import isAbilityMain from "../helpers/isAbilityMain";
 import getAbilities from "../calculations/getAbilities";
 import getDerivedAbilities from "../calculations/getDerivedAbilities";
 import getCombatParameters from "../calculations/getCombatParameters";
+import isAbilityOnRaceLimit from "../calculations/isAbilityOnRaceLimit";
 import initialState from "./initialState";
 
 const rootReducer = (state = initialState, action) => {
@@ -296,9 +297,10 @@ const rootReducer = (state = initialState, action) => {
         var secondaryAbilityPoints = state.getIn(["character", "levels", parseInt(level), "secondaryAbilityPoints"]);
         var secondaryAbilitiesArray = [];
 
+        var maximumAbilityPoint = state.getIn(["character", "levels", parseInt(level), "maximumAbilityPoint"]);
+
         abilities.keySeq().forEach((key) => {
 
-          // Set default ability disabled to False
           if ( isAbilityMain(charClass, key) ) {
             mainAbilitiesArray.push(key);
           }
@@ -318,17 +320,34 @@ const rootReducer = (state = initialState, action) => {
           derivedDistributedPoints += parseInt(value);
         })
 
-        // Enable / Disable abilities
-        if (mainDistributedPoints === mainAbilityPoints) {
-          mainAbilitiesArray.forEach((key) => {
+        // Ability is disabled when one of these conditions is true:
+        // 1. User hit the limit of maximum points for one ability
+        // 2. User hit the ability race limit (only at first level)
+        // 3. Sum of all main/derived abilities is equal to distributed points (user has no points left)
+
+        abilities.keySeq().forEach((key) => {
+          var value = abilities.getIn([key, "value"])
+
+          if (
+              parseInt(value) === parseInt(maximumAbilityPoint) ||
+              isAbilityOnRaceLimit(parseInt(level), key, charClass, value) ||
+              (
+                isAbilityMain(charClass, key) &&
+                mainDistributedPoints === mainAbilityPoints
+              ) ||
+              (
+                !isAbilityMain(charClass, key) &&
+                derivedDistributedPoints === secondaryAbilityPoints
+              )
+            )
+          {
             abilities = abilities.setIn([key, "disabled"], true)
-          })
-        }
-        if (derivedDistributedPoints === secondaryAbilityPoints) {
-          secondaryAbilitiesArray.forEach((key) => {
-            abilities = abilities.setIn([key, "disabled"], true)
-          })
-        }
+          }
+          else {
+            abilities = abilities.setIn([key, "disabled"], false)
+          }
+
+        })
 
         return state.setIn(["character", "levels", parseInt(level), "abilities"], abilities)
 
