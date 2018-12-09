@@ -1,7 +1,8 @@
+import { Map } from 'immutable';
 import tables from "../data/tables";
+import sumAbilityValuesOnAllLevels from "../helpers/sumAbilityValuesOnAllLevels";
 
-const getAbilities = (charRace, charSex, charClass) => {
-
+const getAbilities = (charRace, charSex, charClass, levels) => {
   var finalAbilities = {
     "strength": "",
     "dexterity": "",
@@ -11,7 +12,7 @@ const getAbilities = (charRace, charSex, charClass) => {
     "charisma": "",
   };
 
-  if (charRace.length && charSex.length && charClass.length) {
+  if (charRace.length && charSex.length && charClass.length && Map.isMap(levels)) {
     Object.keys(finalAbilities).forEach(key => {
       // @SOURCE: Tabulka ras
       var raceValue = tables.abilities.race[charRace][key];
@@ -25,9 +26,12 @@ const getAbilities = (charRace, charSex, charClass) => {
       // @SOURCE: Tabulka hlavních vlastností podle povolání
       var classValue = tables.abilities.class[charClass][key];
 
+      // Values from leveling
+      var levelsValue = sumAbilityValuesOnAllLevels(key, levels)
+
       // Sum all values
       if (typeof(raceValue) === "number") {
-        finalAbilities[key] = parseInt(raceValue) + parseInt(sexValue) + parseInt(classValue);
+        finalAbilities[key] = parseInt(raceValue) + parseInt(sexValue) + parseInt(classValue) + parseInt(levelsValue);
       }
     });
 

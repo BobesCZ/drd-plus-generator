@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import isAbilityMain from "../helpers/isAbilityMain";
+import isLevelRowCompleted from "../helpers/isLevelRowCompleted";
 import changeAbility from "../actionPackages/changeAbility";
 import translations from "../translations";
 import tables from "../data/tables";
@@ -26,6 +27,7 @@ class ConnectedLevelAbilitiesRow extends React.Component {
     this.state = {};
 
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleResetButtonClick = this.handleResetButtonClick.bind(this);
   }
 
   handleButtonClick(event) {
@@ -34,6 +36,32 @@ class ConnectedLevelAbilitiesRow extends React.Component {
     const ability = target.name;
     const level = target.getAttribute("data-level");
     changeAbility(ability, level, value);
+  }
+
+  handleResetButtonClick(event) {
+    let target = event.target;
+    let charAbilities = this.props.abilities;
+    let charLevel = this.props.info.get('level');
+    let levels = this.props.levels;
+
+    // Target can be span.glyphicon inside button
+    if (target.nodeName !== "BUTTON") {
+      target = target.closest('button')
+    }
+    const level = target.getAttribute("data-level");
+
+    // Reset this level and all higher levels
+    for (var i = parseInt(level); i <= charLevel; i++) {
+      charAbilities.keySeq().forEach((ability) => {
+        // Get current value for each ability
+        let currentLevelValue = levels.getIn([parseInt(i), 'abilities', ability, 'value'])
+        if (currentLevelValue > 0) {
+          // Use changeAbility with negative current value (should result in 0)
+          changeAbility(ability, i, parseInt(currentLevelValue * -1));
+        }
+      })
+    }
+
   }
 
   render(props) {
@@ -81,6 +109,19 @@ class ConnectedLevelAbilitiesRow extends React.Component {
             </button>
           </td>
         ))}
+
+        <td>
+          <button
+            type="button"
+            className={hidden ? 'btn btn-default btn-sm' : 'btn btn-danger btn-sm'}
+            onClick={this.handleResetButtonClick}
+            data-level={level}
+            disabled={hidden ? true : false}
+            >
+            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+        </td>
+
       </tr>
 
     )

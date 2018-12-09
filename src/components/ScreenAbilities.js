@@ -92,7 +92,7 @@ class ConnectedScreenAbilities extends React.Component {
                 <td>{base.will}</td>
                 <td>{base.intelligence}</td>
                 <td>{base.charisma}</td>
-                <td>x</td>
+                <td>&nbsp;</td>
               </tr>
 
               <tr>
@@ -103,7 +103,7 @@ class ConnectedScreenAbilities extends React.Component {
                 <td>{baseClass.will}</td>
                 <td>{baseClass.intelligence}</td>
                 <td>{baseClass.charisma}</td>
-                <td>x</td>
+                <td>&nbsp;</td>
               </tr>
 
               {Object.keys(maxLevelArray).map(item => (
