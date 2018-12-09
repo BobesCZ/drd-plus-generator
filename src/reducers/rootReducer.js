@@ -5,6 +5,7 @@ import tables from "../data/tables";
 import sumCollectionValues from "../helpers/sumCollectionValues";
 import createLevelsState from "../helpers/createLevelsState";
 import isAbilityMain from "../helpers/isAbilityMain";
+import isAbilityLeveled from "../helpers/isAbilityLeveled";
 import getAbilities from "../calculations/getAbilities";
 import getDerivedAbilities from "../calculations/getDerivedAbilities";
 import getCombatParameters from "../calculations/getCombatParameters";
@@ -288,6 +289,15 @@ const rootReducer = (state = initialState, action) => {
       case "RESOLVE_ABILITY_VALUES":
         var level = action.payload.level;
         var charClass = state.getIn(["character", "info", "class"]);
+        let charLevel = state.getIn(["character", "info", "level"]);
+
+        // In changeAbility() we try to resolve next level
+        // In case of last level, there is no next level => return without changes
+        if (level > charLevel) {
+          return state
+        }
+
+        var levels = state.getIn(["character", "levels"]);
         var abilities = state.getIn(["character", "levels", parseInt(level), "abilities"]);
 
         var mainDistributedPoints = 0;
@@ -324,7 +334,8 @@ const rootReducer = (state = initialState, action) => {
         // Ability is disabled when one of these conditions is true:
         // 1. User hit the limit of maximum points for one ability
         // 2. User hit the ability race limit (only at first level)
-        // 3. Sum of all main/derived abilities is equal to distributed points (user has no points left)
+        // 3. User increased the ability in previous steps (allowed 2x for main and 1x for derived ability)
+        // 4. Sum of all main/derived abilities is equal to distributed points (user has no points left)
 
         abilities.keySeq().forEach((key) => {
           var value = abilities.getIn([key, "value"])
@@ -332,6 +343,14 @@ const rootReducer = (state = initialState, action) => {
           if (
               parseInt(value) === parseInt(maximumAbilityPoint) ||
               isAbilityOnRaceLimit(parseInt(level), key, charClass, value) ||
+              (
+                isAbilityMain(charClass, key) &&
+                isAbilityLeveled(key, levels, parseInt(level), 2)
+              ) ||
+              (
+                !isAbilityMain(charClass, key) &&
+                isAbilityLeveled(key, levels, parseInt(level), 1)
+              ) ||
               (
                 isAbilityMain(charClass, key) &&
                 mainDistributedPoints === mainAbilityPoints
