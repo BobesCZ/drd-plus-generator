@@ -41,6 +41,7 @@ class ConnectedLevelAbilitiesRow extends React.Component {
     let charClass = this.props.info.get("class");
     let charAbilities = this.props.abilities;
     let levels = this.props.levels.get(level);
+    let hidden = this.props.hidden;
 
     let mainAbilityPoints = levels.get("mainAbilityPoints");
     let secondaryAbilityPoints = levels.get("secondaryAbilityPoints");
@@ -69,12 +70,12 @@ class ConnectedLevelAbilitiesRow extends React.Component {
           <td key={item}>
             <button
               type="button"
-              className={charAbilitiesArray[item] ? 'btn btn-primary' : 'btn btn-success'}
+              className={hidden ? 'btn btn-default' : charAbilitiesArray[item] ? 'btn btn-primary' : 'btn btn-success'}
               name={item}
               onClick={this.handleButtonClick}
               data-level={level}
               value="+1"
-              disabled={levels.getIn(["abilities", item, "disabled"]) ? true : false}
+              disabled={hidden ? true : levels.getIn(["abilities", item, "disabled"]) ? true : false}
               >
               {levels.getIn(["abilities", item, "value"])}
             </button>

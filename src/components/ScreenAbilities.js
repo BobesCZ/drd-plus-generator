@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import LevelAbilitiesRow from "./LevelAbilitiesRow";
 import getAbilitiesByRace from "../calculations/getAbilitiesByRace";
 import getAbilitiesByClass from "../calculations/getAbilitiesByClass";
+import isLevelRowCompleted from "../helpers/isLevelRowCompleted";
 import translations from "../translations";
 
 const mapDispatchToProps = dispatch => {
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
   return {
     info: state.getIn(['character', 'info']),
     background: state.getIn(['character', 'background']),
+    levels: state.getIn(['character', 'levels']),
   };
 };
 
@@ -44,9 +46,24 @@ class ConnectedScreenAbilities extends React.Component {
     let baseClass = getAbilitiesByClass(charClass);
 
     let maxLevelArray = [];
+    let completedLevelArray = [];
 
+    // Array for "hidden" property
+    // Row is hidden, if previous row is not completed (first row is always hidden: false)
     for (var i=1; i <= charLevel; i++) {
-      maxLevelArray.push(i);
+      let levels = this.props.levels.get(i);
+      let completed = isLevelRowCompleted(levels)
+      completedLevelArray[i] = completed;
+
+      if (i === 1) {
+        maxLevelArray[i] = false;
+      }
+      else if (completedLevelArray[i-1] === true) {
+        maxLevelArray[i] = false;
+      }
+      else {
+        maxLevelArray[i] = true;
+      }
     }
 
     return (
@@ -89,8 +106,8 @@ class ConnectedScreenAbilities extends React.Component {
                 <td>x</td>
               </tr>
 
-              {maxLevelArray.map(item => (
-                <LevelAbilitiesRow level={item} key={item}/>
+              {Object.keys(maxLevelArray).map(item => (
+                <LevelAbilitiesRow level={parseInt(item)} key={parseInt(item)} hidden={maxLevelArray[item]} />
               ))}
 
             </tbody>

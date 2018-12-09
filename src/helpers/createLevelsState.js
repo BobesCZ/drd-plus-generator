@@ -36,7 +36,6 @@ const levelObject = fromJS(
 );
 
 const createLevelsState = (level, charBackground) => {
-  console.log(charBackground)
   if (typeof level ==="number" && level > 0) {
   	let finalObject = Map();
 
