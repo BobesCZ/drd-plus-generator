@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import isAbilityMain from "../helpers/isAbilityMain";
-import isLevelRowCompleted from "../helpers/isLevelRowCompleted";
 import changeAbility from "../actionPackages/changeAbility";
 import translations from "../translations";
 import tables from "../data/tables";
+import OverlayTrigger  from 'react-bootstrap/lib/OverlayTrigger';
+import Popover  from 'react-bootstrap/lib/Popover';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -70,17 +71,30 @@ class ConnectedLevelAbilitiesRow extends React.Component {
     let charAbilities = this.props.abilities;
     let levels = this.props.levels.get(level);
     let hidden = this.props.hidden;
+    let completed = this.props.completed;
 
     let mainAbilityPoints = levels.get("mainAbilityPoints");
     let secondaryAbilityPoints = levels.get("secondaryAbilityPoints");
-    let maximumAbilityPoint = levels.get("maximumAbilityPoint");
+    let mainAbilityPointsDistributed = 0;
+    let secondaryAbilityPointsDistributed = 0;
 
     let charAbilitiesArray = [];
 
     charAbilities.mapKeys(item => {
       let isMain = isAbilityMain(charClass, item);
+      let value = levels.getIn(["abilities", item, "value"]);
+
       charAbilitiesArray[item] = isMain;
+      if (isMain) {
+        mainAbilityPointsDistributed += parseInt(value)
+      }
+      else {
+        secondaryAbilityPointsDistributed += parseInt(value)
+      }
     })
+
+    let mainAbilityPointsLeft = mainAbilityPoints - mainAbilityPointsDistributed;
+    let secondaryAbilityPointsLeft = secondaryAbilityPoints - secondaryAbilityPointsDistributed;
 
     let title = "";
     if (level === 1) {
@@ -92,7 +106,19 @@ class ConnectedLevelAbilitiesRow extends React.Component {
 
     return (
       <tr key={level}>
-        <td>{title} ({mainAbilityPoints} / {secondaryAbilityPoints})</td>
+        <td>
+          {title}
+          {!completed &&
+            <span> (
+              <span className="text-primary">{mainAbilityPointsLeft}</span> / <span className="text-success">{secondaryAbilityPointsLeft}</span>
+            )</span>
+          }
+
+          {completed &&
+            <span> <i className="fas fa-check-circle text-success"></i> </span>
+          }
+
+        </td>
 
         {Object.keys(charAbilitiesArray).map(item => (
           <td key={item}>
@@ -111,15 +137,25 @@ class ConnectedLevelAbilitiesRow extends React.Component {
         ))}
 
         <td>
-          <button
-            type="button"
-            className={hidden ? 'btn btn-default btn-sm' : 'btn btn-danger'}
-            onClick={this.handleResetButtonClick}
-            data-level={level}
-            disabled={hidden ? true : false}
-            >
-            <i className="fas fa-times"></i>
-          </button>
+          <OverlayTrigger
+            trigger="hover"
+            placement="left"
+            overlay={
+              <Popover id="levelAbilitiesPopover" title={translations.levelAbilitiesPopoverTitle}>
+               {translations.levelAbilitiesPopover}
+              </Popover>
+            }
+          >
+            <button
+              type="button"
+              className={hidden ? 'btn btn-default btn-sm' : 'btn btn-danger'}
+              onClick={this.handleResetButtonClick}
+              data-level={level}
+              disabled={hidden ? true : false}
+              >
+              <i className="fas fa-times"></i>
+            </button>
+          </OverlayTrigger>
         </td>
 
       </tr>

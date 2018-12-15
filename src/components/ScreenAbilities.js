@@ -107,7 +107,7 @@ class ConnectedScreenAbilities extends React.Component {
               </tr>
 
               {Object.keys(maxLevelArray).map(item => (
-                <LevelAbilitiesRow level={parseInt(item)} key={parseInt(item)} hidden={maxLevelArray[item]} />
+                <LevelAbilitiesRow level={parseInt(item)} key={parseInt(item)} hidden={maxLevelArray[item]} completed={completedLevelArray[item]} />
               ))}
 
             </tbody>

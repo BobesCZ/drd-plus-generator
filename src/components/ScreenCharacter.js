@@ -146,7 +146,7 @@ class ConnectedScreenCharacter extends React.Component {
               trigger="hover"
               placement="right"
               overlay={
-                <Popover id="a">
+                <Popover id="sexPopover">
                  {translations.sexPopover}
                 </Popover>
               }

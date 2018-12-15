@@ -114,6 +114,8 @@
 	"levelAbilitiesRace": "Základ (rasa)",
 	"levelAbilitiesClass": "Hl. vlastnosti povolání",
 	"levelAbilitiesBackground": "Zázemí",
+	"levelAbilitiesPopoverTitle": "Moudře vybírej!",
+	"levelAbilitiesPopover": "Tímto smažeš tuto a všechny následující úrovně",
 };
 
 export default translations;
