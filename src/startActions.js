@@ -1,7 +1,7 @@
 import store from "./store/index";
 import translations from "./translations";
 import changeInfo from "./actions/changeInfo";
-import resolveLevels from "./actions/resolveLevels";
+import resetLevels from "./actionPackages/resetLevels";
 import autofillScreen from "./actions/autofillScreen";
 import resolveScreen from "./actions/resolveScreen";
 import resolveBackgroundAndChangeScreen from "./actionPackages/resolveBackgroundAndChangeScreen";
@@ -15,7 +15,7 @@ export default function startActions() {
 	store.dispatch( changeInfo({ key: "class", value: "warrior"}) )
 	store.dispatch( changeInfo({ key: "level", value: "6"}) )
 	store.dispatch( changeInfo({ key: "sex", value: "male"}) )
-	store.dispatch( resolveLevels({}) )
+	resetLevels()
 
 	// Go to screen 2
 	store.dispatch( autofillScreen({ screen: "screenCharacter"}) )

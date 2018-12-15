@@ -116,6 +116,8 @@
 	"levelAbilitiesBackground": "Zázemí",
 	"levelAbilitiesPopoverTitle": "Moudře vybírej!",
 	"levelAbilitiesPopover": "Tímto smažeš tuto a všechny následující úrovně",
+	"levelAbilitiesAlertTitle": "Není cesty zpět!",
+	"levelAbilitiesAlert": "Pokud na předcházejících záložkách změníš cokoliv (kromě jména a poznámky), veškeré nastavení na této záložce bude vymazáno. Pokud nejsi s postavou spokojen, proveď změny dříve, než tady začneš na něco klikat.",
 };
 
 export default translations;

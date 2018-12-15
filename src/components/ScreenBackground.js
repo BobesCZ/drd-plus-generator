@@ -4,8 +4,8 @@ import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
 import setBackground from "../actions/setBackground";
 import distributeBackground from "../actions/distributeBackground";
-import resolveLevels from "../actions/resolveLevels";
 import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
+import resetLevels from "../actionPackages/resetLevels";
 import PanelErrata from "./PanelErrata";
 import sumCollectionValues from "../helpers/sumCollectionValues";
 import translations from "../translations";
@@ -15,7 +15,6 @@ const mapDispatchToProps = dispatch => {
   return {
     setBackground: item => dispatch(setBackground(item)),
     distributeBackground: item => dispatch(distributeBackground(item)),
-    resolveLevels: item => dispatch(resolveLevels(item)),
   };
 };
 
@@ -41,7 +40,7 @@ class ConnectedScreenBackground extends React.Component {
     const name = target.name;
     // console.log({ key: name, value: value});
     this.props.setBackground({ "name": value});
-    this.props.resolveLevels({});
+    resetLevels();
     resolveBackgroundAndChangeScreen();
   }
 
@@ -280,6 +279,7 @@ class ConnectedScreenBackground extends React.Component {
 
         <div className="card alert-success mb-4">
           <div className="card-header">
+            <i class="fas fa-angle-double-right"></i>
             {translations.autoFillHeader}
           </div>
           <div className="card-body">

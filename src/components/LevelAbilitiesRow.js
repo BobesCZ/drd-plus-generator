@@ -110,7 +110,9 @@ class ConnectedLevelAbilitiesRow extends React.Component {
           {title}
           {!completed &&
             <span> (
-              <span className="text-primary">{mainAbilityPointsLeft}</span> / <span className="text-success">{secondaryAbilityPointsLeft}</span>
+              <span className="text-primary">{mainAbilityPointsLeft}</span>
+              &nbsp;/&nbsp;
+              <span className="text-success">{secondaryAbilityPointsLeft}</span>
             )</span>
           }
 

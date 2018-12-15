@@ -5,6 +5,7 @@ import getAbilitiesByRace from "../calculations/getAbilitiesByRace";
 import getAbilitiesByClass from "../calculations/getAbilitiesByClass";
 import isLevelRowCompleted from "../helpers/isLevelRowCompleted";
 import translations from "../translations";
+import Alert  from 'react-bootstrap/lib/Alert';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -68,6 +69,16 @@ class ConnectedScreenAbilities extends React.Component {
 
     return (
       <form>
+
+      <Alert dismissible variant="warning">
+        <Alert.Heading>
+          <i class="fas fa-exclamation-triangle"></i>
+          {translations.levelAbilitiesAlertTitle}
+        </Alert.Heading>
+        <p>
+          {translations.levelAbilitiesAlert}
+        </p>
+      </Alert>
 
         <div className="form-group">
 

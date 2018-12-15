@@ -43,6 +43,7 @@ class ConnectedPanelErrata extends React.Component {
     return (
       <div className="card alert-warning mb-4">
         <div className="card-header">
+          <i class="fas fa-user-edit"></i>
           {translations.PanelErrataHeader}
         </div>
 
