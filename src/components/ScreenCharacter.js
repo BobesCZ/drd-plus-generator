@@ -6,6 +6,8 @@ import resolveScreen from "../actions/resolveScreen";
 import resolveLevels from "../actions/resolveLevels";
 import translations from "../translations";
 import calculateSheet from "../actionPackages/calculateSheet";
+import OverlayTrigger  from 'react-bootstrap/lib/OverlayTrigger';
+import Popover  from 'react-bootstrap/lib/Popover';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -48,13 +50,27 @@ class ConnectedScreenCharacter extends React.Component {
       <form>
 
         <div className="form-group">
-          <label htmlFor="">{translations.charname}</label>
-          <input type="text" className="form-control" name="name" value={this.props.info.get("name")} onInput={this.handleChangeFormInput} placeholder={translations.charnamePlaceholder} />
+          <label htmlFor="inputName">{translations.charname}</label>
+          <input
+            type="text"
+            className="form-control"
+            id="inputName"
+            name="name"
+            value={this.props.info.get("name")}
+            onInput={this.handleChangeFormInput}
+            placeholder={translations.charnamePlaceholder}
+          />
         </div>
 
         <div className="form-group">
-          <label htmlFor="">{translations.race}</label>
-          <select className="form-control" name="race" value={this.props.info.get("race")} onChange={this.handleChangeFormInput}>
+          <label htmlFor="inputRace">{translations.race}</label>
+          <select
+            className="form-control"
+            id="inputRace"
+            name="race"
+            value={this.props.info.get("race")}
+            onChange={this.handleChangeFormInput}
+          >
             <option value="human">{translations.human}</option>
             <option value="mountaineer">{translations.mountaineer}</option>
             <option value="elf">{translations.elf}</option>
@@ -72,8 +88,14 @@ class ConnectedScreenCharacter extends React.Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="">{translations.class}</label>
-          <select className="form-control" name="class" value={this.props.info.get("class")} onChange={this.handleChangeFormInput}>
+          <label htmlFor="inputClass">{translations.class}</label>
+          <select
+            className="form-control"
+            id="inputClass"
+            name="class"
+            value={this.props.info.get("class")}
+            onChange={this.handleChangeFormInput}
+          >
             <option value="warrior">{translations.warrior}</option>
             <option value="sorcerer">{translations.sorcerer}</option>
             <option value="rogue">{translations.rogue}</option>
@@ -84,8 +106,14 @@ class ConnectedScreenCharacter extends React.Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="">{translations.level}</label>
-          <select className="form-control" name="level" value={this.props.info.get("level")} onChange={this.handleChangeFormInput}>
+          <label htmlFor="inputLevel">{translations.level}</label>
+          <select
+            className="form-control"
+            id="inputLevel"
+            name="level"
+            value={this.props.info.get("level")}
+            onChange={this.handleChangeFormInput}
+          >
             <option value="1">1.</option>
             <option value="2">2.</option>
             <option value="3">3.</option>
@@ -111,19 +139,44 @@ class ConnectedScreenCharacter extends React.Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="">
+          <label htmlFor="inputSex">
             {translations.sex} &nbsp;
-            <span className="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="popover" data-trigger="hover" data-content={translations.sexPopover}></span>
+
+            <OverlayTrigger
+              trigger="hover"
+              placement="right"
+              overlay={
+                <Popover id="a">
+                 {translations.sexPopover}
+                </Popover>
+              }
+            >
+              <i className="fas fa-question-circle"></i>
+            </OverlayTrigger>
           </label>
-          <select className="form-control" name="sex" value={this.props.info.get("sex")} onChange={this.handleChangeFormInput}>
+          <select
+            className="form-control"
+            id="inputSex"
+            name="sex"
+            value={this.props.info.get("sex")}
+            onChange={this.handleChangeFormInput}
+          >
             <option value="male">{translations.male}</option>
             <option value="female">{translations.female}</option>
           </select>
         </div>
 
         <div className="form-group">
-          <label htmlFor="">{translations.note}</label>
-          <textarea className="form-control" name="note" value={this.props.info.get("note")} onChange={this.handleChangeFormInput} placeholder={translations.notePlaceholder} rows="3"/>
+          <label htmlFor="inputNote">{translations.note}</label>
+          <textarea
+            className="form-control"
+            id="inputNote"
+            name="note"
+            value={this.props.info.get("note")}
+            onChange={this.handleChangeFormInput}
+            placeholder={translations.notePlaceholder}
+            rows="3"
+          />
         </div>
 
       </form>

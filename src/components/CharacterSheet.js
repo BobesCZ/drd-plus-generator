@@ -73,7 +73,7 @@ class ConnectedSheets extends React.Component {
 
           <div className="row">
 
-            <div className="col-xs-4">
+            <div className="col-sm-4">
               <table className="table ability-table">
                 <tbody>
                   <tr>
@@ -104,7 +104,7 @@ class ConnectedSheets extends React.Component {
               </table>
             </div>
 
-            <div className="col-xs-4">
+            <div className="col-sm-4">
               <table className="table ability-table">
                 <tbody>
                   <tr>
@@ -139,7 +139,7 @@ class ConnectedSheets extends React.Component {
               </table>
             </div>
 
-            <div className="col-xs-4">
+            <div className="col-sm-4">
               <table className="table ability-table">
                 <tbody>
                   <tr>
@@ -174,7 +174,7 @@ class ConnectedSheets extends React.Component {
 
           <div className="row">
 
-            <div className="col-xs-12">
+            <div className="col-12">
               <table className="table health-table">
                 <tbody>
                   <tr>

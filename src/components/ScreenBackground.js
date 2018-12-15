@@ -106,11 +106,11 @@ class ConnectedScreenBackground extends React.Component {
     return (
       <form>
 
-        <div className="panel panel-info">
-          <div className="panel-heading">
+        <div className="card bg-light mb-4">
+          <div className="card-header">
             {translations.backgroundPanelHeader}
           </div>
-          <div className="panel-body bg-info">
+          <div className="card-body">
             {translations.backgroundPanelBody}
 
             <ul>
@@ -152,11 +152,16 @@ class ConnectedScreenBackground extends React.Component {
         </div>
 
         <div className="form-group">
-          <label htmlFor="">
+          <label htmlFor="inputBackground">
             {translations.backgroundHeader}&nbsp;
-            <span className="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="popover" data-trigger="hover" data-content={translations.backgroundHeaderPopover}></span>
           </label>
-          <select className="form-control" name="background" value={name} onChange={this.handleChangeFormInput}>
+          <select
+            className="form-control"
+            id="inputBackground"
+            name="background"
+            value={name}
+            onChange={this.handleChangeFormInput}
+          >
             <option value=""></option>
             <option value="goodAbility">{translations.goodAbility}</option>
             <option value="combinationBackground">{translations.combinationBackground}</option>
@@ -183,16 +188,18 @@ class ConnectedScreenBackground extends React.Component {
                 </label>
 
                 {originArray.map(item => (
-                  <div key={item} className="radio">
-                    <label>
-                      <input
-                        type="radio"
-                        name="origin"
-                        value={originArray.indexOf(item)}
-                        onChange={this.handleChangeFormCheckbox}
-                        checked={distributedOrigin === originArray.indexOf(item) ? true : false}
-                        disabled={originArray.indexOf(item) > maxAvailableOrigin ? true : false}
-                      />
+                  <div key={item} className="form-check">
+                    <input
+                      type="radio"
+                      id={"inputOrigin" + originArray.indexOf(item)}
+                      name="origin"
+                      className="form-check-input"
+                      value={originArray.indexOf(item)}
+                      onChange={this.handleChangeFormCheckbox}
+                      checked={distributedOrigin === originArray.indexOf(item) ? true : false}
+                      disabled={originArray.indexOf(item) > maxAvailableOrigin ? true : false}
+                    />
+                    <label className="form-check-label" htmlFor={"inputOrigin" + originArray.indexOf(item)}>
                       {originArray.indexOf(item)}&nbsp;
                       ({translations[item]})
                     </label>
@@ -206,16 +213,18 @@ class ConnectedScreenBackground extends React.Component {
                 </label>
 
                 {propertyArray.map(item => (
-                  <div key={item} className="radio">
-                    <label>
-                      <input
-                        type="radio"
-                        name="property"
-                        value={propertyArray.indexOf(item)}
-                        onChange={this.handleChangeFormCheckbox}
-                        checked={distributedProperty === propertyArray.indexOf(item) ? true : false}
-                        disabled={propertyArray.indexOf(item) > maxAvailableProperty ? true : false}
-                      />
+                  <div key={item} className="form-check">
+                    <input
+                      type="radio"
+                      id={"inputProperty" + propertyArray.indexOf(item)}
+                      name="property"
+                      className="form-check-input"
+                      value={propertyArray.indexOf(item)}
+                      onChange={this.handleChangeFormCheckbox}
+                      checked={distributedProperty === propertyArray.indexOf(item) ? true : false}
+                      disabled={propertyArray.indexOf(item) > maxAvailableProperty ? true : false}
+                    />
+                    <label className="form-check-label" htmlFor={"inputProperty" + propertyArray.indexOf(item)}>
                       {propertyArray.indexOf(item)}&nbsp;
                       ({translations[item]})
                     </label>
@@ -229,16 +238,18 @@ class ConnectedScreenBackground extends React.Component {
                 </label>
 
                 {propertyArray.map(item => (
-                  <div key={item} className="radio">
-                    <label>
-                      <input
-                        type="radio"
-                        name="skills"
-                        value={propertyArray.indexOf(item)}
-                        onChange={this.handleChangeFormCheckbox}
-                        checked={distributedSkills === propertyArray.indexOf(item) ? true : false}
-                        disabled={propertyArray.indexOf(item) > maxAvailableSkills ? true : false}
-                      />
+                  <div key={item} className="form-check">
+                    <input
+                      type="radio"
+                      name="skills"
+                      id={"inputSkills" + propertyArray.indexOf(item)}
+                      className="form-check-input"
+                      value={propertyArray.indexOf(item)}
+                      onChange={this.handleChangeFormCheckbox}
+                      checked={distributedSkills === propertyArray.indexOf(item) ? true : false}
+                      disabled={propertyArray.indexOf(item) > maxAvailableSkills ? true : false}
+                    />
+                    <label className="form-check-label" htmlFor={"inputSkills" + propertyArray.indexOf(item)}>
                       {propertyArray.indexOf(item)}&nbsp;
                       (
                         {abilityDistributionTable[propertyArray.indexOf(item)]["FYZ"]},
@@ -251,12 +262,12 @@ class ConnectedScreenBackground extends React.Component {
               </div>
             </div>
 
-            <div className={rangeLimit ? 'alert alert-info' : 'alert alert-danger'} role="alert">
+            <div className={rangeLimit ? 'alert alert-info mt-3' : 'alert alert-danger mt-3'} role="alert">
               {rangeLimit &&
-                <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <i className="fas fa-check-circle"></i>
               }
               {!rangeLimit &&
-                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <i className="fas fa-exclamation-circle"></i>
               }
               {translations.backgroundPanelRangeLimit}
             </div>
@@ -267,11 +278,11 @@ class ConnectedScreenBackground extends React.Component {
 
         <PanelErrata name="backgroundPointsHasNoRangeLimit"/>
 
-        <div className="panel panel-success">
-          <div className="panel-heading">
+        <div className="card alert-success mb-4">
+          <div className="card-header">
             {translations.autoFillHeader}
           </div>
-          <div className="panel-body bg-success">
+          <div className="card-body">
             {translations.autoFillBackground}
           </div>
         </div>

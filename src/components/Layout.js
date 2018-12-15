@@ -17,19 +17,19 @@ class Layout extends React.Component {
 
         	<div className="container">
 
-        		<h1>DrD Plus Generátor postav </h1>
+        		<h1>DrDGen+</h1>
 
 	        	{/* Navigation part (forms etc) */}
 	    		<Navigation />
 
-        		<div className="row layout-content">
-        			<div className="col-sm-6">
+        		<div className="row mb-5">
+        			<div className="col-lg-6">
 		        		{/* Interaction part (forms etc) */}
 		        		<ScreenSection />
 		        		<StepNavigation />
 		    		</div>
 
-	    			<div className="col-sm-6">
+	    			<div className="col-lg-6">
 		        		{/* Printing part (character sheet) */}
 	    	    		<CharacterSheet />
 	    			</div>

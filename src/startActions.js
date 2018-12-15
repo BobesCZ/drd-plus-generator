@@ -17,18 +17,15 @@ export default function startActions() {
 	store.dispatch( changeInfo({ key: "sex", value: "male"}) )
 	store.dispatch( resolveLevels({}) )
 
-	// TEST abilities
+	// Go to screen 2
 	store.dispatch( autofillScreen({ screen: "screenCharacter"}) )
 	calculateSheet()
 	store.dispatch( resolveScreen({ active: "screenCharacter"}) )
 	store.dispatch( changeScreen({active: "screenBackground"}) )
 
+	// Go to screen 3
 	store.dispatch( autofillScreen({screen: "screenBackground"}) )
 	resolveBackgroundAndChangeScreen()
 	store.dispatch( changeScreen({active: "screenAbilities"}) )
 
-	// jQuery init plugins
-	$(function () {
-		$('[data-toggle="popover"]').popover();
-	});
 };

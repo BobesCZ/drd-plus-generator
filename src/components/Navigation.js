@@ -29,8 +29,7 @@ class ConnectedNavigation extends React.Component {
     event.preventDefault();
 
     const target = event.target;
-    let parentLi = target.closest('li');
-    let isDisabled = parentLi.classList.contains('disabled');
+    let isDisabled = target.classList.contains('disabled');
 
     if (!isDisabled) {
       let screen = target.getAttribute('data-screen');
@@ -41,10 +40,15 @@ class ConnectedNavigation extends React.Component {
   render(props) {
 
     return (
-      <ul className="nav nav-tabs">
+      <ul className="nav nav-tabs mb-4">
         {screensArray.map(key => (
-          <li key={key} role="presentation" className={this.props.screens.get(key) < 0 ? 'disabled' : this.props.activeScreen == key ? 'active' : ''}>
-            <a href="#" data-screen={key} onClick={this.handleClick}>
+          <li key={key} role="presentation" className="nav-item">
+            <a
+              href="#"
+              data-screen={key}
+              className={this.props.screens.get(key) < 0 ? 'nav-link disabled' : this.props.activeScreen == key ? 'nav-link active' : 'nav-link'}
+              onClick={this.handleClick}
+            >
               {translations[key]}
             </a>
           </li>

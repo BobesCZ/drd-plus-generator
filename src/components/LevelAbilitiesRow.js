@@ -44,7 +44,7 @@ class ConnectedLevelAbilitiesRow extends React.Component {
     let charLevel = this.props.info.get('level');
     let levels = this.props.levels;
 
-    // Target can be span.glyphicon inside button
+    // Target can be span with icon inside button
     if (target.nodeName !== "BUTTON") {
       target = target.closest('button')
     }
@@ -113,12 +113,12 @@ class ConnectedLevelAbilitiesRow extends React.Component {
         <td>
           <button
             type="button"
-            className={hidden ? 'btn btn-default btn-sm' : 'btn btn-danger btn-sm'}
+            className={hidden ? 'btn btn-default btn-sm' : 'btn btn-danger'}
             onClick={this.handleResetButtonClick}
             data-level={level}
             disabled={hidden ? true : false}
             >
-            <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <i className="fas fa-times"></i>
           </button>
         </td>
 

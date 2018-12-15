@@ -41,12 +41,12 @@ class ConnectedPanelErrata extends React.Component {
     var checked = this.props.errata.get(this.props.name);
 
     return (
-      <div className="panel panel-warning">
-        <div className="panel-heading">
+      <div className="card alert-warning mb-4">
+        <div className="card-header">
           {translations.PanelErrataHeader}
         </div>
 
-        <div className="panel-body bg-warning">
+        <div className="card-body">
           <p>
             {translations.PanelErrataText}
           </p>

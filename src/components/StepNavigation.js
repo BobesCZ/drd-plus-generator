@@ -63,42 +63,30 @@ class ConnectedStepNavigation extends React.Component {
 
     return (
 
-      <div>
-        {/* <div className="panel panel-info">
-          <div className="panel-heading">
-            {translations.autoFillHeader}
-          </div>
-          <div className="panel-body">
-            Jsem spokojen s tím, co vidím ve formuláři, a chci pokračovat dále.
-          </div>
-        </div>
-      */}
+      <div className="stepnavigation">
+        {/* Render button only if screen exists */}
+        {previous &&
+          <button type="button" className="btn btn-primary stepnavigation__left" data-screen={previous} onClick={this.handleClick} disabled={previousDisabled}>
+          <i className="fas fa-angle-left"></i>
+            &nbsp; {translations.previousStep}
+          </button>
+        }
 
-        <div className="stepnavigation">
-          {/* Render button only if screen exists */}
-          {previous &&
-            <button type="button" className="btn btn-primary pull-left" data-screen={previous} onClick={this.handleClick} disabled={previousDisabled}>
-              <span className="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-              &nbsp; {translations.previousStep}
-            </button>
-          }
+        {/* Render button only if screen is not filled (button hides itself after click) */}
+        {nextDisabled &&
+          <button type="button" className="btn btn-success stepnavigation__center" data-screen-autofill={this.props.activeScreen} onClick={this.handleClick}>
+            {translations.autoFillHeader} &nbsp;
+            <i className="fas fa-angle-double-right"></i>
+          </button>
+        }
 
-          {/* Render button only if screen is not filled (button hides itself after click) */}
-          {nextDisabled &&
-            <button type="button" className="btn btn-success" data-screen-autofill={this.props.activeScreen} onClick={this.handleClick}>
-              {translations.autoFillHeader} &nbsp;
-              <span className="glyphicon glyphicon-forward" aria-hidden="true"></span>
-            </button>
-          }
-
-          {/* Render button only if screen exists */}
-          {next &&
-            <button type="button" className="btn btn-primary pull-right" data-screen={next} onClick={this.handleClick} disabled={nextDisabled}>
-              {translations.nextStep} &nbsp;
-              <span className="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-            </button>
-          }
-        </div>
+        {/* Render button only if screen exists */}
+        {next &&
+          <button type="button" className="btn btn-primary stepnavigation__right" data-screen={next} onClick={this.handleClick} disabled={nextDisabled}>
+            {translations.nextStep} &nbsp;
+            <i className="fas fa-angle-right"></i>
+          </button>
+        }
       </div>
     );
   }
