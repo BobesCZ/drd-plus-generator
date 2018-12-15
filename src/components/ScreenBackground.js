@@ -279,7 +279,7 @@ class ConnectedScreenBackground extends React.Component {
 
         <div className="card alert-success mb-4">
           <div className="card-header">
-            <i class="fas fa-angle-double-right"></i>
+            <i className="fas fa-angle-double-right"></i>
             {translations.autoFillHeader}
           </div>
           <div className="card-body">

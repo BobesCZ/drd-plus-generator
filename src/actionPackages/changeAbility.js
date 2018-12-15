@@ -1,6 +1,7 @@
 import store from "../store/index";
 import changeAbilityValue from "../actions/changeAbilityValue";
 import resolveAbilityValues from "../actions/resolveAbilityValues";
+import resolveScreen from "../actions/resolveScreen";
 import calculateSheet from "../actionPackages/calculateSheet";
 
 // changeValue => number that will be added to current value (+1, -1)
@@ -17,6 +18,9 @@ const changeAbility = (ability, level, changeValue) => {
 
 	// Recalculate character sheet
 	calculateSheet()
+
+	// Resolve screen
+	store.dispatch( resolveScreen({ active: "screenAbilities"}) )
 
 };
 

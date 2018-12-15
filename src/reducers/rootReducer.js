@@ -6,6 +6,7 @@ import sumCollectionValues from "../helpers/sumCollectionValues";
 import createLevelsState from "../helpers/createLevelsState";
 import isAbilityMain from "../helpers/isAbilityMain";
 import isAbilityLeveled from "../helpers/isAbilityLeveled";
+import isLevelRowCompleted from "../helpers/isLevelRowCompleted";
 import getAbilities from "../calculations/getAbilities";
 import getDerivedAbilities from "../calculations/getDerivedAbilities";
 import getCombatParameters from "../calculations/getCombatParameters";
@@ -44,11 +45,13 @@ const rootReducer = (state = initialState, action) => {
             )
           {
             // console.log("Screen screenCharacter is valid!");
-            return state.setIn(["screens", "screenCharacter"], 1).setIn(["screens", "screenBackground"], 0);
+            return state.setIn(["screens", "screenCharacter"], 1)
+                        .setIn(["screens", "screenBackground"], 0)
           }
           else {
             // console.log("Screen screenCharacter is not valid :-(");
-            return state.setIn(["screens", "screenCharacter"], 0).setIn(["screens", "screenBackground"], -1);
+            return state.setIn(["screens", "screenCharacter"], 0)
+                        .setIn(["screens", "screenBackground"], -1)
           }
         }
         else if (active == "screenBackground") {
@@ -70,11 +73,40 @@ const rootReducer = (state = initialState, action) => {
             )
           {
             // console.log("Screen screenBackground is valid!");
-            return state.setIn(["screens", "screenBackground"], 1).setIn(["screens", "screenAbilities"], 0);
+            return state.setIn(["screens", "screenBackground"], 1)
+                        .setIn(["screens", "screenAbilities"], 0)
           }
           else {
             // console.log("Screen screenBackground is not valid :-(");
-            return state.setIn(["screens", "screenBackground"], 0).setIn(["screens", "screenAbilities"], -1);
+            return state.setIn(["screens", "screenBackground"], 0)
+                        .setIn(["screens", "screenAbilities"], -1)
+          }
+        }
+        else if (active == "screenAbilities") {
+          // Checks screen no. 2
+          var charLevel = state.getIn(["character", "info", "level"]);
+          var allLevelsCompleted = true;
+
+          for (var i = 1; i <= parseInt(charLevel); i++) {
+            var levelRow = state.getIn(["character", "levels", i]);
+            var isCompleted = isLevelRowCompleted(levelRow);
+
+            if (!isCompleted) {
+              allLevelsCompleted = false;
+              break;
+            }
+          }
+
+          if (allLevelsCompleted)
+          {
+            // console.log("Screen screenAbilities is valid!");
+            return state.setIn(["screens", "screenAbilities"], 1)
+                        .setIn(["screens", "screenSkills"], 0)
+          }
+          else {
+            // console.log("Screen screenAbilities is not valid :-(");
+            return state.setIn(["screens", "screenAbilities"], 0)
+                        .setIn(["screens", "screenSkills"], -1)
           }
         }
 

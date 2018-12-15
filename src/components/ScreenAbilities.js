@@ -25,16 +25,6 @@ class ConnectedScreenAbilities extends React.Component {
   constructor(props) {
     super();
     this.state = {};
-
-    // this.handleChangeFormInput = this.handleChangeFormInput.bind(this);
-  }
-
-  handleChangeFormInput(event) {
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    // console.log({ key: name, value: value});
-    this.props.setBackground({ "name": value});
   }
 
   render(props) {
@@ -72,7 +62,7 @@ class ConnectedScreenAbilities extends React.Component {
 
       <Alert dismissible variant="warning">
         <Alert.Heading>
-          <i class="fas fa-exclamation-triangle"></i>
+          <i className="fas fa-exclamation-triangle"></i>
           {translations.levelAbilitiesAlertTitle}
         </Alert.Heading>
         <p>
