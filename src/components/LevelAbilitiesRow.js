@@ -126,7 +126,7 @@ class ConnectedLevelAbilitiesRow extends React.Component {
           <td key={item}>
             <button
               type="button"
-              className={hidden ? 'btn btn-default' : charAbilitiesArray[item] ? 'btn btn-primary' : 'btn btn-success'}
+              className={hidden || (completed && parseInt(levels.getIn(["abilities", item, "value"])) === 0) ? 'btn btn-default' : charAbilitiesArray[item] ? 'btn btn-primary' : 'btn btn-success'}
               name={item}
               onClick={this.handleButtonClick}
               data-level={level}
