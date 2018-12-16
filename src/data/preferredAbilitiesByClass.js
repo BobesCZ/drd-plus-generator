@@ -9,12 +9,12 @@ const preferredAbilitiesByClass = {
             "charisma": 0
         },
         "nonCombat": {
-            "strength": 50,
-            "dexterity": 50,
+            "strength": 100,
+            "dexterity": 10,
             "manualdexterity": 0,
-            "will": 5,
+            "will": 0,
             "intelligence": 1,
-            "charisma": 0
+            "charisma": 5
         }
     },
     "rogue": {
@@ -27,30 +27,30 @@ const preferredAbilitiesByClass = {
             "charisma": 0
         },
         "nonCombat": {
-            "strength": 5,
-            "dexterity": 100,
-            "manualdexterity": 10,
+            "strength": 0,
+            "dexterity": 10,
+            "manualdexterity": 100,
             "will": 1,
             "intelligence": 0,
-            "charisma": 0
+            "charisma": 5
         }
     },
     "ranger": {
         "combat": {
             "strength": 50,
-            "dexterity": 0,
-            "manualdexterity": 50,
-            "will": 3,
-            "intelligence": 3,
-            "charisma": 3
-        },
-        "nonCombat": {
-            "strength": 10,
             "dexterity": 5,
-            "manualdexterity": 100,
+            "manualdexterity": 50,
             "will": 1,
             "intelligence": 0,
             "charisma": 0
+        },
+        "nonCombat": {
+            "strength": 10,
+            "dexterity": 0,
+            "manualdexterity": 100,
+            "will": 1,
+            "intelligence": 0,
+            "charisma": 5
         }
     },
     "sorcerer": {
@@ -63,12 +63,12 @@ const preferredAbilitiesByClass = {
             "charisma": 0
         },
         "nonCombat": {
-            "strength": 5,
-            "dexterity": 1,
+            "strength": 3,
+            "dexterity": 3,
             "manualdexterity": 0,
             "will": 10,
             "intelligence": 100,
-            "charisma": 0
+            "charisma": 3
         }
     },
     "theurge": {
@@ -81,9 +81,9 @@ const preferredAbilitiesByClass = {
             "charisma": 10
         },
         "nonCombat": {
-            "strength": 1,
+            "strength": 0,
             "dexterity": 0,
-            "manualdexterity": 0,
+            "manualdexterity": 1,
             "will": 5,
             "intelligence": 100,
             "charisma": 10
@@ -94,16 +94,16 @@ const preferredAbilitiesByClass = {
             "strength": 5,
             "dexterity": 1,
             "manualdexterity": 0,
-            "will": 10,
+            "will": 100,
             "intelligence": 0,
-            "charisma": 100
+            "charisma": 10
         },
         "nonCombat": {
-            "strength": 5,
-            "dexterity": 1,
-            "manualdexterity": 0,
+            "strength": 3,
+            "dexterity": 0,
+            "manualdexterity": 3,
             "will": 10,
-            "intelligence": 0,
+            "intelligence": 3,
             "charisma": 100
         }
     }

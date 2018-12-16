@@ -85,13 +85,13 @@ class ConnectedPanelAutofill extends React.Component {
                     {translations.autoFillAbilitiesClass2}&nbsp;<br />
 
                     <strong>
-                      {translations.autoFillAbilitiesFalseShort}
-                    </strong>
+                      {translations.combat}
+                    </strong>:
                     &nbsp;{abilitiesStringArray[0]}<br />
 
                     <strong>
-                      {translations.autoFillAbilitiesTrueShort}
-                    </strong>
+                      {translations.nonCombat}
+                    </strong>:
                     &nbsp;{abilitiesStringArray[1]}
 
                   </p>
