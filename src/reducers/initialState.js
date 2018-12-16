@@ -98,6 +98,9 @@ const initialState = fromJS(
       // false => according to official rules
       // true => apply errata
       "backgroundPointsHasNoRangeLimit": false
+    },
+    "switchers": {
+      "autoFillAbilities": false
     }
   }
 );

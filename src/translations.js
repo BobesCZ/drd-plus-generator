@@ -46,6 +46,8 @@
 	"autoFillAbilities": "Chci, aby moje postava mohla dobře využívat své povolání a zároveň byla užitečná v boji.",
 	"autoFillAbilitiesClass1": "Pro povolání",
 	"autoFillAbilitiesClass2": "je nejdůležitější:",
+	"autoFillAbilitiesFalse": "Bojové zaměření",
+	"autoFillAbilitiesTrue": "Nebojové zaměření",
 	"backgroundPanelHeader": "Body zázemí",
 	"backgroundPanelBody": "Volba zázemí má vliv na body do hlavních a vedlejších vlastností a také na obecné dovednosti. Kromě toho také samozřejmě na příběh tvé postavy - zde je důležité domluvit se se svým PJ.",
 	"backgroundPanelLi1": "Než si zvolíš šlechtický původ, ujisti se, že jej můžeš ve hře využít.",

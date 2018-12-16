@@ -1,11 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
+import setSwitcher from "../actions/setSwitcher";
 import getPreferredAbility from "../helpers/getPreferredAbility";
 import translations from "../translations";
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setSwitcher: item => dispatch(setSwitcher(item)),
+  };
+};
 
 const mapStateToProps = (state) => {
   return {
     info: state.getIn(['character', 'info']),
+    switchers: state.get('switchers'),
   };
 };
 
@@ -13,6 +21,19 @@ class ConnectedPanelAutofill extends React.Component {
   constructor(props) {
     super();
     this.state = {};
+
+    this.handleChangeFormInput = this.handleChangeFormInput.bind(this);
+  }
+
+   handleChangeFormInput(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    // Do custom actions when change switcher
+    if (name === "autoFillAbilities") {
+      this.props.setSwitcher({ key: name, value: value});
+    }
   }
 
   render(props) {
@@ -26,6 +47,7 @@ class ConnectedPanelAutofill extends React.Component {
     else if (screen === "screenAbilities") {
       let abilities = [];
       let abilitiesString;
+      let checked = this.props.switchers.get('autoFillAbilities');
 
       ["primaryPreferred", "primaryOther", "secondaryPreferred", "secondaryOther"].forEach((item) => {
         abilities.push(translations[getPreferredAbility(charClass, item)])
@@ -42,6 +64,27 @@ class ConnectedPanelAutofill extends React.Component {
                     {translations.autoFillAbilitiesClass2}&nbsp;
                     {abilitiesString}
                   </p>
+                  <label className="switch-light">
+                    <input
+                      type="checkbox"
+                      name="autoFillAbilities"
+                      checked={checked}
+                      onChange={this.handleChangeFormInput}
+                    />
+
+                    <span className="switch-light__inner">
+                      <span className="switch-light__false">
+                        {translations.autoFillAbilitiesFalse}
+                      </span>
+
+                      <span className="switch-light__true">
+                        {translations.autoFillAbilitiesTrue}
+                      </span>
+
+                      <a className="btn btn-success"></a>
+                    </span>
+
+                  </label>
                 </div>
     }
 
@@ -59,6 +102,6 @@ class ConnectedPanelAutofill extends React.Component {
   }
 }
 
-const PanelAutofill = connect(mapStateToProps, null)(ConnectedPanelAutofill);
+const PanelAutofill = connect(mapStateToProps, mapDispatchToProps)(ConnectedPanelAutofill);
 
 export default PanelAutofill;

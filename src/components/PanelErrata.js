@@ -52,8 +52,13 @@ class ConnectedPanelErrata extends React.Component {
             {translations.PanelErrataText}
           </p>
 
-          <label className="switch-light" onClick={this.handleChangeFormInput}>
-            <input type="checkbox" name={this.props.name} checked={checked}/>
+          <label className="switch-light" >
+            <input
+              type="checkbox"
+              name={this.props.name}
+              checked={checked}
+              onChange={this.handleChangeFormInput}
+            />
 
             <span className="switch-light__inner">
               <span className="switch-light__false">

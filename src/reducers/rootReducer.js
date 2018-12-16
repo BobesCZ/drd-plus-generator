@@ -284,6 +284,12 @@ const rootReducer = (state = initialState, action) => {
 
         return state.setIn(["errata", key], value)
 
+      case "SET_SWITCHER":
+        var key = action.payload.key;
+        var value = action.payload.value;
+
+        return state.setIn(["switchers", key], value)
+
       case "RESOLVE_LEVELS":
 
         let level = parseInt( state.getIn(["character", "info", "level"]) )
