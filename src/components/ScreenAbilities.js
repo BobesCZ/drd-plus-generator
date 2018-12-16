@@ -71,6 +71,21 @@ class ConnectedScreenAbilities extends React.Component {
           </p>
         </Alert>
 
+        <div className="card bg-light mb-4">
+          <div className="card-header">
+            {translations.abilitiesPanelHeader}
+          </div>
+          <div className="card-body">
+            {translations.abilitiesPanelBody}
+            <ul>
+              <li>{translations.abilitiesPanelLi1}</li>
+              <li>{translations.abilitiesPanelLi2}</li>
+              <li>{translations.abilitiesPanelLi3}</li>
+            </ul>
+
+          </div>
+        </div>
+
         <div className="form-group">
 
           <table className="table level-table">
