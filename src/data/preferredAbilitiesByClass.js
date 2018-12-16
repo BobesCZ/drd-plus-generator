@@ -37,12 +37,12 @@ const preferredAbilitiesByClass = {
     },
     "ranger": {
         "combat": {
-            "strength": 10,
-            "dexterity": 5,
-            "manualdexterity": 100,
-            "will": 1,
-            "intelligence": 0,
-            "charisma": 0
+            "strength": 50,
+            "dexterity": 0,
+            "manualdexterity": 50,
+            "will": 3,
+            "intelligence": 3,
+            "charisma": 3
         },
         "nonCombat": {
             "strength": 10,

@@ -9,7 +9,8 @@ const getPreferredAbility = (charClass, abilityType, combatType) => {
             abilityType === "primaryOther" ||
             abilityType === "primaryEqual" ||
             abilityType === "secondaryPreferred" ||
-            abilityType === "secondaryOther"
+            abilityType === "secondaryOther" ||
+            abilityType === "secondaryEqual"
         ) &&
         combatType.length > 0
     )
@@ -30,6 +31,9 @@ const getPreferredAbility = (charClass, abilityType, combatType) => {
                 break;
             case "secondaryPreferred":
                 tableValue = 5;
+                break;
+            case "secondaryEqual":
+                tableValue = 3;
                 break;
             case "secondaryOther":
                 tableValue = 1;
