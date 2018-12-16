@@ -45,31 +45,35 @@ class ConnectedPanelAutofill extends React.Component {
       content = translations.autoFillBackground;
     }
     else if (screen === "screenAbilities") {
-      let abilities = [];
-      let abilitiesString;
+      let abilitiesStringArray = [];
       let checked = this.props.switchers.get('autoFillAbilities');
-      let combatType = checked ? "nonCombat" : "combat";
 
-      ["primaryPreferred", "primaryOther", "primaryEqual", "secondaryPreferred", "secondaryOther"].forEach((item) => {
-        let ability = getPreferredAbility(charClass, item, combatType)
+      ["combat", "nonCombat"].forEach((combatType) => {
+        let abilities = [];
 
-        if (ability) {
-          if (typeof ability === "object") {
-            let abilitiesEqual = []
-            let abilitiesEqualString
+        ["primaryPreferred", "primaryOther", "primaryEqual", "secondaryPreferred", "secondaryOther", "secondaryEqual"].forEach((item) => {
+          let ability = getPreferredAbility(charClass, item, combatType)
 
-            ability.forEach((i) => {
-              abilitiesEqual.push(translations[i])
-            })
-            abilitiesEqualString = abilitiesEqual.join(" + ")
-            abilities.push(abilitiesEqualString)
+          if (ability) {
+            if (typeof ability === "object") {
+              let abilitiesEqual = []
+              let abilitiesEqualString
+
+              ability.forEach((i) => {
+                abilitiesEqual.push(translations[i])
+              })
+              abilitiesEqualString = abilitiesEqual.join(" + ")
+              abilities.push(abilitiesEqualString)
+            }
+            else {
+              abilities.push(translations[ability])
+            }
           }
-          else {
-            abilities.push(translations[ability])
-          }
-        }
+        })
+
+        abilitiesStringArray.push( abilities.join(", ") )
+
       })
-      abilitiesString = abilities.join(", ")
 
       content = <div>
                   <p>
@@ -78,8 +82,18 @@ class ConnectedPanelAutofill extends React.Component {
                   <p>
                     {translations.autoFillAbilitiesClass1}&nbsp;
                     {translations[charClass]}&nbsp;
-                    {translations.autoFillAbilitiesClass2}&nbsp;
-                    {abilitiesString}
+                    {translations.autoFillAbilitiesClass2}&nbsp;<br />
+
+                    <strong>
+                      {translations.autoFillAbilitiesFalseShort}
+                    </strong>
+                    &nbsp;{abilitiesStringArray[0]}<br />
+
+                    <strong>
+                      {translations.autoFillAbilitiesTrueShort}
+                    </strong>
+                    &nbsp;{abilitiesStringArray[1]}
+
                   </p>
                   <label className="switch-light">
                     <input
