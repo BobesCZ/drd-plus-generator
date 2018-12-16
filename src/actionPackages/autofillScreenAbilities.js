@@ -1,7 +1,6 @@
 import store from "../store/index";
 import resolveAbilityValues from "../actions/resolveAbilityValues";
 import changeAbility from "../actionPackages/changeAbility";
-import preferredAbilitiesByClass from "../data/preferredAbilitiesByClass";
 import getPreferredAbility from "../helpers/getPreferredAbility";
 
 const increaseAbility = (level, ability) => {
@@ -29,32 +28,29 @@ const autofillScreenAbilities = () => {
     let primaryOther = getPreferredAbility(charClass, "primaryOther");
     let secondaryPreferred = getPreferredAbility(charClass, "secondaryPreferred");
     let secondaryOther = getPreferredAbility(charClass, "secondaryOther");
-    let maxBackgroundPoints = 3;
-
-    console.log(primaryPreferred, primaryOther, secondaryPreferred, secondaryOther)
 
     if (levels) {
         // Iterate through all levels in level table
         levels.keySeq().forEach((level) => {
-            let levelRow = levels.get(level)
+            var maximumAbilityPoint = levels.getIn([parseInt(level), "maximumAbilityPoint"]);
 
             // 1. Try to click maximum points at primaryPreferred ability
-            for (var i = 1; i <= maxBackgroundPoints; i++) {
+            for (var i = 1; i <= maximumAbilityPoint; i++) {
                 increaseAbility(level, primaryPreferred)
             }
 
             // 2. Try to click maximum points at primaryOther
-            for (var i = 1; i <= maxBackgroundPoints; i++) {
+            for (var i = 1; i <= maximumAbilityPoint; i++) {
                 increaseAbility(level, primaryOther)
             }
 
             // 3. Try to click maximum points at secondaryPreferred ability
-            for (var i = 1; i <= maxBackgroundPoints; i++) {
+            for (var i = 1; i <= maximumAbilityPoint; i++) {
                 increaseAbility(level, secondaryPreferred)
             }
 
             // 4. Try to click maximum points at secondaryOther ability
-            for (var i = 1; i <= maxBackgroundPoints; i++) {
+            for (var i = 1; i <= maximumAbilityPoint; i++) {
                 increaseAbility(level, secondaryOther)
             }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import LevelAbilitiesRow from "./LevelAbilitiesRow";
+import PanelAutofill from "./PanelAutofill";
 import getAbilitiesByRace from "../calculations/getAbilitiesByRace";
 import getAbilitiesByClass from "../calculations/getAbilitiesByClass";
 import isLevelRowCompleted from "../helpers/isLevelRowCompleted";
@@ -60,15 +61,15 @@ class ConnectedScreenAbilities extends React.Component {
     return (
       <form>
 
-      <Alert dismissible variant="warning">
-        <Alert.Heading>
-          <i className="fas fa-exclamation-triangle"></i>
-          {translations.levelAbilitiesAlertTitle}
-        </Alert.Heading>
-        <p>
-          {translations.levelAbilitiesAlert}
-        </p>
-      </Alert>
+        <Alert dismissible variant="warning">
+          <Alert.Heading>
+            <i className="fas fa-exclamation-triangle"></i>
+            {translations.levelAbilitiesAlertTitle}
+          </Alert.Heading>
+          <p>
+            {translations.levelAbilitiesAlert}
+          </p>
+        </Alert>
 
         <div className="form-group">
 
@@ -115,6 +116,8 @@ class ConnectedScreenAbilities extends React.Component {
           </table>
 
         </div>
+
+        <PanelAutofill screen="screenAbilities"/>
 
       </form>
     )

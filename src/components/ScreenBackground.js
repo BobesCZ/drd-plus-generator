@@ -7,6 +7,7 @@ import distributeBackground from "../actions/distributeBackground";
 import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
 import resetLevels from "../actionPackages/resetLevels";
 import PanelErrata from "./PanelErrata";
+import PanelAutofill from "./PanelAutofill";
 import sumCollectionValues from "../helpers/sumCollectionValues";
 import translations from "../translations";
 import tables from "../data/tables";
@@ -277,15 +278,7 @@ class ConnectedScreenBackground extends React.Component {
 
         <PanelErrata name="backgroundPointsHasNoRangeLimit"/>
 
-        <div className="card alert-success mb-4">
-          <div className="card-header">
-            <i className="fas fa-angle-double-right"></i>
-            {translations.autoFillHeader}
-          </div>
-          <div className="card-body">
-            {translations.autoFillBackground}
-          </div>
-        </div>
+        <PanelAutofill screen="screenBackground"/>
 
       </form>
     )

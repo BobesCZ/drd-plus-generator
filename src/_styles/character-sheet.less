@@ -5,16 +5,20 @@
         td, th {
             padding-top: 0;
             padding-bottom: 0;
-            border: .1rem solid #333;
+            border: 1px solid #333;
             border-color: #333;
         }
     }
     .ability-table {
-        td:not(:first-child) {
-            text-align: right;
-            max-width: 2.5rem;
-            width: 2.5rem;
-            padding: 0 1rem 0 0;
+        td {
+            line-height: 1.6;
+
+            &:not(:first-child) {
+                text-align: right;
+                max-width: 2.5rem;
+                width: 2.5rem;
+                padding: 0 1rem 0 0;
+            }
         }
     }
 

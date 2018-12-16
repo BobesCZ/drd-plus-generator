@@ -76,13 +76,11 @@ class ConnectedStepNavigation extends React.Component {
           </button>
         }
 
-        {/* Render button only if screen is not filled (button hides itself after click) */}
-        {nextDisabled &&
-          <button type="button" className="btn btn-success stepnavigation__center" data-screen-autofill={this.props.activeScreen} onClick={this.handleClick}>
-            {translations.autoFillHeader} &nbsp;
-            <i className="fas fa-angle-double-right"></i>
-          </button>
-        }
+        {/* Button is enabled only if screen is not filled (button disables itself after click) */}
+        <button type="button" className="btn btn-success stepnavigation__center" data-screen-autofill={this.props.activeScreen} onClick={this.handleClick} disabled={!nextDisabled}>
+          {translations.autoFillHeader} &nbsp;
+          <i className="fas fa-angle-double-right"></i>
+        </button>
 
         {/* Render button only if screen exists */}
         {next &&
