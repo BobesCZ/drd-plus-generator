@@ -41,7 +41,7 @@ class ConnectedScreenBackground extends React.Component {
     const name = target.name;
     // console.log({ key: name, value: value});
     this.props.setBackground({ "name": value});
-    resetLevels();
+    resetLevels(true);
     resolveBackgroundAndChangeScreen();
   }
 
