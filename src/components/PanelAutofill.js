@@ -48,9 +48,26 @@ class ConnectedPanelAutofill extends React.Component {
       let abilities = [];
       let abilitiesString;
       let checked = this.props.switchers.get('autoFillAbilities');
+      let combatType = checked ? "nonCombat" : "combat";
 
-      ["primaryPreferred", "primaryOther", "secondaryPreferred", "secondaryOther"].forEach((item) => {
-        abilities.push(translations[getPreferredAbility(charClass, item)])
+      ["primaryPreferred", "primaryOther", "primaryEqual", "secondaryPreferred", "secondaryOther"].forEach((item) => {
+        let ability = getPreferredAbility(charClass, item, combatType)
+
+        if (ability) {
+          if (typeof ability === "object") {
+            let abilitiesEqual = []
+            let abilitiesEqualString
+
+            ability.forEach((i) => {
+              abilitiesEqual.push(translations[i])
+            })
+            abilitiesEqualString = abilitiesEqual.join(" + ")
+            abilities.push(abilitiesEqualString)
+          }
+          else {
+            abilities.push(translations[ability])
+          }
+        }
       })
       abilitiesString = abilities.join(", ")
 
