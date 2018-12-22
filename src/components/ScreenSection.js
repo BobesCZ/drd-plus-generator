@@ -6,6 +6,7 @@ import translations from "../translations";
 import ScreenCharacter from "./ScreenCharacter";
 import ScreenBackground from "./ScreenBackground";
 import ScreenAbilities from "./ScreenAbilities";
+import ScreenSkills from "./ScreenSkills";
 
 const mapStateToProps = (state) => {
   return { active: state.get('activeScreen')};
@@ -29,6 +30,11 @@ class ConnectedScreenSection extends React.Component {
     else if (activeScreen == "screenAbilities")  {
       return (
         <ScreenAbilities />
+      )
+    }
+    else if (activeScreen == "screenSkills")  {
+      return (
+        <ScreenSkills />
       )
     }
     else {

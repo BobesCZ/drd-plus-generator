@@ -78,6 +78,13 @@ const initialState = fromJS(
           "secondaryAbilityPoints": 0,
           "maximumAbilityPoint": 0
         }
+      },
+      "skills": {
+        "availablePoints": {
+          "physical": 0,
+          "psychical": 0,
+          "combined": 0
+        }
       }
     },
     "activeScreen": "screenCharacter",

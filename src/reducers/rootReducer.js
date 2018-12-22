@@ -11,6 +11,8 @@ import getAbilities from "../calculations/getAbilities";
 import getDerivedAbilities from "../calculations/getDerivedAbilities";
 import getCombatParameters from "../calculations/getCombatParameters";
 import isAbilityOnRaceLimit from "../calculations/isAbilityOnRaceLimit";
+import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
+import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
 import initialState from "./initialState";
 
 const rootReducer = (state = initialState, action) => {
@@ -409,9 +411,27 @@ const rootReducer = (state = initialState, action) => {
 
         return state.setIn(["character", "levels", parseInt(level), "abilities"], abilities)
 
+      case "SET_SKILLS_POINTS":
+        var charClass = state.getIn(["character", "info", "class"])
+        var backgroundPoints = state.getIn(["character", "background", "distributed", "skills"])
+        var levels = state.getIn(["character", "levels"])
+        var physicalPoints = 0
+        var psychicalPoints = 0
+        var combinedPoints = 0
 
-	    default:
-      	return state;
+        var availablePointsBackground = getBackgroundSkillsPoints(charClass, backgroundPoints)
+        var availablePointsLeveling = getLevelingSkillsPoints(levels)
+
+        physicalPoints = parseInt(availablePointsBackground["physical"]) + parseInt(availablePointsLeveling["physical"])
+        psychicalPoints = parseInt(availablePointsBackground["psychical"]) + parseInt(availablePointsLeveling["psychical"])
+        combinedPoints = parseInt(availablePointsBackground["combined"]) + parseInt(availablePointsLeveling["combined"])
+
+        return state.setIn(["character", "skills", "availablePoints", "physical"], physicalPoints)
+                    .setIn(["character", "skills", "availablePoints", "psychical"], psychicalPoints)
+                    .setIn(["character", "skills", "availablePoints", "combined"], combinedPoints)
+
+      default:
+        return state;
   	}
 };
 

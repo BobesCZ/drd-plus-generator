@@ -101,7 +101,7 @@ class ConnectedScreenBackground extends React.Component {
     }
 
     let charClass = this.props.info.get("class");
-    let abilityDistributionTable = tables.abilityDistribution[charClass];
+    let skillsDistributionTable = tables.skillsDistribution[charClass];
 
     return (
       <form>
@@ -252,9 +252,9 @@ class ConnectedScreenBackground extends React.Component {
                     <label className="form-check-label" htmlFor={"inputSkills" + propertyArray.indexOf(item)}>
                       {propertyArray.indexOf(item)}&nbsp;
                       (
-                        {abilityDistributionTable[propertyArray.indexOf(item)]["FYZ"]},
-                        {abilityDistributionTable[propertyArray.indexOf(item)]["PSY"]},
-                        {abilityDistributionTable[propertyArray.indexOf(item)]["KOM"]}
+                        {skillsDistributionTable[propertyArray.indexOf(item)]["physical"]},
+                        {skillsDistributionTable[propertyArray.indexOf(item)]["psychical"]},
+                        {skillsDistributionTable[propertyArray.indexOf(item)]["combined"]}
                         )
                     </label>
                   </div>

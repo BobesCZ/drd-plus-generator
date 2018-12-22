@@ -130,6 +130,15 @@
 	"abilitiesPanelLi1": "Při počátečním vytváření postavy nelze zvýšit základní hodnotu z Tabulky ras opravené o pohlaví o více než 3 .",
 	"abilitiesPanelLi2": "Hlavní vlastnost můžeš zvýšit maximálně 2x za sebou",
 	"abilitiesPanelLi3": "Vedlejší vlastnost můžeš zvýšit maximálně 1x za sebou",
+	"charOrigin": "Původ postavy",
+	"skillsPanelHeader": "Body dovedností",
+	"skillsPanelBody": "Rozděl body do dovedností. Čísla pro boj ovlivňují pouze fyzické dovednosti Boj s ..., Nošení zbroje a Používání štítu.",
+	"skillsPanelTableTh1": "Zdroj bodů",
+	"skillsPanelTableTh2": "Fyzické",
+	"skillsPanelTableTh3": "Psychické",
+	"skillsPanelTableTh4": "Kombinované",
+	"leveling": "Postup po úrovních",
+	"totalPoints": "Celkem bodů",
 };
 
 export default translations;
