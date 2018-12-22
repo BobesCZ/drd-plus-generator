@@ -3,6 +3,7 @@ import changeAbilityValue from "../actions/changeAbilityValue";
 import resolveAbilityValues from "../actions/resolveAbilityValues";
 import resolveScreen from "../actions/resolveScreen";
 import calculateSheet from "../actionPackages/calculateSheet";
+import setSkillsPoints from "../actions/setSkillsPoints";
 
 // changeValue => number that will be added to current value (+1, -1)
 const changeAbility = (ability, level, changeValue) => {
@@ -22,6 +23,8 @@ const changeAbility = (ability, level, changeValue) => {
 	// Resolve screen
 	store.dispatch( resolveScreen({ active: "screenAbilities"}) )
 
+	// Resolve table on screenSkills
+	store.dispatch( setSkillsPoints({}) )
 };
 
 export default changeAbility;

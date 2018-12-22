@@ -415,6 +415,14 @@ const rootReducer = (state = initialState, action) => {
         var charClass = state.getIn(["character", "info", "class"])
         var backgroundPoints = state.getIn(["character", "background", "distributed", "skills"])
         var levels = state.getIn(["character", "levels"])
+
+        // TEMP
+        // We need background (that user choose at screen 2) at screen 1
+        // For now, let assume that user chose something
+        if (!isTextInputFilled(backgroundPoints)) {
+          backgroundPoints = 0;
+        }
+
         var physicalPoints = 0
         var psychicalPoints = 0
         var combinedPoints = 0
