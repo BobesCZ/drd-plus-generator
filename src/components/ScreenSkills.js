@@ -4,6 +4,7 @@ import store from "../store/index";
 import translations from "../translations";
 import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
 import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
+import Navbar  from 'react-bootstrap/lib/Navbar';
 import tables from "../data/tables";
 
 const mapDispatchToProps = dispatch => {
@@ -33,6 +34,7 @@ class ConnectedScreenSkills extends React.Component {
   render(props) {
     let charClass = this.props.info.get('class')
     let levels = this.props.levels
+    let skills = this.props.skills.get('distributed')
     let availablePoints = this.props.skills.get('availablePoints')
     let backgroundPoints = this.props.background.getIn(['distributed', 'skills'])
     let availablePointsBackground = getBackgroundSkillsPoints(charClass, backgroundPoints)
@@ -54,9 +56,9 @@ class ConnectedScreenSkills extends React.Component {
               <tbody>
                 <tr>
                   <th>{translations.skillsPanelTableTh1}</th>
-                  <th className="text-center">{translations.skillsPanelTableTh2}</th>
-                  <th className="text-center">{translations.skillsPanelTableTh3}</th>
-                  <th className="text-center">{translations.skillsPanelTableTh4}</th>
+                  <th className="text-center">{translations.physical}</th>
+                  <th className="text-center">{translations.psychical}</th>
+                  <th className="text-center">{translations.combined}</th>
                 </tr>
                 <tr>
                   <td>{translations.charOrigin}</td>
@@ -81,6 +83,38 @@ class ConnectedScreenSkills extends React.Component {
 
           </div>
         </div>
+
+        {skills.keySeq().map(key => (
+          <div key={key} className="card card--collapse bg-light mb-2">
+            <Navbar expand="true">
+              <div className="card-header">
+                {translations[key]}
+              </div>
+
+              <Navbar.Toggle
+                aria-controls={'skills' + key}
+                children={
+                  <i className="fas fa-chevron-circle-down"></i>
+                }
+              />
+
+              <Navbar.Collapse id={'skills' + key}>
+
+              <div className="card-body">
+
+                {skills.get(key).keySeq().map(skill => (
+                  <p key={skill}>
+                    {translations[skill]}
+                    , {skills.getIn([key, skill])}
+                  </p>
+                ))}
+
+              </div>
+
+              </Navbar.Collapse>
+            </Navbar>
+          </div>
+        ))}
 
       </form>
     )

@@ -12,3 +12,39 @@ table, .table {
 label:not(.form-check-label) {
     font-weight: bolder;
 }
+
+.card--collapse {
+	.navbar {
+		padding: 0;
+	}
+
+	.card-header {
+		width: 100%;
+	}
+
+	.navbar-toggler {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		width: 100%;
+		height: 49px;
+		border: none;
+		text-align: right;
+		color: rgba(0,0,0,.6);
+		transform: rotate(0deg);
+		transition: transform .3s ease;
+
+		.fas {
+			margin: 0;
+		}
+
+		&.collapsed {
+			.fas {
+				transform: rotate(180deg);
+				transition: transform .3s ease;
+			}
+
+		}
+	}
+}
