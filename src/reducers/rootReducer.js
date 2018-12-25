@@ -438,6 +438,13 @@ const rootReducer = (state = initialState, action) => {
                     .setIn(["character", "skills", "availablePoints", "psychical"], psychicalPoints)
                     .setIn(["character", "skills", "availablePoints", "combined"], combinedPoints)
 
+      case "SET_SKILL":
+        var skillName = action.payload.skillName
+        var skillType = action.payload.skillType
+        var value = action.payload.value
+
+        return state.setIn(["character", "skills", "distributed", skillType, skillName], parseInt(value))
+
       default:
         return state;
   	}

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import store from "../store/index";
 import translations from "../translations";
+import SkillsRow from "./SkillsRow";
 import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
 import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
 import Navbar  from 'react-bootstrap/lib/Navbar';
@@ -39,6 +40,13 @@ class ConnectedScreenSkills extends React.Component {
     let backgroundPoints = this.props.background.getIn(['distributed', 'skills'])
     let availablePointsBackground = getBackgroundSkillsPoints(charClass, backgroundPoints)
     let availablePointsLeveling = getLevelingSkillsPoints(levels)
+
+    let currentAvailablePointsArray = []
+
+    skills.keySeq().forEach((key) => {
+      console.log(key)
+      console.log(skills.get(key))
+    })
 
     return (
       <form>
@@ -86,7 +94,7 @@ class ConnectedScreenSkills extends React.Component {
 
         {skills.keySeq().map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
-            <Navbar expand="true">
+            <Navbar expand="true" expanded="true">
               <div className="card-header">
                 {translations[key]}
               </div>
@@ -101,14 +109,17 @@ class ConnectedScreenSkills extends React.Component {
               <Navbar.Collapse id={'skills' + key}>
 
               <div className="card-body">
+                <table className="table">
+                  <tbody>
 
-                {skills.get(key).keySeq().map(skill => (
-                  <p key={skill}>
-                    {translations[skill]}
-                    , {skills.getIn([key, skill])}
-                  </p>
-                ))}
+                    {skills.get(key).keySeq().map(skillName => (
 
+                      <SkillsRow key={skillName} skillName={skillName} skillType={key} />
+
+                    ))}
+
+                  </tbody>
+                </table>
               </div>
 
               </Navbar.Collapse>
