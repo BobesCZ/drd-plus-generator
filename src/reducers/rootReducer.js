@@ -13,6 +13,7 @@ import getCombatParameters from "../calculations/getCombatParameters";
 import isAbilityOnRaceLimit from "../calculations/isAbilityOnRaceLimit";
 import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
 import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
+import getDistributedSkillsPoints from "../calculations/getDistributedSkillsPoints";
 import initialState from "./initialState";
 
 const rootReducer = (state = initialState, action) => {
@@ -110,6 +111,46 @@ const rootReducer = (state = initialState, action) => {
             return state.setIn(["screens", "screenAbilities"], 0)
                         .setIn(["screens", "screenSkills"], -1)
           }
+        }
+
+        else if (active == "screenSkills") {
+          var skills = state.getIn(["character", "skills", "distributed"]);
+          var availablePoints = state.getIn(["character", "skills", "availablePoints"]);
+          var currentAvailablePointsArray = []
+          var allRowsCompleted = true;
+
+          skills.keySeq().forEach((key) => {
+            var distributedSkillsPoints = getDistributedSkillsPoints(state.getIn(["character", "skills"]), key)
+            var availableSkillsPoints = availablePoints.get(key)
+
+            // Combat points are equal to physical (except for warriors, that have positive value in combat points)
+            if (key === "combat" && availableSkillsPoints === 0) {
+              availableSkillsPoints = availablePoints.get("physical")
+            }
+
+            let currentAvailablePoints = parseInt(availableSkillsPoints) - parseInt(distributedSkillsPoints)
+            currentAvailablePointsArray[key] = currentAvailablePoints
+          })
+
+          for (key in currentAvailablePointsArray) {
+            if (currentAvailablePointsArray[key] > 0) {
+              allRowsCompleted = false
+              break;
+            }
+          }
+
+          if (allRowsCompleted)
+          {
+            // console.log("Screen screenSkills is valid!");
+            return state.setIn(["screens", "screenSkills"], 1)
+                        .setIn(["screens", "screenWeapons"], 0)
+          }
+          else {
+            // console.log("Screen screenSkills is not valid :-(");
+            return state.setIn(["screens", "screenSkills"], 0)
+                        .setIn(["screens", "screenWeapons"], -1)
+          }
+
         }
 
         return state;

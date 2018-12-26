@@ -1,15 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import setSkill from "../actions/setSkill";
+import changeSkill from "../actionPackages/changeSkill";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import translations from "../translations";
-
-const mapDispatchToProps = dispatch => {
-  return {
-    setSkill: item => dispatch(setSkill(item)),
-    // distributeBackground: item => dispatch(distributeBackground(item)),
-  };
-};
 
 const mapStateToProps = (state) => {
   return {
@@ -30,7 +23,7 @@ class ConnectedSkillsRow extends React.Component {
     const value = target.value;
     const skillName = target.name;
     const skillType = target.getAttribute('data-type');
-    this.props.setSkill({ skillName, skillType, value});
+    changeSkill(skillName, skillType, value)
   }
 
   render(props) {
@@ -88,6 +81,6 @@ class ConnectedSkillsRow extends React.Component {
   }
 }
 
-const SkillsRow = connect(mapStateToProps, mapDispatchToProps)(ConnectedSkillsRow);
+const SkillsRow = connect(mapStateToProps)(ConnectedSkillsRow);
 
 export default SkillsRow;
