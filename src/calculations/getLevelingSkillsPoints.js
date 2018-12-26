@@ -12,7 +12,7 @@ const getLevelingSkillsPoints = (levels) => {
   if (Map.isMap(levels)) {
     var physicalPoints = 0
     var psychicalPoints = 0
-    var combinedPoints = 1
+    var combinedPoints = 0
 
     // Remove level number 1 from level object
     levels = levels.delete(1)

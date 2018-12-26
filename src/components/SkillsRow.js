@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import setSkill from "../actions/setSkill";
+import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import translations from "../translations";
 
 const mapDispatchToProps = dispatch => {
@@ -36,17 +37,28 @@ class ConnectedSkillsRow extends React.Component {
     let skills = this.props.skills
     let skillType = this.props.skillType
     let skillName = this.props.skillName
+    let currentAvailablePoints = this.props.currentAvailablePoints
     let skillDegree = skills.getIn(['distributed', skillType, skillName])
 
     let skillDegreesArray = [];
 
     for (var i=0; i <= 3; i++) {
-      // let levels = this.props.levels.get(i);
-      // let completed = isLevelRowCompleted(levels)
-      // completedLevelArray[i] = completed;
+      let active = i == skillDegree ? true : false;
+      let disabled = true
 
+      if (
+        i <= skillDegree ||
+        i <= (currentAvailablePoints + skillDegree)
+      )
+      {
+        disabled = false
+      }
+
+      skillDegreesArray[i] = {}
+      skillDegreesArray[i]["value"] = i;
+      skillDegreesArray[i]["active"] = active;
+      skillDegreesArray[i]["disabled"] = disabled;
     }
-    // console.log(skillDegreesArray)
 
     return (
       <tr>
@@ -54,31 +66,22 @@ class ConnectedSkillsRow extends React.Component {
           {translations[skillName]}
         </td>
 
-        <td>
-          <button
-            type="button"
-            className={'btn btn-default'}
-            name={skillName}
-            data-type={skillType}
-            onClick={this.handleButtonClick}
-            value="0"
-            >
-            0
-            {/* skills.getIn(["distributed", skillType, skillName])*/}
-          </button>
-        </td>
-        <td>
-          <button
-            type="button"
-            className={'btn btn-default'}
-            name={skillName}
-            data-type={skillType}
-            onClick={this.handleButtonClick}
-            value="1"
-            >
-            1
-          </button>
-        </td>
+        {skillDegreesArray.map(key => (
+          <td key={key.value}>
+            <button
+              type="button"
+              className={key.active ? 'btn btn-primary' : 'btn btn-default'}
+              name={skillName}
+              data-type={skillType}
+              onClick={this.handleButtonClick}
+              value={key.value}
+              disabled={key.disabled ? true : false}
+              >
+              {key.value === 0 ? "0" : getRomanizedNumber(key.value) + "."}
+            </button>
+          </td>
+        ))}
+
       </tr>
     )
 

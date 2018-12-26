@@ -81,6 +81,7 @@ const initialState = fromJS(
       },
       "skills": {
         "availablePoints": {
+          "combat": 0,
           "physical": 0,
           "psychical": 0,
           "combined": 0

@@ -427,6 +427,9 @@ const rootReducer = (state = initialState, action) => {
         var psychicalPoints = 0
         var combinedPoints = 0
 
+        // TODO: warrior has extra combat points, for other classes combatPoints are equal to physical
+        var combatPoints = 0
+
         var availablePointsBackground = getBackgroundSkillsPoints(charClass, backgroundPoints)
         var availablePointsLeveling = getLevelingSkillsPoints(levels)
 
@@ -437,6 +440,7 @@ const rootReducer = (state = initialState, action) => {
         return state.setIn(["character", "skills", "availablePoints", "physical"], physicalPoints)
                     .setIn(["character", "skills", "availablePoints", "psychical"], psychicalPoints)
                     .setIn(["character", "skills", "availablePoints", "combined"], combinedPoints)
+                    .setIn(["character", "skills", "availablePoints", "combat"], combatPoints)
 
       case "SET_SKILL":
         var skillName = action.payload.skillName

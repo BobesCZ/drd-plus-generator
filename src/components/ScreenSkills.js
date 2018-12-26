@@ -5,6 +5,7 @@ import translations from "../translations";
 import SkillsRow from "./SkillsRow";
 import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
 import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
+import getDistributedSkillsPoints from "../calculations/getDistributedSkillsPoints";
 import Navbar  from 'react-bootstrap/lib/Navbar';
 import tables from "../data/tables";
 
@@ -41,11 +42,21 @@ class ConnectedScreenSkills extends React.Component {
     let availablePointsBackground = getBackgroundSkillsPoints(charClass, backgroundPoints)
     let availablePointsLeveling = getLevelingSkillsPoints(levels)
 
+    let availablePointsArray = []
     let currentAvailablePointsArray = []
 
     skills.keySeq().forEach((key) => {
-      console.log(key)
-      console.log(skills.get(key))
+      let distributedSkillsPoints = getDistributedSkillsPoints(this.props.skills, key)
+      let availableSkillsPoints = availablePoints.get(key)
+
+      // Combat points are equal to physical (except for warriors, that have positive value in combat points)
+      if (key === "combat" && availableSkillsPoints === 0) {
+        availableSkillsPoints = availablePoints.get("physical")
+      }
+      availablePointsArray[key] = availableSkillsPoints
+
+      let currentAvailablePoints = parseInt(availableSkillsPoints) - parseInt(distributedSkillsPoints)
+      currentAvailablePointsArray[key] = currentAvailablePoints
     })
 
     return (
@@ -95,8 +106,12 @@ class ConnectedScreenSkills extends React.Component {
         {skills.keySeq().map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
             <Navbar expand="true" expanded="true">
-              <div className="card-header">
-                {translations[key]}
+              <div className={currentAvailablePointsArray[key] === 0 ? "card-header bg-success text-white" : "card-header"}>
+                {translations[key]}&nbsp;
+                ({translations.distributeLeft} {currentAvailablePointsArray[key]} {translations.from} {availablePointsArray[key]} {translations.points})
+                {currentAvailablePointsArray[key] === 0 &&
+                  <span> <i className="fas fa-check-circle"></i> </span>
+                }
               </div>
 
               <Navbar.Toggle
@@ -114,7 +129,7 @@ class ConnectedScreenSkills extends React.Component {
 
                     {skills.get(key).keySeq().map(skillName => (
 
-                      <SkillsRow key={skillName} skillName={skillName} skillType={key} />
+                      <SkillsRow key={skillName} skillName={skillName} skillType={key} currentAvailablePoints={currentAvailablePointsArray[key]} />
 
                     ))}
 
