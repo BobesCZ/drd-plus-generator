@@ -105,7 +105,7 @@ class ConnectedScreenSkills extends React.Component {
 
         {skills.keySeq().map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
-            <Navbar expand="true" expanded="true">
+            <Navbar expand="true">
               <div className={currentAvailablePointsArray[key] === 0 ? "card-header bg-success text-white" : "card-header"}>
                 {translations[key]}&nbsp;
                 ({translations.distributeLeft} {currentAvailablePointsArray[key]} {translations.from} {availablePointsArray[key]} {translations.points})

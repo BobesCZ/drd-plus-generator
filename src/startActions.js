@@ -7,7 +7,6 @@ import resolveScreen from "./actions/resolveScreen";
 import resolveBackgroundAndChangeScreen from "./actionPackages/resolveBackgroundAndChangeScreen";
 import changeScreen from "./actions/changeScreen";
 import calculateSheet from "./actionPackages/calculateSheet";
-import setSkillsPoints from "./actions/setSkillsPoints";
 import autofillScreenAbilities from "./actionPackages/autofillScreenAbilities";
 
 export default function startActions() {
@@ -33,5 +32,4 @@ export default function startActions() {
 	// Go to screen 4
 	autofillScreenAbilities()
 	store.dispatch( changeScreen({active: "screenSkills"}) )
-	store.dispatch( setSkillsPoints({}) )
 };

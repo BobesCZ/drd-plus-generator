@@ -88,6 +88,8 @@ const initialState = fromJS(
         },
         "distributed": {
           "combat": {
+            "wearingArmor": 0,
+            "usingShield": 0,
             "noWeapon": 0,
             "knives": 0,
             "axes": 0,
@@ -101,18 +103,15 @@ const initialState = fromJS(
           },
           "physical": {
             "athletics": 0,
-            "fightWithWeapon": 0,
             "riding": 0,
             "blacksmithing": 0,
             "aviation": 0,
             "seamanship": 0,
-            "wearingArmor": 0,
             "boatControl": 0,
             "swimming": 0,
             "movementInMountains": 0,
             "movementInForrest": 0,
             "movementInCity": 0,
-            "usingShield": 0,
             "fastMarch": 0,
             "driving": 0,
             "climbing": 0

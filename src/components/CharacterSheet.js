@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Provider, connect } from "react-redux";
+import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import translations from "../translations";
 import tables from "../data/tables";
 
@@ -12,6 +13,7 @@ const mapStateToProps = (state) => {
     abilities: state.getIn(['character', 'abilities']),
     derivedAbilities: state.getIn(['character', 'derivedAbilities']),
     combatParameters: state.getIn(['character', 'combatParameters']),
+    skills: state.getIn(['character', 'skills', 'distributed']),
   };
 };
 
@@ -26,7 +28,7 @@ class ConnectedSheets extends React.Component {
     let charHealth = this.props.combatParameters.get('health');
     let charRace = this.props.info.get('race');
     let charNote = tables.derivedAbilities[charRace]["note"].length ? tables.derivedAbilities[charRace]["note"] : false;
-
+    let skills = this.props.skills;
 
     for (var i=1; i <= 50; i++) {
       let active = i <= charHealth ? true : false;
@@ -49,6 +51,21 @@ class ConnectedSheets extends React.Component {
     for (var i=0; i < 3; i++) {
       healthRowArray.push("healthRow" + i);
     }
+
+    let skillsArray = []
+
+    skills.keySeq().forEach((key) => {
+      skills.get(key).keySeq().forEach((skillName) => {
+        let value = skills.getIn([key, skillName])
+
+        if (value > 0) {
+          skillsArray[skillName] = {}
+          skillsArray[skillName]["value"] = value
+          skillsArray[skillName]["skillType"] = key
+        }
+
+      })
+    })
 
     return (
       <div className="character-sheet panel panel-default">
@@ -160,7 +177,7 @@ class ConnectedSheets extends React.Component {
                   </tr>
                 </tbody>
               </table>
-                <table className="table ability-table">
+              <table className="table ability-table">
                 <tbody>
                   <tr>
                     <td>{translations.health}</td>
@@ -198,6 +215,31 @@ class ConnectedSheets extends React.Component {
             </div>
 
           </div>
+
+          {Object.keys(skillsArray).length > 0 &&
+            <div className="row">
+
+              <div className="col-6">
+                <table className="table skill-table">
+                  <tbody>
+                    {Object.keys(skillsArray).map(item =>
+                      <tr key={item}>
+                        <td>
+                          {translations[item]}
+                          &nbsp;({skillsArray[item]["skillType"] === "psychical" ? "P" : skillsArray[item]["skillType"] === "combined" ? "K" : "F"})
+                        </td>
+                        <td>
+                          {getRomanizedNumber(skillsArray[item]["value"]) + '.'}
+                        </td>
+                      </tr>
+                    )}
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          }
+
 
         </div>
       </div>
