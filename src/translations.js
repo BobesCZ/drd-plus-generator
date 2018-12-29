@@ -49,6 +49,7 @@
 	"autoFillAbilitiesFalse": "Bojové zaměření",
 	"combat": "Bojový",
 	"autoFillAbilitiesTrue": "Nebojové zaměření",
+	"autoFillSkills": "Chci předvyplnit Psychické a Kombinované dovednosti podle nejlepšího doporučení Sfér.",
 	"nonCombat": "Nebojový",
 	"backgroundPanelHeader": "Body zázemí",
 	"backgroundPanelBody": "Volba zázemí má vliv na body do hlavních a vedlejších vlastností a také na obecné dovednosti. Kromě toho také samozřejmě na příběh tvé postavy - zde je důležité domluvit se se svým PJ.",

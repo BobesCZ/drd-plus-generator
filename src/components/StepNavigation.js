@@ -6,6 +6,7 @@ import autofillScreen from "../actions/autofillScreen";
 import resolveScreen from "../actions/resolveScreen";
 import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
 import autofillScreenAbilities from "../actionPackages/autofillScreenAbilities";
+import autofillScreenSkills from "../actionPackages/autofillScreenSkills";
 import screensArray from "../helpers/screensArray";
 import getPreviousArrayItem from "../helpers/getPreviousArrayItem";
 import getNextArrayItem from "../helpers/getNextArrayItem";
@@ -47,6 +48,9 @@ class ConnectedStepNavigation extends React.Component {
       }
       else if (screenAutofill === "screenAbilities") {
         autofillScreenAbilities();
+      }
+      else if (screenAutofill === "screenSkills") {
+        autofillScreenSkills();
       }
       else {
         this.props.resolveScreen({ active: screenAutofill});

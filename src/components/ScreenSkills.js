@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import store from "../store/index";
 import translations from "../translations";
 import SkillsRow from "./SkillsRow";
+import PanelAutofill from "./PanelAutofill";
 import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
 import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
 import getDistributedSkillsPoints from "../calculations/getDistributedSkillsPoints";
@@ -105,7 +106,7 @@ class ConnectedScreenSkills extends React.Component {
 
         {skills.keySeq().map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
-            <Navbar expand="true">
+            <Navbar expand="true" expanded="true">
               <div className={currentAvailablePointsArray[key] === 0 ? "card-header bg-success text-white" : "card-header"}>
                 {translations[key]}&nbsp;
                 ({translations.distributeLeft} {currentAvailablePointsArray[key]} {translations.from} {availablePointsArray[key]} {translations.points})
@@ -141,6 +142,8 @@ class ConnectedScreenSkills extends React.Component {
             </Navbar>
           </div>
         ))}
+
+        <PanelAutofill screen="screenSkills"/>
 
       </form>
     )

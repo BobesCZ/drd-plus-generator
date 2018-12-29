@@ -50,7 +50,6 @@ const orderedSkillsPsychical = OrderedMap(
     "theology": 0,
     "magicalObjectsManipulation": 0,
     "geography": 0,
-    "geography": 0,
     "cityKnowledge": 0,
     "worldKnowledge": 0,
     "zoology": 0
