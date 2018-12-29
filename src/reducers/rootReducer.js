@@ -2,6 +2,7 @@ import { fromJS } from 'immutable';
 import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
+import getOrderedSkills from "../calculations/getOrderedSkills";
 import sumCollectionValues from "../helpers/sumCollectionValues";
 import createLevelsState from "../helpers/createLevelsState";
 import isAbilityMain from "../helpers/isAbilityMain";
@@ -482,6 +483,14 @@ const rootReducer = (state = initialState, action) => {
                     .setIn(["character", "skills", "availablePoints", "psychical"], psychicalPoints)
                     .setIn(["character", "skills", "availablePoints", "combined"], combinedPoints)
                     .setIn(["character", "skills", "availablePoints", "combat"], combatPoints)
+
+      case "RESOLVE_SKILLS":
+        var orderedSkills = getOrderedSkills()
+
+        return state.setIn(["character", "skills", "distributed", "physical"], orderedSkills["physical"])
+                    .setIn(["character", "skills", "distributed", "psychical"], orderedSkills["psychical"])
+                    .setIn(["character", "skills", "distributed", "combined"], orderedSkills["combined"])
+                    .setIn(["character", "skills", "distributed", "combat"], orderedSkills["combat"])
 
       case "SET_SKILL":
         var skillName = action.payload.skillName

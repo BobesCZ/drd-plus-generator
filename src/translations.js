@@ -124,7 +124,7 @@
 	"levelAbilitiesPopoverTitle": "Moudře vybírej!",
 	"levelAbilitiesPopover": "Tímto smažeš tuto a všechny následující úrovně",
 	"levelAbilitiesAlertTitle": "Není cesty zpět!",
-	"levelAbilitiesAlert": "Pokud na předcházejících záložkách změníš cokoliv (kromě jména a poznámky), veškeré nastavení na této záložce bude vymazáno. Pokud nejsi s postavou spokojen, proveď změny dříve, než tady začneš na něco klikat.",
+	"levelAbilitiesAlert": "Pokud na předcházejících záložkách změníš cokoliv (kromě jména a poznámky), veškeré nastavení na této a všech dalších záložkách bude vymazáno. Pokud nejsi s postavou spokojen, proveď změny dříve, než tady začneš na něco klikat.",
 	"abilitiesPanelHeader": "Určení základních vlastností",
 	"abilitiesPanelBody": "Rozděl body získané zázemím a případně postupuj po úrovních.",
 	"abilitiesPanelLi1": "Při počátečním vytváření postavy nelze zvýšit základní hodnotu z Tabulky ras opravené o pohlaví o více než 3 .",
