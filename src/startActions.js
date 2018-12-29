@@ -8,13 +8,14 @@ import resolveBackgroundAndChangeScreen from "./actionPackages/resolveBackground
 import changeScreen from "./actions/changeScreen";
 import calculateSheet from "./actionPackages/calculateSheet";
 import autofillScreenAbilities from "./actionPackages/autofillScreenAbilities";
+import setSwitcher from "./actions/setSwitcher";
 
 export default function startActions() {
 
 	// Set initial values at screenCharacter
 	store.dispatch( changeInfo({ key: "race", value: "human"}) )
-	store.dispatch( changeInfo({ key: "class", value: "warrior"}) )
-	store.dispatch( changeInfo({ key: "level", value: "6"}) )
+	store.dispatch( changeInfo({ key: "class", value: "ranger"}) )
+	store.dispatch( changeInfo({ key: "level", value: "21"}) )
 	store.dispatch( changeInfo({ key: "sex", value: "male"}) )
 	resetLevels()
 
@@ -30,6 +31,7 @@ export default function startActions() {
 	store.dispatch( changeScreen({active: "screenAbilities"}) )
 
 	// Go to screen 4
+	store.dispatch( setSwitcher({key: "autoFillAbilities", value: true}) )
 	autofillScreenAbilities()
 	store.dispatch( changeScreen({active: "screenSkills"}) )
 };
