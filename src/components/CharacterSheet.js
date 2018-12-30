@@ -67,6 +67,26 @@ class ConnectedSheets extends React.Component {
       })
     })
 
+    // Split skillsArray in half and create 2 arrays
+    let skillsArrayColumns = []
+    skillsArrayColumns[0] = []
+
+    if (Object.keys(skillsArray).length > 5) {
+      skillsArrayColumns[1] = []
+
+      Object.keys(skillsArray).forEach((skillName, i) => {
+        if (i <= Math.ceil( (Object.keys(skillsArray).length / 2) - 1) ) {
+          skillsArrayColumns[0][skillName] = skillsArray[skillName]
+        }
+        else {
+          skillsArrayColumns[1][skillName] = skillsArray[skillName]
+        }
+      })
+    }
+    else {
+      skillsArrayColumns[0] = skillsArray
+    }
+
     return (
       <div className="character-sheet panel panel-default">
         <div className="panel-body">
@@ -216,27 +236,30 @@ class ConnectedSheets extends React.Component {
 
           </div>
 
-          {Object.keys(skillsArray).length > 0 &&
+          {Object.keys(skillsArrayColumns).length > 0 &&
             <div className="row">
 
-              <div className="col-6">
-                <table className="table skill-table">
-                  <tbody>
-                    {Object.keys(skillsArray).map(item =>
-                      <tr key={item}>
-                        <td>
-                          {translations[item]}
-                          &nbsp;({skillsArray[item]["skillType"] === "psychical" ? "P" : skillsArray[item]["skillType"] === "combined" ? "K" : "F"})
-                        </td>
-                        <td>
-                          {getRomanizedNumber(skillsArray[item]["value"]) + '.'}
-                        </td>
-                      </tr>
-                    )}
+              {Object.keys(skillsArrayColumns).map(column =>
+                <div key={column} className="col-sm-6">
+                  <table className="table skill-table">
+                    <tbody>
+                      {Object.keys(skillsArrayColumns[column]).map(item =>
+                        <tr key={item}>
+                          <td>
+                            {translations[item]}
+                            &nbsp;({skillsArrayColumns[column][item]["skillType"] === "psychical" ? "P" : skillsArrayColumns[column][item]["skillType"] === "combined" ? "K" : "F"})
+                          </td>
+                          <td>
+                            {getRomanizedNumber(skillsArrayColumns[column][item]["value"]) + '.'}
+                          </td>
+                        </tr>
+                      )}
 
-                  </tbody>
-                </table>
-              </div>
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
             </div>
           }
 

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import setSwitcher from "../actions/setSwitcher";
 import getPreferredAbility from "../helpers/getPreferredAbility";
+import getPreferredSkills from "../calculations/getPreferredSkills";
 import translations from "../translations";
 
 const mapDispatchToProps = dispatch => {
@@ -120,7 +121,37 @@ class ConnectedPanelAutofill extends React.Component {
     }
 
     else if (screen === "screenSkills") {
-      content = translations.autoFillSkills;
+      let orderedSkills = getPreferredSkills();
+      let skillsStringArray = [];
+
+      ["psychical", "combined"].forEach((skillType) => {
+        let skills = [];
+
+        orderedSkills[skillType]["preferred"].forEach((i) => {
+          skills.push(translations[i])
+        })
+        skillsStringArray.push( skills.join(", ") )
+      })
+
+      content = <div>
+                  <p>
+                    {translations.autoFillSkills}
+                  </p>
+                  <p>
+                    {translations.autoFillSkillsInfo1}<br />
+
+                    <strong>
+                      {translations.psychical}
+                    </strong>:
+                    &nbsp;{skillsStringArray[0]}<br />
+
+                    <strong>
+                      {translations.combined}
+                    </strong>:
+                    &nbsp;{skillsStringArray[1]}
+
+                  </p>
+                </div>
     }
 
     return (
