@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import setErrata from "../actions/setErrata";
 import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
+import resetSkills from "../actionPackages/resetSkills";
 import getStringifiedNumber from "../helpers/getStringifiedNumber";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import translations from "../translations";
@@ -37,6 +38,9 @@ class ConnectedPanelErrata extends React.Component {
     // Do custom actions when change errata
     if (name === "backgroundPointsHasNoRangeLimit") {
       resolveBackgroundAndChangeScreen();
+    }
+    else if (name === "warriorHasAdditionalWeaponSkillsDegrees") {
+      resetSkills();
     }
   }
 

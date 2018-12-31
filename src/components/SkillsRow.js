@@ -7,6 +7,7 @@ import translations from "../translations";
 const mapStateToProps = (state) => {
   return {
     skills: state.getIn(['character', 'skills']),
+    errata: state.getIn(['errata']),
   };
 };
 
@@ -30,12 +31,27 @@ class ConnectedSkillsRow extends React.Component {
     let skills = this.props.skills
     let skillType = this.props.skillType
     let skillName = this.props.skillName
+    let errata = this.props.errata
     let currentAvailablePoints = this.props.currentAvailablePoints
     let skillDegree = skills.getIn(['distributed', skillType, skillName])
 
     let skillDegreesArray = [];
+    let degreesLimit = 3;
 
-    for (var i=0; i <= 3; i++) {
+    // For all skills in group "fightWithWeapon" create additional degrees when:
+    // Errata are allowed
+    // Skill is type Combat (except wearingArmor and usingShield)
+    if (
+        errata.get("warriorHasAdditionalWeaponSkillsDegrees") &&
+        skillType === "combat" &&
+        skillName !== "wearingArmor" &&
+        skillName !== "usingShield"
+      )
+    {
+      degreesLimit = 6
+    }
+
+    for (var i=0; i <= degreesLimit; i++) {
       let active = i == skillDegree ? true : false;
       let disabled = true
 

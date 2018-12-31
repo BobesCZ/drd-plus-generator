@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
 import resolveScreen from "../actions/resolveScreen";
+import setErrata from "../actions/setErrata";
 import resetLevels from "../actionPackages/resetLevels";
 import translations from "../translations";
 import calculateSheet from "../actionPackages/calculateSheet";
@@ -13,6 +14,7 @@ const mapDispatchToProps = dispatch => {
   return {
     changeInfo: item => dispatch(changeInfo(item)),
     resolveScreen: item => dispatch(resolveScreen(item)),
+    setErrata: item => dispatch(setErrata(item)),
   };
 };
 
@@ -40,6 +42,11 @@ class ConnectedScreenCharacter extends React.Component {
     // Ignore field Name and Note, otherwise call resetLevels
     if (name !== "name" && name !== "note"){
       resetLevels();
+    }
+
+    // If class is not Warrior, reset errata for Warrior
+    if (name === "class" && value !== "warrior") {
+      this.props.setErrata({ key: "warriorHasAdditionalWeaponSkillsDegrees", value: false});
     }
   }
 
