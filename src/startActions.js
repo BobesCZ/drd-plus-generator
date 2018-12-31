@@ -14,8 +14,8 @@ export default function startActions() {
 
 	// Set initial values at screenCharacter
 	store.dispatch( changeInfo({ key: "race", value: "human"}) )
-	store.dispatch( changeInfo({ key: "class", value: "ranger"}) )
-	store.dispatch( changeInfo({ key: "level", value: "21"}) )
+	store.dispatch( changeInfo({ key: "class", value: "warrior"}) )
+	store.dispatch( changeInfo({ key: "level", value: "3"}) )
 	store.dispatch( changeInfo({ key: "sex", value: "male"}) )
 	resetLevels()
 

@@ -54,9 +54,24 @@ class ConnectedScreenSkills extends React.Component {
       if (key === "combat" && availableSkillsPoints === 0) {
         availableSkillsPoints = availablePoints.get("physical")
       }
+
+      // Handle extra points for Warrior
+      if (charClass === "warrior") {
+        // Distributed Physical points are shared with Combat points
+        distributedSkillsPoints = getDistributedSkillsPoints(this.props.skills, "combat") + getDistributedSkillsPoints(this.props.skills, "physical")
+
+        if (key === "combat") {
+          // Combat points = (available Combat points) + (available Physical points)
+          availableSkillsPoints += availablePoints.get("physical")
+        }
+      }
       availablePointsArray[key] = availableSkillsPoints
 
       let currentAvailablePoints = parseInt(availableSkillsPoints) - parseInt(distributedSkillsPoints)
+      // Warriors may have negative currentAvailablePoints for Physical => consider it as 0
+      if (currentAvailablePoints < 0) {
+        currentAvailablePoints = 0
+      }
       currentAvailablePointsArray[key] = currentAvailablePoints
     })
 
@@ -100,6 +115,12 @@ class ConnectedScreenSkills extends React.Component {
                 </tr>
               </tbody>
             </table>
+
+            {charClass === "warrior" &&
+              <p>
+                {translations.skillsPanelBodyWarrior}:&nbsp;{availablePoints.get("combat")}
+              </p>
+            }
 
           </div>
         </div>
