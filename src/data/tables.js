@@ -27,15 +27,15 @@ const tables = {
   {
     "warrior":
     {
-      0: {"physical":2, "psychical":0, "combined":1},
-      1: {"physical":3, "psychical":0, "combined":1},
-      2: {"physical":4, "psychical":0, "combined":1},
-      3: {"physical":4, "psychical":1, "combined":2},
-      4: {"physical":5, "psychical":1, "combined":3},
-      5: {"physical":6, "psychical":2, "combined":3},
-      6: {"physical":8, "psychical":2, "combined":4},
-      7: {"physical":10, "psychical":3, "combined":5},
-      8: {"physical":12, "psychical":4, "combined":6}
+      "0": {"physical":2, "psychical":0, "combined":1},
+      "1": {"physical":3, "psychical":0, "combined":1},
+      "2": {"physical":4, "psychical":0, "combined":1},
+      "3": {"physical":4, "psychical":1, "combined":2},
+      "4": {"physical":5, "psychical":1, "combined":3},
+      "5": {"physical":6, "psychical":2, "combined":3},
+      "6": {"physical":8, "psychical":2, "combined":4},
+      "7": {"physical":10, "psychical":3, "combined":5},
+      "8": {"physical":12, "psychical":4, "combined":6}
     },
     "rogue":
     {
@@ -459,6 +459,15 @@ const tables = {
       "combatSpeed":0,
       "note":"Infravidění"
     }
+  },
+  "weaponSkillDegrees": {
+    "0": { "weaponAttack":-3, "cover":-2, "weaponDamage":-1},
+    "1": { "weaponAttack":-2, "cover":-1, "weaponDamage":-1},
+    "2": { "weaponAttack":-1, "cover":-1, "weaponDamage":0},
+    "3": { "weaponAttack":0, "cover":0, "weaponDamage":0},
+    "4": { "weaponAttack":1, "cover":1, "weaponDamage":0},
+    "5": { "weaponAttack":2, "cover":1, "weaponDamage":1},
+    "6": { "weaponAttack":3, "cover":2, "weaponDamage":1}
   }
 }
 

@@ -2,7 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import setErrata from "../actions/setErrata";
 import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
+import getStringifiedNumber from "../helpers/getStringifiedNumber";
+import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import translations from "../translations";
+import tables from "../data/tables";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -38,7 +41,51 @@ class ConnectedPanelErrata extends React.Component {
   }
 
   render(props) {
-    var checked = this.props.errata.get(this.props.name);
+    let name = this.props.name;
+    let checked = this.props.errata.get(name);
+    let content;
+
+    if (name === "backgroundPointsHasNoRangeLimit") {
+      content = <p>
+                  {translations.PanelErrataTextBackground}
+                </p>
+    }
+    else if (name === "warriorHasAdditionalWeaponSkillsDegrees") {
+      let degreesArray = [];
+
+      [4, 5, 6].forEach((degree) => {
+        degreesArray[degree] = [];
+
+        ["weaponAttack", "cover", "weaponDamage"].forEach((key) => {
+          let value = getStringifiedNumber(tables.weaponSkillDegrees[degree][key])
+          degreesArray[degree][key] = value
+        })
+      })
+
+      content = <div>
+                  <p>
+                    {translations.PanelErrataTextWeaponSkillsDegree}
+                  </p>
+                  <table className="table">
+                    <tbody>
+                      <tr>
+                        <th>{translations.degree}</th>
+                        <th>{translations.weaponAttack}</th>
+                        <th>{translations.cover}</th>
+                        <th>{translations.weaponDamage}</th>
+                      </tr>
+                      {Object.keys(degreesArray).map(degree => (
+                        <tr key={degree}>
+                          <td>{getRomanizedNumber(degree)}.</td>
+                          <td>{degreesArray[degree]["weaponAttack"]}</td>
+                          <td>{degreesArray[degree]["cover"]}</td>
+                          <td>{degreesArray[degree]["weaponDamage"]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+    }
 
     return (
       <div className="card alert-warning mb-4">
@@ -48,9 +95,8 @@ class ConnectedPanelErrata extends React.Component {
         </div>
 
         <div className="card-body">
-          <p>
-            {translations.PanelErrataText}
-          </p>
+
+          {content}
 
           <label className="switch-light" >
             <input

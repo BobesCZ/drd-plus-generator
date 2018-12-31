@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import store from "../store/index";
 import translations from "../translations";
 import SkillsRow from "./SkillsRow";
+import PanelErrata from "./PanelErrata";
 import PanelAutofill from "./PanelAutofill";
 import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
 import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
@@ -135,6 +136,10 @@ class ConnectedScreenSkills extends React.Component {
 
           </div>
         </div>
+
+        {charClass === "warrior" &&
+          <PanelErrata name="warriorHasAdditionalWeaponSkillsDegrees"/>
+        }
 
         {skills.keySeq().map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">

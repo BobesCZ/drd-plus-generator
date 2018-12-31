@@ -162,7 +162,6 @@ const rootReducer = (state = initialState, action) => {
             currentAvailablePointsArray[key] = currentAvailablePoints
           })
 
-          console.log(currentAvailablePointsArray)
           for (key in currentAvailablePointsArray) {
             if (currentAvailablePointsArray[key] > 0) {
               allRowsCompleted = false

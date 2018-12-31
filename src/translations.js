@@ -105,7 +105,8 @@
 	"intelligenceAbbr": "INT",
 	"charismaAbbr": "CHR",
 	"PanelErrataHeader": "Je libo errata?",
-	"PanelErrataText": "Pravidlo, že při tvorbě postavy smí hráč dát do dovedností nebo majetku nejvýše o 3 body víc než do původu neplatí, pokud je hráč schopný obhájit rozdělení bodů původem postavy.",
+	"PanelErrataTextBackground": "Pravidlo, že při tvorbě postavy smí hráč dát do dovedností nebo majetku nejvýše o 3 body víc než do původu neplatí, pokud je hráč schopný obhájit rozdělení bodů původem postavy.",
+	"PanelErrataTextWeaponSkillsDegree": "Bojovník se může od druhé úrovně naučit 4., 5. a 6. stupeň dovednosti Boj se zbraní. Dostává následující bonusy:",
 	"PanelErrataTrue": "Použít errata",
 	"PanelErrataFalse": "Nie, radšej knihu (pravidel)",
 	"resistance": "Odolnost",
@@ -137,6 +138,7 @@
 	"skillsPanelBody": "Rozděl body do dovedností. Kategorie Bojové spadá pod kategorii Fyzické, tzn. všechny Fyzické body lze uplatnit i pro Bojové dovednosti.",
 	"skillsPanelBodyWarrior": "Body, které získal Bojovník navíc (pouze pro Bojové dovednosti)",
 	"skillsPanelTableTh1": "Zdroj bodů",
+	"degree": "Stupeň",
 	"combat": "Bojové",
 	"physical": "Fyzické",
 	"psychical": "Psychické",
@@ -205,6 +207,9 @@
 	"spears": "Hole a kopí",
 	"tridents": "Sudlice a trojzubce",
 	"thrownWeapons": "Vrhací zbraně",
+	"weaponAttack": "ÚČ",
+	"cover": "Kryt",
+	"weaponDamage": "ZZ",
 };
 
 export default translations;

@@ -112,7 +112,8 @@ const initialState = fromJS(
     "errata": {
       // false => according to official rules
       // true => apply errata
-      "backgroundPointsHasNoRangeLimit": false
+      "backgroundPointsHasNoRangeLimit": false,
+      "warriorHasAdditionalWeaponSkillsDegrees": false
     },
     "switchers": {
       "autoFillAbilities": false
