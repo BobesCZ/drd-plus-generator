@@ -116,6 +116,7 @@ const rootReducer = (state = initialState, action) => {
 
         else if (active == "screenSkills") {
           var skills = state.getIn(["character", "skills", "distributed"]);
+          var charClass = state.getIn(["character", "info", "class"]);
           var availablePoints = state.getIn(["character", "skills", "availablePoints"]);
           var currentAvailablePointsArray = []
           var allRowsCompleted = true;
@@ -129,10 +130,39 @@ const rootReducer = (state = initialState, action) => {
               availableSkillsPoints = availablePoints.get("physical")
             }
 
+            // Handle extra points for Warrior
+            if (charClass === "warrior") {
+
+              if (key === "physical") {
+                // Distributed Combat points - check if points are "above combat", and if so, add to Physical distributed points
+                let distributedSkillsPointsCombat = getDistributedSkillsPoints(state.getIn(["character", "skills"]), "combat") - availablePoints.get("combat")
+
+                if (distributedSkillsPointsCombat < 0) {
+                  distributedSkillsPointsCombat = 0
+                }
+                distributedSkillsPoints = distributedSkillsPointsCombat + getDistributedSkillsPoints(state.getIn(["character", "skills"]), "physical")
+              }
+
+              else if (key === "combat") {
+                // Distributed Physical points are shared with Combat points
+                distributedSkillsPoints = getDistributedSkillsPoints(state.getIn(["character", "skills"]), "combat") + getDistributedSkillsPoints(state.getIn(["character", "skills"]), "physical")
+
+                // Combat points = (available Combat points) + (available Physical points)
+                availableSkillsPoints += availablePoints.get("physical")
+              }
+            }
+
             let currentAvailablePoints = parseInt(availableSkillsPoints) - parseInt(distributedSkillsPoints)
+
+            // Warriors may have negative currentAvailablePoints for Physical => consider it as 0
+            if (currentAvailablePoints < 0) {
+              currentAvailablePoints = 0
+            }
+
             currentAvailablePointsArray[key] = currentAvailablePoints
           })
 
+          console.log(currentAvailablePointsArray)
           for (key in currentAvailablePointsArray) {
             if (currentAvailablePointsArray[key] > 0) {
               allRowsCompleted = false

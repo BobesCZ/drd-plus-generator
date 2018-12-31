@@ -57,10 +57,21 @@ class ConnectedScreenSkills extends React.Component {
 
       // Handle extra points for Warrior
       if (charClass === "warrior") {
-        // Distributed Physical points are shared with Combat points
-        distributedSkillsPoints = getDistributedSkillsPoints(this.props.skills, "combat") + getDistributedSkillsPoints(this.props.skills, "physical")
 
-        if (key === "combat") {
+        if (key === "physical") {
+          // Distributed Combat points - check if points are "above combat", and if so, add to Physical distributed points
+          let distributedSkillsPointsCombat = getDistributedSkillsPoints(this.props.skills, "combat") - availablePoints.get("combat")
+
+          if (distributedSkillsPointsCombat < 0) {
+            distributedSkillsPointsCombat = 0
+          }
+          distributedSkillsPoints = distributedSkillsPointsCombat + getDistributedSkillsPoints(this.props.skills, "physical")
+        }
+
+        else if (key === "combat") {
+          // Distributed Physical points are shared with Combat points
+          distributedSkillsPoints = getDistributedSkillsPoints(this.props.skills, "combat") + getDistributedSkillsPoints(this.props.skills, "physical")
+
           // Combat points = (available Combat points) + (available Physical points)
           availableSkillsPoints += availablePoints.get("physical")
         }
