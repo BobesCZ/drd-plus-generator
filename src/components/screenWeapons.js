@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import translations from "../translations";
 import WeaponRow from "./WeaponRow";
+import getRomanizedNumber from "../helpers/getRomanizedNumber";
 // import PanelAutofill from "./PanelAutofill";
 import Navbar  from 'react-bootstrap/lib/Navbar';
 import tables from "../data/tables";
@@ -29,7 +30,7 @@ class ConnectedScreenWeapons extends React.Component {
   }
 
   render(props) {
-    let skills = this.props.skills.get('distributed')
+    let skills = this.props.skills.getIn(['distributed', 'combat'])
     let weapons = tables.weapons;
 
     return (
@@ -52,6 +53,11 @@ class ConnectedScreenWeapons extends React.Component {
             <Navbar expand="true">
               <div className="card-header">
                 {translations[key]}&nbsp;
+                {skills.get(key) > 0 &&
+                  <span>
+                    ({getRomanizedNumber(skills.get(key)) + "."})
+                  </span>
+                }
               </div>
 
               <Navbar.Toggle
