@@ -4,7 +4,7 @@ import getPreferredSkills from "../calculations/getPreferredSkills";
 import getRandomInteger from "../helpers/getRandomInteger";
 import changeSkill from "./changeSkill";
 
-const autofillScreenSkills = () => {
+const autofillScreenSkills = (autofillCombatSkills = false) => {
     let state = store.getState();
     let availablePoints = state.getIn(["character", "skills", "availablePoints"]);
     let skills = state.getIn(["character", "skills"]);
@@ -128,6 +128,46 @@ const autofillScreenSkills = () => {
                 }
             }
         })
+
+        // ONLY FOR TESTING
+        // Choose first combat skills with type "fightWithWeapon" and continue to next until all points are assigned
+        if (autofillCombatSkills) {
+
+            let pointsLeft = currentAvailablePointsArray["combat"] + currentAvailablePointsArray["physical"];
+            let allCombatSkills = [
+                "knives",
+                "axes",
+                "sabers",
+                "swords",
+                "maces",
+                "flails",
+                "spears",
+                "tridents",
+                "noWeapon",
+                "thrownWeapons"
+            ]
+
+            if (pointsLeft > 0) {
+
+                allCombatSkills.forEach((skillName) => {
+                    if (pointsLeft >= 3) {
+                        changeSkill(skillName, "combat", 3)
+                        pointsLeft -= 3
+                        // console.log(skillName, 3)
+                    }
+                    else if (pointsLeft >= 2) {
+                        changeSkill(skillName, "combat", 2)
+                        pointsLeft -= 2
+                        // console.log(skillName, 2)
+                    }
+                    else if (pointsLeft >= 1) {
+                        changeSkill(skillName, "combat", 1)
+                        pointsLeft -= 1
+                        // console.log(skillName, 1)
+                    }
+                })
+            }
+        }
 
     }
 

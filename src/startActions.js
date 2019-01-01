@@ -8,6 +8,7 @@ import resolveBackgroundAndChangeScreen from "./actionPackages/resolveBackground
 import changeScreen from "./actions/changeScreen";
 import calculateSheet from "./actionPackages/calculateSheet";
 import autofillScreenAbilities from "./actionPackages/autofillScreenAbilities";
+import autofillScreenSkills from "./actionPackages/autofillScreenSkills";
 import setSwitcher from "./actions/setSwitcher";
 
 export default function startActions() {
@@ -34,4 +35,8 @@ export default function startActions() {
 	store.dispatch( setSwitcher({key: "autoFillAbilities", value: true}) )
 	autofillScreenAbilities()
 	store.dispatch( changeScreen({active: "screenSkills"}) )
+
+	// Go to screen 5
+	autofillScreenSkills(true)
+	store.dispatch( changeScreen({active: "screenWeapons"}) )
 };
