@@ -60,7 +60,7 @@ class ConnectedPanelErrata extends React.Component {
       [4, 5, 6].forEach((degree) => {
         degreesArray[degree] = [];
 
-        ["weaponAttack", "cover", "weaponDamage"].forEach((key) => {
+        ["attackNumber", "cover", "damageNumber"].forEach((key) => {
           let value = getStringifiedNumber(tables.weaponSkillDegrees[degree][key])
           degreesArray[degree][key] = value
         })
@@ -74,16 +74,16 @@ class ConnectedPanelErrata extends React.Component {
                     <tbody>
                       <tr>
                         <th>{translations.degree}</th>
-                        <th>{translations.weaponAttack}</th>
+                        <th>{translations.attackNumber}</th>
                         <th>{translations.cover}</th>
-                        <th>{translations.weaponDamage}</th>
+                        <th>{translations.damageNumber}</th>
                       </tr>
                       {Object.keys(degreesArray).map(degree => (
                         <tr key={degree}>
                           <td>{getRomanizedNumber(degree)}.</td>
-                          <td>{degreesArray[degree]["weaponAttack"]}</td>
+                          <td>{degreesArray[degree]["attackNumber"]}</td>
                           <td>{degreesArray[degree]["cover"]}</td>
-                          <td>{degreesArray[degree]["weaponDamage"]}</td>
+                          <td>{degreesArray[degree]["damageNumber"]}</td>
                         </tr>
                       ))}
                     </tbody>

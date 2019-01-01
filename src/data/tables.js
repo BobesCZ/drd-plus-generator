@@ -461,13 +461,649 @@ const tables = {
     }
   },
   "weaponSkillDegrees": {
-    "0": { "weaponAttack":-3, "cover":-2, "weaponDamage":-1},
-    "1": { "weaponAttack":-2, "cover":-1, "weaponDamage":-1},
-    "2": { "weaponAttack":-1, "cover":-1, "weaponDamage":0},
-    "3": { "weaponAttack":0, "cover":0, "weaponDamage":0},
-    "4": { "weaponAttack":1, "cover":1, "weaponDamage":0},
-    "5": { "weaponAttack":2, "cover":1, "weaponDamage":1},
-    "6": { "weaponAttack":3, "cover":2, "weaponDamage":1}
+    "0": { "attackNumber":-3, "cover":-2, "damageNumber":-1},
+    "1": { "attackNumber":-2, "cover":-1, "damageNumber":-1},
+    "2": { "attackNumber":-1, "cover":-1, "damageNumber":0},
+    "3": { "attackNumber":0, "cover":0, "damageNumber":0},
+    "4": { "attackNumber":1, "cover":1, "damageNumber":0},
+    "5": { "attackNumber":2, "cover":1, "damageNumber":1},
+    "6": { "attackNumber":3, "cover":2, "damageNumber":1}
+  },
+    "weapons": {
+    "noWeapon": {
+      "hand": {
+        "hold": "onehanded",
+        "necessaryStrength": -10,
+        "length": 0,
+        "weaponAttack": 0,
+        "weaponDamage": -2,
+        "weaponCover": 0
+      },
+      "hobnailedGauntlet": {
+        "hold": "onehanded",
+        "necessaryStrength": -10,
+        "length": 0,
+        "weaponAttack": 0,
+        "weaponDamage": 0,
+        "weaponCover": 0
+      },
+      "combatGauntlet": {
+        "hold": "onehanded",
+        "necessaryStrength": -10,
+        "length": 0,
+        "weaponAttack": 0,
+        "weaponDamage": 3,
+        "weaponCover": 0
+      },
+      "foot": {
+        "hold": "onehanded",
+        "necessaryStrength": -10,
+        "length": 0,
+        "weaponAttack": -1,
+        "weaponDamage": 1,
+        "weaponCover": 0
+      },
+      "hobnailedBoot": {
+        "hold": "onehanded",
+        "necessaryStrength": -10,
+        "length": 0,
+        "weaponAttack": -2,
+        "weaponDamage": 4,
+        "weaponCover": 0
+      },
+      "body": {
+        "hold": "onehanded",
+        "necessaryStrength": -10,
+        "length": 0,
+        "weaponAttack": 0,
+        "weaponDamage": 3,
+        "weaponCover": 0
+      },
+      "head": {
+        "hold": "onehanded",
+        "necessaryStrength": -10,
+        "length": 0,
+        "weaponAttack": 0,
+        "weaponDamage": 0,
+        "weaponCover": 0
+      }
+    },
+    "knives": {
+      "knife": {
+        "hold": "onehanded",
+        "necessaryStrength": -4,
+        "length": 0,
+        "weaponAttack": 0,
+        "weaponDamage": -2,
+        "weaponCover": 1
+      },
+      "longKnife": {
+        "hold": "onehanded",
+        "necessaryStrength": -2,
+        "length": 1,
+        "weaponAttack": 1,
+        "weaponDamage": -1,
+        "weaponCover": 1
+      },
+      "dagger": {
+        "hold": "onehanded",
+        "necessaryStrength": -1,
+        "length": 0,
+        "weaponAttack": 0,
+        "weaponDamage": 1,
+        "weaponCover": 2
+      },
+      "stabDagger": {
+        "hold": "onehanded",
+        "necessaryStrength": -1,
+        "length": 0,
+        "weaponAttack": 2,
+        "weaponDamage": 0,
+        "weaponCover": 1
+      },
+      "curvedKnife": {
+        "hold": "onehanded",
+        "necessaryStrength": 0,
+        "length": 1,
+        "weaponAttack": 1,
+        "weaponDamage": 2,
+        "weaponCover": 1
+      },
+      "toothedDagger": {
+        "hold": "onehanded",
+        "necessaryStrength": 1,
+        "length": 0,
+        "weaponAttack": 1,
+        "weaponDamage": 3,
+        "weaponCover": 2
+      },
+      "longDagger": {
+        "hold": "onehanded",
+        "necessaryStrength": 1,
+        "length": 1,
+        "weaponAttack": 1,
+        "weaponDamage": 2,
+        "weaponCover": 2
+      },
+      "longToothedDagger": {
+        "hold": "onehanded",
+        "necessaryStrength": 3,
+        "length": 1,
+        "weaponAttack": 2,
+        "weaponDamage": 4,
+        "weaponCover": 2
+      }
+    },
+    "axes": {
+      "lightAxe": {
+        "hold": "onehanded",
+        "necessaryStrength": 3,
+        "length": 1,
+        "weaponAttack": 3,
+        "weaponDamage": 3,
+        "weaponCover": 2
+      },
+      "axe": {
+        "hold": "onehanded",
+        "necessaryStrength": 6,
+        "length": 2,
+        "weaponAttack": 3,
+        "weaponDamage": 5,
+        "weaponCover": 2
+      },
+      "warAxe": {
+        "hold": "onehanded",
+        "necessaryStrength": 9,
+        "length": 3,
+        "weaponAttack": 3,
+        "weaponDamage": 7,
+        "weaponCover": 3
+      },
+      "twohandedAxe": {
+        "hold": "onehanded",
+        "necessaryStrength": 12,
+        "length": 3,
+        "weaponAttack": 4,
+        "weaponDamage": 10,
+        "weaponCover": 3
+      },
+      "doublesidedAxe": {
+        "hold": "onehanded",
+        "necessaryStrength": 13,
+        "length": 3,
+        "weaponAttack": 4,
+        "weaponDamage": 11,
+        "weaponCover": 3
+      },
+      "doublesidedTwohandedAxe": {
+        "hold": "onehanded",
+        "necessaryStrength": 15,
+        "length": 3,
+        "weaponAttack": 4,
+        "weaponDamage": 13,
+        "weaponCover": 3
+      }
+    },
+    "sabers": {
+      "machete": {
+        "hold": "onehanded",
+        "necessaryStrength": 2,
+        "length": 1,
+        "weaponAttack": 2,
+        "weaponDamage": 2,
+        "weaponCover": 2
+      },
+      "fang": {
+        "hold": "onehanded",
+        "necessaryStrength": 3,
+        "length": 1,
+        "weaponAttack": 2,
+        "weaponDamage": 3,
+        "weaponCover": 3
+      },
+      "lightSaber": {
+        "hold": "onehanded",
+        "necessaryStrength": 3,
+        "length": 2,
+        "weaponAttack": 3,
+        "weaponDamage": 1,
+        "weaponCover": 3
+      },
+      "saber": {
+        "hold": "onehanded",
+        "necessaryStrength": 6,
+        "length": 2,
+        "weaponAttack": 4,
+        "weaponDamage": 4,
+        "weaponCover": 3
+      },
+      "toothedSaber": {
+        "hold": "onehanded",
+        "necessaryStrength": 8,
+        "length": 2,
+        "weaponAttack": 4,
+        "weaponDamage": 6,
+        "weaponCover": 3
+      },
+      "heavySaber": {
+        "hold": "onehanded",
+        "necessaryStrength": 9,
+        "length": 2,
+        "weaponAttack": 4,
+        "weaponDamage": 6,
+        "weaponCover": 4
+      },
+      "warSaber": {
+        "hold": "onehanded",
+        "necessaryStrength": 10,
+        "length": 2,
+        "weaponAttack": 4,
+        "weaponDamage": 8,
+        "weaponCover": 4
+      }
+    },
+    "swords": {
+      "shortSword": {
+        "hold": "onehanded",
+        "necessaryStrength": 2,
+        "length": 1,
+        "weaponAttack": 3,
+        "weaponDamage": 1,
+        "weaponCover": 4
+      },
+      "shortWideSword": {
+        "hold": "onehanded",
+        "necessaryStrength": 4,
+        "length": 1,
+        "weaponAttack": 3,
+        "weaponDamage": 3,
+        "weaponCover": 5
+      },
+      "wideSword": {
+        "hold": "onehanded",
+        "necessaryStrength": 6,
+        "length": 2,
+        "weaponAttack": 4,
+        "weaponDamage": 4,
+        "weaponCover": 5
+      },
+      "longSword": {
+        "hold": "onehanded",
+        "necessaryStrength": 7,
+        "length": 3,
+        "weaponAttack": 5,
+        "weaponDamage": 3,
+        "weaponCover": 5
+      },
+      "oneandahalfSword": {
+        "hold": "onehanded",
+        "necessaryStrength": 8,
+        "length": 2,
+        "weaponAttack": 5,
+        "weaponDamage": 5,
+        "weaponCover": 6
+      },
+      "barbarianSword": {
+        "hold": "onehanded",
+        "necessaryStrength": 10,
+        "length": 2,
+        "weaponAttack": 6,
+        "weaponDamage": 6,
+        "weaponCover": 5
+      },
+      "twohandedSword": {
+        "hold": "onehanded",
+        "necessaryStrength": 12,
+        "length": 3,
+        "weaponAttack": 5,
+        "weaponDamage": 9,
+        "weaponCover": 5
+      },
+      "fierySword": {
+        "hold": "onehanded",
+        "necessaryStrength": 14,
+        "length": 3,
+        "weaponAttack": 5,
+        "weaponDamage": 10,
+        "weaponCover": 5
+      },
+      "giantSword": {
+        "hold": "onehanded",
+        "necessaryStrength": 17,
+        "length": 4,
+        "weaponAttack": 6,
+        "weaponDamage": 12,
+        "weaponCover": 5
+      }
+    },
+    "maces": {
+      "baton": {
+        "hold": "onehanded",
+        "necessaryStrength": 1,
+        "length": 1,
+        "weaponAttack": 1,
+        "weaponDamage": 2,
+        "weaponCover": 1
+      },
+      "club": {
+        "hold": "onehanded",
+        "necessaryStrength": 3,
+        "length": 1,
+        "weaponAttack": 2,
+        "weaponDamage": 3,
+        "weaponCover": 2
+      },
+      "hobnailedClub": {
+        "hold": "onehanded",
+        "necessaryStrength": 5,
+        "length": 1,
+        "weaponAttack": 2,
+        "weaponDamage": 5,
+        "weaponCover": 2
+      },
+      "lightMace": {
+        "hold": "onehanded",
+        "necessaryStrength": 5,
+        "length": 2,
+        "weaponAttack": 3,
+        "weaponDamage": 4,
+        "weaponCover": 2
+      },
+      "heavyClub": {
+        "hold": "onehanded",
+        "necessaryStrength": 8,
+        "length": 2,
+        "weaponAttack": 3,
+        "weaponDamage": 7,
+        "weaponCover": 3
+      },
+      "mace": {
+        "hold": "onehanded",
+        "necessaryStrength": 8,
+        "length": 2,
+        "weaponAttack": 4,
+        "weaponDamage": 6,
+        "weaponCover": 3
+      },
+      "warHammer": {
+        "hold": "onehanded",
+        "necessaryStrength": 10,
+        "length": 3,
+        "weaponAttack": 5,
+        "weaponDamage": 7,
+        "weaponCover": 3
+      },
+      "twohandedClub": {
+        "hold": "onehanded",
+        "necessaryStrength": 11,
+        "length": 2,
+        "weaponAttack": 3,
+        "weaponDamage": 10,
+        "weaponCover": 2
+      },
+      "ironClub": {
+        "hold": "onehanded",
+        "necessaryStrength": 13,
+        "length": 2,
+        "weaponAttack": 3,
+        "weaponDamage": 13,
+        "weaponCover": 2
+      },
+      "heavySledge": {
+        "hold": "onehanded",
+        "necessaryStrength": 13,
+        "length": 3,
+        "weaponAttack": 4,
+        "weaponDamage": 11,
+        "weaponCover": 2
+      },
+      "warSledge": {
+        "hold": "onehanded",
+        "necessaryStrength": 15,
+        "length": 3,
+        "weaponAttack": 4,
+        "weaponDamage": 14,
+        "weaponCover": 2
+      },
+      "giantHammer": {
+        "hold": "onehanded",
+        "necessaryStrength": 16,
+        "length": 3,
+        "weaponAttack": 5,
+        "weaponDamage": 3,
+        "weaponCover": 3
+      }
+    },
+    "flails": {
+      "lightRingflail": {
+        "hold": "onehanded",
+        "necessaryStrength": 3,
+        "length": 2,
+        "weaponAttack": 2,
+        "weaponDamage": 3,
+        "weaponCover": 2
+      },
+      "ringflail": {
+        "hold": "onehanded",
+        "necessaryStrength": 7,
+        "length": 3,
+        "weaponAttack": 3,
+        "weaponDamage": 6,
+        "weaponCover": 3
+      },
+      "heavyRingflail": {
+        "hold": "onehanded",
+        "necessaryStrength": 11,
+        "length": 3,
+        "weaponAttack": 3,
+        "weaponDamage": 9,
+        "weaponCover": 3
+      },
+      "threeheadedRingflail": {
+        "hold": "onehanded",
+        "necessaryStrength": 13,
+        "length": 3,
+        "weaponAttack": 3,
+        "weaponDamage": 12,
+        "weaponCover": 3
+      },
+      "woodenflail": {
+        "hold": "Obouruční",
+        "necessaryStrength": 2,
+        "length": 4,
+        "weaponAttack": 2,
+        "weaponDamage": 4,
+        "weaponCover": 2
+      },
+      "flail": {
+        "hold": "Obouruční",
+        "necessaryStrength": 6,
+        "length": 4,
+        "weaponAttack": 3,
+        "weaponDamage": 8,
+        "weaponCover": 2
+      },
+      "hobnailedWoodenflail": {
+        "hold": "Obouruční",
+        "necessaryStrength": 7,
+        "length": 4,
+        "weaponAttack": 2,
+        "weaponDamage": 10,
+        "weaponCover": 2
+      },
+      "heavyFlail": {
+        "hold": "Obouruční",
+        "necessaryStrength": 11,
+        "length": 4,
+        "weaponAttack": 3,
+        "weaponDamage": 13,
+        "weaponCover": 2
+      },
+      "threeheadedWoodenflail": {
+        "hold": "Obouruční",
+        "necessaryStrength": 13,
+        "length": 4,
+        "weaponAttack": 4,
+        "weaponDamage": 15,
+        "weaponCover": 2
+      }
+    },
+    "spears": {
+      "lightStaff": {
+        "hold": "Obouruční",
+        "necessaryStrength": -1,
+        "length": 4,
+        "weaponAttack": 2,
+        "weaponDamage": 0,
+        "weaponCover": 3
+      },
+      "lightSpear": {
+        "hold": "Obouruční",
+        "necessaryStrength": 1,
+        "length": 3,
+        "weaponAttack": 3,
+        "weaponDamage": 2,
+        "weaponCover": 3
+      },
+      "hobnailedStaff": {
+        "hold": "Obouruční",
+        "necessaryStrength": 1,
+        "length": 4,
+        "weaponAttack": 2,
+        "weaponDamage": 2,
+        "weaponCover": 3
+      },
+      "heavyHobnailedStaff": {
+        "hold": "Obouruční",
+        "necessaryStrength": 2,
+        "length": 4,
+        "weaponAttack": 2,
+        "weaponDamage": 4,
+        "weaponCover": 3
+      },
+      "spear": {
+        "hold": "Obouruční",
+        "necessaryStrength": 3,
+        "length": 4,
+        "weaponAttack": 3,
+        "weaponDamage": 4,
+        "weaponCover": 3
+      },
+      "metalStaff": {
+        "hold": "Obouruční",
+        "necessaryStrength": 5,
+        "length": 4,
+        "weaponAttack": 2,
+        "weaponDamage": 7,
+        "weaponCover": 3
+      },
+      "longSpear": {
+        "hold": "Obouruční",
+        "necessaryStrength": 5,
+        "length": 5,
+        "weaponAttack": 3,
+        "weaponDamage": 6,
+        "weaponCover": 2
+      },
+      "steelLongStaff": {
+        "hold": "Obouruční",
+        "necessaryStrength": 7,
+        "length": 5,
+        "weaponAttack": 2,
+        "weaponDamage": 8,
+        "weaponCover": 3
+      },
+      "pike": {
+        "hold": "Obouruční",
+        "necessaryStrength": 7,
+        "length": 6,
+        "weaponAttack": 3,
+        "weaponDamage": 8,
+        "weaponCover": 2
+      },
+      "steelSpear": {
+        "hold": "Obouruční",
+        "necessaryStrength": 9,
+        "length": 5,
+        "weaponAttack": 3,
+        "weaponDamage": 10,
+        "weaponCover": 2
+      }
+    },
+    "tridents": {
+      "pitchfork": {
+        "hold": "Obouruční",
+        "necessaryStrength": 0,
+        "length": 3,
+        "weaponAttack": 2,
+        "weaponDamage": 2,
+        "weaponCover": 3
+      },
+      "lightGuisarme": {
+        "hold": "Obouruční",
+        "necessaryStrength": 2,
+        "length": 4,
+        "weaponAttack": 4,
+        "weaponDamage": 4,
+        "weaponCover": 3
+      },
+      "lightTrident": {
+        "hold": "Obouruční",
+        "necessaryStrength": 5,
+        "length": 4,
+        "weaponAttack": 3,
+        "weaponDamage": 6,
+        "weaponCover": 4
+      },
+      "halberd": {
+        "hold": "Obouruční",
+        "necessaryStrength": 6,
+        "length": 4,
+        "weaponAttack": 3,
+        "weaponDamage": 7,
+        "weaponCover": 3
+      },
+      "heavyGuisarme": {
+        "hold": "Obouruční",
+        "necessaryStrength": 7,
+        "length": 4,
+        "weaponAttack": 4,
+        "weaponDamage": 9,
+        "weaponCover": 3
+      },
+      "heavyTrident": {
+        "hold": "Obouruční",
+        "necessaryStrength": 9,
+        "length": 4,
+        "weaponAttack": 3,
+        "weaponDamage": 10,
+        "weaponCover": 4
+      },
+      "heavyHalberd": {
+        "hold": "Obouruční",
+        "necessaryStrength": 10,
+        "length": 4,
+        "weaponAttack": 3,
+        "weaponDamage": 12,
+        "weaponCover": 3
+      },
+      "warTrident": {
+        "hold": "Obouruční",
+        "necessaryStrength": 10,
+        "length": 4,
+        "weaponAttack": 5,
+        "weaponDamage": 10,
+        "weaponCover": 4
+      },
+      "warHalberd": {
+        "hold": "Obouruční",
+        "necessaryStrength": 13,
+        "length": 5,
+        "weaponAttack": 3,
+        "weaponDamage": 14,
+        "weaponCover": 3
+      }
+    }
   }
 }
 
