@@ -908,7 +908,7 @@ const tables = {
         "weaponCover": 3
       },
       "woodenflail": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 2,
         "length": 4,
         "weaponAttack": 2,
@@ -916,7 +916,7 @@ const tables = {
         "weaponCover": 2
       },
       "flail": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 6,
         "length": 4,
         "weaponAttack": 3,
@@ -924,7 +924,7 @@ const tables = {
         "weaponCover": 2
       },
       "hobnailedWoodenflail": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 7,
         "length": 4,
         "weaponAttack": 2,
@@ -932,7 +932,7 @@ const tables = {
         "weaponCover": 2
       },
       "heavyFlail": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 11,
         "length": 4,
         "weaponAttack": 3,
@@ -940,7 +940,7 @@ const tables = {
         "weaponCover": 2
       },
       "threeheadedWoodenflail": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 13,
         "length": 4,
         "weaponAttack": 4,
@@ -950,7 +950,7 @@ const tables = {
     },
     "spears": {
       "lightStaff": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": -1,
         "length": 4,
         "weaponAttack": 2,
@@ -958,7 +958,7 @@ const tables = {
         "weaponCover": 3
       },
       "lightSpear": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 1,
         "length": 3,
         "weaponAttack": 3,
@@ -966,7 +966,7 @@ const tables = {
         "weaponCover": 3
       },
       "hobnailedStaff": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 1,
         "length": 4,
         "weaponAttack": 2,
@@ -974,7 +974,7 @@ const tables = {
         "weaponCover": 3
       },
       "heavyHobnailedStaff": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 2,
         "length": 4,
         "weaponAttack": 2,
@@ -982,7 +982,7 @@ const tables = {
         "weaponCover": 3
       },
       "spear": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 3,
         "length": 4,
         "weaponAttack": 3,
@@ -990,7 +990,7 @@ const tables = {
         "weaponCover": 3
       },
       "metalStaff": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 5,
         "length": 4,
         "weaponAttack": 2,
@@ -998,7 +998,7 @@ const tables = {
         "weaponCover": 3
       },
       "longSpear": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 5,
         "length": 5,
         "weaponAttack": 3,
@@ -1006,7 +1006,7 @@ const tables = {
         "weaponCover": 2
       },
       "steelLongStaff": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 7,
         "length": 5,
         "weaponAttack": 2,
@@ -1014,7 +1014,7 @@ const tables = {
         "weaponCover": 3
       },
       "pike": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 7,
         "length": 6,
         "weaponAttack": 3,
@@ -1022,7 +1022,7 @@ const tables = {
         "weaponCover": 2
       },
       "steelSpear": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 9,
         "length": 5,
         "weaponAttack": 3,
@@ -1032,7 +1032,7 @@ const tables = {
     },
     "tridents": {
       "pitchfork": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 0,
         "length": 3,
         "weaponAttack": 2,
@@ -1040,7 +1040,7 @@ const tables = {
         "weaponCover": 3
       },
       "lightGuisarme": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 2,
         "length": 4,
         "weaponAttack": 4,
@@ -1048,7 +1048,7 @@ const tables = {
         "weaponCover": 3
       },
       "lightTrident": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 5,
         "length": 4,
         "weaponAttack": 3,
@@ -1056,7 +1056,7 @@ const tables = {
         "weaponCover": 4
       },
       "halberd": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 6,
         "length": 4,
         "weaponAttack": 3,
@@ -1064,7 +1064,7 @@ const tables = {
         "weaponCover": 3
       },
       "heavyGuisarme": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 7,
         "length": 4,
         "weaponAttack": 4,
@@ -1072,7 +1072,7 @@ const tables = {
         "weaponCover": 3
       },
       "heavyTrident": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 9,
         "length": 4,
         "weaponAttack": 3,
@@ -1080,7 +1080,7 @@ const tables = {
         "weaponCover": 4
       },
       "heavyHalberd": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 10,
         "length": 4,
         "weaponAttack": 3,
@@ -1088,7 +1088,7 @@ const tables = {
         "weaponCover": 3
       },
       "warTrident": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 10,
         "length": 4,
         "weaponAttack": 5,
@@ -1096,7 +1096,7 @@ const tables = {
         "weaponCover": 4
       },
       "warHalberd": {
-        "hold": "Obouruční",
+        "hold": "twohanded",
         "necessaryStrength": 13,
         "length": 5,
         "weaponAttack": 3,

@@ -287,6 +287,17 @@
 	"heavyHalberd": "Těžká halapartna",
 	"warTrident": "Bitevní trojzubec",
 	"warHalberd": "Válečná halapartna",
+	"weapon": "Zbraň",
+	"hold": "Držení",
+	"onehanded": "Jednoruční",
+	"twohanded": "Obouruční",
+	"necessaryStrength": "Potř. síla",
+	"length": "Délka",
+	"weaponAttack": "Útoč.",
+	"weaponDamage": "Zran.",
+	"weaponPanelHeader": "Zbraně pro boj zblízka",
+	"weaponPanelLi1": "Při kliknutí na jednoruční zbraň se automaticky doplní i obouruční držení. ",
+	"weaponPanelLi2": "Zbraně, u kterých získáš postih za chybějící sílu, jsou vypsány světlejším písmem.",
 };
 
 export default translations;

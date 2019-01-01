@@ -1,13 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import store from "../store/index";
 import translations from "../translations";
-import SkillsRow from "./SkillsRow";
-import PanelErrata from "./PanelErrata";
-import PanelAutofill from "./PanelAutofill";
-import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
-import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
-import getDistributedSkillsPoints from "../calculations/getDistributedSkillsPoints";
+import WeaponRow from "./WeaponRow";
+// import PanelAutofill from "./PanelAutofill";
 import Navbar  from 'react-bootstrap/lib/Navbar';
 import tables from "../data/tables";
 
@@ -21,8 +16,6 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (state) => {
   return {
     info: state.getIn(['character', 'info']),
-    background: state.getIn(['character', 'background']),
-    levels: state.getIn(['character', 'levels']),
     skills: state.getIn(['character', 'skills']),
   };
 };
@@ -37,22 +30,24 @@ class ConnectedScreenWeapons extends React.Component {
 
   render(props) {
     let skills = this.props.skills.get('distributed')
+    let weapons = tables.weapons;
 
     return (
       <form>
 
         <div className="card bg-light mb-4">
           <div className="card-header">
-            {translations.skillsPanelHeader}
+            {translations.weaponPanelHeader}
           </div>
           <div className="card-body">
-            <div className="mb-4">
-              {translations.skillsPanelBody}
-            </div>
+            <ul>
+              <li>{translations.weaponPanelLi1}</li>
+              <li>{translations.weaponPanelLi2}</li>
+            </ul>
           </div>
         </div>
 
-        {skills.keySeq().map(key => (
+        {Object.keys(weapons).map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
             <Navbar expand="true">
               <div className="card-header">
@@ -60,21 +55,30 @@ class ConnectedScreenWeapons extends React.Component {
               </div>
 
               <Navbar.Toggle
-                aria-controls={'skills' + key}
+                aria-controls={'weapons' + key}
                 children={
                   <i className="fas fa-chevron-circle-down"></i>
                 }
               />
 
-              <Navbar.Collapse id={'skills' + key}>
+              <Navbar.Collapse id={'weapons' + key}>
 
               <div className="card-body">
-                <table className="table">
+                <table className="table weapon-table">
                   <tbody>
+                    <tr>
+                      <th>{translations.weapon}</th>
+                      <th>{translations.necessaryStrength}</th>
+                      <th>{translations.length}</th>
+                      <th>{translations.weaponAttack}</th>
+                      <th>{translations.weaponDamage}</th>
+                      <th>{translations.cover}</th>
+                      <th></th>
+                    </tr>
 
-                    {skills.get(key).keySeq().map(skillName => (
+                    {Object.keys(weapons[key]).map(weaponName => (
 
-                      <SkillsRow key={skillName} skillName={skillName} skillType={key} currentAvailablePoints="0" />
+                      <WeaponRow key={weaponName} weaponName={weaponName} weaponType={key} />
 
                     ))}
 
