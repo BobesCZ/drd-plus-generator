@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
@@ -15,6 +15,7 @@ import isAbilityOnRaceLimit from "../calculations/isAbilityOnRaceLimit";
 import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
 import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
 import getDistributedSkillsPoints from "../calculations/getDistributedSkillsPoints";
+import getWeaponNumbers from "../calculations/getWeaponNumbers";
 import initialState from "./initialState";
 
 const rootReducer = (state = initialState, action) => {
@@ -533,6 +534,24 @@ const rootReducer = (state = initialState, action) => {
         var value = action.payload.value
 
         return state.setIn(["character", "skills", "distributed", skillType, skillName], parseInt(value))
+
+      case "ADD_WEAPON":
+        var weaponName = action.payload.weaponName
+        var weaponType = action.payload.weaponType
+        var skillDegree = state.getIn(["character", "skills", "distributed", "combat", weaponType])
+        var combatSpeed = state.getIn(["character", "combatParameters", "combatSpeed"])
+        var attack = state.getIn(["character", "combatParameters", "attack"])
+        var defense = state.getIn(["character", "combatParameters", "defense"])
+        var charStrength = state.getIn(["character", "abilities", "strength"])
+
+        // Returns Map with weapon numbers
+        var weaponObject = getWeaponNumbers(weaponName, weaponType, false, skillDegree, combatSpeed, attack, defense, charStrength)
+
+        // get Map with all weapons and add new weapon under weaponName key
+        var weaponStateObject = state.getIn(["character", "weapons"])
+        weaponStateObject = weaponStateObject.set(weaponName, weaponObject)
+
+        return state.setIn(["character", "weapons"], weaponStateObject)
 
       default:
         return state;

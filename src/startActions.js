@@ -10,13 +10,14 @@ import calculateSheet from "./actionPackages/calculateSheet";
 import autofillScreenAbilities from "./actionPackages/autofillScreenAbilities";
 import autofillScreenSkills from "./actionPackages/autofillScreenSkills";
 import setSwitcher from "./actions/setSwitcher";
+import addWeapon from "./actions/addWeapon";
 
 export default function startActions() {
 
 	// Set initial values at screenCharacter
 	store.dispatch( changeInfo({ key: "race", value: "human"}) )
 	store.dispatch( changeInfo({ key: "class", value: "warrior"}) )
-	store.dispatch( changeInfo({ key: "level", value: "3"}) )
+	store.dispatch( changeInfo({ key: "level", value: "6"}) )
 	store.dispatch( changeInfo({ key: "sex", value: "male"}) )
 	resetLevels()
 
@@ -39,4 +40,6 @@ export default function startActions() {
 	// Go to screen 5
 	autofillScreenSkills(true)
 	store.dispatch( changeScreen({active: "screenWeapons"}) )
+	store.dispatch( addWeapon({weaponName: "axe", weaponType: "axes"}) )
+	store.dispatch( addWeapon({weaponName: "pike", weaponType: "spears"}) )
 };

@@ -93,7 +93,9 @@ const initialState = fromJS(
           "psychical": {},
           "combined": {}
         }
-      }
+      },
+      // Weapons object are inserted as Map via addWeapon
+      "weapons": {}
     },
     "activeScreen": "screenCharacter",
     "screens": {

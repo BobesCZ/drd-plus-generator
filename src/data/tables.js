@@ -469,7 +469,7 @@ const tables = {
     "5": { "attackNumber":2, "cover":1, "damageNumber":1},
     "6": { "attackNumber":3, "cover":2, "damageNumber":1}
   },
-    "weapons": {
+  "weapons": {
     "noWeapon": {
       "hand": {
         "hold": "onehanded",
@@ -1104,7 +1104,81 @@ const tables = {
         "weaponCover": 3
       }
     }
-  }
+  },
+  "missingStrengthOnWeapon": {
+    "0": {
+      "combatSpeedNumber":0,
+      "attackNumber":0,
+      "defenseNumber":0,
+      "damageNumber":0
+    },
+    "1": {
+      "combatSpeedNumber":-1,
+      "attackNumber":0,
+      "defenseNumber":0,
+      "damageNumber":0
+    },
+    "2": {
+      "combatSpeedNumber":-1,
+      "attackNumber":-1,
+      "defenseNumber":0,
+      "damageNumber":0
+    },
+    "3": {
+      "combatSpeedNumber":-2,
+      "attackNumber":-1,
+      "defenseNumber":-1,
+      "damageNumber":0
+    },
+    "4": {
+      "combatSpeedNumber":-2,
+      "attackNumber":-2,
+      "defenseNumber":-1,
+      "damageNumber":-1
+    },
+    "5": {
+      "combatSpeedNumber":-3,
+      "attackNumber":-2,
+      "defenseNumber":-2,
+      "damageNumber":-1
+    },
+    "6": {
+      "combatSpeedNumber":-3,
+      "attackNumber":-3,
+      "defenseNumber":-2,
+      "damageNumber":-2
+    },
+    "7": {
+      "combatSpeedNumber":-4,
+      "attackNumber":-3,
+      "defenseNumber":-3,
+      "damageNumber":-2
+    },
+    "8": {
+      "combatSpeedNumber":-4,
+      "attackNumber":-4,
+      "defenseNumber":-3,
+      "damageNumber":-3
+    },
+    "9": {
+      "combatSpeedNumber":-5,
+      "attackNumber":-4,
+      "defenseNumber":-4,
+      "damageNumber":-3
+    },
+    "10": {
+      "combatSpeedNumber":-5,
+      "attackNumber":-5,
+      "defenseNumber":-4,
+      "damageNumber":-4
+    },
+    "11": {
+      "combatSpeedNumber":-100,
+      "attackNumber":-100,
+      "defenseNumber":-100,
+      "damageNumber":-100
+    }
+  },
 }
 
 export default tables;

@@ -1,9 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-// import changeSkill from "../actionPackages/changeSkill";
+import addWeapon from "../actions/addWeapon";
 import getStringifiedNumber from "../helpers/getStringifiedNumber";
 import translations from "../translations";
 import tables from "../data/tables";
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addWeapon: item => dispatch(addWeapon(item)),
+  };
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -20,10 +26,17 @@ class ConnectedWeaponRow extends React.Component {
   }
 
   handleButtonClick(event) {
-    const target = event.target;
+    let target = event.target;
+
+     // Target can be span with icon inside button
+    if (target.nodeName !== "BUTTON") {
+      target = target.closest('button')
+    }
+
     const value = target.value;
     const weaponName = target.name;
-    // changeSkill(weaponName, skillType, value)
+    const weaponType = target.getAttribute('data-type');
+    this.props.addWeapon({ weaponName, weaponType});
   }
 
   render(props) {
@@ -58,6 +71,6 @@ class ConnectedWeaponRow extends React.Component {
   }
 }
 
-const WeaponRow = connect(mapStateToProps)(ConnectedWeaponRow);
+const WeaponRow = connect(mapStateToProps, mapDispatchToProps)(ConnectedWeaponRow);
 
 export default WeaponRow;
