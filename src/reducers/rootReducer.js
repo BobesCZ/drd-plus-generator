@@ -538,20 +538,47 @@ const rootReducer = (state = initialState, action) => {
       case "ADD_WEAPON":
         var weaponName = action.payload.weaponName
         var weaponType = action.payload.weaponType
-        var skillDegree = state.getIn(["character", "skills", "distributed", "combat", weaponType])
+
+        // get Map with all weapons and add new weapon under weaponName key
+        var weaponStateObject = state.getIn(["character", "weapons"])
+        var weaponExists = weaponStateObject.has(weaponName)
+        // console.log(weaponExists)
+
+        if (!weaponExists) {
+          // Create temp object for calculateWeapons (that function replace it with object with calculated numbers)
+          var weaponObject = Map({"hold": Map({"weaponType": weaponType})})
+          weaponStateObject = weaponStateObject.set(weaponName, weaponObject)
+        }
+
+        return state.setIn(["character", "weapons"], weaponStateObject)
+
+      case "CALCULATE_WEAPONS":
+        // get Map with all weapons
+        var weaponStateObject = state.getIn(["character", "weapons"])
+        var newWeaponStateObject = Map()
+
         var combatSpeed = state.getIn(["character", "combatParameters", "combatSpeed"])
         var attack = state.getIn(["character", "combatParameters", "attack"])
         var defense = state.getIn(["character", "combatParameters", "defense"])
         var charStrength = state.getIn(["character", "abilities", "strength"])
 
-        // Returns Map with weapon numbers
-        var weaponObject = getWeaponNumbers(weaponName, weaponType, false, skillDegree, combatSpeed, attack, defense, charStrength)
+        // Iterate through weapon names
+        weaponStateObject.mapKeys((weaponName) => {
 
-        // get Map with all weapons and add new weapon under weaponName key
-        var weaponStateObject = state.getIn(["character", "weapons"])
-        weaponStateObject = weaponStateObject.set(weaponName, weaponObject)
+          // Iterate through weapon holds
+          weaponStateObject.get(weaponName).mapKeys((weaponHold) => {
+            var weaponType = weaponStateObject.getIn([weaponName, weaponHold, "weaponType"])
+            var skillDegree = state.getIn(["character", "skills", "distributed", "combat", weaponType])
 
-        return state.setIn(["character", "weapons"], weaponStateObject)
+            // Returns Map with weapon numbers
+            var weaponObject = getWeaponNumbers(weaponName, weaponType, false, skillDegree, combatSpeed, attack, defense, charStrength)
+            var weaponHold = weaponObject.get("hold")
+
+            newWeaponStateObject = newWeaponStateObject.setIn([weaponName, weaponHold], weaponObject)
+          })
+        })
+
+        return state.setIn(["character", "weapons"], newWeaponStateObject)
 
       default:
         return state;

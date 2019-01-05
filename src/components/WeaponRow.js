@@ -1,15 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import addWeapon from "../actions/addWeapon";
+import changeWeapon from "../actionPackages/changeWeapon";
 import getStringifiedNumber from "../helpers/getStringifiedNumber";
 import translations from "../translations";
 import tables from "../data/tables";
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addWeapon: item => dispatch(addWeapon(item)),
-  };
-};
 
 const mapStateToProps = (state) => {
   return {
@@ -36,7 +30,7 @@ class ConnectedWeaponRow extends React.Component {
     const value = target.value;
     const weaponName = target.name;
     const weaponType = target.getAttribute('data-type');
-    this.props.addWeapon({ weaponName, weaponType});
+    changeWeapon(weaponName, weaponType, "ADD")
   }
 
   render(props) {
@@ -71,6 +65,6 @@ class ConnectedWeaponRow extends React.Component {
   }
 }
 
-const WeaponRow = connect(mapStateToProps, mapDispatchToProps)(ConnectedWeaponRow);
+const WeaponRow = connect(mapStateToProps)(ConnectedWeaponRow);
 
 export default WeaponRow;

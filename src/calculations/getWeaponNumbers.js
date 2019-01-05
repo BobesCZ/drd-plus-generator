@@ -18,6 +18,9 @@ const getWeaponNumbers = (weaponName, weaponType, twohandedHold, skillDegree, co
     let results = Map({});
   	let weapon = tables.weapons[weaponType][weaponName];
 
+    // Add info about weaponType
+    results = results.set("weaponType", weaponType)
+
     // Character hold onehaned weapon with two hands
     let twohandedCorrection = false
 
