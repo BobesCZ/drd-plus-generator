@@ -1,4 +1,4 @@
-import { fromJS, Map } from 'immutable';
+import { fromJS, Map, OrderedMap } from 'immutable';
 import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
@@ -569,7 +569,7 @@ const rootReducer = (state = initialState, action) => {
       case "CALCULATE_WEAPONS":
         // get Map with all weapons
         var weaponStateObject = state.getIn(["character", "weapons"])
-        var newWeaponStateObject = Map()
+        var newWeaponStateObject = OrderedMap()
 
         var combatSpeed = state.getIn(["character", "combatParameters", "combatSpeed"])
         var attack = state.getIn(["character", "combatParameters", "attack"])

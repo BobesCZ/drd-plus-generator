@@ -4,9 +4,8 @@ import removeWeapon from "../actions/removeWeapon";
 import calculateWeapons from "../actions/calculateWeapons";
 
 const changeWeapon = (weaponName, weaponType, action) => {
-	console.log(weaponName, weaponType, action)
 
-	// Change value in store
+	// Do action with weapon
 	if (action === "ADD") {
 		store.dispatch( addWeapon({ weaponName, weaponType}) )
 	}
@@ -14,7 +13,7 @@ const changeWeapon = (weaponName, weaponType, action) => {
 		store.dispatch( removeWeapon({weaponName}) )
 	}
 
-	// Resolve screen
+	// calculate all weapons
 	store.dispatch( calculateWeapons({}) )
 };
 

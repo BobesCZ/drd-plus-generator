@@ -1,8 +1,7 @@
-// https://www.valentinog.com/blog/react-redux-tutorial-beginners/
-
 import React from "react";
 import { Provider, connect } from "react-redux";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
+import getStringifiedNumber from "../helpers/getStringifiedNumber";
 import translations from "../translations";
 import tables from "../data/tables";
 
@@ -14,6 +13,7 @@ const mapStateToProps = (state) => {
     derivedAbilities: state.getIn(['character', 'derivedAbilities']),
     combatParameters: state.getIn(['character', 'combatParameters']),
     skills: state.getIn(['character', 'skills', 'distributed']),
+    weapons: state.getIn(['character', 'weapons']),
   };
 };
 
@@ -29,6 +29,7 @@ class ConnectedSheets extends React.Component {
     let charRace = this.props.info.get('race');
     let charNote = tables.derivedAbilities[charRace]["note"].length ? tables.derivedAbilities[charRace]["note"] : false;
     let skills = this.props.skills;
+    let weapons = this.props.weapons;
 
     for (var i=1; i <= 50; i++) {
       let active = i <= charHealth ? true : false;
@@ -86,6 +87,14 @@ class ConnectedSheets extends React.Component {
     else {
       skillsArrayColumns[0] = skillsArray
     }
+
+    let weaponsArray = []
+    weapons.keySeq().forEach((weaponName) => {
+
+      weapons.get(weaponName).forEach((weaponObject) => {
+        weaponsArray.push(weaponObject)
+      })
+    })
 
     return (
       <div className="character-sheet panel panel-default">
@@ -260,6 +269,39 @@ class ConnectedSheets extends React.Component {
                 </div>
               )}
 
+            </div>
+          }
+
+          {weaponsArray.length > 0 &&
+            <div className="row">
+              <div className="col-12">
+                <table className="table weapon-table weapon-table-sheet">
+                  <tbody>
+                    <tr>
+                      <th>{translations["weapon"]}</th>
+                      <th>{translations["hold"]}</th>
+                      <th>{translations["combatSpeedNumber"]}</th>
+                      <th>{translations["attackNumber"]}</th>
+                      <th>{translations["damageNumber"]}</th>
+                      <th>{translations["defenseNumber"]}</th>
+                      <th>{translations["cover"]}</th>
+                    </tr>
+
+                    {Object.keys(weaponsArray).map(key =>
+                      <tr key={key}>
+                        <td>{translations[weaponsArray[key].get("weaponName")]}</td>
+                        <td>{translations[weaponsArray[key].get("hold")]}</td>
+                        <td>{weaponsArray[key].get("combatSpeedNumber")}</td>
+                        <td>{weaponsArray[key].get("attackNumber")}</td>
+                        <td>{getStringifiedNumber(weaponsArray[key].get("damageNumber"))}</td>
+                        <td>{weaponsArray[key].get("defenseNumber")}</td>
+                        <td>{weaponsArray[key].get("cover")}</td>
+                      </tr>
+                    )}
+
+                  </tbody>
+                </table>
+              </div>
             </div>
           }
 
