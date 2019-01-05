@@ -290,7 +290,7 @@ class ConnectedSheets extends React.Component {
                     {Object.keys(weaponsArray).map(key =>
                       <tr key={key}>
                         <td>{translations[weaponsArray[key].get("weaponName")]}</td>
-                        <td>{translations[weaponsArray[key].get("hold")]}</td>
+                        <td>{translations[weaponsArray[key].get("hold") + "Abbr"]}</td>
                         <td>{weaponsArray[key].get("combatSpeedNumber")}</td>
                         <td>{weaponsArray[key].get("attackNumber")}</td>
                         <td>{getStringifiedNumber(weaponsArray[key].get("damageNumber"))}</td>

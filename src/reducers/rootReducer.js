@@ -591,7 +591,7 @@ const rootReducer = (state = initialState, action) => {
             newWeaponStateObject = newWeaponStateObject.setIn([weaponName, weaponHold], weaponObject)
 
             // For onehanded weapons add numbers with twohands hold
-            if (weaponHold === "onehanded") {
+            if (weaponHold === "onehanded" && weaponType !== "noWeapon") {
               weaponObject = getWeaponNumbers(weaponName, weaponType, true, skillDegree, combatSpeed, attack, defense, charStrength)
               weaponHold = weaponObject.get("hold")
 
