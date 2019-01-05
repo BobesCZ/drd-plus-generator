@@ -8,6 +8,7 @@ import tables from "../data/tables";
 const mapStateToProps = (state) => {
   return {
     abilities: state.getIn(['character', 'abilities']),
+    weapons: state.getIn(['character', 'weapons']),
   };
 };
 
@@ -30,7 +31,7 @@ class ConnectedWeaponRow extends React.Component {
     const value = target.value;
     const weaponName = target.name;
     const weaponType = target.getAttribute('data-type');
-    changeWeapon(weaponName, weaponType, "ADD")
+    changeWeapon(weaponName, weaponType, value)
   }
 
   render(props) {
@@ -38,6 +39,8 @@ class ConnectedWeaponRow extends React.Component {
     let weaponType = this.props.weaponType
     let weapons = tables.weapons;
     let charStrength = this.props.abilities.get('strength')
+    let weaponStateObject = this.props.weapons
+    let weaponExists = weaponStateObject.has(weaponName)
 
     return (
       <tr className={weapons[weaponType][weaponName]["necessaryStrength"] > charStrength ? 'text-black-50' : ''}>
@@ -50,13 +53,13 @@ class ConnectedWeaponRow extends React.Component {
         <td>
           <button
               type="button"
-              className={true ? 'btn btn-success' : 'btn btn-success'}
+              className={weaponExists ? 'btn btn-danger' : 'btn btn-success'}
               name={weaponName}
               data-type={weaponType}
               onClick={this.handleButtonClick}
-              value={true ? 0 : 1}
+              value={weaponExists ? "REMOVE" : "ADD"}
               >
-              <i className="fas fa-plus m-0"></i>
+              <i className={weaponExists ? 'fas fa-minus m-0' : 'fas fa-plus m-0'}></i>
             </button>
         </td>
       </tr>

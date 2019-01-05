@@ -552,6 +552,20 @@ const rootReducer = (state = initialState, action) => {
 
         return state.setIn(["character", "weapons"], weaponStateObject)
 
+      case "REMOVE_WEAPON":
+        var weaponName = action.payload.weaponName
+
+        // get Map with all weapons and remove weapon
+        var weaponStateObject = state.getIn(["character", "weapons"])
+        var weaponExists = weaponStateObject.has(weaponName)
+
+        if (weaponExists) {
+          // Delete key from Map
+          weaponStateObject = weaponStateObject.delete(weaponName)
+        }
+
+        return state.setIn(["character", "weapons"], weaponStateObject)
+
       case "CALCULATE_WEAPONS":
         // get Map with all weapons
         var weaponStateObject = state.getIn(["character", "weapons"])
