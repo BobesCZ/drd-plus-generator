@@ -18,6 +18,7 @@ const mapStateToProps = (state) => {
   return {
     info: state.getIn(['character', 'info']),
     skills: state.getIn(['character', 'skills']),
+    weapons: state.getIn(['character', 'weapons']),
   };
 };
 
@@ -32,6 +33,18 @@ class ConnectedScreenWeapons extends React.Component {
   render(props) {
     let skills = this.props.skills.getIn(['distributed', 'combat'])
     let weapons = tables.weapons;
+    let weaponStateObject = this.props.weapons;
+    let categoryHasWeaponInState = []
+
+    Object.keys(weapons).forEach((key) => {
+      categoryHasWeaponInState[key] = false
+
+      for (var weaponName in weapons[key]) {
+        if (weaponStateObject.has(weaponName)) {
+          categoryHasWeaponInState[key] = true
+        }
+      }
+    })
 
     return (
       <form>
@@ -51,12 +64,17 @@ class ConnectedScreenWeapons extends React.Component {
         {Object.keys(weapons).map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
             <Navbar expand="true">
-              <div className="card-header">
-                {translations[key]}&nbsp;
-                {skills.get(key) > 0 &&
+              <div className={categoryHasWeaponInState[key] ? "card-header alert-info" : "card-header"}>
+                {skills.get(key) == 0 &&
                   <span>
-                    ({getRomanizedNumber(skills.get(key)) + "."})
+                    {translations[key]}&nbsp;
                   </span>
+                }
+                {skills.get(key) > 0 &&
+                  <strong>
+                    {translations[key]}&nbsp;
+                    ({getRomanizedNumber(skills.get(key)) + "."})
+                  </strong>
                 }
               </div>
 
