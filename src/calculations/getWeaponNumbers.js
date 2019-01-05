@@ -33,7 +33,8 @@ const getWeaponNumbers = (weaponName, weaponType, twohandedHold, skillDegree, co
     }
 
     // @SOURCE: Chybějící síla
-    let missingStrength = parseInt(weapon["necessaryStrength"]) - charStrength
+    let missingStrengthTwohandedCorrection = twohandedCorrection ? 2 : 0
+    let missingStrength = parseInt(weapon["necessaryStrength"]) - charStrength - missingStrengthTwohandedCorrection
     if (missingStrength < 0 ) {
       missingStrength = 0
     }
