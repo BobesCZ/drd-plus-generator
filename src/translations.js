@@ -303,7 +303,7 @@
 	"weaponPanelLi1": "Při kliknutí na jednoruční zbraň se automaticky doplní i obouruční držení. ",
 	"weaponPanelLi2": "Zbraně, u kterých získáš postih za chybějící sílu, jsou vypsány světlejším písmem.",
 	"showCharNumbersInWeaponTableFalse": "Zobrazit parametry zbraní",
-	"showCharNumbersInWeaponTableTrue": "Zobrazit čísla postavy.",
+	"showCharNumbersInWeaponTableTrue": "Spočítat pro postavu",
 };
 
 export default translations;

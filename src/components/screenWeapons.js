@@ -54,6 +54,23 @@ class ConnectedScreenWeapons extends React.Component {
       }
     })
 
+    let columns = []
+
+    if (showCharNumbersInWeaponTable) {
+      columns.push( translations.combatSpeedNumber )
+      columns.push( translations.attackNumber )
+      columns.push( translations.damageNumber )
+      columns.push( translations.defenseNumber )
+      columns.push( translations.cover )
+    }
+    else {
+      columns.push( translations.necessaryStrength )
+      columns.push( translations.length )
+      columns.push( translations.weaponAttack )
+      columns.push( translations.weaponDamage )
+      columns.push( translations.cover )
+    }
+
     return (
       <form>
 
@@ -123,11 +140,11 @@ class ConnectedScreenWeapons extends React.Component {
                   <tbody>
                     <tr>
                       <th>{translations.weapon}</th>
-                      <th>{translations.necessaryStrength}</th>
-                      <th>{translations.length}</th>
-                      <th>{translations.weaponAttack}</th>
-                      <th>{translations.weaponDamage}</th>
-                      <th>{translations.cover}</th>
+                      <th>{columns[0]}</th>
+                      <th>{columns[1]}</th>
+                      <th>{columns[2]}</th>
+                      <th>{columns[3]}</th>
+                      <th>{columns[4]}</th>
                       <th></th>
                     </tr>
 
