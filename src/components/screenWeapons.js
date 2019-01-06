@@ -3,22 +3,21 @@ import { connect } from "react-redux";
 import translations from "../translations";
 import WeaponRow from "./WeaponRow";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
-// import PanelAutofill from "./PanelAutofill";
+import setSwitcher from "../actions/setSwitcher";
 import Navbar  from 'react-bootstrap/lib/Navbar';
 import tables from "../data/tables";
 
 const mapDispatchToProps = dispatch => {
   return {
-    // setBackground: item => dispatch(setBackground(item)),
-    // distributeBackground: item => dispatch(distributeBackground(item)),
+    setSwitcher: item => dispatch(setSwitcher(item)),
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    info: state.getIn(['character', 'info']),
     skills: state.getIn(['character', 'skills']),
     weapons: state.getIn(['character', 'weapons']),
+    switchers: state.get('switchers'),
   };
 };
 
@@ -27,7 +26,15 @@ class ConnectedScreenWeapons extends React.Component {
     super();
     this.state = {};
 
-    // this.handleChangeFormInput = this.handleChangeFormInput.bind(this);
+    this.handleChangeFormInput = this.handleChangeFormInput.bind(this);
+  }
+
+  handleChangeFormInput(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.props.setSwitcher({ key: name, value: value});
   }
 
   render(props) {
@@ -35,6 +42,7 @@ class ConnectedScreenWeapons extends React.Component {
     let weapons = tables.weapons;
     let weaponStateObject = this.props.weapons;
     let categoryHasWeaponInState = []
+    let showCharNumbersInWeaponTable = this.props.switchers.get('showCharNumbersInWeaponTable');
 
     Object.keys(weapons).forEach((key) => {
       categoryHasWeaponInState[key] = false
@@ -58,6 +66,29 @@ class ConnectedScreenWeapons extends React.Component {
               <li>{translations.weaponPanelLi1}</li>
               <li>{translations.weaponPanelLi2}</li>
             </ul>
+
+            <label className="switch-light">
+              <input
+                type="checkbox"
+                name="showCharNumbersInWeaponTable"
+                checked={showCharNumbersInWeaponTable}
+                onChange={this.handleChangeFormInput}
+              />
+
+              <span className="switch-light__inner">
+                <span className="switch-light__false">
+                  {translations.showCharNumbersInWeaponTableFalse}
+                </span>
+
+                <span className="switch-light__true">
+                  {translations.showCharNumbersInWeaponTableTrue}
+                </span>
+
+                <a className="btn btn-info"></a>
+              </span>
+
+            </label>
+
           </div>
         </div>
 

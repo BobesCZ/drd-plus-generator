@@ -118,7 +118,8 @@ const initialState = fromJS(
       "warriorHasAdditionalWeaponSkillsDegrees": false
     },
     "switchers": {
-      "autoFillAbilities": false
+      "autoFillAbilities": false,
+      "showCharNumbersInWeaponTable": false
     }
   }
 );
