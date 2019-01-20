@@ -230,19 +230,31 @@ class ConnectedSheets extends React.Component {
                 <tbody>
                   <tr>
                     <td>{translations.combatSpeed}</td>
-                    <td>{this.props.combatParameters.get('combatSpeed')}</td>
+                    <td>
+                      <DebugBox id="combatSpeed" />
+                      {this.props.combatParameters.get('combatSpeed')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.attack}</td>
-                    <td>{this.props.combatParameters.get('attack')}</td>
+                    <td>
+                      <DebugBox id="attack" />
+                      {this.props.combatParameters.get('attack')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.shoot}</td>
-                    <td>{this.props.combatParameters.get('shoot')}</td>
+                    <td>
+                      <DebugBox id="shoot" />
+                      {this.props.combatParameters.get('shoot')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.defense}</td>
-                    <td>{this.props.combatParameters.get('defense')}</td>
+                    <td>
+                      <DebugBox id="defense" />
+                      {this.props.combatParameters.get('defense')}
+                    </td>
                   </tr>
                 </tbody>
               </table>

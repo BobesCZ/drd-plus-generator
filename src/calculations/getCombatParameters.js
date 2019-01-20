@@ -1,7 +1,8 @@
 import tables from "../data/tables";
 import getDamageTableValue from "../helpers/getDamageTableValue";
+import { OrderedMap } from 'immutable';
 
-const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance) => {
+const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, returnDebugBox = false) => {
 
  if (
       charRace.length &&
@@ -14,6 +15,7 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
     )
   {
     let results = [];
+    let debugBox = {};
 
     // @SOURCE: Tabulka boje
     let combatSpeed = 0;
@@ -44,18 +46,43 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
         break;
     }
 
-    results["combatSpeed"] = combatSpeed + parseInt(tables.derivedAbilities[charRace]["combatSpeed"]);
+    let combatSpeedRaceCorrection = tables.derivedAbilities[charRace]["combatSpeed"]
+    results["combatSpeed"] = combatSpeed + parseInt(combatSpeedRaceCorrection);
+    var debugBoxObject = OrderedMap()
+    debugBoxObject = debugBoxObject.set("derivedAbilitiesBase", combatSpeed)
+    debugBoxObject = debugBoxObject.set("raceCorrection", parseInt(combatSpeedRaceCorrection))
+    debugBoxObject = debugBoxObject.set("total", parseInt(results["combatSpeed"]))
+    debugBox["combatSpeed"] = debugBoxObject
 
     // @SOURCE: Tabulka bojových charakteristik
     results["attack"] = Math.floor(dexterity / 2);
+    var debugBoxObject = OrderedMap()
+    debugBoxObject = debugBoxObject.set("derivedAbilitiesBase", results["attack"])
+    debugBoxObject = debugBoxObject.set("total", parseInt(results["attack"]))
+    debugBox["attack"] = debugBoxObject
+
     results["shoot"] = Math.round(dexterity / 2);
+    var debugBoxObject = OrderedMap()
+    debugBoxObject = debugBoxObject.set("derivedAbilitiesBase", results["shoot"])
+    debugBoxObject = debugBoxObject.set("total", parseInt(results["shoot"]))
+    debugBox["shoot"] = debugBoxObject
+
     results["defense"] = Math.floor(manualdexterity / 2);
+    var debugBoxObject = OrderedMap()
+    debugBoxObject = debugBoxObject.set("derivedAbilitiesBase", results["defense"])
+    debugBoxObject = debugBoxObject.set("total", parseInt(results["defense"]))
+    debugBox["defense"] = debugBoxObject
 
     // @SOURCE: Tabulka Meze zranění a únavy
     let healthNumber = resistance + 10;
     results["health"] = getDamageTableValue(healthNumber);
 
-    return results;
+    if (returnDebugBox) {
+      return debugBox;
+    }
+    else {
+      return results;
+    }
   }
   else {
     return false;
