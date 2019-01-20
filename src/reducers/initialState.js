@@ -120,7 +120,9 @@ const initialState = fromJS(
     "switchers": {
       "autoFillAbilities": false,
       "showCharNumbersInWeaponTable": false
-    }
+    },
+    // debugBox objects are inserted as Map via addDebugBox
+    "debugBoxes": {}
   }
 );
 

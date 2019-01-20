@@ -304,6 +304,10 @@
 	"weaponPanelLi2": "Zbraně, u kterých získáš postih za chybějící sílu, jsou vypsány světlejším písmem.",
 	"showCharNumbersInWeaponTableFalse": "Zobrazit parametry zbraní",
 	"showCharNumbersInWeaponTableTrue": "Spočítat pro postavu",
+	"debugBoxTitle": "přehled výpočtů",
+	"sexCorrection": "Opravy podle pohlaví",
+	"levelingAndBackground": "Zázemí a postup po úrovních",
+	"total": "Celkem",
 };
 
 export default translations;

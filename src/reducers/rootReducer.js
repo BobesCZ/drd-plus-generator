@@ -603,6 +603,16 @@ const rootReducer = (state = initialState, action) => {
 
         return state.setIn(["character", "weapons"], newWeaponStateObject)
 
+      case "ADD_DEBUG_BOX":
+        var id = action.payload.id
+        var content = action.payload.content
+
+        // get Map with all debugBoxes and add new box under id key
+        var debugBoxStateObject = state.get("debugBoxes")
+        debugBoxStateObject = debugBoxStateObject.set(id, content)
+
+        return state.set("debugBoxes", debugBoxStateObject)
+
       default:
         return state;
   	}

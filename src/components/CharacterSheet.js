@@ -1,5 +1,6 @@
 import React from "react";
 import { Provider, connect } from "react-redux";
+import DebugBox from "./DebugBox";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import getStringifiedNumber from "../helpers/getStringifiedNumber";
 import translations from "../translations";
@@ -124,27 +125,45 @@ class ConnectedSheets extends React.Component {
                 <tbody>
                   <tr>
                     <td>{translations.strength}</td>
-                    <td>{this.props.abilities.get('strength')}</td>
+                    <td>
+                      <DebugBox id="strength"/>
+                      {this.props.abilities.get('strength')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.dexterity}</td>
-                    <td>{this.props.abilities.get('dexterity')}</td>
+                    <td>
+                      <DebugBox id="dexterity" />
+                      {this.props.abilities.get('dexterity')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.manualdexterity}</td>
-                    <td>{this.props.abilities.get('manualdexterity')}</td>
+                    <td>
+                      <DebugBox id="manualdexterity" />
+                      {this.props.abilities.get('manualdexterity')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.will}</td>
-                    <td>{this.props.abilities.get('will')}</td>
+                    <td>
+                      <DebugBox id="will" />
+                      {this.props.abilities.get('will')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.intelligence}</td>
-                    <td>{this.props.abilities.get('intelligence')}</td>
+                    <td>
+                      <DebugBox id="intelligence" />
+                      {this.props.abilities.get('intelligence')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.charisma}</td>
-                    <td>{this.props.abilities.get('charisma')}</td>
+                    <td>
+                      <DebugBox id="charisma" />
+                      {this.props.abilities.get('charisma')}
+                    </td>
                   </tr>
                 </tbody>
               </table>
