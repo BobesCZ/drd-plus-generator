@@ -21,6 +21,11 @@ class ConnectedDebugBox extends React.Component {
     let debugBoxes = this.props.debugBoxes
     let debugBoxObject = debugBoxes.get(id)
 
+    // If debugBox doesn't exist in store, exit from component without returning any HTML
+    if (typeof(debugBoxObject) === "undefined") {
+      return(false);
+    }
+
     return (
       <OverlayTrigger
         trigger="hover"

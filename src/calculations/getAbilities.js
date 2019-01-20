@@ -13,7 +13,7 @@ const getAbilities = (charRace, charSex, charClass, levels, returnDebugBox = fal
     "charisma": "",
   };
 
-  var debugBox = {}
+  let debugBox = {}
 
   if (charRace.length && charSex.length && charClass.length && Map.isMap(levels)) {
     Object.keys(finalAbilities).forEach(key => {

@@ -308,6 +308,8 @@
 	"sexCorrection": "Opravy podle pohlaví",
 	"levelingAndBackground": "Zázemí a postup po úrovních",
 	"total": "Celkem",
+	"derivedAbilitiesBase": "Základ (podle hl. vlastností)",
+	"raceCorrection": "Oprava za rasu",
 };
 
 export default translations;

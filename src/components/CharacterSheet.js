@@ -174,31 +174,52 @@ class ConnectedSheets extends React.Component {
                 <tbody>
                   <tr>
                     <td>{translations.resistance}</td>
-                    <td>{this.props.derivedAbilities.get('resistance')}</td>
+                    <td>
+                      <DebugBox id="resistance" />
+                      {this.props.derivedAbilities.get('resistance')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.fortitude}</td>
-                    <td>{this.props.derivedAbilities.get('fortitude')}</td>
+                    <td>
+                      <DebugBox id="fortitude" />
+                      {this.props.derivedAbilities.get('fortitude')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.speed}</td>
-                    <td>{this.props.derivedAbilities.get('speed')}</td>
+                    <td>
+                      <DebugBox id="speed" />
+                      {this.props.derivedAbilities.get('speed')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.senses}</td>
-                    <td>{this.props.derivedAbilities.get('senses')}</td>
+                    <td>
+                      <DebugBox id="senses" />
+                      {this.props.derivedAbilities.get('senses')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.beauty}</td>
-                    <td>{this.props.derivedAbilities.get('beauty')}</td>
+                    <td>
+                      <DebugBox id="beauty" />
+                      {this.props.derivedAbilities.get('beauty')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.danger}</td>
-                    <td>{this.props.derivedAbilities.get('danger')}</td>
+                    <td>
+                      <DebugBox id="danger" />
+                      {this.props.derivedAbilities.get('danger')}
+                    </td>
                   </tr>
                   <tr>
                     <td>{translations.dignity}</td>
-                    <td>{this.props.derivedAbilities.get('dignity')}</td>
+                    <td>
+                      <DebugBox id="dignity" />
+                      {this.props.derivedAbilities.get('dignity')}
+                    </td>
                   </tr>
                 </tbody>
               </table>

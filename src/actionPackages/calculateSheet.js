@@ -4,6 +4,7 @@ import calculateDerivedAbilities from "../actions/calculateDerivedAbilities";
 import calculateCombatParameters from "../actions/calculateCombatParameters";
 import addDebugBox from "../actions/addDebugBox";
 import getAbilities from "../calculations/getAbilities";
+import getDerivedAbilities from "../calculations/getDerivedAbilities";
 
 const calculateSheet = () => {
 
@@ -22,6 +23,19 @@ const calculateSheet = () => {
 
  	Object.keys(finalAbilities).forEach((key) => {
 	    store.dispatch( addDebugBox({id: key, content: finalAbilities[key]}) )
+ 	})
+
+    var strength = state.getIn(["character", "abilities", "strength"]);
+    var dexterity = state.getIn(["character", "abilities", "dexterity"]);
+    var manualdexterity = state.getIn(["character", "abilities", "manualdexterity"]);
+    var will = state.getIn(["character", "abilities", "will"]);
+    var intelligence = state.getIn(["character", "abilities", "intelligence"]);
+    var charisma = state.getIn(["character", "abilities", "charisma"]);
+
+    var finalDerivedAbilities = getDerivedAbilities(charRace, strength, dexterity, manualdexterity, will, intelligence, charisma, true);
+
+	Object.keys(finalDerivedAbilities).forEach((key) => {
+	    store.dispatch( addDebugBox({id: key, content: finalDerivedAbilities[key]}) )
  	})
 
 };
