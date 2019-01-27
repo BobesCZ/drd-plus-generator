@@ -3,6 +3,7 @@ import calculateAbilities from "../actions/calculateAbilities";
 import calculateDerivedAbilities from "../actions/calculateDerivedAbilities";
 import calculateCombatParameters from "../actions/calculateCombatParameters";
 import addDebugBox from "../actions/addDebugBox";
+import calculateWeapons from "../actions/calculateWeapons";
 import getAbilities from "../calculations/getAbilities";
 import getDerivedAbilities from "../calculations/getDerivedAbilities";
 import getCombatParameters from "../calculations/getCombatParameters";
@@ -13,6 +14,7 @@ const calculateSheet = () => {
 	store.dispatch( calculateAbilities({}) )
 	store.dispatch( calculateDerivedAbilities({}) )
 	store.dispatch( calculateCombatParameters({}) )
+	store.dispatch( calculateWeapons({}) )
 
 	// Set debugBoxes - main abilities
 	let state = store.getState();
