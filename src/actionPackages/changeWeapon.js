@@ -1,7 +1,7 @@
 import store from "../store/index";
 import addWeapon from "../actions/addWeapon";
 import removeWeapon from "../actions/removeWeapon";
-import calculateWeapons from "../actions/calculateWeapons";
+import calculateSheet from "../actionPackages/calculateSheet";
 
 const changeWeapon = (weaponName, weaponType, action) => {
 
@@ -14,7 +14,7 @@ const changeWeapon = (weaponName, weaponType, action) => {
 	}
 
 	// calculate all weapons
-	store.dispatch( calculateWeapons({}) )
+	calculateSheet({})
 };
 
 export default changeWeapon;

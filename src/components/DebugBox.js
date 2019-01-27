@@ -26,12 +26,18 @@ class ConnectedDebugBox extends React.Component {
       return(false);
     }
 
+    let title = id
+    if (id.indexOf("_") > 0) {
+      // Id contains words separated by underscore - use only last word as title
+      title = id.split("_").pop()
+    }
+
     return (
       <OverlayTrigger
         trigger="hover"
         placement="left"
         overlay={
-          <Popover id={id} title={translations[id] + " - " + translations.debugBoxTitle}>
+          <Popover id={id} title={translations[title] + " - " + translations.debugBoxTitle}>
             <table className="table debug-box-table">
               <thead>
                 {debugBoxObject.keySeq().map(key => (

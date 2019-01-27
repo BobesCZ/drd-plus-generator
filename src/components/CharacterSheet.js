@@ -341,13 +341,32 @@ class ConnectedSheets extends React.Component {
 
                     {Object.keys(weaponsArray).map(key =>
                       <tr key={key}>
-                        <td>{translations[weaponsArray[key].get("weaponName")]}</td>
-                        <td>{translations[weaponsArray[key].get("hold") + "Abbr"]}</td>
-                        <td>{weaponsArray[key].get("combatSpeedNumber")}</td>
-                        <td>{weaponsArray[key].get("attackNumber")}</td>
-                        <td>{getStringifiedNumber(weaponsArray[key].get("damageNumber"))}</td>
-                        <td>{weaponsArray[key].get("defenseNumber")}</td>
-                        <td>{weaponsArray[key].get("cover")}</td>
+                        <td>
+                          {translations[weaponsArray[key].get("weaponName")]}
+                        </td>
+                        <td>
+                          {translations[weaponsArray[key].get("hold") + "Abbr"]}
+                        </td>
+                        <td>
+                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_combatSpeedNumber"} />
+                          {weaponsArray[key].get("combatSpeedNumber")}
+                        </td>
+                        <td>
+                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_attackNumber"} />
+                          {weaponsArray[key].get("attackNumber")}
+                        </td>
+                        <td>
+                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_damageNumber"} />
+                          {getStringifiedNumber(weaponsArray[key].get("damageNumber"))}
+                        </td>
+                        <td>
+                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_defenseNumber"} />
+                          {weaponsArray[key].get("defenseNumber")}
+                        </td>
+                        <td>
+                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_cover"} />
+                          {weaponsArray[key].get("cover")}
+                        </td>
                       </tr>
                     )}
 

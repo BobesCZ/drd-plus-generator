@@ -1,7 +1,7 @@
 import store from "../store/index";
 import setSkill from "../actions/setSkill";
-import calculateWeapons from "../actions/calculateWeapons";
 import resolveScreen from "../actions/resolveScreen";
+import calculateSheet from "../actionPackages/calculateSheet";
 
 const changeSkill = (skillName, skillType, value) => {
 
@@ -10,7 +10,7 @@ const changeSkill = (skillName, skillType, value) => {
 
 	if (skillType === "combat") {
 		// calculate all weapons
-		store.dispatch( calculateWeapons({}) )
+		calculateSheet({})
 	}
 
 	// Resolve screen

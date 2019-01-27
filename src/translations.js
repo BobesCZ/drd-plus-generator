@@ -297,7 +297,8 @@
 	"twohandedAbbr": "Obour.",
 	"necessaryStrength": "Potř. síla",
 	"length": "Délka",
-	"weaponAttack": "Útoč.",
+	"weaponAttack": "Útočnost zbraně",
+	"weaponAttackAbbr": "Útoč.",
 	"weaponDamage": "Zran.",
 	"weaponPanelHeader": "Zbraně pro boj zblízka",
 	"weaponPanelLi1": "Při kliknutí na jednoruční zbraň se automaticky doplní i obouruční držení. ",
@@ -310,6 +311,12 @@
 	"total": "Celkem",
 	"derivedAbilitiesBase": "Základ (podle hl. vlastností)",
 	"raceCorrection": "Oprava za rasu",
+	"weaponLength": "Délka zbraně",
+	"weaponCover": "Kryt zbraně",
+	"missingStrengthCorrection": "Oprava za chybějící sílu",
+	"missingSkillCorrection": "Oprava za stupeň dovednosti",
+	"damageNumberFromTable": "Průnik Síly a Zranění zbraně",
+	"twohandedCorrection": "Oprava za obouruční držení",
 };
 
 export default translations;

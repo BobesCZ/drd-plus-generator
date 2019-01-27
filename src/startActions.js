@@ -40,6 +40,7 @@ export default function startActions() {
 	// Go to screen 5
 	autofillScreenSkills(true)
 	store.dispatch( changeScreen({active: "screenWeapons"}) )
-	changeWeapon("axe", "axes", "ADD")
+	changeWeapon("hand", "noWeapon", "ADD")
+	changeWeapon("twohandedAxe", "axes", "ADD")
 	changeWeapon("pike", "spears", "ADD")
 };

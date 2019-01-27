@@ -66,7 +66,7 @@ class ConnectedScreenWeapons extends React.Component {
     else {
       columns.push( translations.necessaryStrength )
       columns.push( translations.length )
-      columns.push( translations.weaponAttack )
+      columns.push( translations.weaponAttackAbbr )
       columns.push( translations.weaponDamage )
       columns.push( translations.cover )
     }

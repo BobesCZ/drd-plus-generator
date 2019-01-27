@@ -1,4 +1,5 @@
 import store from "../store/index";
+import { Map, OrderedMap } from 'immutable';
 import calculateAbilities from "../actions/calculateAbilities";
 import calculateDerivedAbilities from "../actions/calculateDerivedAbilities";
 import calculateCombatParameters from "../actions/calculateCombatParameters";
@@ -7,6 +8,7 @@ import calculateWeapons from "../actions/calculateWeapons";
 import getAbilities from "../calculations/getAbilities";
 import getDerivedAbilities from "../calculations/getDerivedAbilities";
 import getCombatParameters from "../calculations/getCombatParameters";
+import getWeaponNumbers from "../calculations/getWeaponNumbers";
 
 const calculateSheet = () => {
 
@@ -49,6 +51,39 @@ const calculateSheet = () => {
 	Object.keys(finalCombatParameters).forEach((key) => {
 		store.dispatch( addDebugBox({id: key, content: finalCombatParameters[key]}) )
 	})
+
+	// Set debugBoxes - weapon numbers
+	var weaponStateObject = state.getIn(["character", "weapons"])
+    var combatSpeed = state.getIn(["character", "combatParameters", "combatSpeed"])
+    var attack = state.getIn(["character", "combatParameters", "attack"])
+    var defense = state.getIn(["character", "combatParameters", "defense"])
+    var charStrength = state.getIn(["character", "abilities", "strength"])
+
+    // Iterate through weapon names
+    weaponStateObject.mapKeys((weaponName) => {
+
+		// Twohanded weapon may be added automatically
+		let oneHold = weaponStateObject.getIn([weaponName, "onehanded"])
+		let twoHold = weaponStateObject.getIn([weaponName, "twohanded"])
+		let twohandedHoldIsAutomatic = Map.isMap(oneHold) && Map.isMap(twoHold)
+
+		// Iterate through weapon holds
+		weaponStateObject.get(weaponName).mapKeys((weaponHold) => {
+		var weaponType = weaponStateObject.getIn([weaponName, weaponHold, "weaponType"])
+		var skillDegree = state.getIn(["character", "skills", "distributed", "combat", weaponType])
+
+		// Returns Map with weapon numbers
+		var weaponHoldBool = weaponHold === "twohanded" && twohandedHoldIsAutomatic
+		var weaponObject = getWeaponNumbers(weaponName, weaponType, weaponHoldBool, skillDegree, combatSpeed, attack, defense, charStrength, true)
+
+		Object.keys(weaponObject).forEach((number) => {
+			let key = `${weaponName}_${weaponHold}_${number}`
+			if ( OrderedMap.isOrderedMap(weaponObject[number]) ) {
+				store.dispatch( addDebugBox({id: key, content: weaponObject[number]}) )
+			}
+		})
+      })
+    })
 };
 
 export default calculateSheet;
