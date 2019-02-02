@@ -154,6 +154,10 @@ class ConnectedPanelAutofill extends React.Component {
                 </div>
     }
 
+    else if (screen === "screenWeapons") {
+      content = translations.autoFillWeapons;
+    }
+
     return (
       <div className="card alert-success mb-4">
         <div className="card-header">

@@ -184,6 +184,22 @@ const rootReducer = (state = initialState, action) => {
 
         }
 
+        else if (active == "screenWeapons") {
+          var weapons = state.getIn(["character", "weapons"]);
+
+          if (weapons.size > 0)
+          {
+            // console.log("Screen screenWeapons is valid!");
+            return state.setIn(["screens", "screenWeapons"], 1)
+                        .setIn(["screens", "screenArmors"], 0)
+          }
+          else {
+            // console.log("Screen screenWeapons is not valid :-(");
+            return state.setIn(["screens", "screenWeapons"], 0)
+                        .setIn(["screens", "screenArmors"], -1)
+          }
+        }
+
         return state;
 
       case "AUTOFILL_SCREEN":

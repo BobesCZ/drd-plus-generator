@@ -9,6 +9,7 @@ import changeScreen from "./actions/changeScreen";
 import calculateSheet from "./actionPackages/calculateSheet";
 import autofillScreenAbilities from "./actionPackages/autofillScreenAbilities";
 import autofillScreenSkills from "./actionPackages/autofillScreenSkills";
+import autofillScreenWeapons from "./actionPackages/autofillScreenWeapons";
 import changeWeapon from "./actionPackages/changeWeapon";
 import setSwitcher from "./actions/setSwitcher";
 
@@ -40,7 +41,8 @@ export default function startActions() {
 	// Go to screen 5
 	autofillScreenSkills(true)
 	store.dispatch( changeScreen({active: "screenWeapons"}) )
-	changeWeapon("hand", "noWeapon", "ADD")
-	changeWeapon("twohandedAxe", "axes", "ADD")
-	changeWeapon("pike", "spears", "ADD")
+
+	// Go to screen 6
+	autofillScreenWeapons()
+	store.dispatch( changeScreen({active: "screenArmors"}) )
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import translations from "../translations";
 import WeaponRow from "./WeaponRow";
+import PanelAutofill from "./PanelAutofill";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import setSwitcher from "../actions/setSwitcher";
 import Navbar  from 'react-bootstrap/lib/Navbar';
@@ -162,6 +163,8 @@ class ConnectedScreenWeapons extends React.Component {
             </Navbar>
           </div>
         ))}
+
+        <PanelAutofill screen="screenWeapons"/>
 
       </form>
     )
