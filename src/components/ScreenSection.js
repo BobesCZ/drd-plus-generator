@@ -8,6 +8,7 @@ import ScreenBackground from "./ScreenBackground";
 import ScreenAbilities from "./ScreenAbilities";
 import ScreenSkills from "./ScreenSkills";
 import ScreenWeapons from "./ScreenWeapons";
+import ScreenArmors from "./ScreenArmors";
 
 const mapStateToProps = (state) => {
   return { active: state.get('activeScreen')};
@@ -41,6 +42,11 @@ class ConnectedScreenSection extends React.Component {
     else if (activeScreen == "screenWeapons")  {
       return (
         <ScreenWeapons />
+      )
+    }
+    else if (activeScreen == "screenArmors")  {
+      return (
+        <ScreenArmors />
       )
     }
     else {

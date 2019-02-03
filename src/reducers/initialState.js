@@ -95,7 +95,21 @@ const initialState = fromJS(
         }
       },
       // Weapons object are inserted as Map via addWeapon
-      "weapons": {}
+      "weapons": {},
+      "armors": {
+        "bodyArmors": {
+          "armorName": "",
+          "necessaryStrength": -10,
+          "limitation": 0,
+          "protection": 0,
+        },
+        "helmets": {
+          "armorName": "",
+          "necessaryStrength": -10,
+          "limitation": 0,
+          "protection": 0,
+        },
+      }
     },
     "activeScreen": "screenCharacter",
     "screens": {

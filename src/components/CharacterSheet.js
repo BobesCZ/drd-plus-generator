@@ -3,6 +3,7 @@ import { Provider, connect } from "react-redux";
 import DebugBox from "./DebugBox";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import getStringifiedNumber from "../helpers/getStringifiedNumber";
+import isTextInputFilled from "../helpers/isTextInputFilled";
 import translations from "../translations";
 import tables from "../data/tables";
 
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
     combatParameters: state.getIn(['character', 'combatParameters']),
     skills: state.getIn(['character', 'skills', 'distributed']),
     weapons: state.getIn(['character', 'weapons']),
+    armors: state.getIn(['character', 'armors']),
   };
 };
 
@@ -31,6 +33,7 @@ class ConnectedSheets extends React.Component {
     let charNote = tables.derivedAbilities[charRace]["note"].length ? tables.derivedAbilities[charRace]["note"] : false;
     let skills = this.props.skills;
     let weapons = this.props.weapons;
+    let armors = this.props.armors;
 
     for (var i=1; i <= 50; i++) {
       let active = i <= charHealth ? true : false;
@@ -95,6 +98,17 @@ class ConnectedSheets extends React.Component {
       weapons.get(weaponName).forEach((weaponObject) => {
         weaponsArray.push(weaponObject)
       })
+    })
+
+    let armorsArray = []
+
+    armors.keySeq().forEach((armorType) => {
+
+      let armorObject = armors.get(armorType)
+
+      if (isTextInputFilled(armorObject.get("armorName"))) {
+        armorsArray.push(armorObject)
+      }
     })
 
     return (
@@ -376,6 +390,42 @@ class ConnectedSheets extends React.Component {
             </div>
           }
 
+          {armorsArray.length > 0 &&
+            <div className="row">
+
+              <div className="col-12">
+                <table className="table armor-table">
+                  <tbody>
+                    <tr>
+                      <th>{translations["armor"]}</th>
+                      <th>{translations["armorHeightType"]}</th>
+                      <th>{translations["limitation"]}</th>
+                      <th>{translations["protection"]}</th>
+                    </tr>
+
+                    {Object.keys(armorsArray).map(key =>
+                      <tr key={key}>
+                        <td>
+                          {translations[armorsArray[key].get("armorName")]}
+                        </td>
+                        <td>
+                          -
+                        </td>
+                        <td>
+                          {armorsArray[key].get("limitation")}
+                        </td>
+                        <td>
+                          {armorsArray[key].get("protection")}
+                        </td>
+                      </tr>
+                    )}
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          }
 
         </div>
       </div>

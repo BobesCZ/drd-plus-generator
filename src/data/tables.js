@@ -1179,6 +1179,87 @@ const tables = {
       "damageNumber":-100
     }
   },
+  "armors": {
+    "bodyArmors": {
+      "noArmor": {
+        "necessaryStrength":-10,
+        "limitation":0,
+        "protection":0
+      },
+      "paddedArmor": {
+        "necessaryStrength":-3,
+        "limitation":0,
+        "protection":2
+      },
+      "leatherArmor": {
+        "necessaryStrength":0,
+        "limitation":0,
+        "protection":3
+      },
+      "patchworkArmor": {
+        "necessaryStrength":2,
+        "limitation":0,
+        "protection":4
+      },
+      "ringArmor": {
+        "necessaryStrength":4,
+        "limitation":-1,
+        "protection":6
+      },
+      "scaledArmor": {
+        "necessaryStrength":5,
+        "limitation":-2,
+        "protection":7
+      },
+      "platedArmor": {
+        "necessaryStrength":7,
+        "limitation":-3,
+        "protection":9
+      },
+      "fullPlatedArmor": {
+        "necessaryStrength":9,
+        "limitation":-4,
+        "protection":10
+      }
+    },
+    "helmets": {
+      "noHelmet": {
+        "necessaryStrength":-10,
+        "limitation":0,
+        "protection":0
+      },
+      "leatherCap": {
+        "necessaryStrength":0,
+        "limitation":0,
+        "protection":1
+      },
+      "rignHelmet": {
+        "necessaryStrength":1,
+        "limitation":0,
+        "protection":2
+      },
+      "conicalHelmet": {
+        "necessaryStrength":2,
+        "limitation":-1,
+        "protection":3
+      },
+      "fullHelmet": {
+        "necessaryStrength":3,
+        "limitation":-1,
+        "protection":4
+      },
+      "potHelmet": {
+        "necessaryStrength":4,
+        "limitation":-2,
+        "protection":5
+      },
+      "greatHelmet": {
+        "necessaryStrength":5,
+        "limitation":-3,
+        "protection":7
+      }
+    }
+  }
 }
 
 export default tables;

@@ -11,6 +11,7 @@ import autofillScreenAbilities from "./actionPackages/autofillScreenAbilities";
 import autofillScreenSkills from "./actionPackages/autofillScreenSkills";
 import autofillScreenWeapons from "./actionPackages/autofillScreenWeapons";
 import changeWeapon from "./actionPackages/changeWeapon";
+import changeArmor from "./actionPackages/changeArmor";
 import setSwitcher from "./actions/setSwitcher";
 
 export default function startActions() {
@@ -45,4 +46,8 @@ export default function startActions() {
 	// Go to screen 6
 	autofillScreenWeapons()
 	store.dispatch( changeScreen({active: "screenArmors"}) )
+
+	// Go to screen 7
+	// changeArmor("noArmor", "bodyArmors")
+
 };

@@ -629,6 +629,27 @@ const rootReducer = (state = initialState, action) => {
 
         return state.set("debugBoxes", debugBoxStateObject)
 
+      case "SET_ARMOR":
+        var armorName = action.payload.armorName
+        var armorType = action.payload.armorType
+
+        if (!isTextInputFilled(armorName)) {
+          // empty armorName => action Remove weapon, set default armorName to first row in a table
+          if (armorType === "bodyArmors") {
+            armorName = "noArmor"
+          }
+          else {
+            armorName = "noHelmet"
+          }
+        }
+
+        var armorObject = tables.armors[armorType][armorName]
+
+        return state.setIn(["character", "armors", armorType, "armorName"], armorName)
+                    .setIn(["character", "armors", armorType, "necessaryStrength"], parseInt(armorObject.necessaryStrength))
+                    .setIn(["character", "armors", armorType, "limitation"], parseInt(armorObject.limitation))
+                    .setIn(["character", "armors", armorType, "protection"], parseInt(armorObject.protection))
+
       default:
         return state;
   	}
