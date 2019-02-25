@@ -1,10 +1,8 @@
 
-const getArmorsLimitationPenalty = (bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated) => {
+const getArmorsLimitationPenalty = (bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated) => {
 
  if (
-      typeof bodyArmorsNecessaryStrength === "number" &&
       typeof bodyArmorsLimitation === "number" &&
-      typeof helmetsNecessaryStrength === "number" &&
       typeof helmetsLimitation === "number" &&
       typeof wearingArmorLevel === "number" &&
       typeof errataLimitationsAreSeparated === "boolean"

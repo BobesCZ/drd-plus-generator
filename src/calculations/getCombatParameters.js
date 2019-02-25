@@ -3,7 +3,7 @@ import getArmorsLimitationPenalty from "../calculations/getArmorsLimitationPenal
 import getDamageTableValue from "../helpers/getDamageTableValue";
 import { OrderedMap } from 'immutable';
 
-const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated, returnDebugBox = false) => {
+const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated, returnDebugBox = false) => {
 
  if (
       charRace.length &&
@@ -13,9 +13,7 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
       typeof intelligence === "number" &&
       typeof charisma === "number" &&
       typeof resistance === "number" &&
-      typeof bodyArmorsNecessaryStrength === "number" &&
       typeof bodyArmorsLimitation === "number" &&
-      typeof helmetsNecessaryStrength === "number" &&
       typeof helmetsLimitation === "number" &&
       typeof wearingArmorLevel === "number" &&
       typeof errataLimitationsAreSeparated === "boolean"
@@ -55,7 +53,7 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
 
     let combatSpeedRaceCorrection = tables.derivedAbilities[charRace]["combatSpeed"]
     // Calculate Armor penalty for combatSpeed
-    let armorLimitation = getArmorsLimitationPenalty(bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated)
+    let armorLimitation = getArmorsLimitationPenalty(bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated)
     results["combatSpeed"] = combatSpeed + parseInt(combatSpeedRaceCorrection) + parseInt(armorLimitation);
     var debugBoxObject = OrderedMap()
     debugBoxObject = debugBoxObject.set("derivedAbilitiesBase", combatSpeed)
