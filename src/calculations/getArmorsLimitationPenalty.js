@@ -1,5 +1,5 @@
 
-const getArmorsPenalty = (bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated) => {
+const getArmorsLimitationPenalty = (bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated) => {
 
  if (
       typeof bodyArmorsNecessaryStrength === "number" &&
@@ -11,7 +11,6 @@ const getArmorsPenalty = (bodyArmorsNecessaryStrength, bodyArmorsLimitation, hel
 
     )
   {
-    let results = [];
     let limitationCount = 0;
 
     // Correct limitation for wearingArmor skill
@@ -39,9 +38,7 @@ const getArmorsPenalty = (bodyArmorsNecessaryStrength, bodyArmorsLimitation, hel
       limitationCount = 0
     }
 
-    results["limitation"] = limitationCount;
-
-    return results;
+    return limitationCount;
   }
   else {
     return false;
@@ -49,4 +46,4 @@ const getArmorsPenalty = (bodyArmorsNecessaryStrength, bodyArmorsLimitation, hel
 
 };
 
-export default getArmorsPenalty;
+export default getArmorsLimitationPenalty;

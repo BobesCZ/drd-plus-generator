@@ -1,5 +1,5 @@
 import tables from "../data/tables";
-import getArmorsPenalty from "../calculations/getArmorsPenalty";
+import getArmorsLimitationPenalty from "../calculations/getArmorsLimitationPenalty";
 import getDamageTableValue from "../helpers/getDamageTableValue";
 import { OrderedMap } from 'immutable';
 
@@ -23,10 +23,6 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
   {
     let results = [];
     let debugBox = {};
-
-    // Calculate Armor penalty for combatSpeed
-    let armorsPenalty = getArmorsPenalty(bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated)
-    // console.log(armorsPenalty)
 
     // @SOURCE: Tabulka boje
     let combatSpeed = 0;
@@ -58,7 +54,8 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
     }
 
     let combatSpeedRaceCorrection = tables.derivedAbilities[charRace]["combatSpeed"]
-    let armorLimitation = armorsPenalty["limitation"]
+    // Calculate Armor penalty for combatSpeed
+    let armorLimitation = getArmorsLimitationPenalty(bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated)
     results["combatSpeed"] = combatSpeed + parseInt(combatSpeedRaceCorrection) + parseInt(armorLimitation);
     var debugBoxObject = OrderedMap()
     debugBoxObject = debugBoxObject.set("derivedAbilitiesBase", combatSpeed)
