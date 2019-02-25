@@ -1,6 +1,7 @@
 import React from "react";
 import ArmorRow from "./ArmorRow";
 import { connect } from "react-redux";
+import PanelErrata from "./PanelErrata";
 import translations from "../translations";
 import Navbar  from 'react-bootstrap/lib/Navbar';
 import tables from "../data/tables";
@@ -42,6 +43,8 @@ class ConnectedScreenArmors extends React.Component {
             </ul>
           </div>
         </div>
+
+        <PanelErrata name="armorAndHelmetLimitationsAreSeparated"/>
 
         {Object.keys(armors).map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">

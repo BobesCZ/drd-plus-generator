@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import setErrata from "../actions/setErrata";
 import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
 import resetSkills from "../actionPackages/resetSkills";
+import calculateSheet from "../actionPackages/calculateSheet";
 import getStringifiedNumber from "../helpers/getStringifiedNumber";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import translations from "../translations";
@@ -41,6 +42,9 @@ class ConnectedPanelErrata extends React.Component {
     }
     else if (name === "warriorHasAdditionalWeaponSkillsDegrees") {
       resetSkills();
+    }
+    else if (name === "armorAndHelmetLimitationsAreSeparated") {
+      calculateSheet();
     }
   }
 
@@ -89,6 +93,11 @@ class ConnectedPanelErrata extends React.Component {
                     </tbody>
                   </table>
                 </div>
+    }
+    else if (name === "armorAndHelmetLimitationsAreSeparated") {
+      content = <p>
+        {translations.PanelErrataTextLimitationsAreSeparated}
+      </p>
     }
 
     return (

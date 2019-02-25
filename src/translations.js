@@ -108,6 +108,7 @@
 	"PanelErrataHeader": "Je libo errata?",
 	"PanelErrataTextBackground": "Pravidlo, že při tvorbě postavy smí hráč dát do dovedností nebo majetku nejvýše o 3 body víc než do původu neplatí, pokud je hráč schopný obhájit rozdělení bodů původem postavy.",
 	"PanelErrataTextWeaponSkillsDegree": "Bojovník se může od druhé úrovně naučit 4., 5. a 6. stupeň dovednosti Boj se zbraní. Dostává následující bonusy:",
+	"PanelErrataTextLimitationsAreSeparated": "Dovednost Nošení zbroje snižuje Omezení zvlášť pro zbroje a zvlášť pro přilby, např. na III. stupni je možné mít bez postihu zbroj s Omezením -3 a zároveň helmu s Omezením -3. ",
 	"PanelErrataTrue": "Použít errata",
 	"PanelErrataFalse": "Nie, radšej knihu (pravidel)",
 	"resistance": "Odolnost",

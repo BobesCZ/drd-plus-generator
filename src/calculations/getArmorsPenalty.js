@@ -1,21 +1,39 @@
 
-const getArmorsPenalty = (bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel) => {
+const getArmorsPenalty = (bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated) => {
 
  if (
       typeof bodyArmorsNecessaryStrength === "number" &&
       typeof bodyArmorsLimitation === "number" &&
       typeof helmetsNecessaryStrength === "number" &&
       typeof helmetsLimitation === "number" &&
-      typeof wearingArmorLevel === "number"
+      typeof wearingArmorLevel === "number" &&
+      typeof errataLimitationsAreSeparated === "boolean"
+
     )
   {
     let results = [];
+    let limitationCount = 0;
 
     // Correct limitation for wearingArmor skill
-    // TODO: Add errata
-    let limitationWearingArmorCorrection = wearingArmorLevel;
-    // Count bodyArmor and helmet limitations and add (positive) correction
-    let limitationCount = bodyArmorsLimitation + helmetsLimitation + limitationWearingArmorCorrection;
+    if (errataLimitationsAreSeparated) {
+      // Errata: wearing armor is applied for armors and helmets separately
+      let armorsLimitationCount = bodyArmorsLimitation + wearingArmorLevel;
+      if (armorsLimitationCount > 0) {
+        armorsLimitationCount = 0
+      }
+
+      let helmetsLimitationCount = helmetsLimitation + wearingArmorLevel;
+      if (helmetsLimitationCount > 0) {
+        helmetsLimitationCount = 0
+      }
+
+      limitationCount = armorsLimitationCount + helmetsLimitationCount;
+    }
+    else {
+      // Count bodyArmor and helmet limitations and add (positive) correction
+      limitationCount = bodyArmorsLimitation + helmetsLimitation + wearingArmorLevel;
+    }
+
     // Limitation is always negative number, maximum is 0
     if (limitationCount > 0 ) {
       limitationCount = 0
