@@ -1,8 +1,9 @@
 import tables from "../data/tables";
+import getArmorsPenalty from "../calculations/getArmorsPenalty";
 import getDamageTableValue from "../helpers/getDamageTableValue";
 import { OrderedMap } from 'immutable';
 
-const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, returnDebugBox = false) => {
+const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel, returnDebugBox = false) => {
 
  if (
       charRace.length &&
@@ -11,11 +12,20 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
       typeof manualdexterity === "number" &&
       typeof intelligence === "number" &&
       typeof charisma === "number" &&
-      typeof resistance === "number"
+      typeof resistance === "number" &&
+      typeof bodyArmorsNecessaryStrength === "number" &&
+      typeof bodyArmorsLimitation === "number" &&
+      typeof helmetsNecessaryStrength === "number" &&
+      typeof helmetsLimitation === "number" &&
+      typeof wearingArmorLevel === "number"
     )
   {
     let results = [];
     let debugBox = {};
+
+    // Calculate Armor penalty for combatSpeed
+    let armorsPenalty = getArmorsPenalty(bodyArmorsNecessaryStrength, bodyArmorsLimitation, helmetsNecessaryStrength, helmetsLimitation, wearingArmorLevel)
+    // console.log(armorsPenalty)
 
     // @SOURCE: Tabulka boje
     let combatSpeed = 0;
@@ -47,10 +57,12 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
     }
 
     let combatSpeedRaceCorrection = tables.derivedAbilities[charRace]["combatSpeed"]
-    results["combatSpeed"] = combatSpeed + parseInt(combatSpeedRaceCorrection);
+    let armorLimitation = armorsPenalty["limitation"]
+    results["combatSpeed"] = combatSpeed + parseInt(combatSpeedRaceCorrection) + parseInt(armorLimitation);
     var debugBoxObject = OrderedMap()
     debugBoxObject = debugBoxObject.set("derivedAbilitiesBase", combatSpeed)
     debugBoxObject = debugBoxObject.set("raceCorrection", parseInt(combatSpeedRaceCorrection))
+    debugBoxObject = debugBoxObject.set("armorLimitation", parseInt(armorLimitation))
     debugBoxObject = debugBoxObject.set("total", parseInt(results["combatSpeed"]))
     debugBox["combatSpeed"] = debugBoxObject
 

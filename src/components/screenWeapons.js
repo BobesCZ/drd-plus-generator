@@ -136,28 +136,26 @@ class ConnectedScreenWeapons extends React.Component {
 
               <Navbar.Collapse id={'weapons' + key}>
 
-              <div className="card-body">
-                <table className="table weapon-table">
-                  <tbody>
-                    <tr>
-                      <th>{translations.weapon}</th>
-                      <th>{columns[0]}</th>
-                      <th>{columns[1]}</th>
-                      <th>{columns[2]}</th>
-                      <th>{columns[3]}</th>
-                      <th>{columns[4]}</th>
-                      <th></th>
-                    </tr>
+                <div className="card-body">
+                  <table className="table weapon-table">
+                    <tbody>
+                      <tr>
+                        <th>{translations.weapon}</th>
+                        <th>{columns[0]}</th>
+                        <th>{columns[1]}</th>
+                        <th>{columns[2]}</th>
+                        <th>{columns[3]}</th>
+                        <th>{columns[4]}</th>
+                        <th></th>
+                      </tr>
 
-                    {Object.keys(weapons[key]).map(weaponName => (
+                      {Object.keys(weapons[key]).map(weaponName => (
+                        <WeaponRow key={weaponName} weaponName={weaponName} weaponType={key} />
+                      ))}
 
-                      <WeaponRow key={weaponName} weaponName={weaponName} weaponType={key} />
-
-                    ))}
-
-                  </tbody>
-                </table>
-              </div>
+                    </tbody>
+                  </table>
+                </div>
 
               </Navbar.Collapse>
             </Navbar>

@@ -10,7 +10,7 @@ store.subscribe(() => {
 	// console.log( store.getState() );
  	// console.log(JSON.stringify(store.getState(), null, 2))
 	let state = store.getState();
- 	console.log(JSON.stringify(state.getIn(["character", "armors"]), null, 2))
+ 	// console.log(JSON.stringify(state.getIn(["character", "armors"]), null, 2))
 });
 
 export default store;
