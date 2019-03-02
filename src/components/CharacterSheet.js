@@ -1,6 +1,7 @@
 import React from "react";
 import { Provider, connect } from "react-redux";
 import DebugBox from "./DebugBox";
+import getArmorMissingStrength from "../calculations/getArmorMissingStrength";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import getStringifiedNumber from "../helpers/getStringifiedNumber";
 import isTextInputFilled from "../helpers/isTextInputFilled";
@@ -30,6 +31,7 @@ class ConnectedSheets extends React.Component {
     let healthArray = [];
     let charHealth = this.props.combatParameters.get('health');
     let charRace = this.props.info.get('race');
+    let charStrength = this.props.abilities.get('strength');
     let charNote = tables.derivedAbilities[charRace]["note"].length ? tables.derivedAbilities[charRace]["note"] : false;
     let skills = this.props.skills;
     let weapons = this.props.weapons;
@@ -107,6 +109,8 @@ class ConnectedSheets extends React.Component {
       let armorObject = armors.get(armorType)
 
       if (isTextInputFilled(armorObject.get("armorName"))) {
+        let armorMissingStrength = getArmorMissingStrength(armorObject.get("necessaryStrength"), charStrength, charRace);
+        armorObject = armorObject.set("missingStrength", armorMissingStrength)
         armorsArray.push(armorObject)
       }
     })
@@ -409,7 +413,7 @@ class ConnectedSheets extends React.Component {
                           {translations[armorsArray[key].get("armorName")]}
                         </td>
                         <td>
-                          -
+                          {armorsArray[key].get("missingStrength")}
                         </td>
                         <td>
                           {armorsArray[key].get("limitation")}

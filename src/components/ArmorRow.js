@@ -1,11 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import changeArmor from "../actionPackages/changeArmor";
+import getArmorMissingStrength from "../calculations/getArmorMissingStrength";
 import translations from "../translations";
 import tables from "../data/tables";
 
 const mapStateToProps = (state) => {
   return {
+    info: state.getIn(['character', 'info']),
     abilities: state.getIn(['character', 'abilities']),
     armors: state.getIn(['character', 'armors']),
   };
@@ -43,12 +45,14 @@ class ConnectedArmorRow extends React.Component {
     let armorType = this.props.armorType
     let armors = tables.armors
     let charStrength = this.props.abilities.get('strength')
+    let charRace = this.props.info.get('race')
     let armorsStateObject = this.props.armors
 
+    let armorMissingStrength = getArmorMissingStrength(armors[armorType][armorName]["necessaryStrength"], charStrength, charRace);
     let armorExists = armorName === armorsStateObject.getIn([armorType, "armorName"]);
 
     return (
-      <tr className={armors[armorType][armorName]["necessaryStrength"] > charStrength ? 'text-black-50' : ''}>
+      <tr className={armorMissingStrength > 0 ? 'text-black-50' : ''}>
         <td>{translations[armorName]}</td>
         <td>{armors[armorType][armorName]["necessaryStrength"]}</td>
         <td>{armors[armorType][armorName]["limitation"]}</td>

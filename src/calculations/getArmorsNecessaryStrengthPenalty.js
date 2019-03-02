@@ -1,29 +1,24 @@
 import tables from "../data/tables";
+import getArmorMissingStrength from "./getArmorMissingStrength";
 
 const getArmorsNecessaryStrengthPenalty = (bodyArmorsNecessaryStrength, helmetsNecessaryStrength, charStrength, charRace) => {
 
  if (
       typeof bodyArmorsNecessaryStrength === "number" &&
       typeof helmetsNecessaryStrength === "number" &&
-      typeof charStrength === "number"
+      typeof charStrength === "number" &&
+      charRace.length
     )
   {
     let penaltyCount = 0
-    let missingStrengthOnArmorCorrection = tables.missingStrengthOnArmorCorrection[charRace];
 
     // Errata (not optional): strength is applied for armors and helmets separately
-    let missingStrengthArmors = bodyArmorsNecessaryStrength + missingStrengthOnArmorCorrection - charStrength
-    if (missingStrengthArmors < 0) {
-      missingStrengthArmors = 0
-    }
+    let missingStrengthArmors = getArmorMissingStrength(bodyArmorsNecessaryStrength, charStrength, charRace)
 
-    let missingStrengthHelmets = helmetsNecessaryStrength + missingStrengthOnArmorCorrection - charStrength
-    if (missingStrengthHelmets < 0) {
-      missingStrengthHelmets = 0
-    }
+    let missingStrengthHelmets = getArmorMissingStrength(helmetsNecessaryStrength, charStrength, charRace)
 
     // Count missing strength for armor and helmet
-    let missingStrength = missingStrengthArmors + missingStrengthHelmets;
+    let missingStrength = parseInt(missingStrengthArmors) + parseInt(missingStrengthHelmets);
 
     // Maximum necessary strength key for missingStrengthOnArmor table is 11
     if (missingStrength > 11 ) {

@@ -342,7 +342,7 @@
 	"fullHelmet": "Plná",
 	"potHelmet": "Hrncová",
 	"greatHelmet": "Kbelcová",
-	"armorHeightType": "Postih k Obr.",
+	"armorHeightType": "Chyb. síla zbroje",
 	"armorNecessaryStrengthPenalty": "Postih za chybějící sílu zbroje",
 };
 
