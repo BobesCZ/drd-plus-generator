@@ -1259,6 +1259,35 @@ const tables = {
         "protection":7
       }
     }
+  },
+  "missingStrengthOnArmorCorrection": {
+    "human": 0,
+    "mountaineer": 0,
+    "elf": -2,
+    "greenElf": -2,
+    "darkElf": -2,
+    "dwarf": 0,
+    "mountainDwarf": 0,
+    "hobbit": -2,
+    "kroll": 2,
+    "wildKroll": 2,
+    "orc": 0,
+    "hobgoblin": 0,
+    "goblin": 0
+  },
+  "missingStrengthOnArmor": {
+    "0": 0,
+    "1": -2,
+    "2": -2,
+    "3": -2,
+    "4": -4,
+    "5": -4,
+    "6": -4,
+    "7": -8,
+    "8": -8,
+    "9": -12,
+    "10": -12,
+    "11": -100
   }
 }
 

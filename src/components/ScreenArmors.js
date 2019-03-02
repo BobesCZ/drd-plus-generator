@@ -40,6 +40,7 @@ class ConnectedScreenArmors extends React.Component {
           <div className="card-body">
             <ul>
               <li>{translations.armorPanelLi1}</li>
+              <li>{translations.armorPanelLi2}</li>
             </ul>
           </div>
         </div>

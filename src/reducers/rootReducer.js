@@ -319,8 +319,10 @@ const rootReducer = (state = initialState, action) => {
         var charSex = state.getIn(["character", "info", "sex"]);
         var charClass = state.getIn(["character", "info", "class"]);
         var levels = state.getIn(["character", "levels"]);
+        var bodyArmorsNecessaryStrength = state.getIn(["character", "armors", "bodyArmors", "necessaryStrength"]);
+        var helmetsNecessaryStrength = state.getIn(["character", "armors", "helmets", "necessaryStrength"]);
 
-        var finalAbilities =  getAbilities(charRace, charSex, charClass, levels);
+        var finalAbilities =  getAbilities(charRace, charSex, charClass, levels, bodyArmorsNecessaryStrength, helmetsNecessaryStrength);
 
         // Set all main abilities
         return state.setIn(["character", "abilities", "strength"], parseInt(finalAbilities["strength"]))

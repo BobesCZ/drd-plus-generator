@@ -320,7 +320,8 @@
 	"damageNumberFromTable": "Průnik Síly a Zranění zbraně",
 	"twohandedCorrection": "Oprava za obouruční držení",
 	"armorPanelHeader": "Zbroje",
-	"armorPanelLi1": "Zbroje, u kterých získáš postih za chybějící sílu, jsou vypsány světlejším písmem.",
+	"armorPanelLi1": "Potřebná síla se počítá zvlášť pro zbroje a zvlášť pro přilby (pro Tabulku postihů za zbroj se použije jejich součet)",
+	"armorPanelLi2": "Zbroje, u kterých získáš postih za chybějící sílu, jsou vypsány světlejším písmem.",
 	"bodyArmors": "Zbroje",
 	"armor": "Zbroj",
 	"helmets": "Přilby",
@@ -343,6 +344,7 @@
 	"potHelmet": "Hrncová",
 	"greatHelmet": "Kbelcová",
 	"armorHeightType": "Postih k Obr.",
+	"armorNecessaryStrengthPenalty": "Postih za chybějící sílu zbroje",
 };
 
 export default translations;

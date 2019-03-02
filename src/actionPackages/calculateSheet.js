@@ -24,7 +24,9 @@ const calculateSheet = () => {
 	let charSex = state.getIn(["character", "info", "sex"]);
 	let charClass = state.getIn(["character", "info", "class"]);
 	let levels = state.getIn(["character", "levels"]);
-	let finalAbilities =  getAbilities(charRace, charSex, charClass, levels, true);
+	let bodyArmorsNecessaryStrength = state.getIn(["character", "armors", "bodyArmors", "necessaryStrength"]);
+    let helmetsNecessaryStrength = state.getIn(["character", "armors", "helmets", "necessaryStrength"]);
+	let finalAbilities =  getAbilities(charRace, charSex, charClass, levels, bodyArmorsNecessaryStrength, helmetsNecessaryStrength, true);
 
 	Object.keys(finalAbilities).forEach((key) => {
 		store.dispatch( addDebugBox({id: key, content: finalAbilities[key]}) )
