@@ -8,6 +8,7 @@ import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroun
 import autofillScreenAbilities from "../actionPackages/autofillScreenAbilities";
 import autofillScreenSkills from "../actionPackages/autofillScreenSkills";
 import autofillScreenWeapons from "../actionPackages/autofillScreenWeapons";
+import autofillScreenArmors from "../actionPackages/autofillScreenArmors";
 import screensArray from "../helpers/screensArray";
 import getPreviousArrayItem from "../helpers/getPreviousArrayItem";
 import getNextArrayItem from "../helpers/getNextArrayItem";
@@ -55,6 +56,9 @@ class ConnectedStepNavigation extends React.Component {
       }
       else if (screenAutofill === "screenWeapons") {
         autofillScreenWeapons();
+      }
+      else if (screenAutofill === "screenArmors") {
+        autofillScreenArmors();
       }
       else {
         this.props.resolveScreen({ active: screenAutofill});

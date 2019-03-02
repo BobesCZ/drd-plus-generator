@@ -1,7 +1,7 @@
 import React from "react";
 import ArmorRow from "./ArmorRow";
 import { connect } from "react-redux";
-import PanelErrata from "./PanelErrata";
+import PanelAutofill from "./PanelAutofill";
 import translations from "../translations";
 import Navbar  from 'react-bootstrap/lib/Navbar';
 import tables from "../data/tables";
@@ -15,6 +15,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (state) => {
   return {
     skills: state.getIn(['character', 'skills']),
+    armors: state.getIn(['character', 'armors']),
   };
 };
 
@@ -22,13 +23,23 @@ class ConnectedScreenArmors extends React.Component {
   constructor(props) {
     super();
     this.state = {};
-
-    // this.handleChangeFormInput = this.handleChangeFormInput.bind(this);
   }
 
   render(props) {
     let skills = this.props.skills.getIn(['distributed', 'combat'])
     let armors = tables.armors
+    let armorStateObject = this.props.armors;
+    let categoryHasArmorInState = []
+
+    Object.keys(armors).forEach((key) => {
+      categoryHasArmorInState[key] = false
+
+      for (var armorName in armors[key]) {
+        if (armorStateObject.getIn([key, "armorName"]) == armorName) {
+          categoryHasArmorInState[key] = true
+        }
+      }
+    })
 
     return (
       <form>
@@ -48,7 +59,7 @@ class ConnectedScreenArmors extends React.Component {
         {Object.keys(armors).map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
             <Navbar expand="true">
-              <div className="card-header">
+              <div className={categoryHasArmorInState[key] ? "card-header alert-info" : "card-header"}>
                 <span>
                   {translations[key]}&nbsp;
                 </span>
@@ -86,6 +97,8 @@ class ConnectedScreenArmors extends React.Component {
             </Navbar>
           </div>
         ))}
+
+        <PanelAutofill screen="screenArmors"/>
 
       </form>
     )

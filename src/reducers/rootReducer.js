@@ -200,6 +200,23 @@ const rootReducer = (state = initialState, action) => {
           }
         }
 
+        else if (active == "screenArmors") {
+          var bodyArmor = state.getIn(["character", "armors", "bodyArmors", "armorName"]);
+          var helmet = state.getIn(["character", "armors", "helmets", "armorName"]);
+
+          if (isTextInputFilled(bodyArmor) && isTextInputFilled(helmet))
+          {
+            // console.log("Screen screenArmors is valid!");
+            return state.setIn(["screens", "screenArmors"], 1)
+                        .setIn(["screens", "screenExport"], 0)
+          }
+          else {
+            // console.log("Screen screenArmors is not valid :-(");
+            return state.setIn(["screens", "screenArmors"], 0)
+                        .setIn(["screens", "screenExport"], -1)
+          }
+        }
+
         return state;
 
       case "AUTOFILL_SCREEN":
