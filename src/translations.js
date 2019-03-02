@@ -345,6 +345,12 @@
 	"greatHelmet": "Kbelcová",
 	"armorHeightType": "Chyb. síla zbroje",
 	"armorNecessaryStrengthPenalty": "Postih za chybějící sílu zbroje",
+	"shields": "Štíty",
+	"buckler": "Pěstní štítek",
+	"smallShield": "Malý štít",
+	"mediumShield": "Střední štít",
+	"largeShield": "Velký štít",
+	"pavise": "Pavéza",
 };
 
 export default translations;

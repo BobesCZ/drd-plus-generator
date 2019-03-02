@@ -69,7 +69,6 @@ const calculateSheet = () => {
 
     // Iterate through weapon names
     weaponStateObject.mapKeys((weaponName) => {
-
 		// Twohanded weapon may be added automatically
 		let oneHold = weaponStateObject.getIn([weaponName, "onehanded"])
 		let twoHold = weaponStateObject.getIn([weaponName, "twohanded"])
@@ -79,6 +78,10 @@ const calculateSheet = () => {
 		weaponStateObject.get(weaponName).mapKeys((weaponHold) => {
 		var weaponType = weaponStateObject.getIn([weaponName, weaponHold, "weaponType"])
 		var skillDegree = state.getIn(["character", "skills", "distributed", "combat", weaponType])
+
+		if (weaponType === "shields") {
+			skillDegree = state.getIn(["character", "skills", "distributed", "combat", "usingShield"])
+		}
 
 		// Returns Map with weapon numbers
 		var weaponHoldBool = weaponHold === "twohanded" && twohandedHoldIsAutomatic

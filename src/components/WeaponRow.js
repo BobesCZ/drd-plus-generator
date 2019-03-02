@@ -53,6 +53,11 @@ class ConnectedWeaponRow extends React.Component {
 
     if (showCharNumbersInWeaponTable) {
       let skillDegree = skills.get(weaponType)
+
+      if (weaponType === "shields") {
+        skillDegree = skills.get("usingShield")
+      }
+
       let combatSpeed = combatParameters.get("combatSpeed")
       let attack = combatParameters.get("attack")
       let defense = combatParameters.get("defense")

@@ -1103,6 +1103,48 @@ const tables = {
         "weaponDamage": 14,
         "weaponCover": 3
       }
+    },
+    "shields": {
+      "buckler": {
+        "hold": "onehanded",
+        "necessaryStrength": -3,
+        "length": -1,
+        "weaponAttack": 0,
+        "weaponDamage": 0,
+        "weaponCover": 2
+      },
+      "smallShield": {
+        "hold": "onehanded",
+        "necessaryStrength": 1,
+        "length": -2,
+        "weaponAttack": 0,
+        "weaponDamage": 0,
+        "weaponCover": 4
+      },
+      "mediumShield": {
+        "hold": "onehanded",
+        "necessaryStrength": 5,
+        "length": -3,
+        "weaponAttack": 0,
+        "weaponDamage": 0,
+        "weaponCover": 5
+      },
+      "largeShield": {
+        "hold": "onehanded",
+        "necessaryStrength": 9,
+        "length": -4,
+        "weaponAttack": 0,
+        "weaponDamage": 0,
+        "weaponCover": 6
+      },
+      "pavise": {
+        "hold": "onehanded",
+        "necessaryStrength": 13,
+        "length": -5,
+        "weaponAttack": 0,
+        "weaponDamage": 0,
+        "weaponCover": 7
+      }
     }
   },
   "missingStrengthOnWeapon": {

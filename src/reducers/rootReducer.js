@@ -623,6 +623,10 @@ const rootReducer = (state = initialState, action) => {
             var weaponType = weaponStateObject.getIn([weaponName, weaponHold, "weaponType"])
             var skillDegree = state.getIn(["character", "skills", "distributed", "combat", weaponType])
 
+            if (weaponType === "shields") {
+              skillDegree = state.getIn(["character", "skills", "distributed", "combat", "usingShield"])
+            }
+
             // Returns Map with weapon numbers
             var weaponObject = getWeaponNumbers(weaponName, weaponType, false, skillDegree, combatSpeed, attack, defense, charStrength)
             var weaponHold = weaponObject.get("hold")
@@ -630,7 +634,7 @@ const rootReducer = (state = initialState, action) => {
             newWeaponStateObject = newWeaponStateObject.setIn([weaponName, weaponHold], weaponObject)
 
             // For onehanded weapons add numbers with twohands hold
-            if (weaponHold === "onehanded" && weaponType !== "noWeapon") {
+            if (weaponHold === "onehanded" && weaponType !== "noWeapon" && weaponType !== "shields") {
               weaponObject = getWeaponNumbers(weaponName, weaponType, true, skillDegree, combatSpeed, attack, defense, charStrength)
               weaponHold = weaponObject.get("hold")
 

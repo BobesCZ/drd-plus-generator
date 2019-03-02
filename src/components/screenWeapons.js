@@ -45,6 +45,14 @@ class ConnectedScreenWeapons extends React.Component {
     let categoryHasWeaponInState = []
     let showCharNumbersInWeaponTable = this.props.switchers.get('showCharNumbersInWeaponTable');
 
+    // Change key "usingShield" to "shields"
+    skills = skills.mapKeys(key => {
+      if (key === "usingShield")
+        return "shields";
+      return key;
+    });
+
+
     Object.keys(weapons).forEach((key) => {
       categoryHasWeaponInState[key] = false
 
