@@ -136,6 +136,7 @@ const autofillScreenSkills = (autofillCombatSkills = false) => {
             let pointsLeft = currentAvailablePointsArray["combat"] + currentAvailablePointsArray["physical"];
             let allCombatSkills = [
                 "wearingArmor",
+                "usingShield",
                 "knives",
                 "axes",
                 "sabers",

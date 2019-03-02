@@ -29,6 +29,13 @@ const autofillScreenWeapons = () => {
     let skills = state.getIn(["character", "skills", "distributed", "combat"]);
     let charStrength = state.getIn(["character", "abilities", "strength"]);
 
+    // Change key "usingShield" to "shields"
+    skills = skills.mapKeys(key => {
+      if (key === "usingShield")
+        return "shields";
+      return key;
+    });
+
     if (skills) {
         // Iterate through all combat skills
         skills.keySeq().forEach((skill) => {

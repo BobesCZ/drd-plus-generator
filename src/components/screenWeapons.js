@@ -52,7 +52,6 @@ class ConnectedScreenWeapons extends React.Component {
       return key;
     });
 
-
     Object.keys(weapons).forEach((key) => {
       categoryHasWeaponInState[key] = false
 
