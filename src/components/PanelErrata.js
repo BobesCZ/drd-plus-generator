@@ -43,9 +43,6 @@ class ConnectedPanelErrata extends React.Component {
     else if (name === "warriorHasAdditionalWeaponSkillsDegrees") {
       resetSkills();
     }
-    else if (name === "armorAndHelmetLimitationsAreSeparated") {
-      calculateSheet();
-    }
   }
 
   render(props) {
@@ -93,11 +90,6 @@ class ConnectedPanelErrata extends React.Component {
                     </tbody>
                   </table>
                 </div>
-    }
-    else if (name === "armorAndHelmetLimitationsAreSeparated") {
-      content = <p>
-        {translations.PanelErrataTextLimitationsAreSeparated}
-      </p>
     }
 
     return (

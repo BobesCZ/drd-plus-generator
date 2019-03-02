@@ -364,9 +364,8 @@ const rootReducer = (state = initialState, action) => {
         var bodyArmorsLimitation = state.getIn(["character", "armors", "bodyArmors", "limitation"])
         var helmetsLimitation = state.getIn(["character", "armors", "helmets", "limitation"])
         var wearingArmorLevel = state.getIn(["character", "skills", "distributed", "combat", "wearingArmor"])
-        var errataLimitationsAreSeparated = state.getIn(["errata", "armorAndHelmetLimitationsAreSeparated"])
 
-        var finalCombatParameters = getCombatParameters(charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated)
+        var finalCombatParameters = getCombatParameters(charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel)
 
         return state.setIn(["character", "combatParameters", "combatSpeed"], parseInt(finalCombatParameters["combatSpeed"]))
                     .setIn(["character", "combatParameters", "attack"], parseInt(finalCombatParameters["attack"]))

@@ -3,7 +3,7 @@ import getArmorsLimitationPenalty from "../calculations/getArmorsLimitationPenal
 import getDamageTableValue from "../helpers/getDamageTableValue";
 import { OrderedMap } from 'immutable';
 
-const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated, returnDebugBox = false) => {
+const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, returnDebugBox = false) => {
 
  if (
       charRace.length &&
@@ -15,8 +15,7 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
       typeof resistance === "number" &&
       typeof bodyArmorsLimitation === "number" &&
       typeof helmetsLimitation === "number" &&
-      typeof wearingArmorLevel === "number" &&
-      typeof errataLimitationsAreSeparated === "boolean"
+      typeof wearingArmorLevel === "number"
     )
   {
     let results = [];
@@ -53,7 +52,7 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
 
     let combatSpeedRaceCorrection = tables.derivedAbilities[charRace]["combatSpeed"]
     // Calculate Armor penalty for combatSpeed
-    let armorLimitation = getArmorsLimitationPenalty(bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, errataLimitationsAreSeparated)
+    let armorLimitation = getArmorsLimitationPenalty(bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel)
     results["combatSpeed"] = combatSpeed + parseInt(combatSpeedRaceCorrection) + parseInt(armorLimitation);
     var debugBoxObject = OrderedMap()
     debugBoxObject = debugBoxObject.set("derivedAbilitiesBase", combatSpeed)

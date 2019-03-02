@@ -45,8 +45,6 @@ class ConnectedScreenArmors extends React.Component {
           </div>
         </div>
 
-        <PanelErrata name="armorAndHelmetLimitationsAreSeparated"/>
-
         {Object.keys(armors).map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
             <Navbar expand="true">
