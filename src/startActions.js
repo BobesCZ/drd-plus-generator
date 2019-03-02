@@ -10,6 +10,7 @@ import calculateSheet from "./actionPackages/calculateSheet";
 import autofillScreenAbilities from "./actionPackages/autofillScreenAbilities";
 import autofillScreenSkills from "./actionPackages/autofillScreenSkills";
 import autofillScreenWeapons from "./actionPackages/autofillScreenWeapons";
+import autofillScreenArmors from "./actionPackages/autofillScreenArmors";
 import changeWeapon from "./actionPackages/changeWeapon";
 import changeArmor from "./actionPackages/changeArmor";
 import setSwitcher from "./actions/setSwitcher";
@@ -17,7 +18,7 @@ import setSwitcher from "./actions/setSwitcher";
 export default function startActions() {
 
 	// Set initial values at screenCharacter
-	store.dispatch( changeInfo({ key: "race", value: "elf"}) )
+	store.dispatch( changeInfo({ key: "race", value: "human"}) )
 	store.dispatch( changeInfo({ key: "class", value: "warrior"}) )
 	store.dispatch( changeInfo({ key: "level", value: "6"}) )
 	store.dispatch( changeInfo({ key: "sex", value: "male"}) )
@@ -48,6 +49,7 @@ export default function startActions() {
 	store.dispatch( changeScreen({active: "screenArmors"}) )
 
 	// Go to screen 7
-	// changeArmor("noArmor", "bodyArmors")
+	autofillScreenArmors()
+	store.dispatch( changeScreen({active: "screenExport"}) )
 
 };

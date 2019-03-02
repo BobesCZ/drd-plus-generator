@@ -52,7 +52,7 @@
 	"autoFillSkills": "Chci předvyplnit Psychické a Kombinované dovednosti podle nejlepšího doporučení Sfér.",
 	"autoFillSkillsInfo1": "Přednostně budou zvyšovány dovednosti v pořadí:",
 	"autoFillWeapons": "Chci přidat nejtěžší zbraň, jakou unesu bez postihu, z každé zbraňové kategorie, ke které mám dovednost aspoň na 1. stupni.",
-	"autoFillArmors": "Chci přidat nejtěžší zbroj, jakou unesu bez postihu",
+	"autoFillArmors": "Chci přidat nejtěžší zbroj, jakou unesu bez postihu k Obratnosti a Omezení zbroje (dovednost Nošení zbroje použiji na přednostně pro Zbroje) ",
 	"nonCombat": "Nebojový",
 	"backgroundPanelHeader": "Body zázemí",
 	"backgroundPanelBody": "Volba zázemí má vliv na body do hlavních a vedlejších vlastností a také na obecné dovednosti. Kromě toho také samozřejmě na příběh tvé postavy - zde je důležité domluvit se se svým PJ.",
