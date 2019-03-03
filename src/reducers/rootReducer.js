@@ -382,7 +382,9 @@ const rootReducer = (state = initialState, action) => {
         var helmetsLimitation = state.getIn(["character", "armors", "helmets", "limitation"])
         var wearingArmorLevel = state.getIn(["character", "skills", "distributed", "combat", "wearingArmor"])
 
-        var finalCombatParameters = getCombatParameters(charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel)
+        var weaponStateObject = state.getIn(["character", "weapons"]);
+        var usingShieldLevel = state.getIn(["character", "skills", "distributed", "combat", "usingShield"])
+        var finalCombatParameters = getCombatParameters(charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, weaponStateObject, usingShieldLevel)
 
         return state.setIn(["character", "combatParameters", "combatSpeed"], parseInt(finalCombatParameters["combatSpeed"]))
                     .setIn(["character", "combatParameters", "attack"], parseInt(finalCombatParameters["attack"]))

@@ -1,9 +1,10 @@
 import tables from "../data/tables";
 import getArmorsLimitationPenalty from "../calculations/getArmorsLimitationPenalty";
+import getShieldLimitationPenalty from "../calculations/getShieldLimitationPenalty";
 import getDamageTableValue from "../helpers/getDamageTableValue";
-import { OrderedMap } from 'immutable';
+import { Map, OrderedMap } from 'immutable';
 
-const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, returnDebugBox = false) => {
+const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, weaponStateObject, usingShieldLevel, returnDebugBox = false) => {
 
  if (
       charRace.length &&
@@ -15,7 +16,9 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
       typeof resistance === "number" &&
       typeof bodyArmorsLimitation === "number" &&
       typeof helmetsLimitation === "number" &&
-      typeof wearingArmorLevel === "number"
+      typeof wearingArmorLevel === "number" &&
+      Map.isMap(weaponStateObject) &&
+      typeof usingShieldLevel === "number"
     )
   {
     let results = [];
@@ -53,11 +56,13 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
     let combatSpeedRaceCorrection = tables.derivedAbilities[charRace]["combatSpeed"]
     // Calculate Armor penalty for combatSpeed
     let armorLimitation = getArmorsLimitationPenalty(bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel)
-    results["combatSpeed"] = combatSpeed + parseInt(combatSpeedRaceCorrection) + parseInt(armorLimitation);
+    let shieldLimitation = getShieldLimitationPenalty(weaponStateObject, usingShieldLevel)
+    results["combatSpeed"] = combatSpeed + parseInt(combatSpeedRaceCorrection) + parseInt(armorLimitation) + parseInt(shieldLimitation);
     var debugBoxObject = OrderedMap()
     debugBoxObject = debugBoxObject.set("derivedAbilitiesBase", combatSpeed)
     debugBoxObject = debugBoxObject.set("raceCorrection", parseInt(combatSpeedRaceCorrection))
     debugBoxObject = debugBoxObject.set("armorLimitation", parseInt(armorLimitation))
+    debugBoxObject = debugBoxObject.set("shieldLimitation", parseInt(shieldLimitation))
     debugBoxObject = debugBoxObject.set("total", parseInt(results["combatSpeed"]))
     debugBox["combatSpeed"] = debugBoxObject
 

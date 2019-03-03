@@ -327,6 +327,7 @@
 	"helmets": "Přilby",
 	"limitation": "Omezení",
 	"armorLimitation": "Omezení zbroje",
+	"shieldLimitation": "Omezení štítu",
 	"protection": "Ochrana",
 	"noArmor": "Beze zbroje",
 	"paddedArmor": "Prošívaná",

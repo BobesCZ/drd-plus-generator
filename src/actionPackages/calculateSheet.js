@@ -54,7 +54,9 @@ const calculateSheet = () => {
     var helmetsLimitation = state.getIn(["character", "armors", "helmets", "limitation"])
     var wearingArmorLevel = state.getIn(["character", "skills", "distributed", "combat", "wearingArmor"])
 
-	var finalCombatParameters = getCombatParameters(charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, true)
+	var weaponStateObject = state.getIn(["character", "weapons"]);
+    var usingShieldLevel = state.getIn(["character", "skills", "distributed", "combat", "usingShield"])
+	var finalCombatParameters = getCombatParameters(charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, weaponStateObject, usingShieldLevel, true)
 
 	Object.keys(finalCombatParameters).forEach((key) => {
 		store.dispatch( addDebugBox({id: key, content: finalCombatParameters[key]}) )
