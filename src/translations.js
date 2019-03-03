@@ -179,7 +179,7 @@
 	"cityKnowledge": "Znalost města",
 	"worldKnowledge": "Znalost světa",
 	"zoology": "Zoologie",
-	"fightWithShootingWeapons": "Boj se střelnými zbraněmi",
+	"fightWithShootingWeapons": "Boj se střel. zbraněmi",
 	"herbalism": "Bylinkářství",
 	"gambling": "Hazardní hry",
 	"acting": "Herectví",
@@ -352,6 +352,13 @@
 	"mediumShield": "Střední štít",
 	"largeShield": "Velký štít",
 	"pavise": "Pavéza",
+	"exportAlertTitle": "Volejte sláva a tři dny se radujte!",
+	"exportAlert": "Postava je dokončena.",
+	"exportPanelHeader": "Export do PDF",
+	"exportPanelBody": "Kliknutím na tlačítko zahájíte stahování PDF souboru v příslušeném formátu.",
+	"downloadFileA4": "Stáhnout formát A4",
+	"pageCountAlertTitle": "Osobní deník je příliš dlouhý",
+	"pageCountAlert": "Osobní deník má příliš mnoho řádků a po exportu do PDF nebude kompletní.",
 };
 
 export default translations;

@@ -48,9 +48,15 @@
             line-height: 1.6;
             white-space: nowrap;
 
+            &:first-child {
+                padding-right: 0;
+            }
+
             &:not(:first-child) {
+                padding-left: 0.25rem;
+                padding-right: 0.25rem;
                 text-align: center;
-                max-width: 2.5rem;
+                max-width: 2rem;
             }
         }
     }
@@ -76,5 +82,11 @@
 
     small {
         color: inherit;
+    }
+
+    &--printing {
+        .debug-box-overlay {
+            display: none;
+        }
     }
 }
