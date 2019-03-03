@@ -45,11 +45,11 @@ export default function startActions() {
 	store.dispatch( changeScreen({active: "screenWeapons"}) )
 
 	// Go to screen 6
-	// autofillScreenWeapons()
-	// store.dispatch( changeScreen({active: "screenArmors"}) )
+	autofillScreenWeapons()
+	store.dispatch( changeScreen({active: "screenArmors"}) )
 
 	// Go to screen 7
-	// autofillScreenArmors()
-	// store.dispatch( changeScreen({active: "screenExport"}) )
+	autofillScreenArmors()
+	store.dispatch( changeScreen({active: "screenExport"}) )
 
 };

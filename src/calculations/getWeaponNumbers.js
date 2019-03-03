@@ -48,6 +48,10 @@ const getWeaponNumbers = (weaponName, weaponType, twohandedHold, skillDegree, co
     let missingSkillCorrection = tables.weaponSkillDegrees[skillDegree]
 
     // @SOURCE: Bojové číslo
+    // For shields, length means Limitation, so for combar parameters treat it as 0
+    if (weaponType === "shields") {
+      weapon["length"] = 0
+    }
     let combatSpeedNumber = combatSpeed + parseInt(weapon["length"]) + parseInt(missingStrengthCorrection["combatSpeedNumber"]);
     results = results.set("combatSpeedNumber", combatSpeedNumber)
     var debugBoxObject = OrderedMap()
