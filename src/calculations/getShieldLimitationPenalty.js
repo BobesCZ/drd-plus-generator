@@ -1,4 +1,5 @@
 import { Map } from 'immutable';
+import getShieldNameFromWeaponsObject from "../helpers/getShieldNameFromWeaponsObject";
 import tables from "../data/tables";
 
 const getShieldLimitationPenalty = (weaponStateObject, usingShieldLevel) => {
@@ -11,13 +12,11 @@ const getShieldLimitationPenalty = (weaponStateObject, usingShieldLevel) => {
     let shieldLimitation = 0
 
     // Get shield from weaponStateObject
-    weaponStateObject.keySeq().forEach(weaponName => {
-      let weaponType = weaponStateObject.getIn([weaponName, "onehanded", "weaponType"])
-      if (weaponType === "shields") {
-        // Get limitation from table of weapons
-        shieldLimitation = tables.weapons.shields[weaponName]["length"]
-      }
-    })
+    let shieldName = getShieldNameFromWeaponsObject(weaponStateObject);
+    // Get limitation from table of weapons
+    if (shieldName) {
+      shieldLimitation = tables.weapons.shields[shieldName]["length"]
+    }
 
     // Count shield limitation and add (positive) correction
     let limitationCount = shieldLimitation + usingShieldLevel;

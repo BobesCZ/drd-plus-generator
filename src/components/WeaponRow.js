@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import changeWeapon from "../actionPackages/changeWeapon";
 import getWeaponNumbers from "../calculations/getWeaponNumbers";
+import getShieldNameFromWeaponsObject from "../helpers/getShieldNameFromWeaponsObject";
 import getStringifiedNumber from "../helpers/getStringifiedNumber";
 import translations from "../translations";
 import tables from "../data/tables";
@@ -35,6 +36,15 @@ class ConnectedWeaponRow extends React.Component {
     const value = target.value;
     const weaponName = target.name;
     const weaponType = target.getAttribute('data-type');
+
+    if (weaponType === "shields" && value === "ADD") {
+      // Only 1 shield is allowed - if new shield is added, remove old shield
+      let oldShieldName = getShieldNameFromWeaponsObject(this.props.weapons)
+      if (oldShieldName) {
+        changeWeapon(oldShieldName, weaponType, "REMOVE")
+      }
+    }
+
     changeWeapon(weaponName, weaponType, value)
   }
 
