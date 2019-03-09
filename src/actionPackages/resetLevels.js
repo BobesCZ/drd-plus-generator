@@ -1,7 +1,7 @@
 import store from "../store/index";
 import resolveLevels from "../actions/resolveLevels";
 import calculateSheet from "../actionPackages/calculateSheet";
-import resolveScreen from "../actions/resolveScreen";
+import checkScreen from "../actionPackages/checkScreen";
 import resetSkills from "../actionPackages/resetSkills";
 
 const resetLevels = () => {
@@ -11,7 +11,9 @@ const resetLevels = () => {
 	resetSkills()
 	calculateSheet()
 
-	store.dispatch( resolveScreen({ active: "screenAbilities"}) )
+	checkScreen("screenAbilities")
+	checkScreen("screenBackground")
+	checkScreen("screenCharacter")
 
 };
 

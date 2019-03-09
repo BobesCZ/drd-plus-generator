@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import translations from "../translations";
 import changeScreen from "../actions/changeScreen";
 import autofillScreen from "../actions/autofillScreen";
-import resolveScreen from "../actions/resolveScreen";
+import checkScreen from "../actionPackages/checkScreen";
 import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
 import autofillScreenAbilities from "../actionPackages/autofillScreenAbilities";
 import autofillScreenSkills from "../actionPackages/autofillScreenSkills";
@@ -17,7 +17,6 @@ const mapDispatchToProps = dispatch => {
   return {
     changeScreen: item => dispatch(changeScreen(item)),
     autofillScreen: item => dispatch(autofillScreen(item)),
-    resolveScreen: item => dispatch(resolveScreen(item)),
   };
 };
 
@@ -61,7 +60,7 @@ class ConnectedStepNavigation extends React.Component {
         autofillScreenArmors();
       }
       else {
-        this.props.resolveScreen({ active: screenAutofill});
+        checkScreen(screenAutofill);
       }
     }
 

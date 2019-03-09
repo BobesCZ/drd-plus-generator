@@ -1,13 +1,13 @@
 import store from "../store/index";
 import resolveBackground from "../actions/resolveBackground";
-import resolveScreen from "../actions/resolveScreen";
+import checkScreen from "../actionPackages/checkScreen";
 import resetSkills from "../actionPackages/resetSkills";
 
 const resolveBackgroundAndChangeScreen = () => {
 
-	// Always dispatch resolveScreen after resolveBackground
+	// Always dispatch checkScreen after resolveBackground
 	store.dispatch( resolveBackground({}) )
-	store.dispatch( resolveScreen({ active: "screenBackground"}) )
+	checkScreen("screenBackground")
 
 	resetSkills()
 };

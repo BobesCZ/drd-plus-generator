@@ -1,6 +1,6 @@
 import store from "../store/index";
 import setSkill from "../actions/setSkill";
-import resolveScreen from "../actions/resolveScreen";
+import checkScreen from "../actionPackages/checkScreen";
 import calculateSheet from "../actionPackages/calculateSheet";
 
 const changeSkill = (skillName, skillType, value) => {
@@ -14,7 +14,7 @@ const changeSkill = (skillName, skillType, value) => {
 	}
 
 	// Resolve screen
-	store.dispatch( resolveScreen({ active: "screenSkills"}) )
+	checkScreen("screenSkills")
 };
 
 export default changeSkill;

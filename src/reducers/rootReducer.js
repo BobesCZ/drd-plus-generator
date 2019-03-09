@@ -3,24 +3,21 @@ import translations from "../translations";
 import isTextInputFilled from "../helpers/isTextInputFilled";
 import tables from "../data/tables";
 import getOrderedSkills from "../calculations/getOrderedSkills";
-import sumCollectionValues from "../helpers/sumCollectionValues";
 import createLevelsState from "../helpers/createLevelsState";
 import isAbilityMain from "../helpers/isAbilityMain";
 import isAbilityLeveled from "../helpers/isAbilityLeveled";
-import isLevelRowCompleted from "../helpers/isLevelRowCompleted";
 import getAbilities from "../calculations/getAbilities";
 import getDerivedAbilities from "../calculations/getDerivedAbilities";
 import getCombatParameters from "../calculations/getCombatParameters";
 import isAbilityOnRaceLimit from "../calculations/isAbilityOnRaceLimit";
 import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
 import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
-import getDistributedSkillsPoints from "../calculations/getDistributedSkillsPoints";
 import getWeaponNumbers from "../calculations/getWeaponNumbers";
 import initialState from "./initialState";
 
 const rootReducer = (state = initialState, action) => {
- 	switch (action.type) {
-	    case "CHANGE_INFO":
+  switch (action.type) {
+      case "CHANGE_INFO":
         var key = action.payload.key;
         // console.log(action.payload)
         return state.setIn(["character", "info", key], action.payload.value);
@@ -30,194 +27,16 @@ const rootReducer = (state = initialState, action) => {
         // console.log(action.payload)
         return state.set("activeScreen", active);
 
-      case "RESOLVE_SCREEN":
-        var active = action.payload.active;
+      case "SET_SCREEN":
+        var screen = action.payload.screen;
+        var value = action.payload.value;
 
-        if (active == "screenCharacter") {
-          // Checks screen no. 1
-          var nameField = state.getIn(["character", "info", "name"]);
-          var raceField = state.getIn(["character", "info", "race"]);
-          var classField = state.getIn(["character", "info", "class"]);
-          var levelField = state.getIn(["character", "info", "level"]);
-          var sexField = state.getIn(["character", "info", "sex"]);
-
-          if (
-            isTextInputFilled(nameField) &&
-            isTextInputFilled(raceField) &&
-            isTextInputFilled(classField) &&
-            isTextInputFilled(levelField) &&
-            isTextInputFilled(sexField)
-            )
-          {
-            // console.log("Screen screenCharacter is valid!");
-            return state.setIn(["screens", "screenCharacter"], 1)
-                        .setIn(["screens", "screenBackground"], 0)
-          }
-          else {
-            // console.log("Screen screenCharacter is not valid :-(");
-            return state.setIn(["screens", "screenCharacter"], 0)
-                        .setIn(["screens", "screenBackground"], -1)
-          }
+        if (screen.length && typeof value === "number") {
+          return state.setIn(["screens", screen], value)
         }
-        else if (active == "screenBackground") {
-          // Checks screen no. 2
-          var originField = state.getIn(["character", "background", "distributed", "origin"]);
-          var propertyField = state.getIn(["character", "background", "distributed", "property"]);
-          var skillsField = state.getIn(["character", "background", "distributed", "skills"]);
-          // User have to distribute all available points
-          var totalPoints = state.getIn(["character", "background", "total"]);
-          var distributedPoints = sumCollectionValues( state.getIn(["character", "background", "distributed"]) );
-          var rangeLimit =  state.getIn(["character", "background", "rangeLimit"]);
-
-          if (
-            isTextInputFilled(originField) &&
-            isTextInputFilled(propertyField) &&
-            isTextInputFilled(skillsField) &&
-            rangeLimit &&
-            parseInt(totalPoints - distributedPoints) === 0
-            )
-          {
-            // console.log("Screen screenBackground is valid!");
-            return state.setIn(["screens", "screenBackground"], 1)
-                        .setIn(["screens", "screenAbilities"], 0)
-          }
-          else {
-            // console.log("Screen screenBackground is not valid :-(");
-            return state.setIn(["screens", "screenBackground"], 0)
-                        .setIn(["screens", "screenAbilities"], -1)
-          }
+        else {
+          return state;
         }
-        else if (active == "screenAbilities") {
-          // Checks screen no. 2
-          var charLevel = state.getIn(["character", "info", "level"]);
-          var allLevelsCompleted = true;
-
-          for (var i = 1; i <= parseInt(charLevel); i++) {
-            var levelRow = state.getIn(["character", "levels", i]);
-            var isCompleted = isLevelRowCompleted(levelRow);
-
-            if (!isCompleted) {
-              allLevelsCompleted = false;
-              break;
-            }
-          }
-
-          if (allLevelsCompleted)
-          {
-            // console.log("Screen screenAbilities is valid!");
-            return state.setIn(["screens", "screenAbilities"], 1)
-                        .setIn(["screens", "screenSkills"], 0)
-          }
-          else {
-            // console.log("Screen screenAbilities is not valid :-(");
-            return state.setIn(["screens", "screenAbilities"], 0)
-                        .setIn(["screens", "screenSkills"], -1)
-          }
-        }
-
-        else if (active == "screenSkills") {
-          var skills = state.getIn(["character", "skills", "distributed"]);
-          var charClass = state.getIn(["character", "info", "class"]);
-          var availablePoints = state.getIn(["character", "skills", "availablePoints"]);
-          var currentAvailablePointsArray = []
-          var allRowsCompleted = true;
-
-          skills.keySeq().forEach((key) => {
-            var distributedSkillsPoints = getDistributedSkillsPoints(state.getIn(["character", "skills"]), key)
-            var availableSkillsPoints = availablePoints.get(key)
-
-            // Combat points are equal to physical (except for warriors, that have positive value in combat points)
-            if (key === "combat" && availableSkillsPoints === 0) {
-              availableSkillsPoints = availablePoints.get("physical")
-            }
-
-            // Handle extra points for Warrior
-            if (charClass === "warrior") {
-
-              if (key === "physical") {
-                // Distributed Combat points - check if points are "above combat", and if so, add to Physical distributed points
-                let distributedSkillsPointsCombat = getDistributedSkillsPoints(state.getIn(["character", "skills"]), "combat") - availablePoints.get("combat")
-
-                if (distributedSkillsPointsCombat < 0) {
-                  distributedSkillsPointsCombat = 0
-                }
-                distributedSkillsPoints = distributedSkillsPointsCombat + getDistributedSkillsPoints(state.getIn(["character", "skills"]), "physical")
-              }
-
-              else if (key === "combat") {
-                // Distributed Physical points are shared with Combat points
-                distributedSkillsPoints = getDistributedSkillsPoints(state.getIn(["character", "skills"]), "combat") + getDistributedSkillsPoints(state.getIn(["character", "skills"]), "physical")
-
-                // Combat points = (available Combat points) + (available Physical points)
-                availableSkillsPoints += availablePoints.get("physical")
-              }
-            }
-
-            let currentAvailablePoints = parseInt(availableSkillsPoints) - parseInt(distributedSkillsPoints)
-
-            // Warriors may have negative currentAvailablePoints for Physical => consider it as 0
-            if (currentAvailablePoints < 0) {
-              currentAvailablePoints = 0
-            }
-
-            currentAvailablePointsArray[key] = currentAvailablePoints
-          })
-
-          for (key in currentAvailablePointsArray) {
-            if (currentAvailablePointsArray[key] > 0) {
-              allRowsCompleted = false
-              break;
-            }
-          }
-
-          if (allRowsCompleted)
-          {
-            // console.log("Screen screenSkills is valid!");
-            return state.setIn(["screens", "screenSkills"], 1)
-                        .setIn(["screens", "screenWeapons"], 0)
-          }
-          else {
-            // console.log("Screen screenSkills is not valid :-(");
-            return state.setIn(["screens", "screenSkills"], 0)
-                        .setIn(["screens", "screenWeapons"], -1)
-          }
-
-        }
-
-        else if (active == "screenWeapons") {
-          var weapons = state.getIn(["character", "weapons"]);
-
-          if (weapons.size > 0)
-          {
-            // console.log("Screen screenWeapons is valid!");
-            return state.setIn(["screens", "screenWeapons"], 1)
-                        .setIn(["screens", "screenArmors"], 0)
-          }
-          else {
-            // console.log("Screen screenWeapons is not valid :-(");
-            return state.setIn(["screens", "screenWeapons"], 0)
-                        .setIn(["screens", "screenArmors"], -1)
-          }
-        }
-
-        else if (active == "screenArmors") {
-          var bodyArmor = state.getIn(["character", "armors", "bodyArmors", "armorName"]);
-          var helmet = state.getIn(["character", "armors", "helmets", "armorName"]);
-
-          if (isTextInputFilled(bodyArmor) && isTextInputFilled(helmet))
-          {
-            // console.log("Screen screenArmors is valid!");
-            return state.setIn(["screens", "screenArmors"], 1)
-                        .setIn(["screens", "screenExport"], 0)
-          }
-          else {
-            // console.log("Screen screenArmors is not valid :-(");
-            return state.setIn(["screens", "screenArmors"], 0)
-                        .setIn(["screens", "screenExport"], -1)
-          }
-        }
-
-        return state;
 
       case "AUTOFILL_SCREEN":
         var screen = action.payload.screen;

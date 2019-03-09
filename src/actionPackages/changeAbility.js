@@ -1,7 +1,7 @@
 import store from "../store/index";
 import changeAbilityValue from "../actions/changeAbilityValue";
 import resolveAbilityValues from "../actions/resolveAbilityValues";
-import resolveScreen from "../actions/resolveScreen";
+import checkScreen from "../actionPackages/checkScreen";
 import calculateSheet from "../actionPackages/calculateSheet";
 import resetSkills from "../actionPackages/resetSkills";
 
@@ -21,7 +21,7 @@ const changeAbility = (ability, level, changeValue) => {
 	calculateSheet()
 
 	// Resolve screen
-	store.dispatch( resolveScreen({ active: "screenAbilities"}) )
+	checkScreen("screenAbilities")
 
 	// Resolve table on screenSkills
 	resetSkills()

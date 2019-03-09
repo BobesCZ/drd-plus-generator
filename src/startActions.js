@@ -3,7 +3,7 @@ import translations from "./translations";
 import changeInfo from "./actions/changeInfo";
 import resetLevels from "./actionPackages/resetLevels";
 import autofillScreen from "./actions/autofillScreen";
-import resolveScreen from "./actions/resolveScreen";
+import checkScreen from "./actionPackages/checkScreen";
 import resolveBackgroundAndChangeScreen from "./actionPackages/resolveBackgroundAndChangeScreen";
 import changeScreen from "./actions/changeScreen";
 import calculateSheet from "./actionPackages/calculateSheet";
@@ -27,7 +27,7 @@ export default function startActions() {
 	// Go to screen 2
 	store.dispatch( autofillScreen({ screen: "screenCharacter"}) )
 	calculateSheet()
-	store.dispatch( resolveScreen({ active: "screenCharacter"}) )
+	checkScreen("screenCharacter")
 	store.dispatch( changeScreen({active: "screenBackground"}) )
 
 	// Go to screen 3

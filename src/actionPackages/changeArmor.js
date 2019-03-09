@@ -1,6 +1,6 @@
 import store from "../store/index";
 import setArmor from "../actions/setArmor";
-import resolveScreen from "../actions/resolveScreen";
+import checkScreen from "../actionPackages/checkScreen";
 import calculateSheet from "../actionPackages/calculateSheet";
 
 const changeArmor = (armorName, armorType) => {
@@ -11,7 +11,7 @@ const changeArmor = (armorName, armorType) => {
 	// calculate all weapons
 	calculateSheet({})
 
-	store.dispatch( resolveScreen({ active: "screenArmors"}) )
+	checkScreen("screenArmors")
 };
 
 export default changeArmor;

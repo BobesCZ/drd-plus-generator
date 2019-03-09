@@ -1,7 +1,7 @@
 import store from "../store/index";
 import addWeapon from "../actions/addWeapon";
 import removeWeapon from "../actions/removeWeapon";
-import resolveScreen from "../actions/resolveScreen";
+import checkScreen from "../actionPackages/checkScreen";
 import calculateSheet from "../actionPackages/calculateSheet";
 
 const changeWeapon = (weaponName, weaponType, action) => {
@@ -17,7 +17,7 @@ const changeWeapon = (weaponName, weaponType, action) => {
 	// calculate all weapons
 	calculateSheet({})
 
-	store.dispatch( resolveScreen({ active: "screenWeapons"}) )
+	checkScreen("screenWeapons")
 };
 
 export default changeWeapon;

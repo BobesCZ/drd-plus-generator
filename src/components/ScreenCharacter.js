@@ -2,18 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import store from "../store/index";
 import changeInfo from "../actions/changeInfo";
-import resolveScreen from "../actions/resolveScreen";
 import setErrata from "../actions/setErrata";
 import resetLevels from "../actionPackages/resetLevels";
 import translations from "../translations";
 import calculateSheet from "../actionPackages/calculateSheet";
+import checkScreen from "../actionPackages/checkScreen";
 import OverlayTrigger  from 'react-bootstrap/lib/OverlayTrigger';
 import Popover  from 'react-bootstrap/lib/Popover';
 
 const mapDispatchToProps = dispatch => {
   return {
     changeInfo: item => dispatch(changeInfo(item)),
-    resolveScreen: item => dispatch(resolveScreen(item)),
     setErrata: item => dispatch(setErrata(item)),
   };
 };
@@ -37,7 +36,7 @@ class ConnectedScreenCharacter extends React.Component {
     const name = target.name;
     // console.log({ key: name, value: value});
     this.props.changeInfo({ key: name, value: value});
-    this.props.resolveScreen({ active: "screenCharacter"});
+    checkScreen("screenCharacter");
 
     // Ignore field Name and Note, otherwise call resetLevels
     if (name !== "name" && name !== "note"){
