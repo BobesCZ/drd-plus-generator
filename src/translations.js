@@ -359,6 +359,10 @@
 	"downloadFileA4": "Stáhnout formát A4",
 	"pageCountAlertTitle": "Osobní deník je příliš dlouhý",
 	"pageCountAlert": "Osobní deník má příliš mnoho řádků a po exportu do PDF nebude kompletní.",
+	"savePanelHeader": "Uložit do prohlížeče",
+	"savePanelBody": "Kliknutím na tlačítko uložíte postavu do paměti prohlížeče (localStorage) na tomto zařízení. Data v paměti zůstanou i po zavření prohlížeče (neplatí pro anonymní režim).",
+	"saveCharacter": "Uložit postavu",
+	"clearCharacter": "Vymazat postavu",
 };
 
 export default translations;

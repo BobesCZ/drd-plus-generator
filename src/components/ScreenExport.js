@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import store from "../store/index";
 import translations from "../translations";
 import characterSheetPrintPageCount  from '../helpers/characterSheetPrintPageCount';
 import Alert  from 'react-bootstrap/lib/Alert';
@@ -24,6 +25,7 @@ class ConnectedScreenExport extends React.Component {
     this.state = {};
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickSave = this.handleClickSave.bind(this);
   }
 
   handleClick(event) {
@@ -60,9 +62,33 @@ class ConnectedScreenExport extends React.Component {
 
   }
 
+  handleClickSave(event) {
+    event.preventDefault();
+    let target = event.target;
+
+    // Target can be span with icon inside button
+    if (target.nodeName !== "BUTTON") {
+      target = target.closest('button')
+    }
+
+    let userAction = target.value;
+
+    if (userAction === "SAVE" && window.localStorage) {
+      // Set the whole state to browser's localStorage
+      let state = store.getState();
+      localStorage.setItem("drdgenState", JSON.stringify(state));
+    }
+    else if (userAction === "CLEAR"){
+      localStorage.removeItem("drdgenState")
+    }
+    // Re-render this screen, because showClearButton in render method not depends on state
+    this.forceUpdate();
+  }
+
   render(props) {
     let pageCount = characterSheetPrintPageCount()
     let showPageCountAlert = pageCount > 1 ? true : false
+    let showClearButton = window.localStorage && localStorage.getItem("drdgenState") && localStorage.getItem("drdgenState").length ? true : false
 
     return (
       <form>
@@ -105,8 +131,42 @@ class ConnectedScreenExport extends React.Component {
               onClick={this.handleClick}
             >
               <i className="fas fa-download"></i>
-              &nbsp; {translations.downloadFileA4}
+              {translations.downloadFileA4}
             </button>
+
+          </div>
+        </div>
+
+        <div className="card bg-light mb-4">
+          <div className="card-header">
+            {translations.savePanelHeader}
+          </div>
+          <div className="card-body">
+            <p>
+              {translations.savePanelBody}
+            </p>
+
+            <button
+              type="button"
+              className="btn btn-info mr-3"
+              value="SAVE"
+              onClick={this.handleClickSave}
+            >
+              <i className="fas fa-save"></i>
+              {translations.saveCharacter}
+            </button>
+
+            {showClearButton &&
+              <button
+                type="button"
+                className="btn btn-danger"
+                value="CLEAR"
+                onClick={this.handleClickSave}
+              >
+                <i className="fas fa-save"></i>
+                {translations.clearCharacter}
+              </button>
+            }
 
           </div>
         </div>
