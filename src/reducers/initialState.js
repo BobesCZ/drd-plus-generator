@@ -125,6 +125,10 @@ const initialState = fromJS(
       "screenArmors": -1,
       "screenExport":-1
     },
+    "saveOptions": {
+      "saveTimestamp": 0,
+      "useSavedState": false
+    },
     "errata": {
       // false => according to official rules
       // true => apply errata

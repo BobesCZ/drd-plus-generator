@@ -363,6 +363,12 @@
 	"savePanelBody": "Kliknutím na tlačítko uložíte postavu do paměti prohlížeče (localStorage) na tomto zařízení. Data v paměti zůstanou i po zavření prohlížeče (neplatí pro anonymní režim).",
 	"saveCharacter": "Uložit postavu",
 	"clearCharacter": "Vymazat postavu",
+	"saveModalTitle": "Postava byla obnovena z prohlížeče",
+	"saveModalText1": "Postava jménem",
+	"saveModalText2": "byla uložena v prohlížeči na tomto zařízení",
+	"saveModalText3": "Pokud uděláte nějaké změny, nezapomeňte je opět uložit na záložce",
+	"saveModalButtonOk": "Ó děkuji!",
+	"saveModalButtonClear": "Smazat tuto postavu a vytvořit novou",
 };
 
 export default translations;

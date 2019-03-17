@@ -5,6 +5,7 @@ import CharacterSheet from "./CharacterSheet";
 import Navigation from "./Navigation";
 import StepNavigation from "./StepNavigation";
 import ScreenSection from "./ScreenSection";
+import SaveModal from "./SaveModal";
 
 class Layout extends React.Component {
 	constructor(props) {
@@ -18,6 +19,8 @@ class Layout extends React.Component {
         	<div className="container">
 
         		<h1>DrDGen+</h1>
+
+        		<SaveModal />
 
 	        	{/* Navigation part (forms etc) */}
 	    		<Navigation />

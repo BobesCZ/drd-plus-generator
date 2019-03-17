@@ -1,6 +1,12 @@
+import screensArray from "../helpers/screensArray.js";
+
 const repairLoadedState = (state) => {
 
-    // 1. Convert iterators in Levels from strings to integers
+    // 1. set active screen to first screen
+    let firstScreen = screensArray[0];
+    state = state.setIn(["activeScreen"], firstScreen)
+
+	// 2. Convert iterators in Levels from strings to integers
     let levelsState = state.getIn(["character", "levels"])
     levelsState = levelsState.mapKeys(key => {
         return parseInt(key)

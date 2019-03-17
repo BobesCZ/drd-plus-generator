@@ -74,8 +74,13 @@ class ConnectedScreenExport extends React.Component {
     let userAction = target.value;
 
     if (userAction === "SAVE" && window.localStorage) {
-      // Set the whole state to browser's localStorage
       let state = store.getState();
+
+      // Set useSavedState - this will show saveModal component after reloading page
+      state = state.setIn(["saveOptions", "useSavedState"], true)
+      state = state.setIn(["saveOptions", "saveTimestamp"], Date.now())
+
+      // Set the whole state to browser's localStorage
       localStorage.setItem("drdgenState", JSON.stringify(state));
     }
     else if (userAction === "CLEAR"){
@@ -163,7 +168,7 @@ class ConnectedScreenExport extends React.Component {
                 value="CLEAR"
                 onClick={this.handleClickSave}
               >
-                <i className="fas fa-save"></i>
+                <i className="fas fa-times"></i>
                 {translations.clearCharacter}
               </button>
             }

@@ -498,6 +498,17 @@ const rootReducer = (state = initialState, action) => {
                     .setIn(["character", "armors", armorType, "limitation"], parseInt(armorObject.limitation))
                     .setIn(["character", "armors", armorType, "protection"], parseInt(armorObject.protection))
 
+      case "SET_SAVE_OPTION":
+        var key = action.payload.key
+        var value = action.payload.value
+
+        if (isTextInputFilled(key) && isTextInputFilled(value)) {
+          return state.setIn(["saveOptions", key], value)
+        }
+        else {
+          return state;
+        }
+
       default:
         return state;
   	}
