@@ -1,4 +1,5 @@
 import rootReducer from "../reducers/rootReducer";
+import repairLoadedState from "../actionPackages/repairLoadedState";
 import { createStore } from "redux";
 import { fromJS } from 'immutable';
 
@@ -7,10 +8,14 @@ let store;
 if (window.localStorage && localStorage.hasOwnProperty("drdgenState")) {
 	// Get the whole state from browser's localStorage
 	let savedState = localStorage.getItem("drdgenState");
+
 	// Format state to immutable format
 	savedState = fromJS(JSON.parse(savedState))
-	// Create store with savedState
-	store = createStore(rootReducer, savedState);
+	// Repair store to immutable objects
+	let repairedState = repairLoadedState(savedState)
+
+	// Create store with repaired state
+	store = createStore(rootReducer, repairedState)
 }
 else {
 	// Create store with initialState
