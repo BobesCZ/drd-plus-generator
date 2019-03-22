@@ -28,6 +28,7 @@ const autofillScreenWeapons = () => {
     let state = store.getState();
     let skills = state.getIn(["character", "skills", "distributed", "combat"]);
     let charStrength = state.getIn(["character", "abilities", "strength"]);
+    let weaponsCounter = 0;
 
     // Change key "usingShield" to "shields"
     skills = skills.mapKeys(key => {
@@ -47,10 +48,20 @@ const autofillScreenWeapons = () => {
                 if (weaponName) {
                     // Add weapon to state
                     changeWeapon(weaponName, skill, "ADD")
+
+                    // Count only offensive weapons, shields are excluded
+                    if (skill !== "shields") {
+                        weaponsCounter++
+                    }
                 }
             }
         })
 
+        if (weaponsCounter === 0) {
+            // No offensive weapon was added (user may chose combat skills like wearingArmor, shields or noWeapon)
+            // Add lightStaff as a default weapon (because there is always some stick laying on the ground, right?)
+            changeWeapon("lightStaff", "spears", "ADD")
+        }
     }
 
 };
