@@ -69,6 +69,13 @@ const isScreenValid = (screen) => {
 
 			for (var i = 1; i <= parseInt(charLevel); i++) {
 				var levelRow = state.getIn(["character", "levels", i]);
+
+				// When changing level on 1. screen, this function is called before resolveLevels()
+				// For now, consider screen as not-completed, and wait until resolveLevels() creates correct levelRow objects
+				if (typeof levelRow === "undefined") {
+					allLevelsCompleted = false;
+					break;
+				}
 				var isCompleted = isLevelRowCompleted(levelRow);
 
 				if (!isCompleted) {
