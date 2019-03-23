@@ -265,7 +265,7 @@ const rootReducer = (state = initialState, action) => {
 
         // In changeAbility() we try to resolve next level
         // In case of last level, there is no next level => return without changes
-        if (level > charLevel) {
+        if (level > parseInt(charLevel)) {
           return state
         }
 
