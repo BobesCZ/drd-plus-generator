@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --mode development --open",
-    "build": "webpack --mode production"
+    "deploy": "webpack --mode production"
   },
   "author": "BobesCZ",
   "devDependencies": {
@@ -30,8 +30,11 @@
     "jspdf": "^1.5.3",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "react": "^16.2.0",
     "react-bootstrap": "^1.0.0-beta.3",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }
