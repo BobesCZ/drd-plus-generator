@@ -1,14 +1,13 @@
 {
-  "name": "simple_webpack_boilerplate",
+  "name": "drd-plus-generator",
   "version": "1.0.0",
-  "description": "A ready to use simple webpack boilerplate",
+  "description": "Character generator for Czech role-playing game similar to Dungeons & Dragons",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --mode development --open",
     "build": "webpack --mode production"
   },
-  "author": "pinglinh",
-  "license": "ISC",
+  "author": "BobesCZ",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
