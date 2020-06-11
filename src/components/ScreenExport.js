@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import store from "../store/index";
 import translations from "../translations";
 import characterSheetPrintPageCount  from '../helpers/characterSheetPrintPageCount';
-import Alert  from 'react-bootstrap/lib/Alert';
+import Alert  from 'react-bootstrap/Alert';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 

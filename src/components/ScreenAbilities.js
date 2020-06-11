@@ -6,7 +6,7 @@ import getAbilitiesByRace from "../calculations/getAbilitiesByRace";
 import getAbilitiesByClass from "../calculations/getAbilitiesByClass";
 import isLevelRowCompleted from "../helpers/isLevelRowCompleted";
 import translations from "../translations";
-import Alert  from 'react-bootstrap/lib/Alert';
+import Alert  from 'react-bootstrap/Alert';
 
 const mapDispatchToProps = dispatch => {
   return {

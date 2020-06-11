@@ -8,7 +8,7 @@ import PanelAutofill from "./PanelAutofill";
 import getBackgroundSkillsPoints from "../calculations/getBackgroundSkillsPoints";
 import getLevelingSkillsPoints from "../calculations/getLevelingSkillsPoints";
 import getDistributedSkillsPoints from "../calculations/getDistributedSkillsPoints";
-import Navbar  from 'react-bootstrap/lib/Navbar';
+import Navbar  from 'react-bootstrap/Navbar';
 import tables from "../data/tables";
 
 const mapDispatchToProps = dispatch => {
