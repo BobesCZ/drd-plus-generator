@@ -1,8 +1,12 @@
 # DrD Plus Generator
 
-![GitHub](https://img.shields.io/github/license/BobesCZ/drd-plus-generator)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/BobesCZ/drd-plus-generator/webpack)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/BobesCZ/drd-plus-generator/react)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/BobesCZ/drd-plus-generator/redux)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/BobesCZ/drd-plus-generator/immutable)
 
 Character generator for Czech role-playing game *Dračí Doupě* (similar to Dungeons & Dragons).
+
 You can use it online at [gen.dracidoupestudenka.cz](http://gen.dracidoupestudenka.cz).
 
 ## Built With
@@ -29,13 +33,13 @@ This generator simplifies the process of creating a new character - it will guid
 
 ### What are "quick choices"?
 
-The author of this project and his friends have spent a lot of time playing this game. We have created hundreds of characters, so we are well familiar with the process. If you are playing with a warrior, you probably want him to be as strong as possible, right? We got this. Clicking on the "Quick choice" button will make the choice according to the best of author's beliefs in a given situation.
+The author of this project and his friends have spent a lot of time playing this game. We have created hundreds of characters, so we are fairly familiar with the process. If you are playing with a warrior, you probably want him to be as strong as possible, right? We got this. Clicking on the "Quick choice" button will make the choice according to the best of author's beliefs in a given situation.
 
 You can click on this button at every step in the process and create your character within  30 seconds!
 
 ## Installing
 
-This project is not open-source (see [License](#License). However, you can clone this repository and run it on your local machine for review and testing purposes.
+This project is not open-source (see [License](#License)). However, you can clone this repository and run it on your local machine for review and testing purposes.
 
 Install packages
 
@@ -56,4 +60,3 @@ Standard copyright, NOT OPEN-SOURCE. Author of this repository retain all rights
 ## Acknowledgments
 
 * [Simple webpack boilerplate](https://github.com/pinglinh/simple_webpack_boilerplate/)
-
