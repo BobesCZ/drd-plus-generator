@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import OverlayTrigger  from 'react-bootstrap/lib/OverlayTrigger';
-import Popover  from 'react-bootstrap/lib/Popover';
+import OverlayTrigger  from 'react-bootstrap/OverlayTrigger';
+import Popover  from 'react-bootstrap/Popover';
 import translations from "../translations";
 
 const mapStateToProps = (state) => {
@@ -37,17 +37,22 @@ class ConnectedDebugBox extends React.Component {
         trigger="hover"
         placement="left"
         overlay={
-          <Popover id={id} title={translations[title] + " - " + translations.debugBoxTitle}>
-            <table className="table debug-box-table">
-              <thead>
-                {debugBoxObject.keySeq().map(key => (
-                  <tr key={key} className={key === "total" ? "debug-box-table__total": ""}>
-                    <td>{translations[key]}</td>
-                    <td>{debugBoxObject.get(key)}</td>
-                  </tr>
-                ))}
-              </thead>
-            </table>
+          <Popover id={id}>
+            <Popover.Title>
+              {translations[title] + " - " + translations.debugBoxTitle}
+            </Popover.Title>
+            <Popover.Content>
+              <table className="table debug-box-table">
+                <thead>
+                  {debugBoxObject.keySeq().map(key => (
+                    <tr key={key} className={key === "total" ? "debug-box-table__total": ""}>
+                      <td>{translations[key]}</td>
+                      <td>{debugBoxObject.get(key)}</td>
+                    </tr>
+                  ))}
+                </thead>
+              </table>
+            </Popover.Content>
           </Popover>
         }
       >

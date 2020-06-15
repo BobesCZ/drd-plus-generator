@@ -7,8 +7,8 @@ import resetLevels from "../actionPackages/resetLevels";
 import translations from "../translations";
 import calculateSheet from "../actionPackages/calculateSheet";
 import checkScreen from "../actionPackages/checkScreen";
-import OverlayTrigger  from 'react-bootstrap/lib/OverlayTrigger';
-import Popover  from 'react-bootstrap/lib/Popover';
+import OverlayTrigger  from 'react-bootstrap/OverlayTrigger';
+import Popover  from 'react-bootstrap/Popover';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -152,7 +152,9 @@ class ConnectedScreenCharacter extends React.Component {
               placement="right"
               overlay={
                 <Popover id="sexPopover">
-                 {translations.sexPopover}
+                  <Popover.Content>
+                    {translations.sexPopover}
+                   </Popover.Content>
                 </Popover>
               }
             >

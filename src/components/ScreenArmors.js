@@ -3,7 +3,7 @@ import ArmorRow from "./ArmorRow";
 import { connect } from "react-redux";
 import PanelAutofill from "./PanelAutofill";
 import translations from "../translations";
-import Navbar  from 'react-bootstrap/lib/Navbar';
+import Navbar  from 'react-bootstrap/Navbar';
 import tables from "../data/tables";
 
 const mapDispatchToProps = dispatch => {

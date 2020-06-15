@@ -5,7 +5,7 @@ import WeaponRow from "./WeaponRow";
 import PanelAutofill from "./PanelAutofill";
 import getRomanizedNumber from "../helpers/getRomanizedNumber";
 import setSwitcher from "../actions/setSwitcher";
-import Navbar  from 'react-bootstrap/lib/Navbar';
+import Navbar  from 'react-bootstrap/Navbar';
 import tables from "../data/tables";
 
 const mapDispatchToProps = dispatch => {

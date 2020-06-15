@@ -4,8 +4,8 @@ import isAbilityMain from "../helpers/isAbilityMain";
 import changeAbility from "../actionPackages/changeAbility";
 import translations from "../translations";
 import tables from "../data/tables";
-import OverlayTrigger  from 'react-bootstrap/lib/OverlayTrigger';
-import Popover  from 'react-bootstrap/lib/Popover';
+import OverlayTrigger  from 'react-bootstrap/OverlayTrigger';
+import Popover  from 'react-bootstrap/Popover';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -143,8 +143,13 @@ class ConnectedLevelAbilitiesRow extends React.Component {
             trigger="hover"
             placement="left"
             overlay={
-              <Popover id="levelAbilitiesPopover" title={translations.levelAbilitiesPopoverTitle}>
-               {translations.levelAbilitiesPopover}
+              <Popover id="levelAbilitiesPopover">
+                <Popover.Title>
+                  {translations.levelAbilitiesPopoverTitle}
+                </Popover.Title>
+                <Popover.Content>
+                  {translations.levelAbilitiesPopover}
+                </Popover.Content>
               </Popover>
             }
           >
