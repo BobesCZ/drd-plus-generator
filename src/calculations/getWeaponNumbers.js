@@ -42,6 +42,9 @@ const getWeaponNumbers = (weaponName, weaponType, twohandedHold, skillDegree, co
     if (missingStrength < 0 ) {
       missingStrength = 0
     }
+    if (missingStrength > 11 ) {
+      missingStrength = 11
+    }
     let missingStrengthCorrection = tables.missingStrengthOnWeapon[missingStrength]
 
     // @SOURCE: Chybějící dovednost (a erratované bonusové stupně pro Bojovníka)
