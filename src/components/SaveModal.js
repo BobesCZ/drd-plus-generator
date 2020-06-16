@@ -58,7 +58,7 @@ class ConnectedSaveModal extends React.Component {
                         {translations.saveModalText2}
                         <strong> {saveDatetime} </strong>
                     </p>
-                    <p>
+                    <p className="mb-0">
                         {translations.saveModalText3} {translations.screenExport}
                     </p>
                 </Modal.Body>

@@ -63,6 +63,7 @@ class ConnectedScreenCharacter extends React.Component {
             name="name"
             value={this.props.info.get("name")}
             onInput={this.handleChangeFormInput}
+            onChange={this.handleChangeFormInput}
             placeholder={translations.charnamePlaceholder}
           />
         </div>
@@ -148,7 +149,6 @@ class ConnectedScreenCharacter extends React.Component {
             {translations.sex} &nbsp;
 
             <OverlayTrigger
-              trigger="hover"
               placement="right"
               overlay={
                 <Popover id="sexPopover">

@@ -92,7 +92,7 @@ class ConnectedScreenWeapons extends React.Component {
               <li>{translations.weaponPanelLi2}</li>
             </ul>
 
-            <label className="switch-light">
+            <label className="switch-light mb-0">
               <input
                 type="checkbox"
                 name="showCharNumbersInWeaponTable"
@@ -144,7 +144,7 @@ class ConnectedScreenWeapons extends React.Component {
               <Navbar.Collapse id={'weapons' + key}>
 
                 <div className="card-body">
-                  <table className="table weapon-table">
+                  <table className="table weapon-table mb-0">
                     <tbody>
                       <tr>
                         <th>{translations.weapon}</th>

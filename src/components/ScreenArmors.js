@@ -49,7 +49,7 @@ class ConnectedScreenArmors extends React.Component {
             {translations.armorPanelHeader}
           </div>
           <div className="card-body">
-            <ul>
+            <ul className="mb-0">
               <li>{translations.armorPanelLi1}</li>
               <li>{translations.armorPanelLi2}</li>
             </ul>
@@ -75,7 +75,7 @@ class ConnectedScreenArmors extends React.Component {
               <Navbar.Collapse id={'armors' + key}>
 
                 <div className="card-body">
-                  <table className="table weapon-table">
+                  <table className="table weapon-table mb-0">
                     <tbody>
                       <tr>
                         <th>{translations.armor}</th>

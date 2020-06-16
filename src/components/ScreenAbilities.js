@@ -66,7 +66,7 @@ class ConnectedScreenAbilities extends React.Component {
             <i className="fas fa-exclamation-triangle"></i>
             {translations.levelAbilitiesAlertTitle}
           </Alert.Heading>
-          <p>
+          <p className="mb-0">
             {translations.levelAbilitiesAlert}
           </p>
         </Alert>
@@ -77,7 +77,7 @@ class ConnectedScreenAbilities extends React.Component {
           </div>
           <div className="card-body">
             {translations.abilitiesPanelBody}
-            <ul>
+            <ul className="mb-0">
               <li>{translations.abilitiesPanelLi1}</li>
               <li>{translations.abilitiesPanelLi2}</li>
               <li>{translations.abilitiesPanelLi3}</li>

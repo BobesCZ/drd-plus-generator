@@ -96,7 +96,7 @@ class ConnectedPanelAutofill extends React.Component {
                     &nbsp;{abilitiesStringArray[1]}
 
                   </p>
-                  <label className="switch-light">
+                  <label className="switch-light mb-0">
                     <input
                       type="checkbox"
                       name="autoFillAbilities"
@@ -137,7 +137,7 @@ class ConnectedPanelAutofill extends React.Component {
                   <p>
                     {translations.autoFillSkills}
                   </p>
-                  <p>
+                  <p className="mb-0">
                     {translations.autoFillSkillsInfo1}<br />
 
                     <strong>

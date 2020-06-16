@@ -103,7 +103,7 @@ class ConnectedScreenExport extends React.Component {
             <i className="far fa-grin-beam"></i>
             {translations.exportAlertTitle}
           </Alert.Heading>
-          <p>
+          <p className="mb-0">
             {translations.exportAlert}
           </p>
         </Alert>
