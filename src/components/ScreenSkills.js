@@ -95,11 +95,11 @@ class ConnectedScreenSkills extends React.Component {
             {translations.skillsPanelHeader}
           </div>
           <div className="card-body">
-            <div className="mb-4">
+            <div className="mb-3">
               {translations.skillsPanelBody}
             </div>
 
-            <table className="table">
+            <table className="table mb-0">
               <tbody>
                 <tr>
                   <th>{translations.skillsPanelTableTh1}</th>
@@ -129,7 +129,7 @@ class ConnectedScreenSkills extends React.Component {
             </table>
 
             {charClass === "warrior" &&
-              <p>
+              <p className="mb-0 mt-3">
                 {translations.skillsPanelBodyWarrior}:&nbsp;{availablePoints.get("combat")}
               </p>
             }
@@ -162,7 +162,7 @@ class ConnectedScreenSkills extends React.Component {
               <Navbar.Collapse id={'skills' + key}>
 
               <div className="card-body">
-                <table className="table">
+                <table className="table mb-0">
                   <tbody>
 
                     {skills.get(key).keySeq().map(skillName => (

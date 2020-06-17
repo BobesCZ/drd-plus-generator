@@ -103,7 +103,7 @@ class ConnectedPanelErrata extends React.Component {
 
           {content}
 
-          <label className="switch-light" >
+          <label className="switch-light mb-0">
             <input
               type="checkbox"
               name={this.props.name}

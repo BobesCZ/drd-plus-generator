@@ -11,6 +11,8 @@ import PanelAutofill from "./PanelAutofill";
 import sumCollectionValues from "../helpers/sumCollectionValues";
 import translations from "../translations";
 import tables from "../data/tables";
+import OverlayTrigger  from 'react-bootstrap/OverlayTrigger';
+import Popover  from 'react-bootstrap/Popover';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -119,7 +121,7 @@ class ConnectedScreenBackground extends React.Component {
               <li>{translations.backgroundPanelLi3}</li>
             </ul>
 
-            <table className="table">
+            <table className="table mb-0">
               <tbody>
                 <tr>
                   <th>{translations.backgroundPanelTableTh1}</th>
@@ -178,7 +180,19 @@ class ConnectedScreenBackground extends React.Component {
               {translations.from}&nbsp;
               {totalPoints}&nbsp;
               {translations.points}&nbsp;
-              <span className="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="popover" data-trigger="hover" data-content={translations.distributeBackgroundPopover}></span>
+
+              <OverlayTrigger
+                placement="right"
+                overlay={
+                  <Popover id="distributeBackgroundPopover">
+                    <Popover.Content>
+                      {translations.distributeBackgroundPopover}
+                    </Popover.Content>
+                  </Popover>
+                }
+              >
+                <i className="fas fa-question-circle"></i>
+              </OverlayTrigger>
             </p>
 
             <div className="row">

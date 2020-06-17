@@ -34,7 +34,6 @@ class ConnectedDebugBox extends React.Component {
 
     return (
       <OverlayTrigger
-        trigger="hover"
         placement="left"
         overlay={
           <Popover id={id}>
@@ -42,7 +41,7 @@ class ConnectedDebugBox extends React.Component {
               {translations[title] + " - " + translations.debugBoxTitle}
             </Popover.Title>
             <Popover.Content>
-              <table className="table debug-box-table">
+              <table className="table debug-box-table mb-0">
                 <thead>
                   {debugBoxObject.keySeq().map(key => (
                     <tr key={key} className={key === "total" ? "debug-box-table__total": ""}>

@@ -140,7 +140,6 @@ class ConnectedLevelAbilitiesRow extends React.Component {
 
         <td>
           <OverlayTrigger
-            trigger="hover"
             placement="left"
             overlay={
               <Popover id="levelAbilitiesPopover">
