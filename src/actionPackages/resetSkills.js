@@ -1,18 +1,16 @@
-import store from "../store/index";
-import setSkillsPoints from "../actions/setSkillsPoints";
-import resolveSkills from "../actions/resolveSkills";
-import checkScreen from "../actionPackages/checkScreen";
+import checkScreen from '../actionPackages/checkScreen';
+import resolveSkills from '../actions/resolveSkills';
+import setSkillsPoints from '../actions/setSkillsPoints';
+import store from '../store/index';
 
 const resetSkills = () => {
+  // Reset available points
+  store.dispatch(setSkillsPoints({}));
 
-	// Reset available points
-	store.dispatch( setSkillsPoints({}) )
+  // Reset all points distributed by user
+  store.dispatch(resolveSkills({}));
 
-	// Reset all points distributed by user
-	store.dispatch( resolveSkills({}) )
-
-	checkScreen("screenSkills")
-
+  checkScreen('screenSkills');
 };
 
 export default resetSkills;

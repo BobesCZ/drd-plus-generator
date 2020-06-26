@@ -19,7 +19,6 @@ const isAbilityLeveled = (ability, levels, currentLevel, previousLevelsCount) =>
         sum += parseInt(value);
       }
 
-      // console.log(ability, sum)
       if (sum === previousLevelsCount) {
         // Ability was leveled in (all) previous levels
         return true;

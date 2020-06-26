@@ -1,15 +1,14 @@
-import store from "../store/index";
-import resolveBackground from "../actions/resolveBackground";
-import checkScreen from "../actionPackages/checkScreen";
-import resetSkills from "../actionPackages/resetSkills";
+import checkScreen from '../actionPackages/checkScreen';
+import resetSkills from '../actionPackages/resetSkills';
+import resolveBackground from '../actions/resolveBackground';
+import store from '../store/index';
 
 const resolveBackgroundAndChangeScreen = () => {
+  // Always dispatch checkScreen after resolveBackground
+  store.dispatch(resolveBackground({}));
+  checkScreen('screenBackground');
 
-	// Always dispatch checkScreen after resolveBackground
-	store.dispatch( resolveBackground({}) )
-	checkScreen("screenBackground")
-
-	resetSkills()
+  resetSkills();
 };
 
 export default resolveBackgroundAndChangeScreen;
