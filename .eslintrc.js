@@ -19,6 +19,7 @@ module.exports = {
   ],
   rules: {
     semi: ['error', 'always'],
+    'brace-style': ['error', 'stroustrup'],
     'comma-dangle': ['error', 'always-multiline'],
     'react/prop-types': 'off',
   },
