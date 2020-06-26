@@ -1,9 +1,8 @@
-import convertTables from "../data/convertTables";
+import convertTables from '../data/convertTables';
 
 const getDamageNumberTableValue = (column, row) => {
-
   if (column.toString.length && row.toString.length) {
-  	let result = convertTables.damageNumberTable[column][row];
+    const result = convertTables.damageNumberTable[column][row];
 
     if (result) {
       return result;
