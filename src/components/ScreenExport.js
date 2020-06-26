@@ -1,17 +1,11 @@
-import React from "react";
-import { connect } from "react-redux";
-import store from "../store/index";
-import translations from "../translations";
-import characterSheetPrintPageCount  from '../helpers/characterSheetPrintPageCount';
-import Alert  from 'react-bootstrap/Alert';
-import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-
-const mapDispatchToProps = dispatch => {
-  return {
-    // setBackground: item => dispatch(setBackground(item)),
-  };
-};
+import jsPDF from 'jspdf';
+import React from 'react';
+import Alert from 'react-bootstrap/Alert';
+import { connect } from 'react-redux';
+import characterSheetPrintPageCount from '../helpers/characterSheetPrintPageCount';
+import store from '../store/index';
+import translations from '../translations';
 
 const mapStateToProps = (state) => {
   return {
@@ -20,80 +14,74 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedScreenExport extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-
+  constructor (props) {
+    super(props);
     this.handleClick = this.handleClick.bind(this);
     this.handleClickSave = this.handleClickSave.bind(this);
   }
 
-  handleClick(event) {
+  handleClick (event) {
     event.preventDefault();
     const target = event.target;
-
-    let userFormat = target.getAttribute('data-format');
-    let characterSheetEl = document.querySelector(".character-sheet")
+    const userFormat = target.getAttribute('data-format');
+    const characterSheetEl = document.querySelector('.character-sheet');
 
     // Add class for printing styles (e.g. hide debug-boxes)
-    characterSheetEl.classList.add("character-sheet--printing")
+    characterSheetEl.classList.add('character-sheet--printing');
 
     // Render HTML to canvas and return a promise
     html2canvas(characterSheetEl).then(canvas => {
-
       // Create new PDF object
-      var doc = new jsPDF({
+      const doc = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
         format: userFormat,
-      })
+      });
 
       // Add image to PDF object
       doc.addImage(canvas, 'PNG', 5, 5);
 
       // Save file (file will be downloaded automatically)
-      let charName = this.props.info.get("name");
-      doc.save(`${charName}.pdf`)
+      const charName = this.props.info.get('name');
+      doc.save(`${charName}.pdf`);
 
       // Remove printing class
-      characterSheetEl.classList.remove("character-sheet--printing")
-
+      characterSheetEl.classList.remove('character-sheet--printing');
     });
-
   }
 
-  handleClickSave(event) {
+  handleClickSave (event) {
     event.preventDefault();
     let target = event.target;
 
     // Target can be span with icon inside button
-    if (target.nodeName !== "BUTTON") {
-      target = target.closest('button')
+    if (target.nodeName !== 'BUTTON') {
+      target = target.closest('button');
     }
 
-    let userAction = target.value;
+    const userAction = target.value;
 
-    if (userAction === "SAVE" && window.localStorage) {
+    if (userAction === 'SAVE' && window.localStorage) {
       let state = store.getState();
 
       // Set useSavedState - this will show saveModal component after reloading page
-      state = state.setIn(["saveOptions", "useSavedState"], true)
-      state = state.setIn(["saveOptions", "saveTimestamp"], Date.now())
+      state = state.setIn(['saveOptions', 'useSavedState'], true);
+      state = state.setIn(['saveOptions', 'saveTimestamp'], Date.now());
 
       // Set the whole state to browser's localStorage
-      localStorage.setItem("drdgenState", JSON.stringify(state));
+      localStorage.setItem('drdgenState', JSON.stringify(state));
     }
-    else if (userAction === "CLEAR"){
-      localStorage.removeItem("drdgenState")
+    else if (userAction === 'CLEAR') {
+      localStorage.removeItem('drdgenState');
     }
     // Re-render this screen, because showClearButton in render method not depends on state
     this.forceUpdate();
   }
 
-  render(props) {
-    let pageCount = characterSheetPrintPageCount()
-    let showPageCountAlert = pageCount > 1 ? true : false
-    let showClearButton = window.localStorage && localStorage.getItem("drdgenState") && localStorage.getItem("drdgenState").length ? true : false
+  render () {
+    const pageCount = characterSheetPrintPageCount();
+    const showPageCountAlert = pageCount > 1;
+    const showClearButton = !!(window.localStorage && localStorage.getItem('drdgenState') && localStorage.getItem('drdgenState').length);
 
     return (
       <form>
@@ -177,11 +165,10 @@ class ConnectedScreenExport extends React.Component {
         </div>
 
       </form>
-    )
-
+    );
   }
 }
 
-const ScreenExport = connect(mapStateToProps, mapDispatchToProps)(ConnectedScreenExport);
+const ScreenExport = connect(mapStateToProps)(ConnectedScreenExport);
 
 export default ScreenExport;

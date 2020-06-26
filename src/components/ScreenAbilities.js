@@ -1,18 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import LevelAbilitiesRow from "./LevelAbilitiesRow";
-import PanelAutofill from "./PanelAutofill";
-import getAbilitiesByRace from "../calculations/getAbilitiesByRace";
-import getAbilitiesByClass from "../calculations/getAbilitiesByClass";
-import isLevelRowCompleted from "../helpers/isLevelRowCompleted";
-import translations from "../translations";
-import Alert  from 'react-bootstrap/Alert';
-
-const mapDispatchToProps = dispatch => {
-  return {
-    // setBackground: item => dispatch(setBackground(item)),
-  };
-};
+import React from 'react';
+import Alert from 'react-bootstrap/Alert';
+import { connect } from 'react-redux';
+import getAbilitiesByClass from '../calculations/getAbilitiesByClass';
+import getAbilitiesByRace from '../calculations/getAbilitiesByRace';
+import isLevelRowCompleted from '../helpers/isLevelRowCompleted';
+import translations from '../translations';
+import LevelAbilitiesRow from './LevelAbilitiesRow';
+import PanelAutofill from './PanelAutofill';
 
 const mapStateToProps = (state) => {
   return {
@@ -23,34 +17,29 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedScreenAbilities extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-  }
+  render () {
+    const charRace = this.props.info.get('race');
+    const charSex = this.props.info.get('sex');
+    const charClass = this.props.info.get('class');
+    const charLevel = this.props.info.get('level');
 
-  render(props) {
-    let charRace = this.props.info.get("race");
-    let charSex = this.props.info.get("sex");
-    let charClass = this.props.info.get("class");
-    let charLevel = this.props.info.get("level");
+    const base = getAbilitiesByRace(charRace, charSex);
+    const baseClass = getAbilitiesByClass(charClass);
 
-    let base = getAbilitiesByRace(charRace, charSex);
-    let baseClass = getAbilitiesByClass(charClass);
-
-    let maxLevelArray = [];
-    let completedLevelArray = [];
+    const maxLevelArray = [];
+    const completedLevelArray = [];
 
     // Array for "hidden" property
     // Row is hidden, if previous row is not completed (first row is always hidden: false)
-    for (var i=1; i <= charLevel; i++) {
-      let levels = this.props.levels.get(i);
-      let completed = isLevelRowCompleted(levels)
+    for (let i = 1; i <= charLevel; i++) {
+      const levels = this.props.levels.get(i);
+      const completed = isLevelRowCompleted(levels);
       completedLevelArray[i] = completed;
 
       if (i === 1) {
         maxLevelArray[i] = false;
       }
-      else if (completedLevelArray[i-1] === true) {
+      else if (completedLevelArray[i - 1] === true) {
         maxLevelArray[i] = false;
       }
       else {
@@ -135,11 +124,10 @@ class ConnectedScreenAbilities extends React.Component {
         <PanelAutofill screen="screenAbilities"/>
 
       </form>
-    )
-
+    );
   }
 }
 
-const ScreenAbilities = connect(mapStateToProps, mapDispatchToProps)(ConnectedScreenAbilities);
+const ScreenAbilities = connect(mapStateToProps)(ConnectedScreenAbilities);
 
 export default ScreenAbilities;

@@ -1,46 +1,37 @@
-import React from "react";
-
-import ScreenCharacter from "./ScreenCharacter";
-import CharacterSheet from "./CharacterSheet";
-import Navigation from "./Navigation";
-import StepNavigation from "./StepNavigation";
-import ScreenSection from "./ScreenSection";
-import SaveModal from "./SaveModal";
+import React from 'react';
+import CharacterSheet from './CharacterSheet';
+import Navigation from './Navigation';
+import SaveModal from './SaveModal';
+import ScreenSection from './ScreenSection';
+import StepNavigation from './StepNavigation';
 
 class Layout extends React.Component {
-	constructor(props) {
-	    super();
-	    this.state = {};
-	}
+  render () {
+    return (
+      <div className="container">
 
-    render() {
-        return (
+        <h1>DrDGen+</h1>
 
-        	<div className="container">
+        <SaveModal />
 
-        		<h1>DrDGen+</h1>
+        {/* Navigation part (forms etc) */}
+        <Navigation />
 
-        		<SaveModal />
+        <div className="row mb-5">
+          <div className="col-lg-6">
+            {/* Interaction part (forms etc) */}
+            <ScreenSection />
+            <StepNavigation />
+          </div>
 
-	        	{/* Navigation part (forms etc) */}
-	    		<Navigation />
-
-        		<div className="row mb-5">
-        			<div className="col-lg-6">
-		        		{/* Interaction part (forms etc) */}
-		        		<ScreenSection />
-		        		<StepNavigation />
-		    		</div>
-
-	    			<div className="col-lg-6">
-		        		{/* Printing part (character sheet) */}
-	    	    		<CharacterSheet />
-	    			</div>
-    			</div>
-    		</div>
-
-    	);
-    }
+          <div className="col-lg-6">
+            {/* Printing part (character sheet) */}
+            <CharacterSheet />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Layout;

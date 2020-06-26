@@ -22,6 +22,7 @@ module.exports = {
     indent: ['error', 2, { SwitchCase: 1 }],
     'brace-style': ['error', 'stroustrup'],
     'comma-dangle': ['error', 'always-multiline'],
+    'new-cap': 'off',
     'react/prop-types': 'off',
   },
 };
