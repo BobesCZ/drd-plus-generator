@@ -32,41 +32,41 @@ const calculateSheet = () => {
   });
 
   // Set debugBoxes - derived abilities
-  let strength = state.getIn(['character', 'abilities', 'strength']);
-  let dexterity = state.getIn(['character', 'abilities', 'dexterity']);
-  let manualdexterity = state.getIn(['character', 'abilities', 'manualdexterity']);
-  let will = state.getIn(['character', 'abilities', 'will']);
-  let intelligence = state.getIn(['character', 'abilities', 'intelligence']);
-  let charisma = state.getIn(['character', 'abilities', 'charisma']);
+  const strength = state.getIn(['character', 'abilities', 'strength']);
+  const dexterity = state.getIn(['character', 'abilities', 'dexterity']);
+  const manualdexterity = state.getIn(['character', 'abilities', 'manualdexterity']);
+  const will = state.getIn(['character', 'abilities', 'will']);
+  const intelligence = state.getIn(['character', 'abilities', 'intelligence']);
+  const charisma = state.getIn(['character', 'abilities', 'charisma']);
 
-  let finalDerivedAbilities = getDerivedAbilities(charRace, strength, dexterity, manualdexterity, will, intelligence, charisma, true);
+  const finalDerivedAbilities = getDerivedAbilities(charRace, strength, dexterity, manualdexterity, will, intelligence, charisma, true);
 
   Object.keys(finalDerivedAbilities).forEach((key) => {
     store.dispatch(addDebugBox({ id: key, content: finalDerivedAbilities[key] }));
   });
 
   // Set debugBoxes - combat parameters
-  let resistance = state.getIn(['character', 'derivedAbilities', 'resistance']);
+  const resistance = state.getIn(['character', 'derivedAbilities', 'resistance']);
   // let bodyArmorsNecessaryStrength = state.getIn(["character", "armors", "bodyArmors", "necessaryStrength"])
-  let bodyArmorsLimitation = state.getIn(['character', 'armors', 'bodyArmors', 'limitation']);
+  const bodyArmorsLimitation = state.getIn(['character', 'armors', 'bodyArmors', 'limitation']);
   // let helmetsNecessaryStrength = state.getIn(["character", "armors", "helmets", "necessaryStrength"])
-  let helmetsLimitation = state.getIn(['character', 'armors', 'helmets', 'limitation']);
-  let wearingArmorLevel = state.getIn(['character', 'skills', 'distributed', 'combat', 'wearingArmor']);
+  const helmetsLimitation = state.getIn(['character', 'armors', 'helmets', 'limitation']);
+  const wearingArmorLevel = state.getIn(['character', 'skills', 'distributed', 'combat', 'wearingArmor']);
 
   let weaponStateObject = state.getIn(['character', 'weapons']);
-  let usingShieldLevel = state.getIn(['character', 'skills', 'distributed', 'combat', 'usingShield']);
-  let finalCombatParameters = getCombatParameters(charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, weaponStateObject, usingShieldLevel, true);
+  const usingShieldLevel = state.getIn(['character', 'skills', 'distributed', 'combat', 'usingShield']);
+  const finalCombatParameters = getCombatParameters(charRace, charClass, dexterity, manualdexterity, intelligence, charisma, resistance, bodyArmorsLimitation, helmetsLimitation, wearingArmorLevel, weaponStateObject, usingShieldLevel, true);
 
   Object.keys(finalCombatParameters).forEach((key) => {
     store.dispatch(addDebugBox({ id: key, content: finalCombatParameters[key] }));
   });
 
   // Set debugBoxes - weapon numbers
-  let weaponStateObject = state.getIn(['character', 'weapons']);
-  let combatSpeed = state.getIn(['character', 'combatParameters', 'combatSpeed']);
-  let attack = state.getIn(['character', 'combatParameters', 'attack']);
-  let defense = state.getIn(['character', 'combatParameters', 'defense']);
-  let charStrength = state.getIn(['character', 'abilities', 'strength']);
+  weaponStateObject = state.getIn(['character', 'weapons']);
+  const combatSpeed = state.getIn(['character', 'combatParameters', 'combatSpeed']);
+  const attack = state.getIn(['character', 'combatParameters', 'attack']);
+  const defense = state.getIn(['character', 'combatParameters', 'defense']);
+  const charStrength = state.getIn(['character', 'abilities', 'strength']);
 
   // Iterate through weapon names
   weaponStateObject.mapKeys((weaponName) => {
@@ -77,7 +77,7 @@ const calculateSheet = () => {
 
     // Iterate through weapon holds
     weaponStateObject.get(weaponName).mapKeys((weaponHold) => {
-      let weaponType = weaponStateObject.getIn([weaponName, weaponHold, 'weaponType']);
+      const weaponType = weaponStateObject.getIn([weaponName, weaponHold, 'weaponType']);
       let skillDegree = state.getIn(['character', 'skills', 'distributed', 'combat', weaponType]);
 
       if (weaponType === 'shields') {
@@ -85,8 +85,8 @@ const calculateSheet = () => {
       }
 
       // Returns Map with weapon numbers
-      let weaponHoldBool = weaponHold === 'twohanded' && twohandedHoldIsAutomatic;
-      let weaponObject = getWeaponNumbers(weaponName, weaponType, weaponHoldBool, skillDegree, combatSpeed, attack, defense, charStrength, true);
+      const weaponHoldBool = weaponHold === 'twohanded' && twohandedHoldIsAutomatic;
+      const weaponObject = getWeaponNumbers(weaponName, weaponType, weaponHoldBool, skillDegree, combatSpeed, attack, defense, charStrength, true);
 
       Object.keys(weaponObject).forEach((number) => {
         const key = `${weaponName}_${weaponHold}_${number}`;

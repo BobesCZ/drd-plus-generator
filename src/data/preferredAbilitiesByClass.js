@@ -1,6 +1,6 @@
 const preferredAbilitiesByClass = {
   warrior: {
-    combat: {
+    combatFocus: {
       strength: 100,
       dexterity: 10,
       manualdexterity: 1,
@@ -8,7 +8,7 @@ const preferredAbilitiesByClass = {
       intelligence: 0,
       charisma: 0,
     },
-    nonCombat: {
+    nonCombatFocus: {
       strength: 100,
       dexterity: 10,
       manualdexterity: 0,
@@ -18,7 +18,7 @@ const preferredAbilitiesByClass = {
     },
   },
   rogue: {
-    combat: {
+    combatFocus: {
       strength: 5,
       dexterity: 100,
       manualdexterity: 10,
@@ -26,7 +26,7 @@ const preferredAbilitiesByClass = {
       intelligence: 0,
       charisma: 0,
     },
-    nonCombat: {
+    nonCombatFocus: {
       strength: 0,
       dexterity: 10,
       manualdexterity: 100,
@@ -36,7 +36,7 @@ const preferredAbilitiesByClass = {
     },
   },
   ranger: {
-    combat: {
+    combatFocus: {
       strength: 50,
       dexterity: 5,
       manualdexterity: 50,
@@ -44,7 +44,7 @@ const preferredAbilitiesByClass = {
       intelligence: 0,
       charisma: 0,
     },
-    nonCombat: {
+    nonCombatFocus: {
       strength: 10,
       dexterity: 0,
       manualdexterity: 100,
@@ -54,7 +54,7 @@ const preferredAbilitiesByClass = {
     },
   },
   sorcerer: {
-    combat: {
+    combatFocus: {
       strength: 5,
       dexterity: 1,
       manualdexterity: 0,
@@ -62,7 +62,7 @@ const preferredAbilitiesByClass = {
       intelligence: 100,
       charisma: 0,
     },
-    nonCombat: {
+    nonCombatFocus: {
       strength: 3,
       dexterity: 3,
       manualdexterity: 0,
@@ -72,7 +72,7 @@ const preferredAbilitiesByClass = {
     },
   },
   theurge: {
-    combat: {
+    combatFocus: {
       strength: 1,
       dexterity: 0,
       manualdexterity: 0,
@@ -80,7 +80,7 @@ const preferredAbilitiesByClass = {
       intelligence: 100,
       charisma: 10,
     },
-    nonCombat: {
+    nonCombatFocus: {
       strength: 0,
       dexterity: 0,
       manualdexterity: 1,
@@ -90,7 +90,7 @@ const preferredAbilitiesByClass = {
     },
   },
   cleric: {
-    combat: {
+    combatFocus: {
       strength: 5,
       dexterity: 1,
       manualdexterity: 0,
@@ -98,7 +98,7 @@ const preferredAbilitiesByClass = {
       intelligence: 0,
       charisma: 10,
     },
-    nonCombat: {
+    nonCombatFocus: {
       strength: 3,
       dexterity: 0,
       manualdexterity: 3,

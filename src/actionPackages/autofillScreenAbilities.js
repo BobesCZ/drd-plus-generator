@@ -22,7 +22,7 @@ const autofillScreenAbilities = () => {
   const state = store.getState();
   const charClass = state.getIn(['character', 'info', 'class']);
   const levels = state.getIn(['character', 'levels']);
-  const combatType = state.getIn(['switchers', 'autoFillAbilities']) ? 'nonCombat' : 'combat';
+  const combatType = state.getIn(['switchers', 'autoFillAbilities']) ? 'nonCombatFocus' : 'combatFocus';
 
   const primaryPreferred = getPreferredAbility(charClass, 'primaryPreferred', combatType);
   const primaryOther = getPreferredAbility(charClass, 'primaryOther', combatType);

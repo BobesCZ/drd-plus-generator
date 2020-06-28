@@ -48,7 +48,7 @@ const rootReducer = (state = initialState, action) => {
 
         if (!isTextInputFilled(nameField)) {
           // Set initial name to Random peasant
-          const nameValue = translations['default-name'] + Math.floor(Math.random() * 100);
+          const nameValue = translations.defaultName + Math.floor(Math.random() * 100);
           return state.setIn(['character', 'info', 'name'], nameValue);
         }
       }

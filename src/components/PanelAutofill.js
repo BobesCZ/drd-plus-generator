@@ -47,7 +47,7 @@ class ConnectedPanelAutofill extends React.Component {
       const abilitiesStringArray = [];
       const checked = this.props.switchers.get('autoFillAbilities');
 
-      ['combat', 'nonCombat'].forEach((combatType) => {
+      ['combatFocus', 'nonCombatFocus'].forEach((combatType) => {
         const abilities = [];
 
         ['primaryPreferred', 'primaryOther', 'primaryEqual', 'secondaryPreferred', 'secondaryOther', 'secondaryEqual'].forEach((item) => {
@@ -83,12 +83,12 @@ class ConnectedPanelAutofill extends React.Component {
           {translations.autoFillAbilitiesClass2}&nbsp;<br />
 
           <strong>
-            {translations.combat}
+            {translations.combatFocus}
           </strong>:
                     &nbsp;{abilitiesStringArray[0]}<br />
 
           <strong>
-            {translations.nonCombat}
+            {translations.nonCombatFocus}
           </strong>:
                     &nbsp;{abilitiesStringArray[1]}
 

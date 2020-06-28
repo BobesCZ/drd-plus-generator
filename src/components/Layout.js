@@ -1,4 +1,5 @@
 import React from 'react';
+import translations from '../translations';
 import CharacterSheet from './CharacterSheet';
 import Navigation from './Navigation';
 import SaveModal from './SaveModal';
@@ -6,11 +7,15 @@ import ScreenSection from './ScreenSection';
 import StepNavigation from './StepNavigation';
 
 class Layout extends React.Component {
+  componentDidMount () {
+    document.title = translations.pageTitle;
+  }
+
   render () {
     return (
       <div className="container">
 
-        <h1>DrDGen+</h1>
+        <h1>{translations.pageH1}</h1>
 
         <SaveModal />
 

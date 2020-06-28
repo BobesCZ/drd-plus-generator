@@ -66,19 +66,19 @@ const getCombatParameters = (charRace, charClass, dexterity, manualdexterity, in
 
     // @SOURCE: Tabulka bojových charakteristik
     results.attack = Math.floor(dexterity / 2);
-    let debugBoxObject = OrderedMap();
+    debugBoxObject = OrderedMap();
     debugBoxObject = debugBoxObject.set('derivedAbilitiesBase', results.attack);
     debugBoxObject = debugBoxObject.set('total', parseInt(results.attack));
     debugBox.attack = debugBoxObject;
 
     results.shoot = Math.round(dexterity / 2);
-    let debugBoxObject = OrderedMap();
+    debugBoxObject = OrderedMap();
     debugBoxObject = debugBoxObject.set('derivedAbilitiesBase', results.shoot);
     debugBoxObject = debugBoxObject.set('total', parseInt(results.shoot));
     debugBox.shoot = debugBoxObject;
 
     results.defense = Math.floor(manualdexterity / 2);
-    let debugBoxObject = OrderedMap();
+    debugBoxObject = OrderedMap();
     debugBoxObject = debugBoxObject.set('derivedAbilitiesBase', results.defense);
     debugBoxObject = debugBoxObject.set('total', parseInt(results.defense));
     debugBox.defense = debugBoxObject;
