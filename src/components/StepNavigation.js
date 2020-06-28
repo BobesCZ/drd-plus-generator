@@ -1,17 +1,17 @@
-import React from "react";
-import { connect } from "react-redux";
-import translations from "../translations";
-import changeScreen from "../actions/changeScreen";
-import autofillScreen from "../actions/autofillScreen";
-import checkScreen from "../actionPackages/checkScreen";
-import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
-import autofillScreenAbilities from "../actionPackages/autofillScreenAbilities";
-import autofillScreenSkills from "../actionPackages/autofillScreenSkills";
-import autofillScreenWeapons from "../actionPackages/autofillScreenWeapons";
-import autofillScreenArmors from "../actionPackages/autofillScreenArmors";
-import screensArray from "../helpers/screensArray";
-import getPreviousArrayItem from "../helpers/getPreviousArrayItem";
-import getNextArrayItem from "../helpers/getNextArrayItem";
+import React from 'react';
+import { connect } from 'react-redux';
+import autofillScreenAbilities from '../actionPackages/autofillScreenAbilities';
+import autofillScreenArmors from '../actionPackages/autofillScreenArmors';
+import autofillScreenSkills from '../actionPackages/autofillScreenSkills';
+import autofillScreenWeapons from '../actionPackages/autofillScreenWeapons';
+import checkScreen from '../actionPackages/checkScreen';
+import resolveBackgroundAndChangeScreen from '../actionPackages/resolveBackgroundAndChangeScreen';
+import autofillScreen from '../actions/autofillScreen';
+import changeScreen from '../actions/changeScreen';
+import getNextArrayItem from '../helpers/getNextArrayItem';
+import getPreviousArrayItem from '../helpers/getPreviousArrayItem';
+import screensArray from '../helpers/screensArray';
+import translations from '../translations';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -28,35 +28,33 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedStepNavigation extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-
+  constructor (props) {
+    super(props);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(event) {
+  handleClick (event) {
     event.preventDefault();
     const target = event.target;
+    const screenAutofill = target.getAttribute('data-screen-autofill');
 
-    let screenAutofill = target.getAttribute('data-screen-autofill');
     if (screenAutofill) {
-      this.props.autofillScreen({ screen: screenAutofill});
+      this.props.autofillScreen({ screen: screenAutofill });
 
       // Do custom actions when autofill screen
-      if (screenAutofill === "screenBackground") {
+      if (screenAutofill === 'screenBackground') {
         resolveBackgroundAndChangeScreen();
       }
-      else if (screenAutofill === "screenAbilities") {
+      else if (screenAutofill === 'screenAbilities') {
         autofillScreenAbilities();
       }
-      else if (screenAutofill === "screenSkills") {
+      else if (screenAutofill === 'screenSkills') {
         autofillScreenSkills();
       }
-      else if (screenAutofill === "screenWeapons") {
+      else if (screenAutofill === 'screenWeapons') {
         autofillScreenWeapons();
       }
-      else if (screenAutofill === "screenArmors") {
+      else if (screenAutofill === 'screenArmors') {
         autofillScreenArmors();
       }
       else {
@@ -64,25 +62,24 @@ class ConnectedStepNavigation extends React.Component {
       }
     }
 
-    let screen = target.getAttribute('data-screen');
+    const screen = target.getAttribute('data-screen');
     if (screen) {
-      this.props.changeScreen({ active: screen});
+      this.props.changeScreen({ active: screen });
     }
   }
 
-  render(props) {
-    let previous = getPreviousArrayItem(screensArray, this.props.activeScreen);
-    let next = getNextArrayItem(screensArray, this.props.activeScreen);
-    let previousDisabled = this.props.screens.get(previous) < 0 ? true : false;
-    let nextDisabled = this.props.screens.get(next) < 0 ? true : false;
+  render () {
+    const previous = getPreviousArrayItem(screensArray, this.props.activeScreen);
+    const next = getNextArrayItem(screensArray, this.props.activeScreen);
+    const previousDisabled = this.props.screens.get(previous) < 0;
+    const nextDisabled = this.props.screens.get(next) < 0;
 
     return (
-
       <div className="stepnavigation">
         {/* Render button only if screen exists */}
         {previous &&
           <button type="button" className="btn btn-primary stepnavigation__left" data-screen={previous} onClick={this.handleClick} disabled={previousDisabled}>
-          <i className="fas fa-angle-left"></i>
+            <i className="fas fa-angle-left"></i>
             &nbsp; {translations.previousStep}
           </button>
         }

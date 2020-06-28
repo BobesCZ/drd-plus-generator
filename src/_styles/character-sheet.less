@@ -1,92 +1,92 @@
 .character-sheet {
   font-family: 'Gentium Book Basic', serif;
 
-    table > tbody > tr {
-        td, th {
-            // relative position for .debug-box-overlay
-            position: relative;
-            padding-top: 0;
-            padding-bottom: 0;
-            border: 1px solid #333;
-            border-color: #333;
-        }
+  table > tbody > tr {
+    td, th {
+      // relative position for .debug-box-overlay
+      position: relative;
+      padding-top: 0;
+      padding-bottom: 0;
+      border: 1px solid #333;
+      border-color: #333;
+    }
+  }
+
+  .ability-table {
+    td {
+      line-height: 1.6;
+
+      &:not(:first-child) {
+        text-align: right;
+        max-width: 2.5rem;
+        width: 2.5rem;
+        padding: 0 1rem 0 0;
+      }
+    }
+  }
+
+  .health-table {
+    td, th {
+      width: 2%;
+      height: 11px;
+      padding: 0;
+      font-size: 0.7rem;
+
+      &.inactive {
+        border-color: #ccc;
+      }
     }
 
-    .ability-table {
-        td {
-            line-height: 1.6;
-
-            &:not(:first-child) {
-                text-align: right;
-                max-width: 2.5rem;
-                width: 2.5rem;
-                padding: 0 1rem 0 0;
-            }
-        }
+    th {
+      border: none;
+      text-align: center;
     }
+  }
 
-    .health-table {
-        td, th {
-            width: 2%;
-            height: 11px;
-            padding: 0;
-            font-size: 0.7rem;
+  .skill-table {
+    td {
+      line-height: 1.6;
+      white-space: nowrap;
 
-            &.inactive {
-                border-color: #ccc;
-            }
-        }
+      &:first-child {
+        padding-right: 0;
+      }
 
-        th {
-            border: none;
-            text-align: center;
-        }
+      &:not(:first-child) {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+        text-align: center;
+        max-width: 2rem;
+      }
     }
+  }
 
-    .skill-table {
-        td {
-            line-height: 1.6;
-            white-space: nowrap;
+  .weapon-table-sheet {
+    th, td {
+      padding-left: .75rem;
+      padding-right: .75rem;
 
-            &:first-child {
-                padding-right: 0;
-            }
-
-            &:not(:first-child) {
-                padding-left: 0.25rem;
-                padding-right: 0.25rem;
-                text-align: center;
-                max-width: 2rem;
-            }
-        }
+      &:nth-child(2) {
+        text-align: left;
+      }
     }
+  }
 
-    .weapon-table-sheet {
-        th, td {
-            padding-left: .75rem;
-            padding-right: .75rem;
-
-            &:nth-child(2) {
-                text-align: left;
-            }
-        }
+  .armor-table {
+    th, td {
+      &:not(:first-child) {
+        text-align: center;
+      }
     }
+  }
 
-    .armor-table {
-        th, td {
-            &:not(:first-child) {
-                text-align: center;
-            }
-        }
-    }
+  small {
+    color: inherit;
+  }
 
-    small {
-        color: inherit;
+  &--printing {
+    .debug-box-overlay {
+      display: none;
     }
-
-    &--printing {
-        .debug-box-overlay {
-            display: none;
-        }
-    }
+  }
 }

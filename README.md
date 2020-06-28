@@ -12,7 +12,7 @@ You can use it online at [gen.dracidoupestudenka.cz](http://gen.dracidoupestuden
 ## Built With
 
 * [React](https://reactjs.org/) + [Redux](https://redux.js.org/) + [Immutable](https://immutable-js.github.io/immutable-js/)
-* [Webpack](https://webpack.js.org/) + [Babel](https://babeljs.io/)
+* [Webpack](https://webpack.js.org/) + [Babel](https://babeljs.io/) + [ESLint](https://eslint.org/)
 * [Cypress](https://www.cypress.io/)
 * [Bootstrap](https://getbootstrap.com/)
 

@@ -1,3 +1,3 @@
-const setErrata = item => ({ type: "SET_ERRATA", payload: item });
+const setErrata = item => ({ type: 'SET_ERRATA', payload: item });
 
 export default setErrata;

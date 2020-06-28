@@ -1,3 +1,3 @@
-const resolveLevels = item => ({ type: "RESOLVE_LEVELS", payload: item });
+const resolveLevels = item => ({ type: 'RESOLVE_LEVELS', payload: item });
 
 export default resolveLevels;

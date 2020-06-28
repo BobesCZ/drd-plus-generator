@@ -1,13 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import setErrata from "../actions/setErrata";
-import resolveBackgroundAndChangeScreen from "../actionPackages/resolveBackgroundAndChangeScreen";
-import resetSkills from "../actionPackages/resetSkills";
-import calculateSheet from "../actionPackages/calculateSheet";
-import getStringifiedNumber from "../helpers/getStringifiedNumber";
-import getRomanizedNumber from "../helpers/getRomanizedNumber";
-import translations from "../translations";
-import tables from "../data/tables";
+import React from 'react';
+import { connect } from 'react-redux';
+import resetSkills from '../actionPackages/resetSkills';
+import resolveBackgroundAndChangeScreen from '../actionPackages/resolveBackgroundAndChangeScreen';
+import setErrata from '../actions/setErrata';
+import tables from '../data/tables';
+import getRomanizedNumber from '../helpers/getRomanizedNumber';
+import getStringifiedNumber from '../helpers/getStringifiedNumber';
+import translations from '../translations';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -22,74 +21,71 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedPanelErrata extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-
+  constructor (props) {
+    super(props);
     this.handleChangeFormInput = this.handleChangeFormInput.bind(this);
   }
 
-  handleChangeFormInput(event) {
+  handleChangeFormInput (event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    // console.log({ key: name, value: value});
-    this.props.setErrata({ key: name, value: value});
+    this.props.setErrata({ key: name, value: value });
 
     // Do custom actions when change errata
-    if (name === "backgroundPointsHasNoRangeLimit") {
+    if (name === 'backgroundPointsHasNoRangeLimit') {
       resolveBackgroundAndChangeScreen();
     }
-    else if (name === "warriorHasAdditionalWeaponSkillsDegrees") {
+    else if (name === 'warriorHasAdditionalWeaponSkillsDegrees') {
       resetSkills();
     }
   }
 
-  render(props) {
-    let name = this.props.name;
-    let checked = this.props.errata.get(name);
+  render (props) {
+    const name = this.props.name;
+    const checked = this.props.errata.get(name);
     let content;
 
-    if (name === "backgroundPointsHasNoRangeLimit") {
+    if (name === 'backgroundPointsHasNoRangeLimit') {
       content = <p>
-                  {translations.PanelErrataTextBackground}
-                </p>
+        {translations.PanelErrataTextBackground}
+      </p>;
     }
-    else if (name === "warriorHasAdditionalWeaponSkillsDegrees") {
-      let degreesArray = [];
+    else if (name === 'warriorHasAdditionalWeaponSkillsDegrees') {
+      const degreesArray = [];
 
       [4, 5, 6].forEach((degree) => {
         degreesArray[degree] = [];
 
-        ["attackNumber", "cover", "damageNumber"].forEach((key) => {
-          let value = getStringifiedNumber(tables.weaponSkillDegrees[degree][key])
-          degreesArray[degree][key] = value
-        })
-      })
+        ['attackNumber', 'cover', 'damageNumber'].forEach((key) => {
+          const value = getStringifiedNumber(tables.weaponSkillDegrees[degree][key]);
+          degreesArray[degree][key] = value;
+        });
+      });
 
       content = <div>
-                  <p>
-                    {translations.PanelErrataTextWeaponSkillsDegree}
-                  </p>
-                  <table className="table">
-                    <tbody>
-                      <tr>
-                        <th>{translations.degree}</th>
-                        <th>{translations.attackNumber}</th>
-                        <th>{translations.cover}</th>
-                        <th>{translations.damageNumber}</th>
-                      </tr>
-                      {Object.keys(degreesArray).map(degree => (
-                        <tr key={degree}>
-                          <td>{getRomanizedNumber(degree)}.</td>
-                          <td>{degreesArray[degree]["attackNumber"]}</td>
-                          <td>{degreesArray[degree]["cover"]}</td>
-                          <td>{degreesArray[degree]["damageNumber"]}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+        <p>
+          {translations.PanelErrataTextWeaponSkillsDegree}
+        </p>
+        <table className="table">
+          <tbody>
+            <tr>
+              <th>{translations.degree}</th>
+              <th>{translations.attackNumber}</th>
+              <th>{translations.cover}</th>
+              <th>{translations.damageNumber}</th>
+            </tr>
+            {Object.keys(degreesArray).map(degree => (
+              <tr key={degree}>
+                <td>{getRomanizedNumber(degree)}.</td>
+                <td>{degreesArray[degree].attackNumber}</td>
+                <td>{degreesArray[degree].cover}</td>
+                <td>{degreesArray[degree].damageNumber}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>;
     }
 
     return (

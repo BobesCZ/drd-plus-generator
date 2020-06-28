@@ -1,16 +1,10 @@
-import React from "react";
-import ArmorRow from "./ArmorRow";
-import { connect } from "react-redux";
-import PanelAutofill from "./PanelAutofill";
-import translations from "../translations";
-import Navbar  from 'react-bootstrap/Navbar';
-import tables from "../data/tables";
-
-const mapDispatchToProps = dispatch => {
-  return {
-    // setSwitcher: item => dispatch(setSwitcher(item)),
-  };
-};
+import React from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import { connect } from 'react-redux';
+import tables from '../data/tables';
+import translations from '../translations';
+import ArmorRow from './ArmorRow';
+import PanelAutofill from './PanelAutofill';
 
 const mapStateToProps = (state) => {
   return {
@@ -20,26 +14,20 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedScreenArmors extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-  }
-
-  render(props) {
-    let skills = this.props.skills.getIn(['distributed', 'combat'])
-    let armors = tables.armors
-    let armorStateObject = this.props.armors;
-    let categoryHasArmorInState = []
+  render () {
+    const armors = tables.armors;
+    const armorStateObject = this.props.armors;
+    const categoryHasArmorInState = [];
 
     Object.keys(armors).forEach((key) => {
-      categoryHasArmorInState[key] = false
+      categoryHasArmorInState[key] = false;
 
-      for (var armorName in armors[key]) {
-        if (armorStateObject.getIn([key, "armorName"]) == armorName) {
-          categoryHasArmorInState[key] = true
+      for (const armorName in armors[key]) {
+        if (armorStateObject.getIn([key, 'armorName']) === armorName) {
+          categoryHasArmorInState[key] = true;
         }
       }
-    })
+    });
 
     return (
       <form>
@@ -59,21 +47,17 @@ class ConnectedScreenArmors extends React.Component {
         {Object.keys(armors).map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
             <Navbar expand="true">
-              <div className={categoryHasArmorInState[key] ? "card-header alert-info" : "card-header"}>
+              <div className={categoryHasArmorInState[key] ? 'card-header alert-info' : 'card-header'}>
                 <span>
                   {translations[key]}&nbsp;
                 </span>
               </div>
 
-              <Navbar.Toggle
-                aria-controls={'armors' + key}
-                children={
-                  <i className="fas fa-chevron-circle-down"></i>
-                }
-              />
+              <Navbar.Toggle aria-controls={'armors' + key}>
+                <i className="fas fa-chevron-circle-down"></i>
+              </Navbar.Toggle>
 
               <Navbar.Collapse id={'armors' + key}>
-
                 <div className="card-body">
                   <table className="table weapon-table mb-0">
                     <tbody>
@@ -92,7 +76,6 @@ class ConnectedScreenArmors extends React.Component {
                     </tbody>
                   </table>
                 </div>
-
               </Navbar.Collapse>
             </Navbar>
           </div>
@@ -101,11 +84,10 @@ class ConnectedScreenArmors extends React.Component {
         <PanelAutofill screen="screenArmors"/>
 
       </form>
-    )
-
+    );
   }
 }
 
-const ScreenArmors = connect(mapStateToProps, mapDispatchToProps)(ConnectedScreenArmors);
+const ScreenArmors = connect(mapStateToProps)(ConnectedScreenArmors);
 
 export default ScreenArmors;

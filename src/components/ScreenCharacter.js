@@ -1,14 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import store from "../store/index";
-import changeInfo from "../actions/changeInfo";
-import setErrata from "../actions/setErrata";
-import resetLevels from "../actionPackages/resetLevels";
-import translations from "../translations";
-import calculateSheet from "../actionPackages/calculateSheet";
-import checkScreen from "../actionPackages/checkScreen";
-import OverlayTrigger  from 'react-bootstrap/OverlayTrigger';
-import Popover  from 'react-bootstrap/Popover';
+import React from 'react';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
+import { connect } from 'react-redux';
+import checkScreen from '../actionPackages/checkScreen';
+import resetLevels from '../actionPackages/resetLevels';
+import changeInfo from '../actions/changeInfo';
+import setErrata from '../actions/setErrata';
+import translations from '../translations';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -18,39 +16,35 @@ const mapDispatchToProps = dispatch => {
 };
 
 const mapStateToProps = (state) => {
-  return { info: state.getIn(['character', 'info'])};
+  return { info: state.getIn(['character', 'info']) };
 };
 
 class ConnectedScreenCharacter extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-
+  constructor (props) {
+    super(props);
     this.handleChangeFormInput = this.handleChangeFormInput.bind(this);
   }
 
-  handleChangeFormInput(event) {
+  handleChangeFormInput (event) {
     // https://reactjs.org/docs/forms.html
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    // console.log({ key: name, value: value});
-    this.props.changeInfo({ key: name, value: value});
-    checkScreen("screenCharacter");
+    this.props.changeInfo({ key: name, value: value });
+    checkScreen('screenCharacter');
 
     // Ignore field Name and Note, otherwise call resetLevels
-    if (name !== "name" && name !== "note"){
+    if (name !== 'name' && name !== 'note') {
       resetLevels();
     }
 
     // If class is not Warrior, reset errata for Warrior
-    if (name === "class" && value !== "warrior") {
-      this.props.setErrata({ key: "warriorHasAdditionalWeaponSkillsDegrees", value: false});
+    if (name === 'class' && value !== 'warrior') {
+      this.props.setErrata({ key: 'warriorHasAdditionalWeaponSkillsDegrees', value: false });
     }
   }
 
-  render(props) {
-
+  render () {
     return (
       <form>
 
@@ -61,7 +55,7 @@ class ConnectedScreenCharacter extends React.Component {
             className="form-control"
             id="inputName"
             name="name"
-            value={this.props.info.get("name")}
+            value={this.props.info.get('name')}
             onInput={this.handleChangeFormInput}
             onChange={this.handleChangeFormInput}
             placeholder={translations.charnamePlaceholder}
@@ -74,7 +68,7 @@ class ConnectedScreenCharacter extends React.Component {
             className="form-control"
             id="inputRace"
             name="race"
-            value={this.props.info.get("race")}
+            value={this.props.info.get('race')}
             onChange={this.handleChangeFormInput}
           >
             <option value="human">{translations.human}</option>
@@ -99,7 +93,7 @@ class ConnectedScreenCharacter extends React.Component {
             className="form-control"
             id="inputClass"
             name="class"
-            value={this.props.info.get("class")}
+            value={this.props.info.get('class')}
             onChange={this.handleChangeFormInput}
           >
             <option value="warrior">{translations.warrior}</option>
@@ -117,7 +111,7 @@ class ConnectedScreenCharacter extends React.Component {
             className="form-control"
             id="inputLevel"
             name="level"
-            value={this.props.info.get("level")}
+            value={this.props.info.get('level')}
             onChange={this.handleChangeFormInput}
           >
             <option value="1">1.</option>
@@ -154,7 +148,7 @@ class ConnectedScreenCharacter extends React.Component {
                 <Popover id="sexPopover">
                   <Popover.Content>
                     {translations.sexPopover}
-                   </Popover.Content>
+                  </Popover.Content>
                 </Popover>
               }
             >
@@ -165,7 +159,7 @@ class ConnectedScreenCharacter extends React.Component {
             className="form-control"
             id="inputSex"
             name="sex"
-            value={this.props.info.get("sex")}
+            value={this.props.info.get('sex')}
             onChange={this.handleChangeFormInput}
           >
             <option value="male">{translations.male}</option>
@@ -179,7 +173,7 @@ class ConnectedScreenCharacter extends React.Component {
             className="form-control"
             id="inputNote"
             name="note"
-            value={this.props.info.get("note")}
+            value={this.props.info.get('note')}
             onChange={this.handleChangeFormInput}
             placeholder={translations.notePlaceholder}
             rows="3"
@@ -187,8 +181,7 @@ class ConnectedScreenCharacter extends React.Component {
         </div>
 
       </form>
-    )
-
+    );
   }
 }
 

@@ -1,3 +1,3 @@
-const setBackground = item => ({ type: "SET_BACKGROUND", payload: item });
+const setBackground = item => ({ type: 'SET_BACKGROUND', payload: item });
 
 export default setBackground;

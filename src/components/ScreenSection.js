@@ -1,64 +1,60 @@
 // https://www.valentinog.com/blog/react-redux-tutorial-beginners/
 
-import React from "react";
-import { Provider, connect } from "react-redux";
-import translations from "../translations";
-import ScreenCharacter from "./ScreenCharacter";
-import ScreenBackground from "./ScreenBackground";
-import ScreenAbilities from "./ScreenAbilities";
-import ScreenSkills from "./ScreenSkills";
-import ScreenWeapons from "./ScreenWeapons";
-import ScreenArmors from "./ScreenArmors";
-import ScreenExport from "./ScreenExport";
+import React from 'react';
+import { connect } from 'react-redux';
+import ScreenAbilities from './ScreenAbilities';
+import ScreenArmors from './ScreenArmors';
+import ScreenBackground from './ScreenBackground';
+import ScreenCharacter from './ScreenCharacter';
+import ScreenExport from './ScreenExport';
+import ScreenSkills from './ScreenSkills';
+import ScreenWeapons from './ScreenWeapons';
 
 const mapStateToProps = (state) => {
-  return { active: state.get('activeScreen')};
+  return { active: state.get('activeScreen') };
 };
 
 class ConnectedScreenSection extends React.Component {
-  render(active) {
-    let activeScreen = this.props.active;
-    // console.log(activeScreen);
+  render () {
+    const activeScreen = this.props.active;
 
-    if (activeScreen == "screenCharacter") {
+    if (activeScreen === 'screenCharacter') {
       return (
         <ScreenCharacter />
-      )
+      );
     }
-    else if (activeScreen == "screenBackground")  {
+    else if (activeScreen === 'screenBackground') {
       return (
         <ScreenBackground />
-      )
+      );
     }
-    else if (activeScreen == "screenAbilities")  {
+    else if (activeScreen === 'screenAbilities') {
       return (
         <ScreenAbilities />
-      )
+      );
     }
-    else if (activeScreen == "screenSkills")  {
+    else if (activeScreen === 'screenSkills') {
       return (
         <ScreenSkills />
-      )
+      );
     }
-    else if (activeScreen == "screenWeapons")  {
+    else if (activeScreen === 'screenWeapons') {
       return (
         <ScreenWeapons />
-      )
+      );
     }
-    else if (activeScreen == "screenArmors")  {
+    else if (activeScreen === 'screenArmors') {
       return (
         <ScreenArmors />
-      )
+      );
     }
-    else if (activeScreen == "screenExport")  {
+    else if (activeScreen === 'screenExport') {
       return (
         <ScreenExport />
-      )
+      );
     }
     else {
-      return (
-        <p> neznámá sekce :-| </p>
-      )
+      return false;
     }
   }
 }

@@ -1,15 +1,14 @@
-import React from "react";
-import { Provider, connect } from "react-redux";
-import DebugBox from "./DebugBox";
-import getArmorMissingStrength from "../calculations/getArmorMissingStrength";
-import getRomanizedNumber from "../helpers/getRomanizedNumber";
-import getStringifiedNumber from "../helpers/getStringifiedNumber";
-import isTextInputFilled from "../helpers/isTextInputFilled";
-import translations from "../translations";
-import tables from "../data/tables";
+import React from 'react';
+import { connect } from 'react-redux';
+import getArmorMissingStrength from '../calculations/getArmorMissingStrength';
+import tables from '../data/tables';
+import getRomanizedNumber from '../helpers/getRomanizedNumber';
+import getStringifiedNumber from '../helpers/getStringifiedNumber';
+import isTextInputFilled from '../helpers/isTextInputFilled';
+import translations from '../translations';
+import DebugBox from './DebugBox';
 
 const mapStateToProps = (state) => {
-  // console.log(JSON.stringify(state.getIn(['character', 'info']), null, 2))
   return {
     info: state.getIn(['character', 'info']),
     abilities: state.getIn(['character', 'abilities']),
@@ -22,98 +21,89 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedSheets extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-  }
+  render () {
+    const healthArray = [];
+    const charHealth = this.props.combatParameters.get('health');
+    const charRace = this.props.info.get('race');
+    const charStrength = this.props.abilities.get('strength');
+    const charNote = tables.derivedAbilities[charRace].note.length ? tables.derivedAbilities[charRace].note : false;
+    const skills = this.props.skills;
+    const weapons = this.props.weapons;
+    const armors = this.props.armors;
 
-  render(props) {
-    let healthArray = [];
-    let charHealth = this.props.combatParameters.get('health');
-    let charRace = this.props.info.get('race');
-    let charStrength = this.props.abilities.get('strength');
-    let charNote = tables.derivedAbilities[charRace]["note"].length ? tables.derivedAbilities[charRace]["note"] : false;
-    let skills = this.props.skills;
-    let weapons = this.props.weapons;
-    let armors = this.props.armors;
-
-    for (var i=1; i <= 50; i++) {
-      let active = i <= charHealth ? true : false;
-      let content = "";
+    for (let i = 1; i <= 50; i++) {
+      const active = i <= charHealth;
+      let content = '';
 
       // Print content to table cell for number 1, number corresponding to character health value and each 5 cells
       if (
         i === 1 ||
         i % 5 === 0 ||
         i === charHealth
-      )
-      {
+      ) {
         content = i;
       }
-      healthArray[i] = {"active": active, "content": content};
+      healthArray[i] = { active: active, content: content };
     }
 
-    let healthRowArray = [];
+    const healthRowArray = [];
 
-    for (var i=0; i < 3; i++) {
-      healthRowArray.push("healthRow" + i);
+    for (let i = 0; i < 3; i++) {
+      healthRowArray.push('healthRow' + i);
     }
 
-    let skillsArray = []
+    const skillsArray = [];
 
     skills.keySeq().forEach((key) => {
       skills.get(key).keySeq().forEach((skillName) => {
-        let value = skills.getIn([key, skillName])
+        const value = skills.getIn([key, skillName]);
 
         if (value > 0) {
-          skillsArray[skillName] = {}
-          skillsArray[skillName]["value"] = value
-          skillsArray[skillName]["skillType"] = key
+          skillsArray[skillName] = {};
+          skillsArray[skillName].value = value;
+          skillsArray[skillName].skillType = key;
         }
-
-      })
-    })
+      });
+    });
 
     // Split skillsArray in half and create 2 arrays
-    let skillsArrayColumns = []
-    skillsArrayColumns[0] = []
+    const skillsArrayColumns = [];
+    skillsArrayColumns[0] = [];
 
     if (Object.keys(skillsArray).length > 5) {
-      skillsArrayColumns[1] = []
+      skillsArrayColumns[1] = [];
 
       Object.keys(skillsArray).forEach((skillName, i) => {
-        if (i <= Math.ceil( (Object.keys(skillsArray).length / 2) - 1) ) {
-          skillsArrayColumns[0][skillName] = skillsArray[skillName]
+        if (i <= Math.ceil((Object.keys(skillsArray).length / 2) - 1)) {
+          skillsArrayColumns[0][skillName] = skillsArray[skillName];
         }
         else {
-          skillsArrayColumns[1][skillName] = skillsArray[skillName]
+          skillsArrayColumns[1][skillName] = skillsArray[skillName];
         }
-      })
+      });
     }
     else {
-      skillsArrayColumns[0] = skillsArray
+      skillsArrayColumns[0] = skillsArray;
     }
 
-    let weaponsArray = []
+    const weaponsArray = [];
     weapons.keySeq().forEach((weaponName) => {
-
       weapons.get(weaponName).forEach((weaponObject) => {
-        weaponsArray.push(weaponObject)
-      })
-    })
+        weaponsArray.push(weaponObject);
+      });
+    });
 
-    let armorsArray = []
+    const armorsArray = [];
 
     armors.keySeq().forEach((armorType) => {
+      let armorObject = armors.get(armorType);
 
-      let armorObject = armors.get(armorType)
-
-      if (isTextInputFilled(armorObject.get("armorName"))) {
-        let armorMissingStrength = getArmorMissingStrength(armorObject.get("necessaryStrength"), charStrength, charRace);
-        armorObject = armorObject.set("missingStrength", armorMissingStrength)
-        armorsArray.push(armorObject)
+      if (isTextInputFilled(armorObject.get('armorName'))) {
+        const armorMissingStrength = getArmorMissingStrength(armorObject.get('necessaryStrength'), charStrength, charRace);
+        armorObject = armorObject.set('missingStrength', armorMissingStrength);
+        armorsArray.push(armorObject);
       }
-    })
+    });
 
     return (
       <div className="character-sheet panel panel-default">
@@ -296,17 +286,17 @@ class ConnectedSheets extends React.Component {
                   <tr>
                     {Object.keys(healthArray).map(item =>
                       <th key={item}>
-                        {healthArray[item]['content']}
-                      </th>
+                        {healthArray[item].content}
+                      </th>,
                     )}
                   </tr>
 
                   {Object.keys(healthRowArray).map(item =>
                     <tr key={item}>
                       {Object.keys(healthArray).map(item =>
-                        <td key={item} className={healthArray[item]['active'] ? '' : 'inactive'}></td>
+                        <td key={item} className={healthArray[item].active ? '' : 'inactive'}></td>,
                       )}
-                    </tr>
+                    </tr>,
                   )}
 
                 </tbody>
@@ -326,17 +316,17 @@ class ConnectedSheets extends React.Component {
                         <tr key={item}>
                           <td>
                             {translations[item]}
-                            &nbsp;({skillsArrayColumns[column][item]["skillType"] === "psychical" ? "P" : skillsArrayColumns[column][item]["skillType"] === "combined" ? "K" : "F"})
+                            &nbsp;({skillsArrayColumns[column][item].skillType === 'psychical' ? 'P' : skillsArrayColumns[column][item].skillType === 'combined' ? 'K' : 'F'})
                           </td>
                           <td>
-                            {getRomanizedNumber(skillsArrayColumns[column][item]["value"]) + '.'}
+                            {getRomanizedNumber(skillsArrayColumns[column][item].value) + '.'}
                           </td>
-                        </tr>
+                        </tr>,
                       )}
 
                     </tbody>
                   </table>
-                </div>
+                </div>,
               )}
 
             </div>
@@ -348,44 +338,44 @@ class ConnectedSheets extends React.Component {
                 <table className="table weapon-table weapon-table-sheet">
                   <tbody>
                     <tr>
-                      <th>{translations["weapon"]}</th>
-                      <th>{translations["hold"]}</th>
-                      <th>{translations["combatSpeedNumber"]}</th>
-                      <th>{translations["attackNumber"]}</th>
-                      <th>{translations["damageNumber"]}</th>
-                      <th>{translations["defenseNumber"]}</th>
-                      <th>{translations["cover"]}</th>
+                      <th>{translations.weapon}</th>
+                      <th>{translations.hold}</th>
+                      <th>{translations.combatSpeedNumber}</th>
+                      <th>{translations.attackNumber}</th>
+                      <th>{translations.damageNumber}</th>
+                      <th>{translations.defenseNumber}</th>
+                      <th>{translations.cover}</th>
                     </tr>
 
                     {Object.keys(weaponsArray).map(key =>
                       <tr key={key}>
                         <td>
-                          {translations[weaponsArray[key].get("weaponName")]}
+                          {translations[weaponsArray[key].get('weaponName')]}
                         </td>
                         <td>
-                          {translations[weaponsArray[key].get("hold") + "Abbr"]}
+                          {translations[weaponsArray[key].get('hold') + 'Abbr']}
                         </td>
                         <td>
-                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_combatSpeedNumber"} />
-                          {weaponsArray[key].get("combatSpeedNumber")}
+                          <DebugBox id={weaponsArray[key].get('weaponName') + '_' + weaponsArray[key].get('hold') + '_combatSpeedNumber'} />
+                          {weaponsArray[key].get('combatSpeedNumber')}
                         </td>
                         <td>
-                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_attackNumber"} />
-                          {weaponsArray[key].get("attackNumber")}
+                          <DebugBox id={weaponsArray[key].get('weaponName') + '_' + weaponsArray[key].get('hold') + '_attackNumber'} />
+                          {weaponsArray[key].get('attackNumber')}
                         </td>
                         <td>
-                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_damageNumber"} />
-                          {getStringifiedNumber(weaponsArray[key].get("damageNumber"))}
+                          <DebugBox id={weaponsArray[key].get('weaponName') + '_' + weaponsArray[key].get('hold') + '_damageNumber'} />
+                          {getStringifiedNumber(weaponsArray[key].get('damageNumber'))}
                         </td>
                         <td>
-                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_defenseNumber"} />
-                          {weaponsArray[key].get("defenseNumber")}
+                          <DebugBox id={weaponsArray[key].get('weaponName') + '_' + weaponsArray[key].get('hold') + '_defenseNumber'} />
+                          {weaponsArray[key].get('defenseNumber')}
                         </td>
                         <td>
-                          <DebugBox id={weaponsArray[key].get("weaponName") + "_" + weaponsArray[key].get("hold") + "_cover"} />
-                          {weaponsArray[key].get("cover")}
+                          <DebugBox id={weaponsArray[key].get('weaponName') + '_' + weaponsArray[key].get('hold') + '_cover'} />
+                          {weaponsArray[key].get('cover')}
                         </td>
-                      </tr>
+                      </tr>,
                     )}
 
                   </tbody>
@@ -401,27 +391,27 @@ class ConnectedSheets extends React.Component {
                 <table className="table armor-table">
                   <tbody>
                     <tr>
-                      <th>{translations["armor"]}</th>
-                      <th>{translations["armorHeightType"]}</th>
-                      <th>{translations["limitation"]}</th>
-                      <th>{translations["protection"]}</th>
+                      <th>{translations.armor}</th>
+                      <th>{translations.armorHeightType}</th>
+                      <th>{translations.limitation}</th>
+                      <th>{translations.protection}</th>
                     </tr>
 
                     {Object.keys(armorsArray).map(key =>
                       <tr key={key}>
                         <td>
-                          {translations[armorsArray[key].get("armorName")]}
+                          {translations[armorsArray[key].get('armorName')]}
                         </td>
                         <td>
-                          {armorsArray[key].get("missingStrength")}
+                          {armorsArray[key].get('missingStrength')}
                         </td>
                         <td>
-                          {armorsArray[key].get("limitation")}
+                          {armorsArray[key].get('limitation')}
                         </td>
                         <td>
-                          {armorsArray[key].get("protection")}
+                          {armorsArray[key].get('protection')}
                         </td>
-                      </tr>
+                      </tr>,
                     )}
 
                   </tbody>
@@ -433,7 +423,7 @@ class ConnectedSheets extends React.Component {
 
         </div>
       </div>
-    )
+    );
   }
 }
 

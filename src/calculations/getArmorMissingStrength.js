@@ -1,19 +1,17 @@
-import tables from "../data/tables";
+import tables from '../data/tables';
 
 const getArmorMissingStrength = (armorsNecessaryStrength, charStrength, charRace) => {
-
- if (
-      typeof armorsNecessaryStrength === "number" &&
-      typeof charStrength === "number" &&
+  if (
+    typeof armorsNecessaryStrength === 'number' &&
+      typeof charStrength === 'number' &&
       charRace.length
-    )
-  {
-    let missingStrengthOnArmorCorrection = tables.missingStrengthOnArmorCorrection[charRace];
+  ) {
+    const missingStrengthOnArmorCorrection = tables.missingStrengthOnArmorCorrection[charRace];
 
     // Errata (not optional): strength is applied for armors and helmets separately
-    let missingStrengthArmor = armorsNecessaryStrength + missingStrengthOnArmorCorrection - charStrength
+    let missingStrengthArmor = armorsNecessaryStrength + missingStrengthOnArmorCorrection - charStrength;
     if (missingStrengthArmor < 0) {
-      missingStrengthArmor = 0
+      missingStrengthArmor = 0;
     }
 
     return missingStrengthArmor;
@@ -21,7 +19,6 @@ const getArmorMissingStrength = (armorsNecessaryStrength, charStrength, charRace
   else {
     return false;
   }
-
 };
 
 export default getArmorMissingStrength;

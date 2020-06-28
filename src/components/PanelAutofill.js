@@ -1,9 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import setSwitcher from "../actions/setSwitcher";
-import getPreferredAbility from "../helpers/getPreferredAbility";
-import getPreferredSkills from "../calculations/getPreferredSkills";
-import translations from "../translations";
+import React from 'react';
+import { connect } from 'react-redux';
+import setSwitcher from '../actions/setSwitcher';
+import getPreferredSkills from '../calculations/getPreferredSkills';
+import getPreferredAbility from '../helpers/getPreferredAbility';
+import translations from '../translations';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -19,146 +19,143 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedPanelAutofill extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-
+  constructor (props) {
+    super(props);
     this.handleChangeFormInput = this.handleChangeFormInput.bind(this);
   }
 
-   handleChangeFormInput(event) {
+  handleChangeFormInput (event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     // Do custom actions when change switcher
-    if (name === "autoFillAbilities") {
-      this.props.setSwitcher({ key: name, value: value});
+    if (name === 'autoFillAbilities') {
+      this.props.setSwitcher({ key: name, value: value });
     }
   }
 
-  render(props) {
-    let screen = this.props.screen;
-    let charClass = this.props.info.get("class");
+  render () {
+    const screen = this.props.screen;
+    const charClass = this.props.info.get('class');
     let content;
 
-    if (screen === "screenBackground") {
+    if (screen === 'screenBackground') {
       content = translations.autoFillBackground;
     }
-    else if (screen === "screenAbilities") {
-      let abilitiesStringArray = [];
-      let checked = this.props.switchers.get('autoFillAbilities');
+    else if (screen === 'screenAbilities') {
+      const abilitiesStringArray = [];
+      const checked = this.props.switchers.get('autoFillAbilities');
 
-      ["combat", "nonCombat"].forEach((combatType) => {
-        let abilities = [];
+      ['combatFocus', 'nonCombatFocus'].forEach((combatType) => {
+        const abilities = [];
 
-        ["primaryPreferred", "primaryOther", "primaryEqual", "secondaryPreferred", "secondaryOther", "secondaryEqual"].forEach((item) => {
-          let ability = getPreferredAbility(charClass, item, combatType)
+        ['primaryPreferred', 'primaryOther', 'primaryEqual', 'secondaryPreferred', 'secondaryOther', 'secondaryEqual'].forEach((item) => {
+          const ability = getPreferredAbility(charClass, item, combatType);
 
           if (ability) {
-            if (typeof ability === "object") {
-              let abilitiesEqual = []
-              let abilitiesEqualString
+            if (typeof ability === 'object') {
+              const abilitiesEqual = [];
+              let abilitiesEqualString;
 
               ability.forEach((i) => {
-                abilitiesEqual.push(translations[i])
-              })
-              abilitiesEqualString = abilitiesEqual.join(" + ")
-              abilities.push(abilitiesEqualString)
+                abilitiesEqual.push(translations[i]);
+              });
+              abilitiesEqualString = abilitiesEqual.join(' + ');
+              abilities.push(abilitiesEqualString);
             }
             else {
-              abilities.push(translations[ability])
+              abilities.push(translations[ability]);
             }
           }
-        })
+        });
 
-        abilitiesStringArray.push( abilities.join(", ") )
-
-      })
+        abilitiesStringArray.push(abilities.join(', '));
+      });
 
       content = <div>
-                  <p>
-                    {translations.autoFillAbilities}
-                  </p>
-                  <p>
-                    {translations.autoFillAbilitiesClass1}&nbsp;
-                    {translations[charClass]}&nbsp;
-                    {translations.autoFillAbilitiesClass2}&nbsp;<br />
+        <p>
+          {translations.autoFillAbilities}
+        </p>
+        <p>
+          {translations.autoFillAbilitiesClass1}&nbsp;
+          {translations[charClass]}&nbsp;
+          {translations.autoFillAbilitiesClass2}&nbsp;<br />
 
-                    <strong>
-                      {translations.combat}
-                    </strong>:
+          <strong>
+            {translations.combatFocus}
+          </strong>:
                     &nbsp;{abilitiesStringArray[0]}<br />
 
-                    <strong>
-                      {translations.nonCombat}
-                    </strong>:
+          <strong>
+            {translations.nonCombatFocus}
+          </strong>:
                     &nbsp;{abilitiesStringArray[1]}
 
-                  </p>
-                  <label className="switch-light mb-0">
-                    <input
-                      type="checkbox"
-                      name="autoFillAbilities"
-                      checked={checked}
-                      onChange={this.handleChangeFormInput}
-                    />
+        </p>
+        <label className="switch-light mb-0">
+          <input
+            type="checkbox"
+            name="autoFillAbilities"
+            checked={checked}
+            onChange={this.handleChangeFormInput}
+          />
 
-                    <span className="switch-light__inner">
-                      <span className="switch-light__false">
-                        {translations.autoFillAbilitiesFalse}
-                      </span>
+          <span className="switch-light__inner">
+            <span className="switch-light__false">
+              {translations.autoFillAbilitiesFalse}
+            </span>
 
-                      <span className="switch-light__true">
-                        {translations.autoFillAbilitiesTrue}
-                      </span>
+            <span className="switch-light__true">
+              {translations.autoFillAbilitiesTrue}
+            </span>
 
-                      <a className="btn btn-success"></a>
-                    </span>
+            <a className="btn btn-success"></a>
+          </span>
 
-                  </label>
-                </div>
+        </label>
+      </div>;
     }
 
-    else if (screen === "screenSkills") {
-      let orderedSkills = getPreferredSkills();
-      let skillsStringArray = [];
+    else if (screen === 'screenSkills') {
+      const orderedSkills = getPreferredSkills();
+      const skillsStringArray = [];
 
-      ["psychical", "combined"].forEach((skillType) => {
-        let skills = [];
+      ['psychical', 'combined'].forEach((skillType) => {
+        const skills = [];
 
-        orderedSkills[skillType]["preferred"].forEach((i) => {
-          skills.push(translations[i])
-        })
-        skillsStringArray.push( skills.join(", ") )
-      })
+        orderedSkills[skillType].preferred.forEach((i) => {
+          skills.push(translations[i]);
+        });
+        skillsStringArray.push(skills.join(', '));
+      });
 
       content = <div>
-                  <p>
-                    {translations.autoFillSkills}
-                  </p>
-                  <p className="mb-0">
-                    {translations.autoFillSkillsInfo1}<br />
+        <p>
+          {translations.autoFillSkills}
+        </p>
+        <p className="mb-0">
+          {translations.autoFillSkillsInfo1}<br />
 
-                    <strong>
-                      {translations.psychical}
-                    </strong>:
+          <strong>
+            {translations.psychical}
+          </strong>:
                     &nbsp;{skillsStringArray[0]}<br />
 
-                    <strong>
-                      {translations.combined}
-                    </strong>:
+          <strong>
+            {translations.combined}
+          </strong>:
                     &nbsp;{skillsStringArray[1]}
 
-                  </p>
-                </div>
+        </p>
+      </div>;
     }
 
-    else if (screen === "screenWeapons") {
+    else if (screen === 'screenWeapons') {
       content = translations.autoFillWeapons;
     }
 
-    else if (screen === "screenArmors") {
+    else if (screen === 'screenArmors') {
       content = translations.autoFillArmors;
     }
 

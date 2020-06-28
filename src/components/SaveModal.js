@@ -1,9 +1,9 @@
-import React from "react";
-import { connect } from "react-redux";
-import setSaveOption from "../actions/setSaveOption";
-import Modal  from 'react-bootstrap/Modal';
-import Button  from 'react-bootstrap/Button';
-import translations from "../translations";
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { connect } from 'react-redux';
+import setSaveOption from '../actions/setSaveOption';
+import translations from '../translations';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -19,64 +19,61 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedSaveModal extends React.Component {
-    constructor(props) {
-        super();
-        this.state = {};
+  constructor (props) {
+    super(props);
+    this.handleClose = this.handleClose.bind(this);
+  }
 
-        this.handleClose = this.handleClose.bind(this);
-    }
+  handleClose (event) {
+    this.props.setSaveOption({ key: 'useSavedState', value: false });
+  }
 
-    handleClose(event) {
-        this.props.setSaveOption({ key: 'useSavedState', value: false});
-    }
+  handleClear (event) {
+    localStorage.removeItem('drdgenState');
+    location.reload();
+  }
 
-    handleClear(event) {
-        localStorage.removeItem("drdgenState");
-        location.reload();
-    }
+  render (props) {
+    const showModal = this.props.saveOptions.get('useSavedState');
+    const saveTimestamp = this.props.saveOptions.get('saveTimestamp');
+    let saveDatetime = new Date(saveTimestamp);
+    saveDatetime = saveTimestamp === 0 ? '' : saveDatetime.toLocaleString();
+    const charName = this.props.info.get('name');
 
-    render(props) {
-        let showModal = this.props.saveOptions.get('useSavedState');
-        let saveTimestamp = this.props.saveOptions.get('saveTimestamp');
-        let saveDatetime = new Date(saveTimestamp);
-        saveDatetime = saveTimestamp === 0 ? '' : saveDatetime.toLocaleString()
-        let charName = this.props.info.get('name');
+    return (
+      <Modal show={showModal} onHide={this.handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {translations.saveModalTitle}
+          </Modal.Title>
+        </Modal.Header>
 
-        return (
+        <Modal.Body>
+          <p>
+            {translations.saveModalText1}
+            <strong> {charName} </strong>
+            {translations.saveModalText2}
+            <strong> {saveDatetime} </strong>
+          </p>
+          <p className="mb-0">
+            {translations.saveModalText3} {translations.screenExport}
+          </p>
+        </Modal.Body>
 
-            <Modal show={showModal} onHide={this.handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>
-                        {translations.saveModalTitle}
-                    </Modal.Title>
-                </Modal.Header>
+        <Modal.Footer>
+          <Button variant="danger" onClick={this.handleClear}>
+            <i className="fas fa-times"></i>
+            {translations.saveModalButtonClear}
+          </Button>
 
-                <Modal.Body>
-                    <p>
-                    {translations.saveModalText1}
-                        <strong> {charName} </strong>
-                        {translations.saveModalText2}
-                        <strong> {saveDatetime} </strong>
-                    </p>
-                    <p className="mb-0">
-                        {translations.saveModalText3} {translations.screenExport}
-                    </p>
-                </Modal.Body>
+          <Button variant="success" onClick={this.handleClose}>
+            {translations.saveModalButtonOk}
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
-                <Modal.Footer>
-                    <Button variant="danger" onClick={this.handleClear}>
-                         <i className="fas fa-times"></i>
-                        {translations.saveModalButtonClear}
-                    </Button>
-
-                    <Button variant="success" onClick={this.handleClose}>
-                        {translations.saveModalButtonOk}
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-
-        );
-    }
+    );
+  }
 }
 
 const SaveModal = connect(mapStateToProps, mapDispatchToProps)(ConnectedSaveModal);

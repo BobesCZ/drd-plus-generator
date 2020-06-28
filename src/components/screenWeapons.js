@@ -1,12 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import translations from "../translations";
-import WeaponRow from "./WeaponRow";
-import PanelAutofill from "./PanelAutofill";
-import getRomanizedNumber from "../helpers/getRomanizedNumber";
-import setSwitcher from "../actions/setSwitcher";
-import Navbar  from 'react-bootstrap/Navbar';
-import tables from "../data/tables";
+import React from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import { connect } from 'react-redux';
+import setSwitcher from '../actions/setSwitcher';
+import tables from '../data/tables';
+import getRomanizedNumber from '../helpers/getRomanizedNumber';
+import translations from '../translations';
+import PanelAutofill from './PanelAutofill';
+import WeaponRow from './WeaponRow';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -23,60 +23,59 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedScreenWeapons extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-
+  constructor (props) {
+    super(props);
     this.handleChangeFormInput = this.handleChangeFormInput.bind(this);
   }
 
-  handleChangeFormInput(event) {
+  handleChangeFormInput (event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    this.props.setSwitcher({ key: name, value: value});
+    this.props.setSwitcher({ key: name, value: value });
   }
 
-  render(props) {
-    let skills = this.props.skills.getIn(['distributed', 'combat'])
-    let weapons = tables.weapons;
-    let weaponStateObject = this.props.weapons;
-    let categoryHasWeaponInState = []
-    let showCharNumbersInWeaponTable = this.props.switchers.get('showCharNumbersInWeaponTable');
+  render () {
+    let skills = this.props.skills.getIn(['distributed', 'combat']);
+    const weapons = tables.weapons;
+    const weaponStateObject = this.props.weapons;
+    const categoryHasWeaponInState = [];
+    const showCharNumbersInWeaponTable = this.props.switchers.get('showCharNumbersInWeaponTable');
 
     // Change key "usingShield" to "shields"
     skills = skills.mapKeys(key => {
-      if (key === "usingShield")
-        return "shields";
+      if (key === 'usingShield') {
+        return 'shields';
+      }
       return key;
     });
 
     Object.keys(weapons).forEach((key) => {
-      categoryHasWeaponInState[key] = false
+      categoryHasWeaponInState[key] = false;
 
-      for (var weaponName in weapons[key]) {
+      for (const weaponName in weapons[key]) {
         if (weaponStateObject.has(weaponName)) {
-          categoryHasWeaponInState[key] = true
+          categoryHasWeaponInState[key] = true;
         }
       }
-    })
+    });
 
-    let columns = []
+    const columns = [];
 
     if (showCharNumbersInWeaponTable) {
-      columns.push( translations.combatSpeedNumber )
-      columns.push( translations.attackNumber )
-      columns.push( translations.damageNumber )
-      columns.push( translations.defenseNumber )
-      columns.push( translations.cover )
+      columns.push(translations.combatSpeedNumber);
+      columns.push(translations.attackNumber);
+      columns.push(translations.damageNumber);
+      columns.push(translations.defenseNumber);
+      columns.push(translations.cover);
     }
     else {
-      columns.push( translations.necessaryStrength )
-      columns.push( translations.length )
-      columns.push( translations.weaponAttackAbbr )
-      columns.push( translations.weaponDamage )
-      columns.push( translations.cover )
+      columns.push(translations.necessaryStrength);
+      columns.push(translations.length);
+      columns.push(translations.weaponAttackAbbr);
+      columns.push(translations.weaponDamage);
+      columns.push(translations.cover);
     }
 
     return (
@@ -120,8 +119,8 @@ class ConnectedScreenWeapons extends React.Component {
         {Object.keys(weapons).map(key => (
           <div key={key} className="card card--collapse bg-light mb-2">
             <Navbar expand="true">
-              <div className={categoryHasWeaponInState[key] ? "card-header alert-info" : "card-header"}>
-                {skills.get(key) == 0 &&
+              <div className={categoryHasWeaponInState[key] ? 'card-header alert-info' : 'card-header'}>
+                {skills.get(key) === 0 &&
                   <span>
                     {translations[key]}&nbsp;
                   </span>
@@ -129,20 +128,16 @@ class ConnectedScreenWeapons extends React.Component {
                 {skills.get(key) > 0 &&
                   <strong>
                     {translations[key]}&nbsp;
-                    ({getRomanizedNumber(skills.get(key)) + "."})
+                    ({getRomanizedNumber(skills.get(key)) + '.'})
                   </strong>
                 }
               </div>
 
-              <Navbar.Toggle
-                aria-controls={'weapons' + key}
-                children={
-                  <i className="fas fa-chevron-circle-down"></i>
-                }
-              />
+              <Navbar.Toggle aria-controls={'weapons' + key}>
+                <i className="fas fa-chevron-circle-down"></i>
+              </Navbar.Toggle>
 
               <Navbar.Collapse id={'weapons' + key}>
-
                 <div className="card-body">
                   <table className="table weapon-table mb-0">
                     <tbody>
@@ -163,7 +158,6 @@ class ConnectedScreenWeapons extends React.Component {
                     </tbody>
                   </table>
                 </div>
-
               </Navbar.Collapse>
             </Navbar>
           </div>
@@ -172,8 +166,7 @@ class ConnectedScreenWeapons extends React.Component {
         <PanelAutofill screen="screenWeapons"/>
 
       </form>
-    )
-
+    );
   }
 }
 

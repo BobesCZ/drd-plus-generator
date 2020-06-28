@@ -1,12 +1,12 @@
-import React from "react";
-import { connect } from "react-redux";
-import translations from "../translations";
-import changeScreen from "../actions/changeScreen";
-import screensArray from "../helpers/screensArray";
+import React from 'react';
+import { connect } from 'react-redux';
+import changeScreen from '../actions/changeScreen';
+import screensArray from '../helpers/screensArray';
+import translations from '../translations';
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeScreen: item => dispatch(changeScreen(item))
+    changeScreen: item => dispatch(changeScreen(item)),
   };
 };
 
@@ -18,27 +18,23 @@ const mapStateToProps = (state) => {
 };
 
 class ConnectedNavigation extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {};
-
+  constructor (props) {
+    super(props);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(event) {
+  handleClick (event) {
     event.preventDefault();
-
     const target = event.target;
-    let isDisabled = target.classList.contains('disabled');
+    const isDisabled = target.classList.contains('disabled');
 
     if (!isDisabled) {
-      let screen = target.getAttribute('data-screen');
-      this.props.changeScreen({ active: screen});
+      const screen = target.getAttribute('data-screen');
+      this.props.changeScreen({ active: screen });
     }
   }
 
-  render(props) {
-
+  render () {
     return (
       <ul className="nav nav-tabs mb-4">
         {screensArray.map(key => (
