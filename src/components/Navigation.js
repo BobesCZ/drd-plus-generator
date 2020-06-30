@@ -42,7 +42,7 @@ class ConnectedNavigation extends React.Component {
             <a
               href="#"
               data-screen={key}
-              className={this.props.screens.get(key) < 0 ? 'nav-link disabled' : this.props.activeScreen == key ? 'nav-link active' : 'nav-link'}
+              className={this.props.screens.get(key) < 0 ? 'nav-link disabled' : this.props.activeScreen === key ? 'nav-link active' : 'nav-link'}
               onClick={this.handleClick}
             >
               {translations[key]}

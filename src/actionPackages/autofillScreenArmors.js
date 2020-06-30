@@ -46,7 +46,7 @@ const autofillScreenArmors = () => {
     const charArmorNecessaryStrength = state.getIn(['character', 'armors', armorType, 'necessaryStrength']);
 
     // Continue only if user has chose "no armor" option
-    if (charArmorNecessaryStrength == -10) {
+    if (charArmorNecessaryStrength === -10) {
       const armorName = getRecommendedArmor(armorType, charStrength, charRace);
 
       if (armorName) {

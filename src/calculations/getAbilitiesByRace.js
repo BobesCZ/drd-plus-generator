@@ -20,7 +20,7 @@ const getAbilitiesByRace = (charRace, charSex) => {
 
       // @SOURCE: Tabulka oprav pro pohlaví
       let sexValue = 0;
-      if (charSex == 'female') {
+      if (charSex === 'female') {
         sexValue = tables.abilities.sex[charRace][key];
       }
 
