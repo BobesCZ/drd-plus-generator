@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --mode development --open",
+    "lint": "eslint src/**/*.js",
     "cypress": "cypress open",
     "deploy": "webpack --mode production"
   },

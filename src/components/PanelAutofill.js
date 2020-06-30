@@ -56,12 +56,11 @@ class ConnectedPanelAutofill extends React.Component {
           if (ability) {
             if (typeof ability === 'object') {
               const abilitiesEqual = [];
-              let abilitiesEqualString;
 
               ability.forEach((i) => {
                 abilitiesEqual.push(translations[i]);
               });
-              abilitiesEqualString = abilitiesEqual.join(' + ');
+              const abilitiesEqualString = abilitiesEqual.join(' + ');
               abilities.push(abilitiesEqualString);
             }
             else {

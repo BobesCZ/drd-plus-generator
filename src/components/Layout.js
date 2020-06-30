@@ -15,7 +15,7 @@ class Layout extends React.Component {
     return (
       <div className="container">
 
-        <h1>{translations.pageH1}</h1>
+        <h1>{translations.pageTitle}</h1>
 
         <SaveModal />
 
