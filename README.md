@@ -7,7 +7,7 @@
 
 Character generator for Czech role-playing game *Dračí Doupě* (similar to Dungeons & Dragons).
 
-You can use it online at [gen.dracidoupestudenka.cz](http://gen.dracidoupestudenka.cz).
+You can use it online at [generator.dracidoupestudenka.cz](http://generator.dracidoupestudenka.cz).
 
 ## Built With
 
